@@ -1,0 +1,557 @@
+&parameter
+  param      = 31.128
+  units      = "(0 - 1)"
+  long_name  = "Sea-ice cover"
+  out_name   = ci
+/
+&parameter
+  param      = 32.128
+  units      = "(0 - 1)"
+  long_name  = "Snow albedo"
+  out_name   = asn
+/
+&parameter
+  param      = 34.128
+  units      = "K"
+  long_name  = "Sea surface temperature"
+  out_name   = sst
+/
+&parameter
+  param      = 35.128
+  units      = "K"
+  long_name  = "Ice temperature layer 1"
+  out_name   = istl1
+/
+&parameter
+  param      = 39.128
+  units      = "m3 m-3"
+  long_name  = "Soil moisture content layer 1"
+  out_name   = mrsos
+/
+&parameter
+  param      = 40.128
+  units      = "m3 m-3"
+  long_name  = "Volumetric soil water layer 2"
+  out_name   = swvl2
+/
+&parameter
+  param      = 41.128
+  units      = "m3 m-3"
+  long_name  = "Volumetric soil water layer 3"
+  out_name   = swvl3
+/
+&parameter
+  param      = 42.128
+  units      = "m3 m-3"
+  long_name  = "Volumetric soil water layer 4"
+  out_name   = swvl4
+/
+&parameter
+  param      = 139.128
+  units      = "K"
+  long_name  = "Soil temperature level 1"
+  out_name   = ts
+/
+&parameter
+  param      = 141.128
+  units      = "m of water equivalent"
+  long_name  = "Snow depth"
+  out_name   = sd
+/
+&parameter
+  param      = 142.128
+  units      = "m"
+  long_name  = "Large-scale precipitation"
+  out_name   = prls
+/
+&parameter
+  param      = 143.128
+  units      = "m"
+  long_name  = "Convective precipitation"
+  out_name   = prc
+/
+&parameter
+  param      = 228.128
+  units      = "m"
+  long_name  = "Precipitation"
+  out_name   = pr
+/
+&parameter
+  param      = 144.128
+  units      = "m of water equivalent"
+  long_name  = "Snowfall"
+  out_name   = prsn
+/
+&parameter
+  param      = 44.128
+  units      = "m of water equivalent"
+  long_name  = "Surface Snow and Ice Sublimation Flux"
+  out_name   = sbl
+/
+&parameter
+  param      = 146.128
+  units      = "J m-2"
+  long_name  = "Surface upward sensible heat flux"
+  positive   = "down"
+  out_name   = hfls
+/
+&parameter
+  param      = 147.128
+  units      = "J m-2"
+  long_name  = "Surface upward latent heat flux"
+  positive  = "down"
+  out_name   = hfss
+/
+&parameter
+  param      = 169.128
+  units      = "J m-2"
+  long_name  = "Surface downwelling shortwave radiation"
+  out_name   = rsds
+  positive  = "down"
+/
+&parameter
+  param      = 170.128
+  units      = "K"
+  long_name  = "Soil temperature level 2"
+  out_name   = stl2
+/
+&parameter
+  param      = 175.128
+  units      = "J m-2"
+  long_name  = "Surface downwelling longwave radiation"
+  out_name   = rlds
+  positive  = "down"
+/
+&parameter
+  param      = 176.128
+  units      = "J m-2"
+  long_name  = "Surface net solar radiation"
+  out_name   = ssr
+/
+&parameter
+  param      = 176.128
+  units      = "J m-2"
+  long_name  = "Surface net solar radiation"
+  out_name   = ssr
+/
+&parameter
+  param      = 177.128
+  units      = "J m-2"
+  long_name  = "Surface net thermal radiation"
+  out_name   = str
+/
+&parameter
+  param      = 178.128
+  units      = "J m-2"
+  long_name  = "Top net solar radiation"
+  out_name   = tsr
+/
+&parameter
+  param      = 179.128
+  units      = "J m-2"
+  long_name  = "Top net thermal radiation"
+  out_name   = rlut
+  positive  = "down"
+/
+&parameter
+  param      = 180.128
+  units      = "N m-2 s"
+  long_name  = "Eastward turbulent surface stress"
+  out_name   = tauu
+/
+&parameter
+  param      = 181.128
+  units      = "N m-2 s"
+  long_name  = "Northward turbulent surface stress"
+  out_name   = tauv
+/
+&parameter
+  param      = 182.128
+  units      = "m of water equivalent"
+  long_name  = "Evaporation"
+  out_name   = evspsbl
+  positive   = "down"
+/
+&parameter
+  param      = 183.128
+  units      = "K"
+  long_name  = "Soil temperature level 3"
+  out_name   = stl3
+/
+&parameter
+  param      = 201.128
+  units      = "K"
+  long_name  = "Maximum temperature at 2 metres since previous post-processing"
+  out_name   = tasmax
+/
+&parameter
+  param      = 202.128
+  units      = "K"
+  long_name  = "Minimum temperature at 2 metres since previous post-processing"
+  out_name   = tasmin
+/
+&parameter
+  param      = 205.128
+  units      = "m"
+  long_name  = "Runoff"
+  out_name   = mrro
+/
+&parameter
+  param      = 208.128
+  units      = "J m-2"
+  long_name  = "Top net solar radiation, clear sky"
+  out_name   = tsrc
+/
+&parameter
+  param      = 209.128
+  units      = "J m-2"
+  long_name  = "Top net thermal radiation, clear sky"
+  out_name   = rlutcs
+  positive   = "down"
+/
+&parameter
+  param      = 210.128
+  units      = "J m-2"
+  long_name  = "Surface net solar radiation, clear sky"
+  out_name   = ssrc
+/
+&parameter
+  param      = 211.128
+  units      = "J m-2"
+  long_name  = "Surface net thermal radiation, clear sky"
+  out_name   = strc
+/
+&parameter
+  param      = 212.128
+  units      = "J m-2"
+  long_name  = "TOA incident solar radiation"
+  out_name   = rsdt
+  positive   = "down"
+/
+&parameter
+  param      = 235.128
+  units      = "K"
+  long_name  = "Skin temperature"
+  out_name   = ts
+/
+&parameter
+  param      = 236.128
+  units      = "K"
+  long_name  = "Soil temperature level 4"
+  out_name   = stl4
+/
+&parameter
+  param      = 238.128
+  units      = "K"
+  long_name  = "Temperature of snow layer"
+  out_name   = tsn
+/
+&parameter
+  param      = 78.128
+  units      = "kg m-2"
+  long_name  = "Total column liquid water"
+  out_name   = clwvi
+/
+&parameter
+  param      = 79.128
+  units      = "kg m-2"
+  long_name  = "Total column ice water"
+  out_name   = clivi
+/
+&parameter
+  param      = 136.128
+  units      = "kg m-2"
+  long_name  = "Total column water"
+  out_name   = tcw
+/
+&parameter
+  param      = 137.128
+  units      = "kg m-2"
+  long_name  = "Total column water vapour"
+  out_name   = prw
+/
+&parameter
+  param      = 151.128
+  units      = "Pa"
+  long_name  = "Mean sea level pressure"
+  out_name   = psl
+/
+&parameter
+  param      = 164.128
+  units      = "(0 - 1)"
+  long_name  = "Total cloud cover"
+  out_name   = clt
+/
+&parameter
+  param      = 165.128
+  units      = "m s-1"
+  long_name  = "10 metre U wind component"
+  out_name   = uas
+/
+&parameter
+  param      = 166.128
+  units      = "m s-1"
+  long_name  = "10 metre V wind component"
+  out_name   = vas
+/
+&parameter
+  param      = 167.128
+  units      = "K"
+  long_name  = "2 metre temperature"
+  out_name   = tas
+/
+&parameter
+  param      = 168.128
+  units      = "K"
+  long_name  = "2 metre dewpoint temperature"
+  out_name   = tdps
+/
+&parameter
+  param      = 186.128
+  units      = "(0 - 1)"
+  long_name  = "Low cloud cover"
+  out_name   = lcc
+/
+&parameter
+  param      = 187.128
+  units      = "(0 - 1)"
+  long_name  = "Medium cloud cover"
+  out_name   = mcc
+/
+&parameter
+  param      = 188.128
+  units      = "(0 - 1)"
+  long_name  = "High cloud cover"
+  out_name   = hcc
+/
+&parameter
+  param      = 243.128
+  units      = "(0 -1)"
+  long_name  = "Forecast albedo"
+  out_name   = al
+/
+&parameter
+  param      = 133.128
+  units      = "kg kg-1"
+  long_name  = "Specific humidity"
+  out_name   = hus
+/
+&parameter
+  param      = 157.128
+  units      = "%"
+  long_name  = "Relative humidity"
+  out_name   = hur
+/
+&parameter
+  param      = 131.128
+  units      = "m s-1"
+  long_name  = "U component of wind"
+  out_name   = ua
+/
+&parameter
+  param      = 132.128
+  units      = "m s-1"
+  long_name  = "V component of wind"
+  out_name   = va
+/
+&parameter
+  param      = 130.128
+  units      = "K"
+  long_name  = "Temperature"
+  out_name   = ta
+/
+&parameter
+  param      = 130.128
+  units      = "K"
+  long_name  = "Temperature"
+  out_name   = ta700
+/
+&parameter
+  param      = 129.128
+  units      = "m"
+  long_name  = "Geopotential height"
+  out_name   = zg
+/
+&parameter
+  param      = 152.128
+  units      = ""
+  long_name  = "Logarithm of surface pressure"
+  out_name   = lnsp
+/
+&parameter
+  param      = 134.128
+  units      = "Pa"
+  long_name  = "Surface pressure"
+  out_name   = ps
+/
+&parameter
+  param      = 157.128
+  units      = "%"
+  long_name  = "2 m relative humidity"
+  out_name   = hurs
+/
+&parameter
+  param      = 157.128
+  units      = "%"
+  long_name  = "Near-Surface Relative Humidity"
+  out_name   = rhs
+/
+&parameter
+  param      = 133.128
+  units      = "kg kg-1"
+  long_name  = "2 m specific humidity"
+  out_name   = huss
+/
+&parameter
+  param      = 85.128
+  units      = "kg m-2"
+  long_name  = "water content of soil layer"
+  out_name   = mrlsl
+/
+&parameter
+  param      = 95.128
+  units      = "J m-2"
+  long_name  = "Surface upwelling shortwave radiation"
+  out_name   = rsus
+  positive   = "down"
+/
+&parameter
+  param      = 96.128
+  units      = "J m-2"
+  long_name  = "Surface upwelling longwave radiation"
+  out_name   = rlus
+  positive   = "down"
+/
+&parameter
+  param      = 97.128
+  units      = "J m-2"
+  long_name  = "TOA upwelling shortwave radiation"
+  out_name   = rsut
+  positive   = "down"
+/
+&parameter
+  param      = 98.128
+  units      = "J m-2"
+  long_name  = "TOA upwelling shortwave radiation, clear-sky"
+  out_name   = rsutcs
+  positive   = "down"
+/
+&parameter
+  param      = 88.128
+  units      = "%"
+  long_name  = "CALIPSO Total Cloud Fraction"
+  out_name   = cltcalipso
+/
+&parameter
+  param      = 89.128
+  units      = "%"
+  long_name  = "CALIPSO Low Level Cloud Fraction"
+  out_name   = cllcalipso
+/
+&parameter
+  param      = 90.128
+  units      = "%"
+  long_name  = "CALIPSO Mid Level Cloud Fraction"
+  out_name   = clmcalipso
+/
+&parameter
+  param      = 91.128
+  units      = "%"
+  long_name  = "CALIPSO High Level Cloud Fraction"
+  out_name   = clhcalipso
+/
+&parameter
+  param      = 92.128
+  units      = "%"
+  long_name  = "ISCCP Total Cloud Fraction"
+  out_name   = cltisccp
+/
+&parameter
+  param      = 93.128
+  units      = "Pa"
+  long_name  = "ISCCP Mean Cloud Top Pressure"
+  out_name   = pctisccp
+/
+&parameter
+  param      = 94.128
+  units      = "(0 -1)"
+  long_name  = "ISCCP Mean Cloud Albedo"
+  out_name   = albisccp
+/
+&parameter
+  param      = 49.128
+  units      = "m s-1"
+  long_name  = "Near-Surface Wind Speed"
+  out_name   = sfcwind
+/
+&parameter
+  param      = 49.128
+  units      = "m s-1"
+  long_name  = "Daily Mean Near-Surface Wind Speed"
+  out_name   = sfcwind
+/
+&parameter
+  param      = 49.128
+  units      = "m s-1"
+  long_name  = "Daily Maximum Near-Surface Wind Speed"
+  out_name   = sfcwindmax
+/
+&parameter
+  param      = 246.128
+  units      = "kg kg-1"
+  long_name  = "Mass Fraction Of Cloud Liquid Water"
+  out_name   = clw
+/
+&parameter
+  param      = 247.128
+  units      = "kg kg-1"
+  long_name  = "Mass Fraction Of Cloud Ice"
+  out_name   = cli
+/
+&parameter
+  param      = 135.128
+  units      = "Pa s-1"
+  long_name  = "Omega (=dp/dt)"
+  out_name   = wap
+/
+&parameter
+  param      = 135.128
+  units      = "Pa s-1"
+  long_name  = "Omega (=dp/dt)"
+  out_name   = wap500
+/
+&parameter
+  param      = 001.201
+  units      = "J m-2"
+  long_name  = "Downwelling Shortwave Radiation"
+  out_name   = rsd
+  positive   = "down"
+/
+&parameter
+  param      = 060.235
+  units      = "J m-2"
+  long_name  = "Surface Diffuse Downwelling Shortwave Radiation"
+  out_name   = rsdsdiff
+  positive   = "down"
+/
+&parameter
+  param      = 002.201
+  units      = "J m-2"
+  long_name  = "Upwelling Shortwave Radiation"
+  out_name   = rsu
+  positive   = "up"
+/
+&parameter
+  param      = 003.201
+  units      = "J m-2"
+  long_name  = "Downwelling Longwave Radiation"
+  out_name   = rld
+  positive   = "down"
+/
+&parameter
+  param      = 004.201
+  units      = "J m-2"
+  long_name  = "Upwelling Longwave Radiation"
+  out_name   = rlu
+  positive   = "up"
+/

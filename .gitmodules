@@ -1,0 +1,6 @@
+[submodule "input/cmip6/cmip6-cmor-tables"]
+	path = input/cmip6/cmip6-cmor-tables
+	url = https://github.com/PCMDI/cmip6-cmor-tables.git
+[submodule "input/cmip5/cmip5-cmor-tables"]
+	path = input/cmip5/cmip5-cmor-tables
+	url = https://github.com/PCMDI/cmip5-cmor-tables.git
