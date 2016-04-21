@@ -259,12 +259,14 @@ def main(args):
     if(jsonfile or csvfile):
         table=cmip_table()
         table.cmor3=False
+        dirname=os.path.dirname(jsonfile)
+        expfname=os.path.join(dirname,"experiments.json")
         if(not csvfile):
             table.read_from_json(jsonfile)
-            table.read_experiments_from_json("data/cmip6/cmip6-cmor-tables/Tables/experiments.json")
+            table.read_experiments_from_json(expfname)
         else:
             table.read_header_from_json(jsonfile)
-            table.read_experiments_from_json("data/cmip6/cmip6-cmor-tables/Tables/experiments.json")
+            table.read_experiments_from_json(expfname)
             table.read_dims_from_json(jsonfile)
             table.read_usr_mappings_from_json(jsonfile)
             if(csvfile):
