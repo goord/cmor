@@ -482,19 +482,19 @@
   param      = 49.128
   units      = "m s-1"
   long_name  = "Near-Surface Wind Speed"
-  out_name   = sfcwind
+  out_name   = sfcWind
 /
 &parameter
   param      = 49.128
   units      = "m s-1"
   long_name  = "Daily Mean Near-Surface Wind Speed"
-  out_name   = sfcwind
+  out_name   = sfcWind
 /
 &parameter
   param      = 49.128
   units      = "m s-1"
   long_name  = "Daily Maximum Near-Surface Wind Speed"
-  out_name   = sfcwindmax
+  out_name   = sfcWindmax
 /
 &parameter
   param      = 246.128
