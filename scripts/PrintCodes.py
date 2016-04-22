@@ -154,30 +154,30 @@ grib_codes_2D_phy=[grib_code(8,128),
                    grib_code(121,260),
                    grib_code(123,260)]
 
-grib_codes_tnd=[grib_code(91,128),
-                grib_code(92,128),
-                grib_code(93,128),
-                grib_code(94,128),
-                grib_code(95,128),
-                grib_code(96,128),
-                grib_code(97,128),
-                grib_code(98,128),
-                grib_code(99,128),
-                grib_code(100,128),
-                grib_code(101,128),
-                grib_code(102,128),
-                grib_code(103,128),
-                grib_code(104,128),
-                grib_code(105,128),
-                grib_code(106,128),
-                grib_code(107,128),
-                grib_code(108,128),
-                grib_code(109,128),
-                grib_code(110,128),
-                grib_code(111,128),
-                grib_code(112,128),
-                grib_code(113,128),
-                grib_code(114,128)]
+grib_codes_extra=[grib_code(91,128),
+                  grib_code(92,128),
+                  grib_code(93,128),
+                  grib_code(94,128),
+                  grib_code(95,128),
+                  grib_code(96,128),
+                  grib_code(97,128),
+                  grib_code(98,128),
+                  grib_code(99,128),
+                  grib_code(100,128),
+                  grib_code(101,128),
+                  grib_code(102,128),
+                  grib_code(103,128),
+                  grib_code(104,128),
+                  grib_code(105,128),
+                  grib_code(106,128),
+                  grib_code(107,128),
+                  grib_code(108,128),
+                  grib_code(109,128),
+                  grib_code(110,128),
+                  grib_code(111,128),
+                  grib_code(112,128),
+                  grib_code(113,128),
+                  grib_code(114,128)]
 
 def read_params(parPath):
 
@@ -193,7 +193,7 @@ def read_params(parPath):
         varcode=int(math.floor(keyval))
         tabcode=int(round(1000*(keyval-varcode)))
         gcode=grib_code(varcode,tabcode)
-        if(gcode in grib_codes_3D+grib_codes_2D_dyn+grib_codes_2D_phy+grib_codes_tnd):
+        if(gcode in grib_codes_3D+grib_codes_2D_dyn+grib_codes_2D_phy+grib_codes_extra):
             keycode_dict[d[out_name_key]]=gcode
         else:
             print "Parameter",d[out_name_key]+":",d[long_name_key],"with code",keyval,"is not supported by IFS"
@@ -203,22 +203,29 @@ def read_params(parPath):
 def convert_parms(csvPath,parPath):
 
     include_key="included"
-    name_key="name"
     standard_name_key="standard_name"
     unit_key="unit"
     out_name_key="out_name"
     realm_key="modeling_realm"
 
 # Read par-file:
+    print "*********************************************************"
+    print "Parsing parameter table..."
     keycode_dict=read_params(parPath)
+    print "...done"
+    print "*********************************************************"
 
 # Read csv-file:
     csvf=open(csvPath)
     reader=csv.DictReader(csvf)
     namlist=[]
+    codes2d=[]
+    codes3d=[]
+    codesextra=[]
+    print "*********************************************************"
+    print "Parsing csv file..."
     for row in reader:
         if(row.get(include_key,"0").strip()=="1" and row.get(realm_key,"")=="atmos"):
-            namlist.append(row)
             nm=row.get(out_name_key,"")
             if(nm in keycode_dict):
                 ovar=output_variable(nm)
@@ -228,15 +235,28 @@ def convert_parms(csvPath,parPath):
                 if(ovar.grib_code in grib_codes_3D):
                     ovar.namelist=determine_namelist3D(row["dimensions"])
                 if(ovar.grib_code in grib_codes_2D_dyn):
-                    ovar.namelist="MFP2DF"
+                    ovar.namelist="MFP3DF"
+                    codes3d.append(ovar.grib_code.var_id)
                 if(ovar.grib_code in grib_codes_2D_phy):
                     ovar.namelist="MFPPHY"
-                if(ovar.grib_code in grib_codes_tnd):
-                    ovar.namelist="TENDENCY"
-
-                print "Found correct grib code for",ovar.name,":",ovar.grib_code.var_id,"in name list ",ovar.namelist
+                    codes2d.append(ovar.grib_code.var_id)
+                if(ovar.grib_code in grib_codes_extra):
+                    ovar.namelist="NAMDPHY"
+                    codesextra.append(ovar.grib_code.var_id)
+                namlist.append(ovar)
             else:
-                print "ERROR: could not find key for",nm+": "+row["standard_name"]
+                print "ERROR: could not find grib code for",nm+": "+row["standard_name"]
+
+    print "...done"
+    print "*********************************************************"
+
+    set3d=sorted(set(codes3d))
+    set2d=sorted(set(codes2d))
+    setextra=sorted(set(codesextra))
+
+    print "the",len(set3d),"3D grib codes are: ",set3d
+    print "the",len(set2d),"2D grib codes are: ",set2d
+    print "the",len(setextra),"extra grib codes are: ",setextra
 
     csvf.close()
 
@@ -250,37 +270,6 @@ def determine_namelist3D(dimsstring):
     if([d for d in dims if "height" in d]):
         return "MFP3DFH"
     return "IK WEET HET NIET, laatste dim is "+dimsstring
-
-def convert_parms_old(csvPath,parPath):
-
-    include_key="included"
-    name_key="name"
-    parameter_key="parameter"
-    out_name_key="out_name"
-    keycode_key="param"
-    realm_key="modeling_realm"
-
-    keycode_dict={}
-
-    parf=f90nml.read(parPath)
-    for d in parf[parameter_key]:
-        keycode_dict[d[out_name_key]]=d[keycode_key]
-
-    csvf=open(csvPath)
-    reader=csv.DictReader(csvf)
-    namlist=[]
-    for row in reader:
-        if(row.get(include_key,"0").strip()=="1" and row.get(realm_key,"")=="atmos"):
-            namlist.append(row)
-
-    for r in namlist:
-        nm=r[out_name_key]
-        if(nm in keycode_dict):
-            print "including",nm,keycode_dict[nm]
-        else:
-            print "ERROR: could not find key for ",nm,r["standard_name"]
-
-    csvf.close()
 
 def main(args):
 

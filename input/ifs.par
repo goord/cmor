@@ -103,55 +103,10 @@
   out_name   = hfss
 /
 &parameter
-  param      = 169.128
-  units      = "J m-2"
-  long_name  = "Surface downwelling shortwave radiation"
-  out_name   = rsds
-  positive  = "down"
-/
-&parameter
   param      = 170.128
   units      = "K"
   long_name  = "Soil temperature level 2"
   out_name   = stl2
-/
-&parameter
-  param      = 175.128
-  units      = "J m-2"
-  long_name  = "Surface downwelling longwave radiation"
-  out_name   = rlds
-  positive  = "down"
-/
-&parameter
-  param      = 176.128
-  units      = "J m-2"
-  long_name  = "Surface net solar radiation"
-  out_name   = ssr
-/
-&parameter
-  param      = 176.128
-  units      = "J m-2"
-  long_name  = "Surface net solar radiation"
-  out_name   = ssr
-/
-&parameter
-  param      = 177.128
-  units      = "J m-2"
-  long_name  = "Surface net thermal radiation"
-  out_name   = str
-/
-&parameter
-  param      = 178.128
-  units      = "J m-2"
-  long_name  = "Top net solar radiation"
-  out_name   = tsr
-/
-&parameter
-  param      = 179.128
-  units      = "J m-2"
-  long_name  = "Top net thermal radiation"
-  out_name   = rlut
-  positive  = "down"
 /
 &parameter
   param      = 180.128
@@ -195,38 +150,6 @@
   units      = "m"
   long_name  = "Runoff"
   out_name   = mrro
-/
-&parameter
-  param      = 208.128
-  units      = "J m-2"
-  long_name  = "Top net solar radiation, clear sky"
-  out_name   = tsrc
-/
-&parameter
-  param      = 209.128
-  units      = "J m-2"
-  long_name  = "Top net thermal radiation, clear sky"
-  out_name   = rlutcs
-  positive   = "down"
-/
-&parameter
-  param      = 210.128
-  units      = "J m-2"
-  long_name  = "Surface net solar radiation, clear sky"
-  out_name   = ssrc
-/
-&parameter
-  param      = 211.128
-  units      = "J m-2"
-  long_name  = "Surface net thermal radiation, clear sky"
-  out_name   = strc
-/
-&parameter
-  param      = 212.128
-  units      = "J m-2"
-  long_name  = "TOA incident solar radiation"
-  out_name   = rsdt
-  positive   = "down"
 /
 &parameter
   param      = 235.128
@@ -409,34 +332,6 @@
   out_name   = mrlsl
 /
 &parameter
-  param      = 95.128
-  units      = "J m-2"
-  long_name  = "Surface upwelling shortwave radiation"
-  out_name   = rsus
-  positive   = "down"
-/
-&parameter
-  param      = 96.128
-  units      = "J m-2"
-  long_name  = "Surface upwelling longwave radiation"
-  out_name   = rlus
-  positive   = "down"
-/
-&parameter
-  param      = 97.128
-  units      = "J m-2"
-  long_name  = "TOA upwelling shortwave radiation"
-  out_name   = rsut
-  positive   = "down"
-/
-&parameter
-  param      = 98.128
-  units      = "J m-2"
-  long_name  = "TOA upwelling shortwave radiation, clear-sky"
-  out_name   = rsutcs
-  positive   = "down"
-/
-&parameter
   param      = 88.128
   units      = "%"
   long_name  = "CALIPSO Total Cloud Fraction"
@@ -521,37 +416,150 @@
   out_name   = wap500
 /
 &parameter
-  param      = 001.201
-  units      = "J m-2"
-  long_name  = "Downwelling Shortwave Radiation"
-  out_name   = rsd
-  positive   = "down"
-/
-&parameter
-  param      = 060.235
-  units      = "J m-2"
-  long_name  = "Surface Diffuse Downwelling Shortwave Radiation"
-  out_name   = rsdsdiff
-  positive   = "down"
-/
-&parameter
-  param      = 002.201
+  param      = 95.128
   units      = "J m-2"
   long_name  = "Upwelling Shortwave Radiation"
   out_name   = rsu
   positive   = "up"
 /
 &parameter
-  param      = 003.201
+  param      = 96.128
+  units      = "J m-2"
+  long_name  = "Downwelling Shortwave Radiation"
+  out_name   = rsd
+  positive   = "down"
+/
+###############################################################
+&parameter
+  param      = 95.128
+  units      = "J m-2"
+  long_name  = "Surface Upwelling Shortwave Radiation"
+  out_name   = rsus
+  positive   = "down"
+/
+###############################################################
+&parameter
+  param      = 169.128
+  units      = "J m-2"
+  long_name  = "Surface Downwelling Shortwave Radiation"
+  out_name   = rsds
+  positive  = "down"
+/
+###############################################################
+&parameter
+  param      = 96.128
+  units      = "J m-2"
+  long_name  = "Surface Diffuse Downwelling Shortwave Radiation"
+  out_name   = rsdsdiff
+  positive   = "down"
+/
+###############################################################
+&parameter
+  param      = 176.128
+  units      = "J m-2"
+  long_name  = "Surface Net Solar Radiation"
+  out_name   = ssr
+/
+&parameter
+  param      = 210.128
+  units      = "J m-2"
+  long_name  = "Surface Net Solar Radiation, Clear Sky"
+  out_name   = ssrc
+/
+&parameter
+  param      = 178.128
+  units      = "J m-2"
+  long_name  = "Top Net Solar Radiation"
+  out_name   = tsr
+/
+&parameter
+  param      = 208.128
+  units      = "J m-2"
+  long_name  = "Top Net Solar Radiation, Clear Sky"
+  out_name   = tsrc
+/
+&parameter
+  param      = 212.128
+  units      = "J m-2"
+  long_name  = "TOA Incident Solar Radiation"
+  out_name   = rsdt
+  positive   = "down"
+/
+###############################################################
+&parameter
+  param      = 97.128
+  units      = "J m-2"
+  long_name  = "TOA Upwelling Shortwave Radiation"
+  out_name   = rsut
+  positive   = "down"
+/
+###############################################################
+###############################################################
+&parameter
+  param      = 98.128
+  units      = "J m-2"
+  long_name  = "TOA Upwelling Shortwave Radiation, Clear-Sky"
+  out_name   = rsutcs
+  positive   = "down"
+/
+###############################################################
+###############################################################
+&parameter
+  param      = 99.128
+  units      = "J m-2"
+  long_name  = "Upwelling Longwave Radiation"
+  out_name   = rlu
+  positive   = "up"
+/
+###############################################################
+###############################################################
+&parameter
+  param      = 100.128
   units      = "J m-2"
   long_name  = "Downwelling Longwave Radiation"
   out_name   = rld
   positive   = "down"
 /
+###############################################################
+###############################################################
 &parameter
-  param      = 004.201
+  param      = 101.128
   units      = "J m-2"
-  long_name  = "Upwelling Longwave Radiation"
-  out_name   = rlu
-  positive   = "up"
+  long_name  = "Surface Upwelling Longwave Radiation"
+  out_name   = rlus
+  positive   = "down"
+/
+###############################################################
+&parameter
+  param      = 175.128
+  units      = "J m-2"
+  long_name  = "Surface Downwelling Longwave Radiation"
+  out_name   = rlds
+  positive  = "down"
+/
+&parameter
+  param      = 177.128
+  units      = "J m-2"
+  long_name  = "Surface Net Thermal Radiation"
+  out_name   = str
+/
+&parameter
+  param      = 179.128
+  units      = "J m-2"
+  long_name  = "Top Net Thermal Radiation"
+  out_name   = rlut
+  positive  = "down"
+/
+&parameter
+  param      = 209.128
+  units      = "J m-2"
+  long_name  = "Top Net Thermal Radiation, Clear Sky"
+  out_name   = rlutcs
+  positive   = "down"
+/
+&parameter
+  param      = 211.128
+  units      = "J m-2"
+  long_name  = "Surface Net Thermal Radiation, Clear Sky"
+  out_name   = strc
 /
