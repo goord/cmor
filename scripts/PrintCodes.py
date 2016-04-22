@@ -256,8 +256,11 @@ def convert_parms(csvPath,parPath):
 
     print "the",len(set3d),"3D grib codes are: ",set3d
     print "the",len(set2d),"2D grib codes are: ",set2d
-    print "the",len(setextra),"extra grib codes are: ",setextra
+    print "the",len(setextra),"extra grib codes are: "
 
+    for n in setextra:
+        var=next(o for o in namlist if o.grib_code.var_id==n)
+        print var.standard_name,"("+var.name+")","suggested grib code",n
     csvf.close()
 
 #TODO: Make nicer, generic

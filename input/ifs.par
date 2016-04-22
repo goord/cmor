@@ -429,15 +429,13 @@
   out_name   = rsd
   positive   = "down"
 /
-###############################################################
 &parameter
-  param      = 95.128
+  param      = 97.128
   units      = "J m-2"
   long_name  = "Surface Upwelling Shortwave Radiation"
   out_name   = rsus
   positive   = "down"
 /
-###############################################################
 &parameter
   param      = 169.128
   units      = "J m-2"
@@ -445,15 +443,13 @@
   out_name   = rsds
   positive  = "down"
 /
-###############################################################
 &parameter
-  param      = 96.128
+  param      = 98.128
   units      = "J m-2"
   long_name  = "Surface Diffuse Downwelling Shortwave Radiation"
   out_name   = rsdsdiff
   positive   = "down"
 /
-###############################################################
 &parameter
   param      = 176.128
   units      = "J m-2"
@@ -485,51 +481,41 @@
   out_name   = rsdt
   positive   = "down"
 /
-###############################################################
 &parameter
-  param      = 97.128
+  param      = 99.128
   units      = "J m-2"
   long_name  = "TOA Upwelling Shortwave Radiation"
   out_name   = rsut
   positive   = "down"
 /
-###############################################################
-###############################################################
 &parameter
-  param      = 98.128
+  param      = 100.128
   units      = "J m-2"
   long_name  = "TOA Upwelling Shortwave Radiation, Clear-Sky"
   out_name   = rsutcs
   positive   = "down"
 /
-###############################################################
-###############################################################
 &parameter
-  param      = 99.128
+  param      = 101.128
   units      = "J m-2"
   long_name  = "Upwelling Longwave Radiation"
   out_name   = rlu
   positive   = "up"
 /
-###############################################################
-###############################################################
 &parameter
-  param      = 100.128
+  param      = 102.128
   units      = "J m-2"
   long_name  = "Downwelling Longwave Radiation"
   out_name   = rld
   positive   = "down"
 /
-###############################################################
-###############################################################
 &parameter
-  param      = 101.128
+  param      = 103.128
   units      = "J m-2"
   long_name  = "Surface Upwelling Longwave Radiation"
   out_name   = rlus
   positive   = "down"
 /
-###############################################################
 &parameter
   param      = 175.128
   units      = "J m-2"
