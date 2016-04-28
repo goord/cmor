@@ -169,7 +169,7 @@ def read_cmor_csv(csvpath):
         cmv.priority=prio
         result.append(cmv)
 
-    print "...done"
+    print "...done, read",len(result),"variables"
     return result
 
 def validate_vars(cmor_vars):

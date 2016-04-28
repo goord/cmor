@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<simulation> 
+
+ <context id="nemo" time_origin="1950-01-01 00:00:00" >
+  <!--
+============================================================================================================
+=                                  definition of all existing variables                                    =
+=                                            DO NOT CHANGE                                                 =
+============================================================================================================
+    -->
+    <field_definition src="./field_def.xml"/>
+    <!--
+============================================================================================================
+=                                           output files definition                                        =
+=                                            Define your own files                                         =
+=                                         put the variables you want...                                    =
+============================================================================================================
+    -->
+
+    <file_definition type="multiple_file" name="@expname@_@freq@_@startdate@_@enddate@" sync_freq="10d" min_digits="4">
+
+      <file_group id="1h" output_freq="1h" output_level="10" enabled=".TRUE."/> <!-- 1h files -->
+
+      <file_group id="2h" output_freq="2h" output_level="10" enabled=".TRUE."/> <!-- 2h files -->
+
+      <file_group id="3h" output_freq="3h" output_level="10" enabled=".TRUE."> <!-- 3h files -->
+        <file id="file1" name_suffix="_grid_T" description="ocean T grid variables">
+          <field field_ref="sst"        name="tos"    long_name="sea_surface_temperature"/>
+        </file>
+      </file_group>
+
+      <file_group id="4h" output_freq="4h" output_level="10" enabled=".TRUE."/> <!-- 4h files -->
+
+      <file_group id="6h" output_freq="6h" output_level="10" enabled=".TRUE."/> <!-- 6h files -->
+ 
+      <file_group id="1d" output_freq="1d" output_level="10" enabled=".TRUE.">  <!-- 1d files -->
+        <file id="file2" name_suffix="_icemod" description="ice icemod variables" enabled=".TRUE.">
+          <field field_ref="uice_ipa"    name="sivelu"     long_name="sea_ice_velocity_u"/>
+          <field field_ref="vice_ipa"    name="sivelv"     long_name="sea_ice_velocity_v"/>
+          <field field_ref="iceconc"     name="siconc"     long_name="sea_ice_area_fraction"/>
+          <field field_ref="icethic_cea" name="sithic"     long_name="sea_ice_thickness"/>
+        </file>
+        <file id="file3" name_suffix="_grid_T" description="ocean T grid variables">
+          <field field_ref="sst"        name="tos"    long_name="sea_surface_temperature"/>
+          <field field_ref="sst2"       name="tossq"  long_name="square_of_sea_surface_temperature"/>
+        </file>
+      </file_group>
+
+      <file_group id="1m" output_freq="1m" output_level="10" enabled=".TRUE."> <!-- 1m files -->
+        <file id="file4" name_suffix="_grid_T" description="ocean T grid variables">
+          <field field_ref="sss"        name="sos"    long_name="sea_surface_salinity"/>
+          <field field_ref="ssh"        name="zos"    long_name="sea_surface_height_above_geoid"/>
+          <field field_ref="toce"       name="thetao" long_name="sea_water_potential_temperature"/>
+          <field field_ref="soce"       name="so"     long_name="sea_water_salinity"/>
+          <field field_ref="ssh2"       name="zossq"  long_name="square_of_sea_surface_height_above_geoid"/>
+          <field field_ref="mldr10_1"   name="mlotst" long_name="ocean_mixed_layer_thickness_defined_by_sigma_t"/>
+          <field field_ref="tpt_dep"    name="zfull"  long_name="depth_below_geoid"/>
+          <field field_ref="botpres"    name="pbo"    long_name="sea_water_pressure_at_sea_floor"/>
+        </file>
+        <file id="file5" name_suffix="_SBC" description="surface fluxes variables" enabled=".FALSE."> <!-- time step automaticaly defined based on nn_fsbc -->
+          <field field_ref="qsr_oce"  name="qsr_oce" long_name="downward shortwave flux at ocean surface"/>
+          <field field_ref="qt_oce"   name="qt_oce"  long_name="downward total flux at ocean surface"/>
+          <field field_ref="qsr_ice"  name="qsr_ice" long_name="downward shortwave flux at ice surface"/>
+          <field field_ref="wspd"     name="windsp"/>
+          <field field_ref="precip"   name="precip"/> <!-- ice and snow -->
+          <field field_ref="snowpre"  name="prsn"    long_name="snowfall_flux"/>
+          <field field_ref="utau_ice" name="utau_ice"/>
+          <field field_ref="vtau_ice" name="vtau_ice"/>
+          <field field_ref="fsal_virt_cea" name="vsfsit" long_name="virtual_salt_flux_into_sea_water_due_to_sea_ice_thermodynamics"/>
+          <field field_ref="fsal_real_cea" name="sfdsi"  long_name="downward_sea_ice_basal_salt_flux"/>
+          <field field_ref="hflx_ice_cea"  name="hfsithermds" long_name="heat_flux_into_sea_water_due_to_sea_ice_thermodynamics"/>
+        </file>
+        <file id="file6" name_suffix="_grid_U" description="ocean U grid variables" enabled=".FALSE.">
+          <field field_ref="uoce"     name="uo"      long_name="sea_water_x_velocity"/>
+          <field field_ref="utau"     name="tauuo"   long_name="surface_downward_x_stress"/> <!-- available with key_diaar5 -->
+          <field field_ref="u_masstr" name="vozomatr"/>
+          <field field_ref="u_heattr" name="sozohetr"/>
+        </file>
+        <file id="file7" name_suffix="_grid_V" description="ocean V grid variables" enabled=".FALSE.">
+          <field field_ref="voce"     name="vo"      long_name="sea_water_y_velocity"/>
+          <field field_ref="vtau"     name="tauvo"   long_name="surface_downward_y_stress"/> <!-- available with key_diaar5 -->
+          <field field_ref="v_masstr" name="vomematr"/>
+          <field field_ref="v_heattr" name="somehetr"/>
+        </file>
+        <file id="file8" name_suffix="_grid_W" description="ocean W grid variables" enabled=".FALSE.">
+          <field field_ref="avt"       name="difvho"    long_name="ocean_vertical_heat_diffusivity"/>
+          <field field_ref="w_masstr"  name="vovematr"  long_name="upward_ocean_mass_transport"/>
+          <field field_ref="w_masstr2" name="vovematr2" long_name="square_of_upward_ocean_mass_transport"/>
+        </file>
+        <file id="file9" name_suffix="_icemod" description="ice variables" enabled=".TRUE.">
+          <field field_ref="snowthic_cea" name="snthic" long_name="surface_snow_thickness"/>
+          <field field_ref="icethic_cea"  name="sithic" long_name="sea_ice_thickness"/>
+          <field field_ref="iceconc"      name="siconc" long_name="sea_ice_area_fraction"/>
+          <field field_ref="ist_ipa"      name="tsice"  long_name="surface_temperature"/>      
+          <field field_ref="u_imasstr"  name="transix" long_name="sea_ice_x_transport"/>
+          <field field_ref="v_imasstr"  name="transiy" long_name="sea_ice_y_transport"/>
+          <field field_ref="icealb_cea"   name="ialb"/>
+        </file>
+        <file id="file10" name_suffix="_scalar" description="scalar variables" enabled=".TRUE.">
+          <field field_ref="voltot"    name="scvoltot"/>
+          <field field_ref="sshtot"    name="scsshtot"/>
+          <field field_ref="sshsteric" name="scsshste"/>
+          <field field_ref="sshthster" name="scsshtst"/>
+          <field field_ref="masstot"   name="scmastot"/>
+          <field field_ref="temptot"   name="sctemtot"/>
+        </file>
+      </file_group>
+      <file_group id="3d"  output_freq="3d"  output_level="10" enabled=".TRUE."/> <!-- 3d files -->
+      <file_group id="5d"  output_freq="5d"  output_level="10" enabled=".TRUE."/> <!-- 5d files -->
+      <file_group id="1m"  output_freq="1mo" output_level="10" enabled=".TRUE."/> <!-- real monthly files -->
+      <file_group id="2m"  output_freq="2mo" output_level="10" enabled=".TRUE."/> <!-- real 2m files -->
+      <file_group id="3m"  output_freq="3mo" output_level="10" enabled=".TRUE."/> <!-- real 3m files -->
+      <file_group id="4m"  output_freq="4mo" output_level="10" enabled=".TRUE."/> <!-- real 4m files -->
+      <file_group id="6m"  output_freq="6mo" output_level="10" enabled=".TRUE."/> <!-- real 6m files -->
+      <file_group id="1y"  output_freq="1y"  output_level="10" enabled=".TRUE."/> <!-- real yearly files -->
+      <file_group id="2y"  output_freq="2y"  output_level="10" enabled=".TRUE."/> <!-- real 2y files -->
+      <file_group id="5y"  output_freq="5y"  output_level="10" enabled=".TRUE."/> <!-- real 5y files -->
+      <file_group id="10y" output_freq="10y" output_level="10" enabled=".TRUE."/> <!-- real 10y files -->
+    </file_definition>
+    <!--
+============================================================================================================
+= grid definition = = DO NOT CHANGE =
+============================================================================================================
+    -->
+    <axis_definition>
+      <axis id="deptht" long_name="Vertical T levels" unit="m" positive="down"/>
+      <axis id="depthu" long_name="Vertical U levels" unit="m" positive="down"/>
+      <axis id="depthv" long_name="Vertical V levels" unit="m" positive="down"/>
+      <axis id="depthw" long_name="Vertical W levels" unit="m" positive="down"/>
+      <axis id="nfloat" long_name="Float number" unit="-"/>
+      <axis id="icbcla" long_name="Iceberg class" unit="-"/>
+      <axis id="ncatice" long_name="Ice categories" unit="-"/>
+    </axis_definition>
+    <domain_definition src="./domain_def.xml"/>
+    <grid_definition>
+      <grid id="grid_T_2D" domain_ref="grid_T"/>
+      <grid id="grid_T_3D" domain_ref="grid_T" axis_ref="deptht"/>
+      <grid id="grid_U_2D" domain_ref="grid_U"/>
+      <grid id="grid_U_3D" domain_ref="grid_U" axis_ref="depthu"/>
+      <grid id="grid_V_2D" domain_ref="grid_V"/>
+      <grid id="grid_V_3D" domain_ref="grid_V" axis_ref="depthv"/>
+      <grid id="grid_W_2D" domain_ref="grid_W"/>
+      <grid id="grid_W_3D" domain_ref="grid_W" axis_ref="depthw"/>
+    </grid_definition>
+  </context>
+  <context id="xios">
+    <variable_definition>
+      <variable_group id="buffer">
+        <variable id="optimal_buffer_size" type="string">performance</variable>
+        <variable id="buffer_factor_size" type="double">1.0</variable>
+      </variable_group>
+      <variable_group id="parameters">
+        <variable id="using_server" type="bool">true</variable>
+        <variable id="using_oasis" type="bool">false</variable>
+        <variable id="oasis_codes_id" type="string">oceanx</variable>
+        <variable id="info_level" type="int">0</variable>
+        <variable id="print_file" type="bool">true</variable>
+      </variable_group>
+    </variable_definition>
+  </context>
+</simulation>

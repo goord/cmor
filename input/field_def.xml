@@ -26,7 +26,7 @@
 
          <field id="toce"         long_name="temperature"         standard_name="sea_water_potential_temperature"   unit="degC"     grid_ref="grid_T_3D"/>
          <field id="toce_e3t"     long_name="temperature * e3t"                                                     unit="degC*m"   grid_ref="grid_T_3D" > toce * e3t </field >
-         <field id="soce"         long_name="salinity"            standard_name="sea_water_practical_salinity"      unit="1e-3"     grid_ref="grid_T_3D"/>
+         <field id="soce"         long_name="salinity"            standard_name="sea_water_salinity"                unit="1e-3"     grid_ref="grid_T_3D"/>
          <field id="soce_e3t"     long_name="salinity * e3t"                                                        unit="1e-3*m"   grid_ref="grid_T_3D" > soce * e3t </field >
 
          <field id="sst"          long_name="sea surface temperature"             standard_name="sea_surface_temperature"             unit="degC"     />
@@ -329,7 +329,7 @@
          <field id="vfxsnw"       long_name="snw melt/growth"                                              unit="m/day"   />
          <field id="vfxsub"       long_name="snw sublimation"                                              unit="m/day"   />
          <field id="vfxspr"       long_name="snw precipitation on ice"                                     unit="m/day"   />
-         <field id="vfxthin"      long_name="daily thermo ice prod. for thin ice(<20cm) + open water"      unit="m/day"   />
+         <field id="vfxthin"      long_name="daily thermo ice prod. for thin ice(less than 20cm) + open water" unit="m/day"   />
 
          <field id="afxtot"       long_name="area tendency (total)"                                        unit="day-1"   />
          <field id="afxdyn"       long_name="area tendency (dynamics)"                                     unit="day-1"   />
@@ -483,12 +483,12 @@
          <field id="sshthster"  long_name="global mean ssh thermosteric"                 standard_name="global_average_thermosteric_sea_level_change"   unit="m"    />
          <field id="masstot"    long_name="global total mass"                            standard_name="sea_water_mass"                                 unit="kg"   />
          <field id="temptot"    long_name="global mean temperature"                      standard_name="sea_water_potential_temperature"                unit="degC" />
-         <field id="saltot"     long_name="global mean salinity"                         standard_name="sea_water_salinity"                             unit="1e-3" />
+         <field id="saltot"     long_name="global mean salinity"                         standard_name="global_average_sea_water_salinity"              unit="1e-3" />
          <field id="fram_trans" long_name="Sea Ice Mass Transport Through Fram Strait"   standard_name="sea_ice_transport_across_line"                  unit="kg/s" />
 
       	 <!-- available with ln_diahsb -->
     	 <field id="bgtemper"     long_name="drift in global mean temperature wrt timestep 1"                 standard_name="change_over_time_in_sea_water_potential_temperature"   unit="degC"     />
-    	 <field id="bgsaline"     long_name="drift in global mean salinity wrt timestep 1"                    standard_name="change_over_time_in_sea_water_practical_salinity"      unit="1e-3"     />
+    	 <field id="bgsaline"     long_name="drift in global mean salinity wrt timestep 1"                    standard_name="change_over_time_in_sea_water_salinity"                unit="1e-3"     />
     	 <field id="bgheatco"     long_name="drift in global mean heat content wrt timestep 1"                                                                                      unit="10^9J"    />
     	 <field id="bgsaltco"     long_name="drift in global mean salt content wrt timestep 1"                                                                                      unit="1e-3*m3"  />
     	 <field id="bgvolssh"     long_name="drift in global mean ssh volume wrt timestep 1"                                                                                        unit="km3"      />
@@ -566,7 +566,7 @@
         <field id="traj_lat"      long_name="floats latitude"                                                            unit="degrees_north" />
         <field id="traj_dep"      long_name="floats depth"                                                               unit="m"             />
         <field id="traj_temp"     long_name="floats temperature"       standard_name="sea_water_potential_temperature"   unit="degC"          />
-        <field id="traj_salt"     long_name="floats salinity"          standard_name="sea_water_practical_salinity"      unit="1e-3"          />
+        <field id="traj_salt"     long_name="floats salinity"          standard_name="sea_water_salinity"                unit="1e-3"          />
         <field id="traj_dens"     long_name="floats in-situ density"   standard_name="sea_water_density"                 unit="kg/m3"         />
         <field id="traj_group"    long_name="floats group"                                                               unit="1"             />
       </field_group>

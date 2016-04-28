@@ -4,6 +4,7 @@ import xml.etree.ElementTree as element_tree
 import sys
 from optparse import OptionParser
 import os.path
+from ReadCmorCsv import read_cmor_csv
 
 class nemo_field:
     def __init__(self,name):
@@ -26,6 +27,17 @@ class nemo_var:
         self.name=name
         self.field=None
         self.frequency=None
+
+    def printout(self):
+        print "----------------------------------------------------------------------------------------------------"
+        print self.name
+        print "...................................................................................................."
+        print "Standard name: ",self.field.standard_name
+        print "Field code:    ",self.field.name
+        print "Long name:     ",self.field.long_name
+        print "Units:         ",self.field.unit
+        print "Frequency:     ",self.frequency
+        print "----------------------------------------------------------------------------------------------------"
 
 def read_field_defs(xmlpath):
 
@@ -63,7 +75,7 @@ def read_field_defs(xmlpath):
             nemfd.unit=unit_key
             result.append(nemfd)
 
-    print "done."
+    print "done, read",len(result),"definitions"
 
     return result
 
@@ -72,9 +84,10 @@ def read_io_defs(xmlpath,field_defs):
     context_key="context"
     file_def_key="file_definition"
     file_group_key="file_group"
+    file_key="file"
     field_key="field"
     field_ref_key="field_ref"
-    long_name="name"
+    name_key="name"
     long_name_key="long_name"
 
     result=[]
@@ -83,33 +96,34 @@ def read_io_defs(xmlpath,field_defs):
 
     tree=element_tree.parse(xmlpath)
     root=tree.getroot()
-    for fdef in root.findall(file_def_key):
-        for fgroup in fdef.findall(file_group_key):
-            fgroup_attr=fgroup.attrib
-            freq=fgroup_attr.get("output_freq")
-            for var in fgroup.findall(field_key):
-                var_attr=var.attib
-                fref=var_attr.get(field_ref_key,None)
-                if(not fref):
-                    print "ERROR: cannot process entry in io def xml without field reference"
-                varname=var_attr.get(name_key,None)
-                if(not varname):
-                    print "ERROR: cannot process entry in io def xml without name"
-                nemovar=nemo_var(varname)
-                nemovar.field=fref
-                nemovar.frequency=freq
-                result.append(nemovar)
-    print "done."
-
+    for ct in root.findall(context_key):
+        for fdef in ct.findall(file_def_key):
+            for fgroup in fdef.findall(file_group_key):
+                fgroup_attr=fgroup.attrib
+                freq=fgroup_attr.get("output_freq")
+                for f in fgroup.findall(file_key):
+                    for var in f.findall(field_key):
+                        var_attr=var.attrib
+                        fref=var_attr.get(field_ref_key,None)
+                        if(not fref):
+                            print "ERROR: cannot process entry in io def xml without field reference"
+                        varname=var_attr.get(name_key,None)
+                        if(not varname):
+                            print "ERROR: cannot process entry in io def xml without name"
+                        nemovar=nemo_var(varname)
+                        nemovar.field=fref
+                        nemovar.frequency=freq
+                        result.append(nemovar)
+    print "done, found",len(result),"entries"
     print "matching references to field definitions..."
     for nv in result:
-        fdef=next((fd for fd in field_defs if fd.name==fdef.field),None)
+        fdef=next((fd for fd in field_defs if fd.name==nv.field),None)
         if(not fdef):
             print "ERROR: could not find field definition corresponding to ",nv.name
             nv.field=None
         else:
             nv.field=fdef
-    print "done"
+    print "done, kept",len(result),"entries"
     return result
 
 def main(args):
@@ -117,26 +131,58 @@ def main(args):
     parser=OptionParser()
     parser.add_option("-d","--def",dest="fielddef",help="input field_def xml file",metavar="FILE")
     parser.add_option("-o","--io",dest="iodef",help="input io definition xml file",metavar="FILE")
+    parser.add_option("-c","--csv",dest="csvfile",help="input cmorization csv file",metavar="FILE")
 
     (opt,args)=parser.parse_args()
 
-    fdeffile = opt.fielddef
+    fdeffile=opt.fielddef
     if(not fdeffile or not os.path.isfile(fdeffile)):
         print "Error: invalid input xml file ",fdeffile
         exit(2)
 
-    iodeffile = opt.iodef
+    fdefs=read_field_defs(fdeffile)
+
+    iodeffile=opt.iodef
     if(not iodeffile or not os.path.isfile(iodeffile)):
         print "Error: invalid input xml file ",iodeffile
         exit(2)
 
-    fdefs=read_field_defs(fdeffile)
     iodefs=read_io_defs(iodeffile,fdefs)
-#    validate_vars(cvars)
-#    for fd in fdefs:
-#        fd.printout()
+
+    csvf=opt.csvfile
+    if(not csvf or not os.path.isfile(csvf)):
+        print "Error: invalid input csv file ",csvf
+        exit(2)
+
+    cmor_vars=read_cmor_csv(csvf)
+
+    oceanRealms=["ocean","ocean seaIce","seaIce ocean","seaIce"]
+    freqmapping={"day":"1d","mon":"1m","monClim":"1m","1hr":"1h","3hr":"3h","6hr":"6h"}
+
+    for cmv in cmor_vars:
+        if(not cmv.included): continue
+        if(cmv.realm not in oceanRealms): continue
+        iovars=[o for o in iodefs if o.field.standard_name==cmv.standard_name]
+        if(not iovars):
+            print "Could not find variable in NEMO output:"
+            cmv.printout()
+        freq=cmv.frequency
+        if(freq in freqmapping):
+            freq=freqmapping[freq]
+
+        if(freq not in map(lambda v: v.frequency,iovars)):
+            print "Could not find correct frequency for variable",cmv.standard_name,": requested",freq
+
+    for iovar in iodefs:
+        cmvs=[cmv for cmv in cmor_vars if cmv.standard_name==iovar.field.standard_name]
+        redundant=False
+        if(not cmvs):
+            redundant=True
+        elif(iovar.frequency not in map(lambda c:freqmapping.get(c.frequency,None),cmvs)):
+            redundant=True
+        if(redundant):
+            print "Redundant output variable found:",iovar.field.name,"for frequency",iovar.frequency,"not in ",map(lambda c:freqmapping.get(c.frequency,None),cmvs)
 
 if __name__=="__main__":
     main(sys.argv[1:])
-
 
