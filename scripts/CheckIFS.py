@@ -224,8 +224,9 @@ def convert_parms(csvPath,parPath):
     codesextra=[]
     print "*********************************************************"
     print "Parsing csv file..."
+    realms=["atmos","land","land landice","aerosol"]
     for row in reader:
-        if(row.get(include_key,"0").strip()=="1" and row.get(realm_key,"")=="atmos"):
+        if(row.get(include_key,"0").strip()=="1" and row.get(realm_key,"") in realms):
             nm=row.get(out_name_key,"")
             if(nm in keycode_dict):
                 ovar=output_variable(nm)

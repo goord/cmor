@@ -148,8 +148,14 @@
 &parameter
   param      = 205.128
   units      = "m"
-  long_name  = "Runoff"
+  long_name  = "Total Runoff"
   out_name   = mrro
+/
+&parameter
+  param      = 8.128
+  units      = "m"
+  long_name  = "Surface Runoff"
+  out_name   = mrros
 /
 &parameter
   param      = 235.128
@@ -324,12 +330,6 @@
   units      = "kg kg-1"
   long_name  = "2 m specific humidity"
   out_name   = huss
-/
-&parameter
-  param      = 85.128
-  units      = "kg m-2"
-  long_name  = "water content of soil layer"
-  out_name   = mrlsl
 /
 &parameter
   param      = 88.128
@@ -548,4 +548,10 @@
   units      = "J m-2"
   long_name  = "Surface Net Thermal Radiation, Clear Sky"
   out_name   = strc
+/
+&parameter
+  param      = 139.128
+  units      = "K"
+  long_name  = "Surface Temperature Where Land or Sea Ice"
+  out_name   = tslsi
 /
