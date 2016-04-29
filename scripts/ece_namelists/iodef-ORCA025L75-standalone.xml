@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<simulation> 
+<simulation>
 
  <context id="nemo" time_origin="1950-01-01 00:00:00" >
   <!--
@@ -32,7 +32,7 @@
       <file_group id="4h" output_freq="4h" output_level="10" enabled=".TRUE."/> <!-- 4h files -->
 
       <file_group id="6h" output_freq="6h" output_level="10" enabled=".TRUE."/> <!-- 6h files -->
- 
+
       <file_group id="1d" output_freq="1d" output_level="10" enabled=".TRUE.">  <!-- 1d files -->
         <file id="file2" name_suffix="_icemod" description="ice icemod variables" enabled=".TRUE.">
           <field field_ref="icevolu"     name="sivolu"     long_name="sea_ice_volume_per_unit_gridcell_area"/>
@@ -113,7 +113,7 @@
           <field field_ref="icevolu"      name="sivolu" long_name="sea_ice_volume_per_unit_gridcell_area"/>
           <field field_ref="snowvol"      name="snvolu" long_name="snow_volume_per_unit_gridcell_area"/>
           <field field_ref="iceconc"      name="siconc" long_name="sea_ice_area_fraction"/>
-          <field field_ref="ist_ipa"      name="tsice"  long_name="surface_temperature"/>      
+          <field field_ref="ist_ipa"      name="tsice"  long_name="surface_temperature"/>
           <field field_ref="icest" name="sistem"/>
           <field field_ref="icehc" name="siheco"/>
           <field field_ref="isnowhc" name="snheco"/>

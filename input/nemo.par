@@ -1,431 +1,476 @@
 &parameter
    name = votemper
-   units = "degC" 
-   long_name = "Temperature" 
+   units = "degC"
+   long_name = "Temperature"
    out_name = thetao
 /
 &parameter
    name = vosaline
-   units = "psu" 
-   long_name = "Salinity" 
+   units = "psu"
+   long_name = "Salinity"
    out_name = so
 /
 &parameter
    name = sosstsst
-   units = "degC" 
-   long_name = "Sea surface temperature" 
+   units = "degC"
+   long_name = "Sea surface temperature"
    out_name = tos
 /
 &parameter
+   name = tossq
+   units = "degC2"
+   long_name = "Square of Sea Surface Temperature"
+   out_name = tossq
+/
+&parameter
+   name = scsaltot
+   units = "psu"
+   long_name = "Global Mean Sea Water Salinity"
+   out_name = soga
+/
+&parameter
    name = sosaline
-   units = "psu" 
-   long_name = "Sea surface salinity" 
+   units = "psu"
+   long_name = "Sea surface salinity"
    out_name = sos
 /
 &parameter
    name = sossheig
-   units = "m" 
-   long_name = "Sea surface height" 
+   units = "m"
+   long_name = "Sea surface height"
    out_name = zos
 /
 &parameter
    name = sowaflup
-   units = "kg m-2 s-1" 
-   long_name = "Net Upward Water Flux" 
+   units = "kg m-2 s-1"
+   long_name = "Net Upward Water Flux"
    out_name = sowaflup
 /
 &parameter
    name = soshfldo
-   units = "W m-2" 
-   long_name = "Shortwave Radiation" 
+   units = "W m-2"
+   long_name = "Shortwave Radiation"
    out_name = soshfldo
 /
 &parameter
    name = sowaflcd
-   units = "kg m-2 s-1" 
-   long_name = "Concentration/dilution water flux" 
+   units = "kg m-2 s-1"
+   long_name = "Concentration/dilution water flux"
    out_name = sowaflcd
 /
 &parameter
    name = sohefldo
-   units = "W m-2" 
-   long_name = "Net Downward Heat Flux" 
+   units = "W m-2"
+   long_name = "Net Downward Heat Flux"
    out_name = sohefldo
 /
 &parameter
    name = somxl010
-   units = "m" 
-   long_name = "Mixed Layer Depth 0.01 ref.10m" 
+   units = "m"
+   long_name = "Mixed Layer Depth 0.01 ref.10m"
    out_name = mlotst
 /
 &parameter
    name = somixhgt
-   units = "m" 
-   long_name = "Mixing layer depth (Turbocline)" 
+   units = "m"
+   long_name = "Mixing layer depth (Turbocline)"
    out_name = somixhgt
 /
 &parameter
    name = soicecov
-   units = "1" 
-   long_name = "Ice fraction" 
+   units = "1"
+   long_name = "Ice fraction"
    out_name = soicecov
 /
 &parameter
    name = sowindsp
-   units = "m s-1" 
-   long_name = "Wind speed module at 10 m" 
+   units = "m s-1"
+   long_name = "Wind speed module at 10 m"
    out_name = sowindsp
 /
 &parameter
    name = sohefldp
-   units = "W m-2" 
+   units = "W m-2"
    long_name = "Surface Heat Flux"
    out_name = sohefldp
 /
 &parameter
    name = sowafldp
-   units = "kg m-2 s-1" 
+   units = "kg m-2 s-1"
    long_name = "Surface Water Flux"
    out_name = sowafldp
 /
 &parameter
    name = sothedep
-   units = "m" 
-   long_name = "Thermocline Depth (max dT/dz)" 
+   units = "m"
+   long_name = "Thermocline Depth (max dT/dz)"
    out_name = sothedep
 /
 &parameter
    name = so20chgt
-   units = "m" 
-   long_name = "Depth of 20C isotherm" 
+   units = "m"
+   long_name = "Depth of 20C isotherm"
    out_name = t20d
 /
 &parameter
    name = so28chgt
-   units = "m" 
-   long_name = "Depth of 28C isotherm" 
+   units = "m"
+   long_name = "Depth of 28C isotherm"
    out_name = so28chgt
 /
 &parameter
    name = sohtc300
-   units = "W" 
-   long_name = "Heat content 300 m" 
+   units = "W"
+   long_name = "Heat content 300 m"
    out_name = sohtc300
 /
 &parameter
    name = soicetem
-   units = "degC" 
-   long_name = "Ice surface temperature (ice presence average)" 
+   units = "degC"
+   long_name = "Ice surface temperature (ice presence average)"
    out_name = soicetem
 /
 &parameter
    name = soicealb
-   units = "1" 
-   long_name = "Ice albedo (cell average)" 
+   units = "1"
+   long_name = "Ice albedo (cell average)"
    out_name = soicealb
 /
 &parameter
    name = vozocrtx
-   units = "m s-1" 
-   long_name = "Ocean current along i-axis" 
+   units = "m s-1"
+   long_name = "Ocean current along i-axis"
    out_name = uo
 /
 &parameter
    name = vozoeivu
-   units = "m s-1" 
-   long_name = "EIV ocean current along i-axis" 
+   units = "m s-1"
+   long_name = "EIV ocean current along i-axis"
    out_name = vozoeivu
 /
 &parameter
    name = sozotaux
-   units = "N m-2" 
-   long_name = "Wind Stress along i-axis" 
+   units = "N m-2"
+   long_name = "Wind Stress along i-axis"
    out_name = tauuo
    positive = "down"
 /
 &parameter
    name = vomecrty
-   units = "m s-1" 
-   long_name = "Ocean current along j-axis" 
+   units = "m s-1"
+   long_name = "Ocean current along j-axis"
    out_name = vo
 /
 &parameter
    name = vomeeivv
-   units = "m s-1" 
-   long_name = "EIV ocean current along j-axis" 
+   units = "m s-1"
+   long_name = "EIV ocean current along j-axis"
    out_name = vomeeivv
 /
 &parameter
    name = sometauy
-   units = "N m-2" 
-   long_name = "Wind Stress along j-axis" 
+   units = "N m-2"
+   long_name = "Wind Stress along j-axis"
    out_name = tauvo
    positive = "down"
 /
 &parameter
    name = iiceconc
-   units = "%" 
-   long_name = "Ice concentration" 
+   units = "%"
+   long_name = "Ice concentration"
    out_name = sic
 /
 &parameter
    name = iicethic
-   units = "m" 
-   long_name = "Ice thickness" 
+   units = "m"
+   long_name = "Ice thickness"
    out_name = sit
 /
 &parameter
    name = isnowthi
-   units = "m" 
-   long_name = "Snow thickness" 
+   units = "m"
+   long_name = "Snow thickness"
    out_name = snd
 /
 &parameter
    name = iicebopr
-   units = "cm day-1" 
-   long_name = "Daily bottom thermo ice production" 
+   units = "cm day-1"
+   long_name = "Daily bottom thermo ice production"
    out_name = iicebopr
 /
 &parameter
    name = iicedypr
-   units = "cm day-1" 
-   long_name = "Daily dynamic ice production" 
+   units = "cm day-1"
+   long_name = "Daily dynamic ice production"
    out_name = iicedypr
 /
 &parameter
    name = ioceflxb
-   units = "W m-2" 
-   long_name = "Oceanic flux at the ice base" 
+   units = "W m-2"
+   long_name = "Oceanic flux at the ice base"
    out_name = ioceflxb
 /
 &parameter
    name = iicevelu
-   units = "m s-1" 
-   long_name = "Ice velocity u" 
+   units = "m s-1"
+   long_name = "Ice velocity u"
    out_name = usi
 /
 &parameter
    name = iicevelv
-   units = "m s-1" 
-   long_name = "Ice velocity v" 
+   units = "m s-1"
+   long_name = "Ice velocity v"
    out_name = vsi
 /
 &parameter
    name = iocetflx
-   units = "W m-2" 
-   long_name = "Total flux at ocean surface" 
+   units = "W m-2"
+   long_name = "Total flux at ocean surface"
    out_name = iocetflx
 /
 &parameter
    name = iocesflx
-   units = "W m-2" 
-   long_name = "Solar flux at ocean surface" 
+   units = "W m-2"
+   long_name = "Solar flux at ocean surface"
    out_name = iocesflx
 /
 &parameter
    name = iocwnsfl
-   units = "W m-2" 
-   long_name = "Non-solar flux at ocean surface" 
+   units = "W m-2"
+   long_name = "Non-solar flux at ocean surface"
    out_name = iocwnsfl
 /
 &parameter
    name = iocehebr
-   units = "W m-2" 
-   long_name = "Heat flux due to brine release" 
+   units = "W m-2"
+   long_name = "Heat flux due to brine release"
    out_name = iocehebr
 /
 &parameter
    name = iocestru
-   units = "Pa" 
-   long_name = "Wind stress u" 
+   units = "Pa"
+   long_name = "Wind stress u"
    out_name = strairx
 /
 &parameter
    name = iocestrv
-   units = "Pa" 
-   long_name = "Wind stress v" 
+   units = "Pa"
+   long_name = "Wind stress v"
    out_name = strairy
 /
 &parameter
    name = iicesflx
-   units = "W m-2" 
-   long_name = "Solar flux at ice/ocean surface" 
+   units = "W m-2"
+   long_name = "Solar flux at ice/ocean surface"
    out_name = iicesflx
 /
 &parameter
    name = iicenflx
-   units = "W m-2" 
-   long_name = "Non-solar flux at ice/ocean surface" 
+   units = "W m-2"
+   long_name = "Non-solar flux at ice/ocean surface"
    out_name = iicenflx
 /
 &parameter
    name = isnowpre
-   units = "kg day-1" 
-   long_name = "Snow precipitation" 
+   units = "kg day-1"
+   long_name = "Snow precipitation"
    out_name = isnowpre
 /
 &parameter
    name = iicesali
-   units = "psu" 
-   long_name = "Mean ice salinity" 
+   units = "psu"
+   long_name = "Mean ice salinity"
    out_name = iicesali
 /
 &parameter
    name = iiceages
-   units = "years" 
-   long_name = "Mean ice age" 
+   units = "years"
+   long_name = "Mean ice age"
    out_name = iiceages
 /
 &parameter
    name = iicelapr
-   units = "cm day-1" 
-   long_name = "Daily lateral thermo ice prod." 
+   units = "cm day-1"
+   long_name = "Daily lateral thermo ice prod."
    out_name = iicelapr
 /
 &parameter
    name = iicesipr
-   units = "cm day-1" 
-   long_name = "Daily snowice ice production" 
+   units = "cm day-1"
+   long_name = "Daily snowice ice production"
    out_name = iicesipr
 /
 &parameter
    name = iicetemp
-   units = "C" 
-   long_name = "Mean ice temperature" 
+   units = "C"
+   long_name = "Mean ice temperature"
    out_name = iicetemp
 /
 &parameter
    name = iiceheco
-   units = "10^9 J" 
-   long_name = "Ice total heat content" 
+   units = "10^9 J"
+   long_name = "Ice total heat content"
    out_name = iiceheco
 /
 &parameter
    name = isnoheco
-   units = "10^9 J" 
-   long_name = "Snow total heat content" 
+   units = "10^9 J"
+   long_name = "Snow total heat content"
    out_name = isnoheco
 /
 &parameter
    name = iicesurt
-   units = "C" 
-   long_name = "Ice surface temperature" 
+   units = "C"
+   long_name = "Ice surface temperature"
    out_name = tsice
 /
 &parameter
    name = iicfsbri
-   units = "kg m-2 s-1" 
-   long_name = "Fsbri - brine salt flux" 
+   units = "kg m-2 s-1"
+   long_name = "Fsbri - brine salt flux"
    out_name = iicfsbri
 /
 &parameter
    name = iicfseqv
-   units = "kg m-2 s-1" 
-   long_name = "Fseqv - equivalent FW salt flux" 
+   units = "kg m-2 s-1"
+   long_name = "Fseqv - equivalent FW salt flux"
    out_name = iicfseqv
 /
 &parameter
    name = ibrinvol
-   units = "%" 
-   long_name = "Brine volume" 
+   units = "%"
+   long_name = "Brine volume"
    out_name = ibrinvol
 /
 &parameter
    name = iicecolf
-   units = "m" 
-   long_name = "Frazil ice collection thickness" 
+   units = "m"
+   long_name = "Frazil ice collection thickness"
    out_name = iicecolf
 /
 &parameter
    name = iicestre
-   units = "N m-1" 
-   long_name = "Ice strength" 
+   units = "N m-1"
+   long_name = "Ice strength"
    out_name = iicestre
 /
 &parameter
    name = iicevelo
-   units = "m s-1" 
-   long_name = "Ice velocity" 
+   units = "m s-1"
+   long_name = "Ice velocity"
    out_name = iicevelo
 /
 &parameter
    name = iicesume
-   units = "cm day-1" 
-   long_name = "Surface melt" 
+   units = "cm day-1"
+   long_name = "Surface melt"
    out_name = iicesume
 /
 &parameter
    name = iicebome
-   units = "cm day-1" 
-   long_name = "Bottom melt" 
+   units = "cm day-1"
+   long_name = "Bottom melt"
    out_name = iicebome
 /
 &parameter
    name = iicedive
-   units = "10-8 s-1" 
-   long_name = "Divergence" 
+   units = "10-8 s-1"
+   long_name = "Divergence"
    out_name = iicedive
 /
 &parameter
    name = iiceshea
-   units = "10-8 s-1" 
-   long_name = "Shear" 
+   units = "10-8 s-1"
+   long_name = "Shear"
    out_name = iiceshea
 /
-
-
-
 &parameter
    name = tpt_dep
-   units = "m" 
-   long_name = "Depth Below Geoid of Ocean Layer" 
+   units = "m"
+   long_name = "Depth Below Geoid of Ocean Layer"
    out_name = zfull
 /
 &parameter
    name = tpt_dep
-   units = "m" 
-   long_name = "Depth Below Geoid of Interfaces Between Ocean Layer" 
+   units = "m"
+   long_name = "Depth Below Geoid of Interfaces Between Ocean Layer"
    out_name = zhalf
 /
 &parameter
    name = masstot
-   units = "kg" 
-   long_name = "Sea Water Mass" 
+   units = "kg"
+   long_name = "Sea Water Mass"
    out_name = masso
 /
 &parameter
    name = botpres
-   units = "dbar" 
-   long_name = "Sea Water Pressure at Sea Floor" 
+   units = "dbar"
+   long_name = "Sea Water Pressure at Sea Floor"
    out_name = pbo
 /
 &parameter
-   name = voltot
-   units = "m3" 
-   long_name = "Sea Water Volume" 
+   name = scvoltot
+   units = "m3"
+   long_name = "Sea Water Volume"
    out_name = volo
 /
 &parameter
    name = temptot
-   units = "K" 
-   long_name = "Global Average Sea Water Potential Temperature" 
+   units = "K"
+   long_name = "Global Average Sea Water Potential Temperature"
    out_name = thetaoga
 /
 &parameter
    name = w_masstr
-   units = "kg s-1" 
+   units = "kg s-1"
    long_name = "Upward Ocean Mass Transport"
    out_name = wmo
 /
 &parameter
    name = w_masstr2
-   units = "kg2 s-2" 
+   units = "kg2 s-2"
    long_name = "Square of Upward Ocean Mass Transport"
    out_name = wmosq
 /
 &parameter
    name = qt
-   units = "W s-2" 
+   units = "W s-2"
    long_name = "Downward Heat Flux at Sea Water Surface"
    out_name = hfds
+/
+&parameter
+   name = vsfsit
+   units = "kg m-2 s-1"
+   long_name = "Virtual Salt Flux into Sea Water due to Sea Ice Thermodynamics"
+   out_name = vsfsit
+/
+&parameter
+   name = sfdsi
+   units = "kg m-2 s-1"
+   long_name = "Downward Sea Ice Basal Salt Flux"
+   out_name = sfdsi
+/
+&parameter
+   name = hfsithermds
+   units = "W m-2"
+   long_name = "Heat Flux into Sea Water due to Sea Ice Thermodynamics"
+   out_name = hfsithermds
+/
+&parameter
+   name = ialb
+   units = "1"
+   long_name = "Sea Ice Albedo"
+   out_name = ialb
+/
+&parameter
+   name = transix
+   units = "kg s-1"
+   long_name = "X-Component of Sea Ice Mass Transport"
+   out_name = transix
+/
+&parameter
+   name = transiy
+   units = "kg s-1"
+   long_name = "Y-Component of Sea Ice Mass Transport"
+   out_name = transiy
 /
