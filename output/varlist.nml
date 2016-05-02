@@ -21,7 +21,3 @@
    freq=3hr
    vars2d=pr,tas,hfls,hfss,rlds,rlus,rsds,rsus,uas,vas,huss,mrsos,tslsi,tso,prc,prsn,mrro,ps,clt,rsdsdiff
 /
-&varlist
-   freq=None
-   vars3d=clisccp
-/
