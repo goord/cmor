@@ -5,7 +5,7 @@
 &varlist
    freq=mon
    vars2d=tas,ts,tasmin,tasmax,psl,ps,uas,vas,sfcWind,hurs,huss,pr,prsn,prc,evspsbl,sbl,tauu,tauv,hfls,hfss,rlds,rlus,rsds,rsus,rsdt,rsut,rlut,rlutcs,rsutcs,prw,clt,clwvi,clivi,masso,pbo,volo,zos,thetaoga,soga,vsfsit,sfdsi,hfds,mrsos,mrso,mrfso,mrros,mrro,lai,snw,snd,sic,sit,snd,ialb,tsice,transix,transiy
-   vars3d=clw,cli,ta,ua,va,hus,hur,wap,zg,thetao,so,uo,vo,wmo,wmosq,hfsithermds,zfull,zhalf,mrlsl,rlu,rsu,rld,rsd,ta,hur,hus
+   vars3d=clw,cli,ta,ua,va,hus,hur,wap,zg,thetao,so,uo,vo,wmo,wmosq,hfsithermds,zfull,zhalf,mrlsl,ta,hur,hus
 /
 &varlist
    freq=day
