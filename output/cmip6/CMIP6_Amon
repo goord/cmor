@@ -1,17 +1,17 @@
 baseURL:                                 http://cmip-pcmdi.llnl.gov/CMIP5/dataLocation
 approx_interval:                         30.00000
-cf_version:                              1.6
 product:                                 output
 cmor_version:                            2.5
 project_id:                              CMIP6-XXXX
 required_global_attributes:              creation_date tracking_id forcing model_id parent_experiment_id parent_experiment_rip branch_time contact institute_id
 frequency:                               mon
 table_id:                                Amon
-table_date:                              31 March 2016
+data_specs_version:                      3.0
 modeling_realm:                          atmos
 generic_levels:                          alevel alevhalf
 forcings:                                N/A Nat Ant GHG SD SI SA TO SO Oz LU Sl Vl SS Ds BC MD OC AA
 missing_value:                           1e20
+table_date:                              14 April 2016
 
 
 
@@ -285,6 +285,7 @@ standard_name:                           depth
 stored_direction:                        increasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           0. 100.
 value:                                   50.0
 long_name:                               depth
 valid_min:                               0.0
@@ -375,6 +376,7 @@ standard_name:                           air_pressure
 stored_direction:                        decreasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           44000. 0.0
 value:                                   22000.0
 long_name:                               pressure
 out_name:                                plev
@@ -479,6 +481,7 @@ standard_name:                           air_pressure
 stored_direction:                        decreasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           100000. 68000.
 value:                                   84000.0
 long_name:                               pressure
 out_name:                                plev
@@ -841,6 +844,7 @@ standard_name:                           depth
 stored_direction:                        increasing
 positive:                                down
 must_have_bounds:                        yes
+bounds_values:                           0.0 0.1
 value:                                   0.05
 long_name:                               depth
 valid_min:                               0.0
@@ -1470,6 +1474,7 @@ standard_name:                           air_pressure
 stored_direction:                        decreasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           68000. 44000.
 value:                                   56000.0
 long_name:                               pressure
 out_name:                                plev
@@ -1555,11 +1560,11 @@ standard_name:                           shallow_convection_time_fraction
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Fraction of Time Shallow Convection Occurs
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                sci
+type:                                    real
 
 
 
@@ -1572,33 +1577,30 @@ variable_entry: depth_c
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    double
 long_name:                               vertical coordinate formula term: depth_c
+out_name:                                depth_c
+type:                                    double
 
 
 
 !=================================
-variable_entry: tro3
+variable_entry: co2Clim
 !=================================
-modeling_realm:                          atmos atmosChem
+modeling_realm:                          atmos
 !---------------------------------
 ! variable attributes:
 !---------------------------------
-units:                                   1e-09
-standard_name:                           mole_fraction_of_ozone_in_air
+units:                                   1e-06
+standard_name:                           mole_fraction_of_carbon_dioxide_in_air
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude plev17 time
-type:                                    real
-long_name:                               Mole Fraction of O3
-valid_min:                               -419.2
-cell_measures:                           time: mean
+dimensions:                              longitude latitude plev17 time2
+long_name:                               Mole Fraction of CO2
 cell_methods:                            area: areacella
-ok_min_mean_abs:                         -149.1
-out_name:                                tro3
-valid_max:                               1.162e+04
-ok_max_mean_abs:                         7558
+cell_measures:                           time: mean within years time: mean over years
+out_name:                                co2Clim
+type:                                    real
 
 
 
@@ -1614,7 +1616,7 @@ standard_name:                           toa_outgoing_shortwave_flux_assuming_cl
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         73.36
 type:                                    real
 long_name:                               TOA Outgoing Clear-Sky Shortwave Radiation
 valid_min:                               0
@@ -1623,7 +1625,8 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         54.7
 out_name:                                rsutcs
 valid_max:                               444
-ok_max_mean_abs:                         73.36
+positive:                                up
+dimensions:                              longitude latitude time
 
 
 
@@ -1639,7 +1642,7 @@ standard_name:                           surface_downwelling_longwave_flux_in_ai
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         293.8
 type:                                    real
 long_name:                               Surface Downwelling Clear-Sky Longwave Radiation
 valid_min:                               33.55
@@ -1648,7 +1651,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         238.6
 out_name:                                rldscs
 valid_max:                               543.6
-ok_max_mean_abs:                         293.8
+dimensions:                              longitude latitude time
 
 
 
@@ -1665,10 +1668,10 @@ standard_name:                           mole_fraction_of_nitrous_oxide_in_air
 ! additional variable information:
 !---------------------------------
 dimensions:                              time
-type:                                    real
 long_name:                               Global Mean Mole Fraction of N2O
 cell_measures:                           time: mean
 out_name:                                n2oglobal
+type:                                    real
 
 
 
@@ -1686,11 +1689,11 @@ standard_name:                           mass_fraction_of_cloud_ice_in_air
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude alevel time
-type:                                    real
 long_name:                               Mass Fraction of Cloud Ice
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                cli
+type:                                    real
 
 
 
@@ -1707,7 +1710,7 @@ standard_name:                           surface_temperature
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         293.3
 type:                                    real
 long_name:                               Surface Temperature
 valid_min:                               176.8
@@ -1716,7 +1719,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         262.8
 out_name:                                ts
 valid_max:                               339.6
-ok_max_mean_abs:                         293.3
+dimensions:                              longitude latitude time
 
 
 
@@ -1733,7 +1736,7 @@ standard_name:                           cloud_area_fraction_in_atmosphere_layer
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         84.98
 type:                                    real
 long_name:                               Total Cloud Fraction
 valid_min:                               -0.0001822
@@ -1742,7 +1745,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         39.37
 out_name:                                clt
 valid_max:                               105
-ok_max_mean_abs:                         84.98
+dimensions:                              longitude latitude time
 
 
 
@@ -1760,11 +1763,11 @@ standard_name:                           mass_fraction_of_cloud_liquid_water_in_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude alevel time
-type:                                    real
 long_name:                               Mass Fraction of Cloud Liquid Water
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                clw
+type:                                    real
 
 
 
@@ -1780,7 +1783,7 @@ standard_name:                           air_temperature
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude plev17 time
+ok_max_mean_abs:                         299.8
 type:                                    real
 long_name:                               Air Temperature
 valid_min:                               157.1
@@ -1789,7 +1792,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         194.3
 out_name:                                ta
 valid_max:                               336.3
-ok_max_mean_abs:                         299.8
+dimensions:                              longitude latitude plev17 time
 
 
 
@@ -1805,7 +1808,7 @@ standard_name:                           air_pressure_at_sea_level
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         1.063e+05
 type:                                    real
 long_name:                               Sea Level Pressure
 valid_min:                               9.122e+04
@@ -1814,7 +1817,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         9.57e+04
 out_name:                                psl
 valid_max:                               1.137e+05
-ok_max_mean_abs:                         1.063e+05
+dimensions:                              longitude latitude time
 
 
 
@@ -1827,29 +1830,34 @@ variable_entry: nsigma
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    integer
 long_name:                               vertical coordinate formula term: nsigma
+out_name:                                nsigma
+type:                                    integer
 
 
 
 !=================================
-variable_entry: co2Clim
+variable_entry: tro3
 !=================================
-modeling_realm:                          atmos
+modeling_realm:                          atmos atmosChem
 !---------------------------------
 ! variable attributes:
 !---------------------------------
-units:                                   1e-06
-standard_name:                           mole_fraction_of_carbon_dioxide_in_air
+units:                                   1e-09
+standard_name:                           mole_fraction_of_ozone_in_air
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude plev17 time2
+ok_max_mean_abs:                         7558
 type:                                    real
-long_name:                               Mole Fraction of CO2
-cell_measures:                           time: mean within years time: mean over years
+long_name:                               Mole Fraction of O3
+valid_min:                               -419.2
+cell_measures:                           time: mean
 cell_methods:                            area: areacella
-out_name:                                co2Clim
+ok_min_mean_abs:                         -149.1
+out_name:                                tro3
+valid_max:                               1.162e+04
+dimensions:                              longitude latitude plev17 time
 
 
 
@@ -1866,11 +1874,11 @@ standard_name:                           wind_speed
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
+dimensions:                              longitude latitude time height10m
 long_name:                               Near-Surface Wind Speed
 cell_measures:                           time: mean
 out_name:                                sfcWind
+type:                                    real
 
 
 
@@ -1887,11 +1895,11 @@ standard_name:                           mole_fraction_of_methane_in_air
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude plev17 time2
-type:                                    real
 long_name:                               Mole Fraction of CH4
-cell_measures:                           time: mean within years time: mean over years
 cell_methods:                            area: areacella
+cell_measures:                           time: mean within years time: mean over years
 out_name:                                ch4Clim
+type:                                    real
 
 
 
@@ -1908,7 +1916,7 @@ standard_name:                           atmosphere_cloud_condensed_water_conten
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         0.2846
 type:                                    real
 long_name:                               Condensed Water Path
 valid_min:                               -3.827e-06
@@ -1917,7 +1925,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         -0.03549
 out_name:                                clwvi
 valid_max:                               3.364
-ok_max_mean_abs:                         0.2846
+dimensions:                              longitude latitude time
 
 
 
@@ -1934,7 +1942,7 @@ standard_name:                           surface_downwelling_shortwave_flux_in_a
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         239
 type:                                    real
 long_name:                               Surface Downwelling Clear-Sky Shortwave Radiation
 valid_min:                               -1.748e+30
@@ -1943,7 +1951,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         206.9
 out_name:                                rsdscs
 valid_max:                               522.4
-ok_max_mean_abs:                         239
+dimensions:                              longitude latitude time
 
 
 
@@ -1960,7 +1968,7 @@ standard_name:                           specific_humidity
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         0.008749
 type:                                    real
 long_name:                               Near-Surface Specific Humidity
 valid_min:                               -7.21e-06
@@ -1969,7 +1977,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         0.006391
 out_name:                                huss
 valid_max:                               0.02992
-ok_max_mean_abs:                         0.008749
+dimensions:                              longitude latitude time height2m
 
 
 
@@ -1986,7 +1994,7 @@ standard_name:                           net_downward_radiative_flux_at_top_of_a
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         89.25
 type:                                    real
 long_name:                               Net Downward Flux at Top of Model
 valid_min:                               -232.8
@@ -1995,7 +2003,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         76.91
 out_name:                                rtmt
 valid_max:                               218.7
-ok_max_mean_abs:                         89.25
+dimensions:                              longitude latitude time
 
 
 
@@ -2013,11 +2021,11 @@ standard_name:                           water_evaporation_flux
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Evaporation
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                evspsbl
+type:                                    real
 
 
 
@@ -2056,11 +2064,11 @@ standard_name:                           mole_fraction_of_carbon_dioxide_in_air
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude plev17 time
-type:                                    real
 long_name:                               Mole Fraction of CO2
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                co2
+type:                                    real
 
 
 
@@ -2077,10 +2085,10 @@ standard_name:                           mole_fraction_of_cfc11_in_air
 ! additional variable information:
 !---------------------------------
 dimensions:                              time
-type:                                    real
 long_name:                               Global Mean Mole Fraction of CFC11
 cell_measures:                           time: mean
 out_name:                                cfc11global
+type:                                    real
 
 
 
@@ -2096,7 +2104,7 @@ standard_name:                           surface_downwelling_longwave_flux_in_ai
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         323.6
 type:                                    real
 long_name:                               Surface Downwelling Longwave Radiation
 valid_min:                               30.71
@@ -2105,7 +2113,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         271.2
 out_name:                                rlds
 valid_max:                               520.5
-ok_max_mean_abs:                         323.6
+dimensions:                              longitude latitude time
 
 
 
@@ -2119,8 +2127,9 @@ variable_entry: sigma_bnds
 ! additional variable information:
 !---------------------------------
 dimensions:                              olevel
-type:                                    double
 long_name:                               vertical coordinate formula term: sigma(k+1/2)
+out_name:                                sigma_bnds
+type:                                    double
 
 
 
@@ -2137,10 +2146,10 @@ standard_name:                           mole_fraction_of_methane_in_air
 ! additional variable information:
 !---------------------------------
 dimensions:                              time2
-type:                                    real
 long_name:                               Global Mean Mole Fraction of CH4
 cell_measures:                           time: mean within years time: mean over years
 out_name:                                ch4globalClim
+type:                                    real
 
 
 
@@ -2156,15 +2165,15 @@ standard_name:                           surface_downward_northward_stress
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         0.08134
 type:                                    real
 long_name:                               Surface Downward Northward Wind Stress
 valid_min:                               -2.472
 cell_measures:                           time: mean
-ok_min_mean_abs:                         0.01447
 out_name:                                tauv
+ok_min_mean_abs:                         0.01447
 valid_max:                               2.527
-ok_max_mean_abs:                         0.08134
+dimensions:                              longitude latitude time
 
 
 
@@ -2179,32 +2188,33 @@ units:                                   Pa
 ! additional variable information:
 !---------------------------------
 long_name:                               pressure at top of model
+out_name:                                ptop
 
 
 
 !=================================
-variable_entry: rlut
+variable_entry: ps
 !=================================
 modeling_realm:                          atmos
 !---------------------------------
 ! variable attributes:
 !---------------------------------
-units:                                   W m-2
-comment:                                 at the top of the atmosphere (to be compared with satellite measurements)
-standard_name:                           toa_outgoing_longwave_flux
+units:                                   Pa
+comment:                                 surface pressure (not mean sea-level pressure), 2-D field to calculate the 3-D pressure field from hybrid coordinates
+standard_name:                           surface_air_pressure
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         1.019e+05
 type:                                    real
-long_name:                               TOA Outgoing Longwave Radiation
-valid_min:                               67.48
+long_name:                               Surface Air Pressure
+valid_min:                               4.791e+04
 cell_measures:                           time: mean
 cell_methods:                            area: areacella
-ok_min_mean_abs:                         207.4
-out_name:                                rlut
-valid_max:                               383.2
-ok_max_mean_abs:                         234.4
+ok_min_mean_abs:                         9.165e+04
+out_name:                                ps
+valid_max:                               1.119e+05
+dimensions:                              longitude latitude time
 
 
 
@@ -2221,7 +2231,7 @@ standard_name:                           toa_incoming_shortwave_flux
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         315.8
 type:                                    real
 long_name:                               TOA Incident Shortwave Radiation
 valid_min:                               0
@@ -2230,7 +2240,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         282.6
 out_name:                                rsdt
 valid_max:                               580.4
-ok_max_mean_abs:                         315.8
+dimensions:                              longitude latitude time
 
 
 
@@ -2247,7 +2257,7 @@ standard_name:                           surface_downwelling_shortwave_flux_in_a
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         181.6
 type:                                    real
 long_name:                               Surface Downwelling Shortwave Radiation
 valid_min:                               -0.002946
@@ -2256,7 +2266,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         143.9
 out_name:                                rsds
 valid_max:                               524.4
-ok_max_mean_abs:                         181.6
+dimensions:                              longitude latitude time
 
 
 
@@ -2271,6 +2281,7 @@ units:                                   m
 ! additional variable information:
 !---------------------------------
 long_name:                               height of top of model
+out_name:                                ztop
 
 
 
@@ -2283,34 +2294,24 @@ variable_entry: z1
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    double
 long_name:                               vertical coordinate formula term: z1
+out_name:                                z1
+type:                                    double
 
 
 
 !=================================
-variable_entry: sbl
+variable_entry: z2
 !=================================
-modeling_realm:                          atmos
 !---------------------------------
 ! variable attributes:
 !---------------------------------
-units:                                   kg m-2 s-1
-comment:                                 The snow and ice sublimation flux is the loss of snow and ice mass from the surface resulting from their conversion to water vapor that enters the atmosphere.
-standard_name:                           surface_snow_and_ice_sublimation_flux
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Surface Snow and Ice Sublimation Flux
-valid_min:                               -0.004959
-cell_measures:                           time: mean
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         -5.521e-05
-out_name:                                sbl
-valid_max:                               0.0009936
-ok_max_mean_abs:                         9.61e-05
+long_name:                               vertical coordinate formula term: z2
+out_name:                                z2
+type:                                    double
 
 
 
@@ -2327,10 +2328,10 @@ standard_name:                           mole_fraction_of_cfc113_in_air
 ! additional variable information:
 !---------------------------------
 dimensions:                              time
-type:                                    real
 long_name:                               Global Mean Mole Fraction of CFC113
 cell_measures:                           time: mean
 out_name:                                cfc113global
+type:                                    real
 
 
 
@@ -2345,8 +2346,9 @@ units:                                   m
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Sea Surface Height formula term: thetao
+out_name:                                eta
+type:                                    real
 
 
 
@@ -2362,7 +2364,7 @@ standard_name:                           surface_upwelling_shortwave_flux_in_air
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         43.77
 type:                                    real
 long_name:                               Surface Upwelling Shortwave Radiation
 valid_min:                               -0.006589
@@ -2371,7 +2373,8 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         26.22
 out_name:                                rsus
 valid_max:                               422.2
-ok_max_mean_abs:                         43.77
+positive:                                up
+dimensions:                              longitude latitude time
 
 
 
@@ -2388,10 +2391,10 @@ standard_name:                           mole_fraction_of_cfc12_in_air
 ! additional variable information:
 !---------------------------------
 dimensions:                              time
-type:                                    real
 long_name:                               Global Mean Mole Fraction of CFC12
 cell_measures:                           time: mean
 out_name:                                cfc12global
+type:                                    real
 
 
 
@@ -2408,7 +2411,7 @@ standard_name:                           toa_outgoing_shortwave_flux
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         114.1
 type:                                    real
 long_name:                               TOA Outgoing Shortwave Radiation
 valid_min:                               -0.02689
@@ -2417,7 +2420,8 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         96.72
 out_name:                                rsut
 valid_max:                               421.9
-ok_max_mean_abs:                         114.1
+positive:                                up
+dimensions:                              longitude latitude time
 
 
 
@@ -2435,11 +2439,11 @@ standard_name:                           convection_time_fraction
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Fraction of Time Convection Occurs
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                ci
+type:                                    real
 
 
 
@@ -2456,11 +2460,11 @@ standard_name:                           mole_fraction_of_nitrous_oxide_in_air
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude plev17 time2
-type:                                    real
 long_name:                               Mole Fraction of N2O
-cell_measures:                           time: mean within years time: mean over years
 cell_methods:                            area: areacella
+cell_measures:                           time: mean within years time: mean over years
 out_name:                                n2oClim
+type:                                    real
 
 
 
@@ -2477,10 +2481,10 @@ standard_name:                           atmosphere_mass_of_carbon_dioxide
 ! additional variable information:
 !---------------------------------
 dimensions:                              time2
-type:                                    real
 long_name:                               Total Atmospheric Mass of CO2
 cell_measures:                           time: mean within years time: mean over years
 out_name:                                co2massClim
+type:                                    real
 
 
 
@@ -2497,7 +2501,7 @@ standard_name:                           cloud_area_fraction_in_atmosphere_layer
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude alevel time
+ok_max_mean_abs:                         26.07
 type:                                    real
 long_name:                               Cloud Area Fraction
 valid_min:                               0
@@ -2506,7 +2510,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         -0.04479
 out_name:                                cl
 valid_max:                               105
-ok_max_mean_abs:                         26.07
+dimensions:                              longitude latitude alevel time
 
 
 
@@ -2523,10 +2527,10 @@ standard_name:                           mole_fraction_of_nitrous_oxide_in_air
 ! additional variable information:
 !---------------------------------
 dimensions:                              time2
-type:                                    real
 long_name:                               Global Mean Mole Fraction of N2O
 cell_measures:                           time: mean within years time: mean over years
 out_name:                                n2oglobalClim
+type:                                    real
 
 
 
@@ -2542,7 +2546,7 @@ standard_name:                           toa_outgoing_longwave_flux_assuming_cle
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         260.4
 type:                                    real
 long_name:                               TOA Outgoing Clear-Sky Longwave Radiation
 valid_min:                               70.59
@@ -2551,7 +2555,8 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         228.9
 out_name:                                rlutcs
 valid_max:                               377.5
-ok_max_mean_abs:                         260.4
+positive:                                up
+dimensions:                              longitude latitude time
 
 
 
@@ -2564,8 +2569,9 @@ variable_entry: href
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    double
 long_name:                               vertical coordinate formula term: href
+out_name:                                href
+type:                                    double
 
 
 
@@ -2581,7 +2587,7 @@ standard_name:                           surface_upward_latent_heat_flux
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         73.2
 type:                                    real
 long_name:                               Surface Upward Latent Heat Flux
 valid_min:                               -76.77
@@ -2590,7 +2596,8 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         50.39
 out_name:                                hfls
 valid_max:                               790.7
-ok_max_mean_abs:                         73.2
+positive:                                up
+dimensions:                              longitude latitude time
 
 
 
@@ -2607,10 +2614,10 @@ standard_name:                           atmosphere_mass_of_carbon_dioxide
 ! additional variable information:
 !---------------------------------
 dimensions:                              time
-type:                                    real
 long_name:                               Total Atmospheric Mass of CO2
 cell_measures:                           time: mean
 out_name:                                co2mass
+type:                                    real
 
 
 
@@ -2627,7 +2634,7 @@ standard_name:                           precipitation_flux
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         3.215e-05
 type:                                    real
 long_name:                               Precipitation
 valid_min:                               0
@@ -2636,33 +2643,34 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         2.156e-05
 out_name:                                pr
 valid_max:                               0.001254
-ok_max_mean_abs:                         3.215e-05
+dimensions:                              longitude latitude time
 
 
 
 !=================================
-variable_entry: ps
+variable_entry: rlut
 !=================================
 modeling_realm:                          atmos
 !---------------------------------
 ! variable attributes:
 !---------------------------------
-units:                                   Pa
-comment:                                 surface pressure (not mean sea-level pressure), 2-D field to calculate the 3-D pressure field from hybrid coordinates
-standard_name:                           surface_air_pressure
+units:                                   W m-2
+comment:                                 at the top of the atmosphere (to be compared with satellite measurements)
+standard_name:                           toa_outgoing_longwave_flux
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         234.4
 type:                                    real
-long_name:                               Surface Air Pressure
-valid_min:                               4.791e+04
+long_name:                               TOA Outgoing Longwave Radiation
+valid_min:                               67.48
 cell_measures:                           time: mean
 cell_methods:                            area: areacella
-ok_min_mean_abs:                         9.165e+04
-out_name:                                ps
-valid_max:                               1.119e+05
-ok_max_mean_abs:                         1.019e+05
+ok_min_mean_abs:                         207.4
+out_name:                                rlut
+valid_max:                               383.2
+positive:                                up
+dimensions:                              longitude latitude time
 
 
 
@@ -2678,7 +2686,7 @@ standard_name:                           surface_upwelling_longwave_flux_in_air
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         376.3
 type:                                    real
 long_name:                               Surface Upwelling Longwave Radiation
 valid_min:                               43.75
@@ -2687,21 +2695,34 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         325.6
 out_name:                                rlus
 valid_max:                               658
-ok_max_mean_abs:                         376.3
+positive:                                up
+dimensions:                              longitude latitude time
 
 
 
 !=================================
-variable_entry: z2
+variable_entry: sbl
 !=================================
+modeling_realm:                          atmos
 !---------------------------------
 ! variable attributes:
 !---------------------------------
+units:                                   kg m-2 s-1
+comment:                                 The snow and ice sublimation flux is the loss of snow and ice mass from the surface resulting from their conversion to water vapor that enters the atmosphere.
+standard_name:                           surface_snow_and_ice_sublimation_flux
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    double
-long_name:                               vertical coordinate formula term: z2
+ok_max_mean_abs:                         9.61e-05
+type:                                    real
+long_name:                               Surface Snow and Ice Sublimation Flux
+valid_min:                               -0.004959
+cell_measures:                           time: mean
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         -5.521e-05
+out_name:                                sbl
+valid_max:                               0.0009936
+dimensions:                              longitude latitude time
 
 
 
@@ -2717,15 +2738,15 @@ standard_name:                           northward_wind
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         2.678
 type:                                    real
 long_name:                               Northward Near-Surface Wind
 valid_min:                               -18.04
 cell_measures:                           time: mean
-ok_min_mean_abs:                         1.065
 out_name:                                vas
+ok_min_mean_abs:                         1.065
 valid_max:                               22.84
-ok_max_mean_abs:                         2.678
+dimensions:                              longitude latitude time height10m
 
 
 
@@ -2742,7 +2763,7 @@ standard_name:                           lagrangian_tendency_of_air_pressure
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude plev17 time
+ok_max_mean_abs:                         0.04256
 type:                                    real
 long_name:                               omega (=dp/dt)
 valid_min:                               -1.126
@@ -2751,22 +2772,33 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         -0.005083
 out_name:                                wap
 valid_max:                               2.319
-ok_max_mean_abs:                         0.04256
+dimensions:                              longitude latitude plev17 time
 
 
 
 !=================================
-variable_entry: a
+variable_entry: clivi
 !=================================
+modeling_realm:                          atmos
 !---------------------------------
 ! variable attributes:
 !---------------------------------
+units:                                   kg m-2
+comment:                                 Mass of ice water in the column divided by the area of the column (not just the area of the cloudy portion of the column). Includes precipitating frozen hydrometeors ONLY if the precipitating hydrometeor affects the calculation of radiative transfer in model.
+standard_name:                           atmosphere_mass_content_of_cloud_ice
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              alevel
-type:                                    double
-long_name:                               vertical coordinate formula term: a(k)
+ok_max_mean_abs:                         0.1187
+type:                                    real
+long_name:                               Ice Water Path
+valid_min:                               -1.872e-06
+cell_measures:                           time: mean
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         -0.0348
+out_name:                                clivi
+valid_max:                               1.535
+dimensions:                              longitude latitude time
 
 
 
@@ -2782,7 +2814,7 @@ standard_name:                           geopotential_height
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude plev17 time
+ok_max_mean_abs:                         3.299e+04
 type:                                    real
 long_name:                               Geopotential Height
 valid_min:                               -719.7
@@ -2791,7 +2823,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         -113.4
 out_name:                                zg
 valid_max:                               3.437e+04
-ok_max_mean_abs:                         3.299e+04
+dimensions:                              longitude latitude plev17 time
 
 
 
@@ -2808,12 +2840,12 @@ standard_name:                           relative_humidity
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
+dimensions:                              longitude latitude time height2m
 long_name:                               Near-Surface Relative Humidity
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                hurs
+type:                                    real
 
 
 
@@ -2831,11 +2863,11 @@ standard_name:                           surface_temperature
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Bias-Corrected Surface Temperature
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                tsAdjust
+type:                                    real
 
 
 
@@ -2852,11 +2884,11 @@ standard_name:                           air_pressure
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude alevel time2
-type:                                    real
 long_name:                               Pressure on Model Levels
-cell_measures:                           time: mean within years time: mean over years
 cell_methods:                            area: areacella
+cell_measures:                           time: mean within years time: mean over years
 out_name:                                pfull
+type:                                    real
 
 
 
@@ -2873,10 +2905,10 @@ standard_name:                           mole_fraction_of_methane_in_air
 ! additional variable information:
 !---------------------------------
 dimensions:                              time
-type:                                    real
 long_name:                               Global Mean Mole Fraction of CH4
 cell_measures:                           time: mean
 out_name:                                ch4global
+type:                                    real
 
 
 
@@ -2893,7 +2925,7 @@ standard_name:                           relative_humidity
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude plev17 time
+ok_max_mean_abs:                         97
 type:                                    real
 long_name:                               Relative Humidity
 valid_min:                               -2.642
@@ -2902,7 +2934,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         -10.31
 out_name:                                hur
 valid_max:                               135.7
-ok_max_mean_abs:                         97
+dimensions:                              longitude latitude plev17 time
 
 
 
@@ -2918,7 +2950,7 @@ standard_name:                           specific_humidity
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude plev17 time
+ok_max_mean_abs:                         0.01041
 type:                                    real
 long_name:                               Specific Humidity
 valid_min:                               -0.000299
@@ -2927,7 +2959,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         -0.0003539
 out_name:                                hus
 valid_max:                               0.02841
-ok_max_mean_abs:                         0.01041
+dimensions:                              longitude latitude plev17 time
 
 
 
@@ -2942,6 +2974,7 @@ units:                                   Pa
 ! additional variable information:
 !---------------------------------
 long_name:                               vertical coordinate formula term: reference pressure
+out_name:                                p0
 
 
 
@@ -2955,8 +2988,9 @@ variable_entry: b
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: b(k)
+out_name:                                b
+type:                                    double
 
 
 
@@ -2974,11 +3008,12 @@ standard_name:                           atmosphere_net_upward_convective_mass_f
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude alevhalf time
-type:                                    real
+positive:                                up
 long_name:                               Convective Mass Flux
 cell_measures:                           time: mean
 cell_methods:                            area: areacella
 out_name:                                mc
+type:                                    real
 
 
 
@@ -2996,11 +3031,12 @@ standard_name:                           tendency_of_atmosphere_mass_content_of_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
+positive:                                up
 long_name:                               Carbon Mass Flux into Atmosphere Due to All Anthropogenic Emissions of CO2
 cell_measures:                           time: mean
 cell_methods:                            area: areacella
 out_name:                                fco2antt
+type:                                    real
 
 
 
@@ -3017,11 +3053,11 @@ standard_name:                           mole_fraction_of_methane_in_air
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude plev17 time
-type:                                    real
 long_name:                               Mole Fraction of CH4
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                ch4
+type:                                    real
 
 
 
@@ -3038,7 +3074,7 @@ standard_name:                           air_temperature
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         290.6
 type:                                    real
 long_name:                               Daily Minimum Near-Surface Air Temperature
 valid_min:                               182.8
@@ -3047,7 +3083,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         260.9
 out_name:                                tasmin
 valid_max:                               323
-ok_max_mean_abs:                         290.6
+dimensions:                              longitude latitude time height2m
 
 
 
@@ -3063,15 +3099,15 @@ standard_name:                           surface_downward_eastward_stress
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         0.1065
 type:                                    real
 long_name:                               Surface Downward Eastward Wind Stress
 valid_min:                               -2.729
 cell_measures:                           time: mean
-ok_min_mean_abs:                         0.03979
 out_name:                                tauu
+ok_min_mean_abs:                         0.03979
 valid_max:                               2.934
-ok_max_mean_abs:                         0.1065
+dimensions:                              longitude latitude time
 
 
 
@@ -3088,7 +3124,7 @@ standard_name:                           air_temperature
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         294
 type:                                    real
 long_name:                               Daily Maximum Near-Surface Air Temperature
 valid_min:                               181.9
@@ -3097,7 +3133,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         264.9
 out_name:                                tasmax
 valid_max:                               341.9
-ok_max_mean_abs:                         294
+dimensions:                              longitude latitude time height2m
 
 
 
@@ -3115,11 +3151,11 @@ standard_name:                           air_pressure_at_sea_level
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Bias-Corrected Sea Level Pressure
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                pslAdjust
+type:                                    real
 
 
 
@@ -3132,8 +3168,9 @@ variable_entry: k_c
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    integer
 long_name:                               vertical coordinate formula term: k_c
+out_name:                                k_c
+type:                                    integer
 
 
 
@@ -3149,15 +3186,15 @@ standard_name:                           eastward_wind
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude plev17 time
+ok_max_mean_abs:                         22.42
 type:                                    real
 long_name:                               Eastward Wind
 valid_min:                               -68.65
 cell_measures:                           time: mean
-ok_min_mean_abs:                         1.101
 out_name:                                ua
+ok_min_mean_abs:                         1.101
 valid_max:                               136.6
-ok_max_mean_abs:                         22.42
+dimensions:                              longitude latitude plev17 time
 
 
 
@@ -3171,8 +3208,9 @@ variable_entry: a_bnds
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: a(k+1/2)
+out_name:                                a_bnds
+type:                                    double
 
 
 
@@ -3188,15 +3226,15 @@ standard_name:                           northward_wind
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude plev17 time
+ok_max_mean_abs:                         4.679
 type:                                    real
 long_name:                               Northward Wind
 valid_min:                               -71.1
 cell_measures:                           time: mean
-ok_min_mean_abs:                         0.9886
 out_name:                                va
+ok_min_mean_abs:                         0.9886
 valid_max:                               69.93
-ok_max_mean_abs:                         4.679
+dimensions:                              longitude latitude plev17 time
 
 
 
@@ -3213,11 +3251,11 @@ standard_name:                           mole_fraction_of_nitrous_oxide_in_air
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude plev17 time
-type:                                    real
 long_name:                               Mole Fraction of N2O
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                n2o
+type:                                    real
 
 
 
@@ -3234,7 +3272,7 @@ standard_name:                           convective_precipitation_flux
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         3.209e-05
 type:                                    real
 long_name:                               Convective Precipitation
 valid_min:                               0
@@ -3243,7 +3281,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         -2.528e-06
 out_name:                                prc
 valid_max:                               0.0006323
-ok_max_mean_abs:                         3.209e-05
+dimensions:                              longitude latitude time
 
 
 
@@ -3260,7 +3298,7 @@ standard_name:                           air_temperature
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         293
 type:                                    real
 long_name:                               Near-Surface Air Temperature
 valid_min:                               180.6
@@ -3269,7 +3307,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         262.4
 out_name:                                tas
 valid_max:                               335.1
-ok_max_mean_abs:                         293
+dimensions:                              longitude latitude time height2m
 
 
 
@@ -3285,7 +3323,7 @@ standard_name:                           surface_upwelling_shortwave_flux_in_air
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         61.59
 type:                                    real
 long_name:                               Surface Upwelling Clear-Sky Shortwave Radiation
 valid_min:                               -0.01446
@@ -3294,7 +3332,8 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         31.65
 out_name:                                rsuscs
 valid_max:                               462.2
-ok_max_mean_abs:                         61.59
+positive:                                up
+dimensions:                              longitude latitude time
 
 
 
@@ -3311,15 +3350,15 @@ standard_name:                           eastward_wind
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         4.106
 type:                                    real
 long_name:                               Eastward Near-Surface Wind
 valid_min:                               -19.01
 cell_measures:                           time: mean
-ok_min_mean_abs:                         1.668
 out_name:                                uas
+ok_min_mean_abs:                         1.668
 valid_max:                               18.68
-ok_max_mean_abs:                         4.106
+dimensions:                              longitude latitude time height10m
 
 
 
@@ -3335,7 +3374,7 @@ standard_name:                           surface_upward_sensible_heat_flux
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         34.84
 type:                                    real
 long_name:                               Surface Upward Sensible Heat Flux
 valid_min:                               -264.5
@@ -3344,7 +3383,8 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         10.7
 out_name:                                hfss
 valid_max:                               844.8
-ok_max_mean_abs:                         34.84
+positive:                                up
+dimensions:                              longitude latitude time
 
 
 
@@ -3359,8 +3399,9 @@ units:                                   Pa
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: ap(k+1/2)
+out_name:                                ap_bnds
+type:                                    double
 
 
 
@@ -3375,8 +3416,9 @@ units:                                   Pa
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: ap(k)
+out_name:                                ap
+type:                                    double
 
 
 
@@ -3393,7 +3435,7 @@ standard_name:                           atmosphere_water_vapor_content
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         23.09
 type:                                    real
 long_name:                               Water Vapor Path
 valid_min:                               -0.0006775
@@ -3402,7 +3444,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         12.75
 out_name:                                prw
 valid_max:                               78.04
-ok_max_mean_abs:                         23.09
+dimensions:                              longitude latitude time
 
 
 
@@ -3419,7 +3461,7 @@ standard_name:                           snowfall_flux
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         6.11e-06
 type:                                    real
 long_name:                               Snowfall Flux
 valid_min:                               0
@@ -3428,7 +3470,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         1.449e-06
 out_name:                                prsn
 valid_max:                               0.0002987
-ok_max_mean_abs:                         6.11e-06
+dimensions:                              longitude latitude time
 
 
 
@@ -3442,8 +3484,9 @@ variable_entry: zlev
 ! additional variable information:
 !---------------------------------
 dimensions:                              olevel
-type:                                    double
 long_name:                               vertical coordinate formula term: zlev(k)
+out_name:                                zlev
+type:                                    double
 
 
 
@@ -3461,11 +3504,12 @@ standard_name:                           surface_upward_mass_flux_of_carbon_diox
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
+positive:                                up
 long_name:                               Surface Carbon Mass Flux into the Atmosphere Due to Natural Sources
 cell_measures:                           time: mean
 cell_methods:                            area: areacella
 out_name:                                fco2nat
+type:                                    real
 
 
 
@@ -3479,8 +3523,9 @@ variable_entry: b_bnds
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: b(k+1/2)
+out_name:                                b_bnds
+type:                                    double
 
 
 
@@ -3497,11 +3542,11 @@ standard_name:                           air_pressure
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude alevhalf time2
-type:                                    real
 long_name:                               Pressure on Model Half-Levels
-cell_measures:                           time: mean within years time: mean over years
 cell_methods:                            area: areacella
+cell_measures:                           time: mean within years time: mean over years
 out_name:                                phalf
+type:                                    real
 
 
 
@@ -3517,12 +3562,12 @@ standard_name:                           air_temperature
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
+dimensions:                              longitude latitude time height2m
 long_name:                               Bias-Corrected Near-Surface Air Temperature
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                tasAdjust
+type:                                    real
 
 
 
@@ -3540,11 +3585,12 @@ standard_name:                           tendency_of_atmosphere_mass_content_of_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
+positive:                                up
 long_name:                               Carbon Mass Flux into Atmosphere Due to Fossil Fuel Emissions of CO2
 cell_measures:                           time: mean
 cell_methods:                            area: areacella
 out_name:                                fco2fos
+type:                                    real
 
 
 
@@ -3561,10 +3607,10 @@ standard_name:                           mole_fraction_of_hcfc22_in_air
 ! additional variable information:
 !---------------------------------
 dimensions:                              time
-type:                                    real
 long_name:                               Global Mean Mole Fraction of HCFC22
 cell_measures:                           time: mean
 out_name:                                hcfc22global
+type:                                    real
 
 
 
@@ -3581,11 +3627,11 @@ standard_name:                           mole_fraction_of_ozone_in_air
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude plev17 time2
-type:                                    real
 long_name:                               Mole Fraction of O3
-cell_measures:                           time: mean within years time: mean over years
 cell_methods:                            area: areacella
+cell_measures:                           time: mean within years time: mean over years
 out_name:                                tro3Clim
+type:                                    real
 
 
 
@@ -3599,34 +3645,25 @@ variable_entry: zlev_bnds
 ! additional variable information:
 !---------------------------------
 dimensions:                              olevel
-type:                                    double
 long_name:                               vertical coordinate formula term: zlev(k+1/2)
+out_name:                                zlev_bnds
+type:                                    double
 
 
 
 !=================================
-variable_entry: clivi
+variable_entry: a
 !=================================
-modeling_realm:                          atmos
 !---------------------------------
 ! variable attributes:
 !---------------------------------
-units:                                   kg m-2
-comment:                                 Mass of ice water in the column divided by the area of the column (not just the area of the cloudy portion of the column). Includes precipitating frozen hydrometeors ONLY if the precipitating hydrometeor affects the calculation of radiative transfer in model.
-standard_name:                           atmosphere_mass_content_of_cloud_ice
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Ice Water Path
-valid_min:                               -1.872e-06
-cell_measures:                           time: mean
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         -0.0348
-out_name:                                clivi
-valid_max:                               1.535
-ok_max_mean_abs:                         0.1187
+dimensions:                              alevel
+long_name:                               vertical coordinate formula term: a(k)
+out_name:                                a
+type:                                    double
 
 
 
@@ -3644,11 +3681,11 @@ standard_name:                           precipitation_flux
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Bias-Corrected Precipitation
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                prAdjust
+type:                                    real
 
 
 
@@ -3666,11 +3703,11 @@ standard_name:                           air_pressure_at_convective_cloud_top
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Air Pressure at Convective Cloud Top
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                cct
+type:                                    real
 
 
 
@@ -3685,8 +3722,9 @@ units:                                   m
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude
-type:                                    real
 long_name:                               Sea Floor Depth: formula term: thetao
+out_name:                                depth
+type:                                    real
 
 
 
@@ -3700,8 +3738,9 @@ variable_entry: sigma
 ! additional variable information:
 !---------------------------------
 dimensions:                              olevel
-type:                                    double
 long_name:                               vertical coordinate formula term: sigma(k)
+out_name:                                sigma
+type:                                    double
 
 
 
@@ -3719,11 +3758,11 @@ standard_name:                           air_pressure_at_convective_cloud_base
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Air Pressure at Convective Cloud Base
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                ccb
+type:                                    real
 
 
 

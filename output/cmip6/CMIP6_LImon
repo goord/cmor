@@ -1,16 +1,16 @@
 baseURL:                                 http://cmip-pcmdi.llnl.gov/CMIP5/dataLocation
 approx_interval:                         30.00000
-cf_version:                              1.6
 product:                                 output
 cmor_version:                            2.5
 project_id:                              CMIP6-XXXX
 required_global_attributes:              creation_date tracking_id forcing model_id parent_experiment_id parent_experiment_rip branch_time contact institute_id
 frequency:                               mon
 table_id:                                LImon
-table_date:                              31 March 2016
+data_specs_version:                      3.0
 modeling_realm:                          landIce land
 forcings:                                N/A Nat Ant GHG SD SI SA TO SO Oz LU Sl Vl SS Ds BC MD OC AA
 missing_value:                           1e20
+table_date:                              14 April 2016
 
 
 
@@ -284,6 +284,7 @@ standard_name:                           depth
 stored_direction:                        increasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           0. 100.
 value:                                   50.0
 long_name:                               depth
 valid_min:                               0.0
@@ -374,6 +375,7 @@ standard_name:                           air_pressure
 stored_direction:                        decreasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           44000. 0.0
 value:                                   22000.0
 long_name:                               pressure
 out_name:                                plev
@@ -478,6 +480,7 @@ standard_name:                           air_pressure
 stored_direction:                        decreasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           100000. 68000.
 value:                                   84000.0
 long_name:                               pressure
 out_name:                                plev
@@ -840,6 +843,7 @@ standard_name:                           depth
 stored_direction:                        increasing
 positive:                                down
 must_have_bounds:                        yes
+bounds_values:                           0.0 0.1
 value:                                   0.05
 long_name:                               depth
 valid_min:                               0.0
@@ -1469,6 +1473,7 @@ standard_name:                           air_pressure
 stored_direction:                        decreasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           68000. 44000.
 value:                                   56000.0
 long_name:                               pressure
 out_name:                                plev
@@ -1549,8 +1554,9 @@ variable_entry: depth_c
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    double
 long_name:                               vertical coordinate formula term: depth_c
+out_name:                                depth_c
+type:                                    double
 
 
 
@@ -1568,11 +1574,11 @@ standard_name:                           age_of_surface_snow
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Snow Age
-cell_measures:                           time: mean (with samples weighted by snow mass) area: mean where land
 cell_methods:                            area: areacella
+cell_measures:                           time: mean (with samples weighted by snow mass) area: mean where land
 out_name:                                agesno
+type:                                    real
 
 
 
@@ -1587,8 +1593,9 @@ units:                                   Pa
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: ap(k+1/2)
+out_name:                                ap_bnds
+type:                                    double
 
 
 
@@ -1603,8 +1610,9 @@ units:                                   Pa
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: ap(k)
+out_name:                                ap
+type:                                    double
 
 
 
@@ -1617,8 +1625,9 @@ variable_entry: href
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    double
 long_name:                               vertical coordinate formula term: href
+out_name:                                href
+type:                                    double
 
 
 
@@ -1633,8 +1642,9 @@ units:                                   m
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude
-type:                                    real
 long_name:                               Surface Altitude
+out_name:                                orog
+type:                                    real
 
 
 
@@ -1652,11 +1662,11 @@ standard_name:                           liquid_water_content_of_permafrost_laye
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Liquid Water Content of Permafrost Layer
-cell_measures:                           time: mean area: mean where land
 cell_methods:                            area: areacella
+cell_measures:                           time: mean area: mean where land
 out_name:                                pflw
+type:                                    real
 
 
 
@@ -1670,8 +1680,9 @@ variable_entry: zlev
 ! additional variable information:
 !---------------------------------
 dimensions:                              olevel
-type:                                    double
 long_name:                               vertical coordinate formula term: zlev(k)
+out_name:                                zlev
+type:                                    double
 
 
 
@@ -1689,11 +1700,11 @@ standard_name:                           temperature_in_surface_snow
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Snow Internal Temperature
-cell_measures:                           time: mean (with samples weighted by snow mass) area: mean where land
 cell_methods:                            area: areacella
+cell_measures:                           time: mean (with samples weighted by snow mass) area: mean where land
 out_name:                                tsn
+type:                                    real
 
 
 
@@ -1708,8 +1719,9 @@ units:                                   Pa
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Surface Air Pressure
+out_name:                                ps
+type:                                    real
 
 
 
@@ -1727,11 +1739,11 @@ standard_name:                           surface_downward_heat_flux_in_snow
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Downward Heat Flux into Snow Where Land over Land
-cell_measures:                           time: mean area: mean where land
 cell_methods:                            area: areacella
+cell_measures:                           time: mean area: mean where land
 out_name:                                hfdsn
+type:                                    real
 
 
 
@@ -1745,34 +1757,24 @@ variable_entry: sigma_bnds
 ! additional variable information:
 !---------------------------------
 dimensions:                              olevel
-type:                                    double
 long_name:                               vertical coordinate formula term: sigma(k+1/2)
+out_name:                                sigma_bnds
+type:                                    double
 
 
 
 !=================================
-variable_entry: sbl
+variable_entry: z2
 !=================================
-modeling_realm:                          landIce land
 !---------------------------------
 ! variable attributes:
 !---------------------------------
-units:                                   kg m-2 s-1
-comment:                                 The snow and ice sublimation flux is the loss of snow and ice mass from the surface resulting from their conversion to water vapor that enters the atmosphere.
-standard_name:                           surface_snow_and_ice_sublimation_flux
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Surface Snow and Ice Sublimation Flux
-valid_min:                               -0.004959
-cell_measures:                           time: mean area: mean where land
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         -5.521e-05
-out_name:                                sbl
-valid_max:                               0.0009936
-ok_max_mean_abs:                         9.61e-05
+long_name:                               vertical coordinate formula term: z2
+out_name:                                z2
+type:                                    double
 
 
 
@@ -1787,6 +1789,7 @@ units:                                   Pa
 ! additional variable information:
 !---------------------------------
 long_name:                               pressure at top of model
+out_name:                                ptop
 
 
 
@@ -1803,7 +1806,7 @@ standard_name:                           surface_snow_thickness
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         4.503
 type:                                    real
 long_name:                               Snow Depth
 valid_min:                               0
@@ -1812,7 +1815,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         -1.961
 out_name:                                snd
 valid_max:                               962.9
-ok_max_mean_abs:                         4.503
+dimensions:                              longitude latitude time
 
 
 
@@ -1826,8 +1829,9 @@ variable_entry: b_bnds
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: b(k+1/2)
+out_name:                                b_bnds
+type:                                    double
 
 
 
@@ -1844,7 +1848,7 @@ standard_name:                           surface_snow_area_fraction
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         78.46
 type:                                    real
 long_name:                               Snow Area Fraction
 valid_min:                               0
@@ -1853,7 +1857,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         -29.01
 out_name:                                snc
 valid_max:                               105
-ok_max_mean_abs:                         78.46
+dimensions:                              longitude latitude time
 
 
 
@@ -1870,7 +1874,7 @@ standard_name:                           surface_snow_melt_flux
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         6.123e-06
 type:                                    real
 long_name:                               Surface Snow Melt
 valid_min:                               0
@@ -1879,7 +1883,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         -2.092e-06
 out_name:                                snm
 valid_max:                               0.0003926
-ok_max_mean_abs:                         6.123e-06
+dimensions:                              longitude latitude time
 
 
 
@@ -1892,8 +1896,9 @@ variable_entry: nsigma
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    integer
 long_name:                               vertical coordinate formula term: nsigma
+out_name:                                nsigma
+type:                                    integer
 
 
 
@@ -1910,7 +1915,7 @@ standard_name:                           surface_snow_amount
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         1.213e+04
 type:                                    real
 long_name:                               Surface Snow Amount
 valid_min:                               -0.007542
@@ -1919,7 +1924,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         -6025
 out_name:                                snw
 valid_max:                               9.555e+05
-ok_max_mean_abs:                         1.213e+04
+dimensions:                              longitude latitude time
 
 
 
@@ -1934,6 +1939,7 @@ units:                                   m
 ! additional variable information:
 !---------------------------------
 long_name:                               height of top of model
+out_name:                                ztop
 
 
 
@@ -1951,11 +1957,11 @@ standard_name:                           liquid_water_content_of_snow_layer
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Liquid Water Content of Snow Layer
-cell_measures:                           time: mean area: mean where land
 cell_methods:                            area: areacella
+cell_measures:                           time: mean area: mean where land
 out_name:                                lwsnl
+type:                                    real
 
 
 
@@ -1969,8 +1975,9 @@ variable_entry: zlev_bnds
 ! additional variable information:
 !---------------------------------
 dimensions:                              olevel
-type:                                    double
 long_name:                               vertical coordinate formula term: zlev(k+1/2)
+out_name:                                zlev_bnds
+type:                                    double
 
 
 
@@ -1983,22 +1990,35 @@ variable_entry: z1
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    double
 long_name:                               vertical coordinate formula term: z1
+out_name:                                z1
+type:                                    double
 
 
 
 !=================================
-variable_entry: z2
+variable_entry: sbl
 !=================================
+modeling_realm:                          landIce land
 !---------------------------------
 ! variable attributes:
 !---------------------------------
+units:                                   kg m-2 s-1
+comment:                                 The snow and ice sublimation flux is the loss of snow and ice mass from the surface resulting from their conversion to water vapor that enters the atmosphere.
+standard_name:                           surface_snow_and_ice_sublimation_flux
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    double
-long_name:                               vertical coordinate formula term: z2
+ok_max_mean_abs:                         9.61e-05
+type:                                    real
+long_name:                               Surface Snow and Ice Sublimation Flux
+valid_min:                               -0.004959
+cell_measures:                           time: mean area: mean where land
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         -5.521e-05
+out_name:                                sbl
+valid_max:                               0.0009936
+dimensions:                              longitude latitude time
 
 
 
@@ -2012,8 +2032,9 @@ variable_entry: a
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: a(k)
+out_name:                                a
+type:                                    double
 
 
 
@@ -2031,11 +2052,11 @@ standard_name:                           permafrost_layer_thickness
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Permafrost Layer Thickness
-cell_measures:                           time: mean area: mean where land
 cell_methods:                            area: areacella
+cell_measures:                           time: mean area: mean where land
 out_name:                                tpf
+type:                                    real
 
 
 
@@ -2050,6 +2071,7 @@ units:                                   Pa
 ! additional variable information:
 !---------------------------------
 long_name:                               vertical coordinate formula term: reference pressure
+out_name:                                p0
 
 
 
@@ -2063,8 +2085,9 @@ variable_entry: b
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: b(k)
+out_name:                                b
+type:                                    double
 
 
 
@@ -2079,8 +2102,9 @@ units:                                   m
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude
-type:                                    real
 long_name:                               Sea Floor Depth: formula term: thetao
+out_name:                                depth
+type:                                    real
 
 
 
@@ -2095,8 +2119,9 @@ units:                                   m
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Sea Surface Height formula term: thetao
+out_name:                                eta
+type:                                    real
 
 
 
@@ -2114,11 +2139,11 @@ standard_name:                           soot_content_of_surface_snow
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Snow Soot Content
-cell_measures:                           time: mean area: mean where land
 cell_methods:                            area: areacella
+cell_measures:                           time: mean area: mean where land
 out_name:                                sootsn
+type:                                    real
 
 
 
@@ -2131,8 +2156,9 @@ variable_entry: k_c
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    integer
 long_name:                               vertical coordinate formula term: k_c
+out_name:                                k_c
+type:                                    integer
 
 
 
@@ -2146,8 +2172,9 @@ variable_entry: sigma
 ! additional variable information:
 !---------------------------------
 dimensions:                              olevel
-type:                                    double
 long_name:                               vertical coordinate formula term: sigma(k)
+out_name:                                sigma
+type:                                    double
 
 
 
@@ -2161,8 +2188,9 @@ variable_entry: a_bnds
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: a(k+1/2)
+out_name:                                a_bnds
+type:                                    double
 
 
 

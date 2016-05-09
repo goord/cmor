@@ -5,55 +5,30 @@ import json
 import sys
 from optparse import OptionParser
 import os.path
+from ReadCmorCsv import cmor_var
 
 class cmip_table:
 
-    key_field="name"
-    section_field="table_id"
-    realm_field="modeling_realm"
-    freq_field="frequency"
+    name_key=cmor_var.name_key
+    table_key=cmor_var.table_key
+    realm_key=cmor_var.realm_key
+    frequency_key=cmor_var.frequency_key
     cmor3=True
+
     axis_entry_key = "axis_entry"
     variable_entry_key = "variable_entry"
     mapping_entry_key = "mapping_entry"
 
+    out_name_key="out_name"
 
-    fieldnames=["standard_name",
-                "long_name",
-                "out_name",
-                "comment",
-                "type",
-                "units",
-                "dimensions",
-                "modeling_realm",
-                "cell_measures",
-                "cell_methods",
-                "valid_min",
-                "valid_max",
-                "ok_min_mean_abs",
-                "ok_max_mean_abs"]
-
-    attributes=["standard_name",
-                "units",
-                "cell_methods"
-                "cell_measures"
-                "long_name",
-                "comment"]
-
-    limitfields=["valid_min",
-                 "valid_max",
-                 "ok_min_mean_abs",
-                 "ok_max_mean_abs"]
-
-    def filter_dict(self,dct):
-        return dict((k,dct.get(k,"")) for k in self.fieldnames)
+    attributes=[cmor_var.standard_name_key,cmor_var.units_key,cmor_var.comment_key]
 
     def __init__(self):
         self.header={}
         self.dimensions={}
-        self.variables={}
         self.experiments={}
         self.mappings={}
+        self.variables=[]
 
     def read_from_json(self,jsonfile):
         jsf=open(jsonfile)
@@ -69,7 +44,10 @@ class cmip_table:
         if(self.variable_entry_key in data):
             vardata=data[self.variable_entry_key]
             for k,v in vardata.iteritems():
-                self.variables[k]=self.filter_dict(v)
+                v[cmip_table.name_key]=k
+                cmv=cmor_var.create(v)
+                if cmv:
+                    self.variables.append(cmv)
 
     def read_header_from_json(self,jsonfile):
         jsf=open(jsonfile)
@@ -94,9 +72,9 @@ class cmip_table:
         self.header["baseURL"]="http://cmip-pcmdi.llnl.gov/CMIP5/dataLocation"
         self.header.pop("Conventions",None)
         self.header.pop("data_spec_version",None)
-        sect=self.header[self.section_field].split()
+        sect=self.header[self.table_key].split()
         if(len(sect)==2 and sect[0]=="Table"):
-            self.header[self.section_field]=sect[1]
+            self.header[self.table_key]=sect[1]
 
     def read_dims_from_json(self,jsonfile):
         jsf=open(jsonfile)
@@ -137,18 +115,18 @@ class cmip_table:
     def read_vars_from_csv(self,csvfile):
         csvf=open(csvfile)
         reader=csv.DictReader(csvf)
-        section=self.header.get(self.section_field,"")
-        realm=self.header.get(self.realm_field,"")
+        section=self.header.get(self.table_key,"")
+        realm=self.header.get(self.realm_key,"")
 #        freq=self.header.get(self.freq_field,"")
         for row in reader:
-            if(section and row.get(self.section_field,"")!=section):
+            if(section and row.get(self.table_key,"")!=section):
                 continue
-            if(realm and row.get(self.realm_field,"")!=realm):
+            if(realm and row.get(self.realm_key,"")!=realm):
                 continue
 #           TODO: insert correct frequencies in csv file
 #           if(freq and row.get(self.freq_field,"")!=freq):
 #               continue
-            self.variables[row[self.key_field]]=cmip_table.replace_none(self.filter_dict(row))
+            self.variables[row[self.name_key]]=cmip_table.replace_none(self.filter_dict(row))
             csvf.close()
 
     def print_data(self,file):
@@ -187,17 +165,20 @@ class cmip_table:
             print>>file,"\n\n"
 
     def print_vars(self,file):
-        for k1,v1 in self.variables.iteritems():
+        for v in self.variables:
             print>>file,"!================================="
-            print>>file,self.variable_entry_key+":", k1
+            print>>file,self.variable_entry_key+":", v.name
             print>>file,"!================================="
-            self.print_entries(v1,"variable",file)
+            d=v.to_dict()
+            d[cmip_table.out_name_key]=v.name
+            d.pop(cmip_table.name_key,None)
+            self.print_entries(d,"variable",file)
             print>>file,"\n\n"
 
     def print_entries(self,dct,elemtype,file):
         dictuple=self.split_dict(dct)
-        cmip_table.print_kvp(self.realm_field,dictuple[1].get(self.realm_field,""),file)
-        dictuple[1].pop(self.realm_field,"")
+        cmip_table.print_kvp(self.realm_key,dictuple[1].get(self.realm_key,""),file)
+        dictuple[1].pop(self.realm_key,"")
         print>>file,"!---------------------------------"
         print>>file,"! %s attributes:" % (elemtype)
         print>>file,"!---------------------------------"
