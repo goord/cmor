@@ -1,16 +1,16 @@
 baseURL:                                 http://cmip-pcmdi.llnl.gov/CMIP5/dataLocation
 approx_interval:                         0.125000
-cf_version:                              1.6
 product:                                 output
 cmor_version:                            2.5
 project_id:                              CMIP6-XXXX
 required_global_attributes:              creation_date tracking_id forcing model_id parent_experiment_id parent_experiment_rip branch_time contact institute_id
 frequency:                               3hr
 table_id:                                3hr
-table_date:                              31 March 2016
+data_specs_version:                      3.0
 modeling_realm:                          atmos
 forcings:                                N/A Nat Ant GHG SD SI SA TO SO Oz LU Sl Vl SS Ds BC MD OC AA
 missing_value:                           1e20
+table_date:                              14 April 2016
 
 
 
@@ -284,6 +284,7 @@ standard_name:                           depth
 stored_direction:                        increasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           0. 100.
 value:                                   50.0
 long_name:                               depth
 valid_min:                               0.0
@@ -374,6 +375,7 @@ standard_name:                           air_pressure
 stored_direction:                        decreasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           44000. 0.0
 value:                                   22000.0
 long_name:                               pressure
 out_name:                                plev
@@ -478,6 +480,7 @@ standard_name:                           air_pressure
 stored_direction:                        decreasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           100000. 68000.
 value:                                   84000.0
 long_name:                               pressure
 out_name:                                plev
@@ -840,6 +843,7 @@ standard_name:                           depth
 stored_direction:                        increasing
 positive:                                down
 must_have_bounds:                        yes
+bounds_values:                           0.0 0.1
 value:                                   0.05
 long_name:                               depth
 valid_min:                               0.0
@@ -1469,6 +1473,7 @@ standard_name:                           air_pressure
 stored_direction:                        decreasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           68000. 44000.
 value:                                   56000.0
 long_name:                               pressure
 out_name:                                plev
@@ -1554,11 +1559,11 @@ standard_name:                           convective_precipitation_flux
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Convective Precipitation
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                prc
+type:                                    real
 
 
 
@@ -1575,12 +1580,12 @@ standard_name:                           air_temperature
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time1
-type:                                    real
+dimensions:                              longitude latitude time1 height2m
 long_name:                               Near-Surface Air Temperature
-cell_measures:                           time: point
 cell_methods:                            area: areacella
+cell_measures:                           time: point
 out_name:                                tas
+type:                                    real
 
 
 
@@ -1597,11 +1602,12 @@ standard_name:                           surface_upwelling_shortwave_flux_in_air
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
+positive:                                up
 long_name:                               Surface Upwelling Clear-Sky Shortwave Radiation
 cell_measures:                           time: mean
 cell_methods:                            area: areacella
 out_name:                                rsuscs
+type:                                    real
 
 
 
@@ -1614,8 +1620,9 @@ variable_entry: depth_c
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    double
 long_name:                               vertical coordinate formula term: depth_c
+out_name:                                depth_c
+type:                                    double
 
 
 
@@ -1632,12 +1639,12 @@ standard_name:                           specific_humidity
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time1
-type:                                    real
+dimensions:                              longitude latitude time1 height2m
 long_name:                               Near-Surface Specific Humidity
-cell_measures:                           time: point
 cell_methods:                            area: areacella
+cell_measures:                           time: point
 out_name:                                huss
+type:                                    real
 
 
 
@@ -1654,11 +1661,12 @@ standard_name:                           surface_upward_sensible_heat_flux
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
+positive:                                up
 long_name:                               Surface Upward Sensible Heat Flux
 cell_measures:                           time: mean
 cell_methods:                            area: areacella
 out_name:                                hfss
+type:                                    real
 
 
 
@@ -1673,8 +1681,9 @@ units:                                   Pa
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: ap(k+1/2)
+out_name:                                ap_bnds
+type:                                    double
 
 
 
@@ -1689,8 +1698,9 @@ units:                                   Pa
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: ap(k)
+out_name:                                ap
+type:                                    double
 
 
 
@@ -1703,8 +1713,9 @@ variable_entry: href
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    double
 long_name:                               vertical coordinate formula term: href
+out_name:                                href
+type:                                    double
 
 
 
@@ -1722,11 +1733,11 @@ standard_name:                           snowfall_flux
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Snowfall Flux
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                prsn
+type:                                    real
 
 
 
@@ -1743,11 +1754,11 @@ standard_name:                           surface_downwelling_longwave_flux_in_ai
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Surface Downwelling Clear-Sky Longwave Radiation
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                rldscs
+type:                                    real
 
 
 
@@ -1761,8 +1772,9 @@ variable_entry: zlev
 ! additional variable information:
 !---------------------------------
 dimensions:                              olevel
-type:                                    double
 long_name:                               vertical coordinate formula term: zlev(k)
+out_name:                                zlev
+type:                                    double
 
 
 
@@ -1780,11 +1792,11 @@ standard_name:                           surface_temperature
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time1
-type:                                    real
 long_name:                               Surface Temperature Where Land or Sea Ice
-cell_measures:                           time: point
 cell_methods:                            area: areacella
+cell_measures:                           time: point
 out_name:                                tslsi
+type:                                    real
 
 
 
@@ -1801,11 +1813,11 @@ standard_name:                           surface_diffuse_downwelling_shortwave_f
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Surface Diffuse Downwelling Shortwave Radiation
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                rsdsdiff
+type:                                    real
 
 
 
@@ -1823,11 +1835,11 @@ standard_name:                           precipitation_flux
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Precipitation
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                pr
+type:                                    real
 
 
 
@@ -1845,11 +1857,11 @@ standard_name:                           surface_air_pressure
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time1
-type:                                    real
 long_name:                               Surface Air Pressure
-cell_measures:                           time: point
 cell_methods:                            area: areacella
+cell_measures:                           time: point
 out_name:                                ps
+type:                                    real
 
 
 
@@ -1866,11 +1878,12 @@ standard_name:                           surface_upwelling_longwave_flux_in_air
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
+positive:                                up
 long_name:                               Surface Upwelling Longwave Radiation
 cell_measures:                           time: mean
 cell_methods:                            area: areacella
 out_name:                                rlus
+type:                                    real
 
 
 
@@ -1887,11 +1900,11 @@ standard_name:                           surface_downwelling_longwave_flux_in_ai
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Surface Downwelling Longwave Radiation
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                rlds
+type:                                    real
 
 
 
@@ -1905,8 +1918,9 @@ variable_entry: sigma_bnds
 ! additional variable information:
 !---------------------------------
 dimensions:                              olevel
-type:                                    double
 long_name:                               vertical coordinate formula term: sigma(k+1/2)
+out_name:                                sigma_bnds
+type:                                    double
 
 
 
@@ -1923,12 +1937,12 @@ standard_name:                           moisture_content_of_soil_layer
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time1
-type:                                    real
+dimensions:                              longitude latitude time1 sdepth1
 long_name:                               Moisture in Upper Portion of Soil Column
-cell_measures:                           time: point area: mean where land
 cell_methods:                            area: areacella
+cell_measures:                           time: point area: mean where land
 out_name:                                mrsos
+type:                                    real
 
 
 
@@ -1946,11 +1960,11 @@ standard_name:                           cloud_area_fraction_in_atmosphere_layer
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Total Cloud Fraction
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                clt
+type:                                    real
 
 
 
@@ -1966,11 +1980,11 @@ standard_name:                           northward_wind
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time1
-type:                                    real
+dimensions:                              longitude latitude time1 height10m
 long_name:                               Northward Near-Surface Wind Speed
 cell_measures:                           time: point
 out_name:                                vas
+type:                                    real
 
 
 
@@ -1985,6 +1999,7 @@ units:                                   Pa
 ! additional variable information:
 !---------------------------------
 long_name:                               pressure at top of model
+out_name:                                ptop
 
 
 
@@ -2001,27 +2016,11 @@ standard_name:                           eastward_wind
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time1
-type:                                    real
+dimensions:                              longitude latitude time1 height10m
 long_name:                               Eastward Near-Surface Wind Speed
 cell_measures:                           time: point
 out_name:                                uas
-
-
-
-!=================================
-variable_entry: orog
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   m
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude
 type:                                    real
-long_name:                               Surface Altitude
 
 
 
@@ -2035,8 +2034,9 @@ variable_entry: b_bnds
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: b(k+1/2)
+out_name:                                b_bnds
+type:                                    double
 
 
 
@@ -2054,11 +2054,11 @@ standard_name:                           sea_surface_temperature
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time1
-type:                                    real
 long_name:                               Sea Surface Temperature
-cell_measures:                           time: point area: mean where sea
 cell_methods:                            area: areacella
+cell_measures:                           time: point area: mean where sea
 out_name:                                tso
+type:                                    real
 
 
 
@@ -2071,8 +2071,9 @@ variable_entry: nsigma
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    integer
 long_name:                               vertical coordinate formula term: nsigma
+out_name:                                nsigma
+type:                                    integer
 
 
 
@@ -2090,11 +2091,11 @@ standard_name:                           surface_downwelling_shortwave_flux_in_a
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Surface Downwelling Shortwave Radiation
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                rsds
+type:                                    real
 
 
 
@@ -2109,6 +2110,7 @@ units:                                   m
 ! additional variable information:
 !---------------------------------
 long_name:                               height of top of model
+out_name:                                ztop
 
 
 
@@ -2122,8 +2124,9 @@ variable_entry: zlev_bnds
 ! additional variable information:
 !---------------------------------
 dimensions:                              olevel
-type:                                    double
 long_name:                               vertical coordinate formula term: zlev(k+1/2)
+out_name:                                zlev_bnds
+type:                                    double
 
 
 
@@ -2136,8 +2139,9 @@ variable_entry: z1
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    double
 long_name:                               vertical coordinate formula term: z1
+out_name:                                z1
+type:                                    double
 
 
 
@@ -2150,8 +2154,9 @@ variable_entry: z2
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    double
 long_name:                               vertical coordinate formula term: z2
+out_name:                                z2
+type:                                    double
 
 
 
@@ -2165,8 +2170,9 @@ variable_entry: a
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: a(k)
+out_name:                                a
+type:                                    double
 
 
 
@@ -2181,6 +2187,7 @@ units:                                   Pa
 ! additional variable information:
 !---------------------------------
 long_name:                               vertical coordinate formula term: reference pressure
+out_name:                                p0
 
 
 
@@ -2194,8 +2201,25 @@ variable_entry: b
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: b(k)
+out_name:                                b
+type:                                    double
+
+
+
+!=================================
+variable_entry: a_bnds
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              alevel
+long_name:                               vertical coordinate formula term: a(k+1/2)
+out_name:                                a_bnds
+type:                                    double
 
 
 
@@ -2213,11 +2237,11 @@ standard_name:                           runoff_flux
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Total Runoff
-cell_measures:                           time: mean area: mean where land
 cell_methods:                            area: areacella
+cell_measures:                           time: mean area: mean where land
 out_name:                                mrro
+type:                                    real
 
 
 
@@ -2232,8 +2256,9 @@ units:                                   m
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude
-type:                                    real
 long_name:                               Sea Floor Depth: formula term: thetao
+out_name:                                depth
+type:                                    real
 
 
 
@@ -2248,8 +2273,9 @@ units:                                   m
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Sea Surface Height formula term: thetao
+out_name:                                eta
+type:                                    real
 
 
 
@@ -2266,11 +2292,12 @@ standard_name:                           surface_upward_latent_heat_flux
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
+positive:                                up
 long_name:                               Surface Upward Latent Heat Flux
 cell_measures:                           time: mean
 cell_methods:                            area: areacella
 out_name:                                hfls
+type:                                    real
 
 
 
@@ -2288,11 +2315,11 @@ standard_name:                           surface_downwelling_shortwave_flux_in_a
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Surface Downwelling Clear-Sky Shortwave Radiation
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                rsdscs
+type:                                    real
 
 
 
@@ -2309,11 +2336,12 @@ standard_name:                           surface_upwelling_shortwave_flux_in_air
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
+positive:                                up
 long_name:                               Surface Upwelling Shortwave Radiation
 cell_measures:                           time: mean
 cell_methods:                            area: areacella
 out_name:                                rsus
+type:                                    real
 
 
 
@@ -2326,8 +2354,9 @@ variable_entry: k_c
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    integer
 long_name:                               vertical coordinate formula term: k_c
+out_name:                                k_c
+type:                                    integer
 
 
 
@@ -2341,23 +2370,26 @@ variable_entry: sigma
 ! additional variable information:
 !---------------------------------
 dimensions:                              olevel
-type:                                    double
 long_name:                               vertical coordinate formula term: sigma(k)
+out_name:                                sigma
+type:                                    double
 
 
 
 !=================================
-variable_entry: a_bnds
+variable_entry: orog
 !=================================
 !---------------------------------
 ! variable attributes:
 !---------------------------------
+units:                                   m
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              alevel
-type:                                    double
-long_name:                               vertical coordinate formula term: a(k+1/2)
+dimensions:                              longitude latitude
+long_name:                               Surface Altitude
+out_name:                                orog
+type:                                    real
 
 
 

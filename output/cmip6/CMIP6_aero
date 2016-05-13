@@ -1,17 +1,17 @@
 baseURL:                                 http://cmip-pcmdi.llnl.gov/CMIP5/dataLocation
 approx_interval:                         30.00000
-cf_version:                              1.6
 product:                                 output
 cmor_version:                            2.5
 project_id:                              CMIP6-XXXX
 required_global_attributes:              creation_date tracking_id forcing model_id parent_experiment_id parent_experiment_rip branch_time contact institute_id
 frequency:                               mon
 table_id:                                aero
-table_date:                              31 March 2016
+data_specs_version:                      3.0
 modeling_realm:                          aerosol
 generic_levels:                          alevel alev1
 forcings:                                N/A Nat Ant GHG SD SI SA TO SO Oz LU Sl Vl SS Ds BC MD OC AA
 missing_value:                           1e20
+table_date:                              14 April 2016
 
 
 
@@ -285,6 +285,7 @@ standard_name:                           depth
 stored_direction:                        increasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           0. 100.
 value:                                   50.0
 long_name:                               depth
 valid_min:                               0.0
@@ -375,6 +376,7 @@ standard_name:                           air_pressure
 stored_direction:                        decreasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           44000. 0.0
 value:                                   22000.0
 long_name:                               pressure
 out_name:                                plev
@@ -479,6 +481,7 @@ standard_name:                           air_pressure
 stored_direction:                        decreasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           100000. 68000.
 value:                                   84000.0
 long_name:                               pressure
 out_name:                                plev
@@ -841,6 +844,7 @@ standard_name:                           depth
 stored_direction:                        increasing
 positive:                                down
 must_have_bounds:                        yes
+bounds_values:                           0.0 0.1
 value:                                   0.05
 long_name:                               depth
 valid_min:                               0.0
@@ -1470,6 +1474,7 @@ standard_name:                           air_pressure
 stored_direction:                        decreasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           68000. 44000.
 value:                                   56000.0
 long_name:                               pressure
 out_name:                                plev
@@ -1554,11 +1559,11 @@ standard_name:                           tendency_of_atmosphere_mass_content_of_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Wet Deposition Rate of NH4+NH3
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                wetnh4
+type:                                    real
 
 
 
@@ -1571,8 +1576,9 @@ variable_entry: depth_c
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    double
 long_name:                               vertical coordinate formula term: depth_c
+out_name:                                depth_c
+type:                                    double
 
 
 
@@ -1590,8 +1596,8 @@ standard_name:                           mass_concentration_of_black_carbon_dry_
 !---------------------------------
 dimensions:                              longitude latitude alevel time
 long_name:                               Concentration of Black Carbon Aerosol
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                concbc
 
 
@@ -1610,8 +1616,8 @@ standard_name:                           mass_concentration_of_biomass_burning_d
 !---------------------------------
 dimensions:                              longitude latitude alevel time
 long_name:                               Concentration of Biomass Burning Aerosol
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                concbb
 
 
@@ -1629,11 +1635,11 @@ standard_name:                           tendency_of_atmosphere_mass_content_of_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Wet Deposition Rate of SO2
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                wetso2
+type:                                    real
 
 
 
@@ -1651,11 +1657,11 @@ standard_name:                           tendency_of_atmosphere_mass_content_of_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Wet Deposition Rate of SO4
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                wetso4
+type:                                    real
 
 
 
@@ -1673,8 +1679,8 @@ standard_name:                           mass_concentration_of_seasalt_dry_aeros
 !---------------------------------
 dimensions:                              longitude latitude alevel time
 long_name:                               Concentration of Seasalt
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                concss
 
 
@@ -1692,11 +1698,11 @@ standard_name:                           atmosphere_mass_content_of_nitrate_dry_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Load of NO3
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                loadno3
+type:                                    real
 
 
 
@@ -1714,11 +1720,11 @@ standard_name:                           atmosphere_number_content_of_cloud_drop
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Column Integrated Cloud Droplet Number
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                cldnvi
+type:                                    real
 
 
 
@@ -1737,8 +1743,8 @@ standard_name:                           effective_radius_of_convective_cloud_li
 !---------------------------------
 dimensions:                              longitude latitude alevel time
 long_name:                               Convective Cloud Droplet Effective Radius
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                reffclwc
 
 
@@ -1757,11 +1763,11 @@ standard_name:                           mass_concentration_of_dust_dry_aerosol_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude alev1 time
-type:                                    real
 long_name:                               Surface Concentration of Dust
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                sconcdust
+type:                                    real
 
 
 
@@ -1780,8 +1786,8 @@ standard_name:                           effective_radius_of_stratiform_cloud_li
 !---------------------------------
 dimensions:                              longitude latitude alevel time
 long_name:                               Stratiform Cloud Droplet Effective Radius
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                reffclws
 
 
@@ -1801,8 +1807,8 @@ standard_name:                           number_concentration_of_cloud_liquid_wa
 !---------------------------------
 dimensions:                              longitude latitude alevel time
 long_name:                               Cloud Droplet Number Concentration
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                cdnc
 
 
@@ -1821,11 +1827,11 @@ standard_name:                           mass_concentration_of_nitrate_dry_aeros
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude alev1 time
-type:                                    real
 long_name:                               Surface Concentration of NO3
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                sconcno3
+type:                                    real
 
 
 
@@ -1842,11 +1848,11 @@ standard_name:                           tendency_of_atmosphere_mass_content_of_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Wet Deposition Rate of Dry Aerosol Secondary Organic Matter
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                wetsoa
+type:                                    real
 
 
 
@@ -1863,11 +1869,11 @@ standard_name:                           atmosphere_mass_content_of_sulfate_dry_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Load of SO4
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                loadso4
+type:                                    real
 
 
 
@@ -1880,8 +1886,9 @@ variable_entry: nsigma
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    integer
 long_name:                               vertical coordinate formula term: nsigma
+out_name:                                nsigma
+type:                                    integer
 
 
 
@@ -1899,33 +1906,33 @@ standard_name:                           mass_concentration_of_black_carbon_dry_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude alev1 time
-type:                                    real
 long_name:                               Surface Concentration of Black Carbon Aerosol
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                sconcbc
+type:                                    real
 
 
 
 !=================================
-variable_entry: emidust
+variable_entry: dryss
 !=================================
 modeling_realm:                          aerosol
 !---------------------------------
 ! variable attributes:
 !---------------------------------
 units:                                   kg m-2 s-1
-comment:                                 Integrate 3D emission field vertically to 2d field.
-standard_name:                           tendency_of_atmosphere_mass_content_of_dust_dry_aerosol_due_to_emission
+comment:                                 Dry deposition includes gravitational settling, impact scavenging, and turbulent deposition.
+standard_name:                           tendency_of_atmosphere_mass_content_of_seasalt_dry_aerosol_due_to_dry_deposition
 !---------------------------------
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Total Emission Rate of Dust
-cell_measures:                           time: mean
+long_name:                               Dry Deposition Rate of Seasalt
 cell_methods:                            area: areacella
-out_name:                                emidust
+cell_measures:                           time: mean
+out_name:                                dryss
+type:                                    real
 
 
 
@@ -1943,11 +1950,11 @@ standard_name:                           atmosphere_optical_thickness_due_to_pm1
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Ambient Fine Aerosol Optical Thickness at 550 nm
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                od550lt1aer
+type:                                    real
 
 
 
@@ -1965,8 +1972,8 @@ standard_name:                           number_concentration_of_ambient_aerosol
 !---------------------------------
 dimensions:                              longitude latitude alevel time
 long_name:                               Aerosol Number Concentration
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                conccn
 
 
@@ -1984,11 +1991,11 @@ standard_name:                           tendency_of_atmosphere_mass_content_of_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Wet Deposition Rate of Dust
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                wetdust
+type:                                    real
 
 
 
@@ -2005,11 +2012,11 @@ standard_name:                           atmosphere_mass_content_of_secondary_pa
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Load of Dry Aerosol Secondary Organic Matter
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                loadsoa
+type:                                    real
 
 
 
@@ -2027,11 +2034,11 @@ standard_name:                           tendency_of_atmosphere_mass_content_of_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Total Emission of Primary Aerosol from Biomass Burning
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                emibb
+type:                                    real
 
 
 
@@ -2049,11 +2056,11 @@ standard_name:                           tendency_of_atmosphere_mass_content_of_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Emission Rate of Black Carbon Aerosol Mass
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                emibc
+type:                                    real
 
 
 
@@ -2070,11 +2077,11 @@ standard_name:                           atmosphere_mass_content_of_dust_dry_aer
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Load of Dust
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                loaddust
+type:                                    real
 
 
 
@@ -2113,11 +2120,11 @@ standard_name:                           surface_diffuse_downwelling_shortwave_f
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Surface Diffuse Downwelling Shortwave Radiation
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                rsdsdiff
+type:                                    real
 
 
 
@@ -2134,11 +2141,11 @@ standard_name:                           tendency_of_atmosphere_mass_content_of_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Wet Deposition Rate of Dry Aerosol Primary Organic Matter
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                wetpoa
+type:                                    real
 
 
 
@@ -2155,11 +2162,11 @@ standard_name:                           atmosphere_absorption_optical_thickness
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Ambient Aerosol Absorption Optical Thickness at 550 nm
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                abs550aer
+type:                                    real
 
 
 
@@ -2176,11 +2183,11 @@ standard_name:                           atmosphere_mass_content_of_black_carbon
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Load of Black Carbon Aerosol
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                loadbc
+type:                                    real
 
 
 
@@ -2194,8 +2201,9 @@ variable_entry: sigma_bnds
 ! additional variable information:
 !---------------------------------
 dimensions:                              olevel
-type:                                    double
 long_name:                               vertical coordinate formula term: sigma(k+1/2)
+out_name:                                sigma_bnds
+type:                                    double
 
 
 
@@ -2213,11 +2221,11 @@ standard_name:                           tendency_of_atmosphere_mass_content_of_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Production Rate of Dry Aerosol Secondary Organic Matter
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                chepsoa
+type:                                    real
 
 
 
@@ -2232,6 +2240,7 @@ units:                                   Pa
 ! additional variable information:
 !---------------------------------
 long_name:                               pressure at top of model
+out_name:                                ptop
 
 
 
@@ -2249,11 +2258,11 @@ standard_name:                           tendency_of_atmosphere_mass_content_of_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Rate of Emission and Production of Dry Aerosol Total Organic Matter
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                emioa
+type:                                    real
 
 
 
@@ -2272,8 +2281,8 @@ standard_name:                           mass_concentration_of_water_in_ambient_
 !---------------------------------
 dimensions:                              longitude latitude alevel time
 long_name:                               Concentration of Aerosol Water
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                concaerh2o
 
 
@@ -2291,11 +2300,11 @@ standard_name:                           tendency_of_atmosphere_mass_content_of_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Dry Deposition Rate of Dry Aerosol Primary Organic Matter
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                drypoa
+type:                                    real
 
 
 
@@ -2313,11 +2322,11 @@ standard_name:                           effective_radius_of_cloud_liquid_water_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Cloud-Top Effective Droplet Radius
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                reffclwtop
+type:                                    real
 
 
 
@@ -2332,6 +2341,7 @@ units:                                   m
 ! additional variable information:
 !---------------------------------
 long_name:                               height of top of model
+out_name:                                ztop
 
 
 
@@ -2348,11 +2358,11 @@ standard_name:                           atmosphere_mass_content_of_ammonium_dry
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Load of NH4
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                loadnh4
+type:                                    real
 
 
 
@@ -2365,8 +2375,9 @@ variable_entry: z1
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    double
 long_name:                               vertical coordinate formula term: z1
+out_name:                                z1
+type:                                    double
 
 
 
@@ -2379,8 +2390,9 @@ variable_entry: z2
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    double
 long_name:                               vertical coordinate formula term: z2
+out_name:                                z2
+type:                                    double
 
 
 
@@ -2398,11 +2410,11 @@ standard_name:                           mass_concentration_of_seasalt_dry_aeros
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude alev1 time
-type:                                    real
 long_name:                               Surface Concentration of Seasalt
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                sconcss
+type:                                    real
 
 
 
@@ -2420,11 +2432,11 @@ standard_name:                           tendency_of_atmosphere_mass_content_of_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Dry Deposition Rate of DMS
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                drydms
+type:                                    real
 
 
 
@@ -2439,8 +2451,9 @@ units:                                   m
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Sea Surface Height formula term: thetao
+out_name:                                eta
+type:                                    real
 
 
 
@@ -2458,11 +2471,11 @@ standard_name:                           tendency_of_atmosphere_mass_content_of_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Dry Deposition Rate of Dry Aerosol Organic Matter
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                dryoa
+type:                                    real
 
 
 
@@ -2480,11 +2493,11 @@ standard_name:                           tendency_of_atmosphere_mass_content_of_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Wet Deposition Rate of Dry Aerosol Organic Matter
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                wetoa
+type:                                    real
 
 
 
@@ -2502,8 +2515,8 @@ standard_name:                           mass_concentration_of_secondary_particu
 !---------------------------------
 dimensions:                              longitude latitude alevel time
 long_name:                               Concentration of Dry Aerosol Secondary Organic Matter
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                concsoa
 
 
@@ -2522,11 +2535,11 @@ standard_name:                           tendency_of_atmosphere_mass_content_of_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Dry Deposition Rate of SO4
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                dryso4
+type:                                    real
 
 
 
@@ -2539,8 +2552,9 @@ variable_entry: href
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    double
 long_name:                               vertical coordinate formula term: href
+out_name:                                href
+type:                                    double
 
 
 
@@ -2558,11 +2572,11 @@ standard_name:                           tendency_of_atmosphere_mass_content_of_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Dry Deposition Rate of SO2
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                dryso2
+type:                                    real
 
 
 
@@ -2579,11 +2593,11 @@ standard_name:                           tendency_of_atmosphere_mass_content_of_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Wet Deposition Rate of Black Carbon Aerosol Mass
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                wetbc
+type:                                    real
 
 
 
@@ -2601,25 +2615,31 @@ standard_name:                           surface_air_pressure
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Surface Air Pressure
 cell_measures:                           time: mean
 out_name:                                ps
+type:                                    real
 
 
 
 !=================================
-variable_entry: zlev_bnds
+variable_entry: conccmcn
 !=================================
+modeling_realm:                          aerosol
 !---------------------------------
 ! variable attributes:
 !---------------------------------
+units:                                   m-3
+comment:                                 includes all particles with diameter larger than 1 micron
+standard_name:                           number_concentration_of_coarse_mode_ambient_aerosol_in_air
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              olevel
-type:                                    double
-long_name:                               vertical coordinate formula term: zlev(k+1/2)
+dimensions:                              longitude latitude alevel time
+long_name:                               Number Concentration Coarse Mode Aerosol
+cell_methods:                            area: areacella
+cell_measures:                           time: mean
+out_name:                                conccmcn
 
 
 
@@ -2637,11 +2657,11 @@ standard_name:                           mass_concentration_of_particulate_organ
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude alev1 time
-type:                                    real
 long_name:                               Surface Concentration of Dry Aerosol Organic Matter
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                sconcoa
+type:                                    real
 
 
 
@@ -2659,8 +2679,8 @@ standard_name:                           mass_concentration_of_primary_particula
 !---------------------------------
 dimensions:                              longitude latitude alevel time
 long_name:                               Concentration of Dry Aerosol Primary Organic Matter
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                concpoa
 
 
@@ -2679,11 +2699,11 @@ standard_name:                           mass_concentration_of_secondary_particu
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude alev1 time
-type:                                    real
 long_name:                               Surface Concentration of Dry Aerosol Secondary Organic Matter
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                sconcsoa
+type:                                    real
 
 
 
@@ -2701,11 +2721,11 @@ standard_name:                           tendency_of_atmosphere_mass_content_of_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Dry Deposition Rate of NH3
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                drynh3
+type:                                    real
 
 
 
@@ -2722,11 +2742,11 @@ standard_name:                           tendency_of_atmosphere_mass_content_of_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Dry Deposition Rate of Dry Aerosol Secondary Organic Matter
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                drysoa
+type:                                    real
 
 
 
@@ -2744,11 +2764,11 @@ standard_name:                           tendency_of_atmosphere_mass_content_of_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Dry Deposition Rate of NH4
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                drynh4
+type:                                    real
 
 
 
@@ -2765,11 +2785,11 @@ standard_name:                           atmosphere_mass_content_of_seasalt_dry_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Load of Seasalt
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                loadss
+type:                                    real
 
 
 
@@ -2787,8 +2807,8 @@ standard_name:                           mole_fraction_of_sulfur_dioxide_in_air
 !---------------------------------
 dimensions:                              longitude latitude alevel time
 long_name:                               Mole Fraction of SO2
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                concso2
 
 
@@ -2807,8 +2827,8 @@ standard_name:                           mass_concentration_of_sulfate_dry_aeros
 !---------------------------------
 dimensions:                              longitude latitude alevel time
 long_name:                               Concentration of SO4
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                concso4
 
 
@@ -2827,11 +2847,11 @@ standard_name:                           atmosphere_mass_content_of_particulate_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Load of Dry Aerosol Organic Matter
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                loadoa
+type:                                    real
 
 
 
@@ -2849,8 +2869,8 @@ standard_name:                           mass_concentration_of_particulate_organ
 !---------------------------------
 dimensions:                              longitude latitude alevel time
 long_name:                               Concentration of Dry Aerosol Organic Matter
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                concoa
 
 
@@ -2869,8 +2889,8 @@ standard_name:                           mole_fraction_of_dimethyl_sulfide_in_ai
 !---------------------------------
 dimensions:                              longitude latitude alevel time
 long_name:                               Mole Fraction of DMS
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                concdms
 
 
@@ -2889,11 +2909,11 @@ standard_name:                           number_concentration_of_cloud_liquid_wa
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Cloud Droplet Number Concentration of Cloud Tops
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                cldncl
+type:                                    real
 
 
 
@@ -2908,6 +2928,7 @@ units:                                   Pa
 ! additional variable information:
 !---------------------------------
 long_name:                               vertical coordinate formula term: reference pressure
+out_name:                                p0
 
 
 
@@ -2921,8 +2942,9 @@ variable_entry: b
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: b(k)
+out_name:                                b
+type:                                    double
 
 
 
@@ -2940,11 +2962,11 @@ standard_name:                           number_concentration_of_ice_crystals_in
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Ice Crystal Number Concentration of Cloud Tops
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                cldnci
+type:                                    real
 
 
 
@@ -2962,11 +2984,11 @@ standard_name:                           mass_concentration_of_sulfate_dry_aeros
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude alev1 time
-type:                                    real
 long_name:                               Surface Concentration of SO4
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                sconcso4
+type:                                    real
 
 
 
@@ -2983,11 +3005,11 @@ standard_name:                           atmosphere_mass_content_of_primary_part
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Load of Dry Aerosol Primary Organic Matter
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                loadpoa
+type:                                    real
 
 
 
@@ -3000,8 +3022,9 @@ variable_entry: k_c
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    integer
 long_name:                               vertical coordinate formula term: k_c
+out_name:                                k_c
+type:                                    integer
 
 
 
@@ -3019,8 +3042,8 @@ standard_name:                           mass_concentration_of_nitrate_dry_aeros
 !---------------------------------
 dimensions:                              longitude latitude alevel time
 long_name:                               Concentration of NO3 Aerosol
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                concno3
 
 
@@ -3035,8 +3058,9 @@ variable_entry: a_bnds
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: a(k+1/2)
+out_name:                                a_bnds
+type:                                    double
 
 
 
@@ -3054,11 +3078,11 @@ standard_name:                           tendency_of_atmosphere_mass_content_of_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Dry Deposition Rate of Black Carbon Aerosol Mass
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                drybc
+type:                                    real
 
 
 
@@ -3076,11 +3100,11 @@ standard_name:                           tendency_of_atmosphere_mass_content_of_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Total Emission Rate of Seasalt
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                emiss
+type:                                    real
 
 
 
@@ -3095,8 +3119,9 @@ units:                                   Pa
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: ap(k+1/2)
+out_name:                                ap_bnds
+type:                                    double
 
 
 
@@ -3111,8 +3136,9 @@ units:                                   Pa
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: ap(k)
+out_name:                                ap
+type:                                    double
 
 
 
@@ -3130,11 +3156,11 @@ standard_name:                           mass_concentration_of_primary_particula
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude alev1 time
-type:                                    real
 long_name:                               Surface Concentration of Dry Aerosol Primary Organic Matter
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                sconcpoa
+type:                                    real
 
 
 
@@ -3148,8 +3174,9 @@ variable_entry: zlev
 ! additional variable information:
 !---------------------------------
 dimensions:                              olevel
-type:                                    double
 long_name:                               vertical coordinate formula term: zlev(k)
+out_name:                                zlev
+type:                                    double
 
 
 
@@ -3168,8 +3195,8 @@ standard_name:                           number_concentration_of_ice_crystals_in
 !---------------------------------
 dimensions:                              longitude latitude alevel time
 long_name:                               Ice Crystal Number Concentration
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                inc
 
 
@@ -3189,25 +3216,30 @@ standard_name:                           volume_extinction_coefficient_in_air_du
 !---------------------------------
 dimensions:                              longitude latitude alevel time
 long_name:                               Ambient Aerosol Extinction at 550 nm
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                ec550aer
 
 
 
 !=================================
-variable_entry: depth
+variable_entry: od870aer
 !=================================
+modeling_realm:                          aerosol
 !---------------------------------
 ! variable attributes:
 !---------------------------------
-units:                                   m
+units:                                   1.0
+comment:                                 AOD from the ambient aerosls (i.e., includes aerosol water).  Does not include AOD from stratospheric aerosols if these are prescribed but includes other possible background aerosol types.
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude
+dimensions:                              longitude latitude time
+long_name:                               Ambient Aerosol Optical Thickness at 870 nm
+cell_methods:                            area: areacella
+cell_measures:                           time: mean
+out_name:                                od870aer
 type:                                    real
-long_name:                               Sea Floor Depth: formula term: thetao
 
 
 
@@ -3225,8 +3257,8 @@ standard_name:                           mass_concentration_of_dust_dry_aerosol_
 !---------------------------------
 dimensions:                              longitude latitude alevel time
 long_name:                               Concentration of Dust
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                concdust
 
 
@@ -3245,33 +3277,33 @@ standard_name:                           tendency_of_atmosphere_mass_content_of_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Total Emission Rate of DMS
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                emidms
+type:                                    real
 
 
 
 !=================================
-variable_entry: dryss
+variable_entry: emidust
 !=================================
 modeling_realm:                          aerosol
 !---------------------------------
 ! variable attributes:
 !---------------------------------
 units:                                   kg m-2 s-1
-comment:                                 Dry deposition includes gravitational settling, impact scavenging, and turbulent deposition.
-standard_name:                           tendency_of_atmosphere_mass_content_of_seasalt_dry_aerosol_due_to_dry_deposition
+comment:                                 Integrate 3D emission field vertically to 2d field.
+standard_name:                           tendency_of_atmosphere_mass_content_of_dust_dry_aerosol_due_to_emission
 !---------------------------------
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Dry Deposition Rate of Seasalt
-cell_measures:                           time: mean
+long_name:                               Total Emission Rate of Dust
 cell_methods:                            area: areacella
-out_name:                                dryss
+cell_measures:                           time: mean
+out_name:                                emidust
+type:                                    real
 
 
 
@@ -3288,11 +3320,11 @@ standard_name:                           tendency_of_atmosphere_mass_content_of_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Wet Deposition Rate of DMS
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                wetdms
+type:                                    real
 
 
 
@@ -3309,11 +3341,11 @@ standard_name:                           surface_diffuse_downwelling_shortwave_f
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Surface Diffuse Downwelling Clear Sky Shortwave Radiation
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                rsdscsdiff
+type:                                    real
 
 
 
@@ -3331,11 +3363,11 @@ standard_name:                           atmosphere_optical_thickness_due_to_amb
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Ambient Aerosol Optical Thickness at 550 nm
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                od550aer
+type:                                    real
 
 
 
@@ -3349,30 +3381,31 @@ variable_entry: b_bnds
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: b(k+1/2)
+out_name:                                b_bnds
+type:                                    double
 
 
 
 !=================================
-variable_entry: sconcnh4
+variable_entry: eminh3
 !=================================
 modeling_realm:                          aerosol
 !---------------------------------
 ! variable attributes:
 !---------------------------------
-units:                                   kg m-3
-comment:                                 Mass concentration in model lowest layer
-standard_name:                           mass_concentration_of_ammonium_dry_aerosol_in_air
+units:                                   kg m-2 s-1
+comment:                                 Integrate 3D emission field vertically to 2d field.
+standard_name:                           tendency_of_atmosphere_mass_content_of_ammonia_due_to_emission
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude alev1 time
-type:                                    real
-long_name:                               Surface Concentration of NH4
-cell_measures:                           time: mean
+dimensions:                              longitude latitude time
+long_name:                               Total Emission Rate of NH3
 cell_methods:                            area: areacella
-out_name:                                sconcnh4
+cell_measures:                           time: mean
+out_name:                                eminh3
+type:                                    real
 
 
 
@@ -3390,8 +3423,8 @@ standard_name:                           mass_concentration_of_ammonium_dry_aero
 !---------------------------------
 dimensions:                              longitude latitude alevel time
 long_name:                               Concentration of NH4
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                concnh4
 
 
@@ -3410,11 +3443,11 @@ standard_name:                           tendency_of_atmosphere_mass_content_of_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Total Emission Rate of SO2
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                emiso2
+type:                                    real
 
 
 
@@ -3432,11 +3465,11 @@ standard_name:                           tendency_of_atmosphere_mass_content_of_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Total Direct Emission Rate of SO4
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                emiso4
+type:                                    real
 
 
 
@@ -3455,30 +3488,25 @@ standard_name:                           number_concentration_of_nucleation_mode
 !---------------------------------
 dimensions:                              longitude latitude alevel time
 long_name:                               Number Concentration of Nucleation Mode Aerosol
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                concnmcn
 
 
 
 !=================================
-variable_entry: conccmcn
+variable_entry: zlev_bnds
 !=================================
-modeling_realm:                          aerosol
 !---------------------------------
 ! variable attributes:
 !---------------------------------
-units:                                   m-3
-comment:                                 includes all particles with diameter larger than 1 micron
-standard_name:                           number_concentration_of_coarse_mode_ambient_aerosol_in_air
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude alevel time
-long_name:                               Number Concentration Coarse Mode Aerosol
-cell_measures:                           time: mean
-cell_methods:                            area: areacella
-out_name:                                conccmcn
+dimensions:                              olevel
+long_name:                               vertical coordinate formula term: zlev(k+1/2)
+out_name:                                zlev_bnds
+type:                                    double
 
 
 
@@ -3492,109 +3520,9 @@ variable_entry: a
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: a(k)
-
-
-
-!=================================
-variable_entry: sigma
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              olevel
+out_name:                                a
 type:                                    double
-long_name:                               vertical coordinate formula term: sigma(k)
-
-
-
-!=================================
-variable_entry: emipoa
-!=================================
-modeling_realm:                          aerosol
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   kg m-2 s-1
-comment:                                 tendency of atmosphere mass content of primary organic aerosol due to emission:  ''mass'' refers to the mass of primary organic matter, not mass of organic carbon alone.
-standard_name:                           tendency_of_atmosphere_mass_content_of_primary_particulate_organic_matter_dry_aerosol_due_to_emission
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Emission Rate of Dry Aerosol Primary Organic Matter
-cell_measures:                           time: mean
-cell_methods:                            area: areacella
-out_name:                                emipoa
-
-
-
-!=================================
-variable_entry: od870aer
-!=================================
-modeling_realm:                          aerosol
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   1.0
-comment:                                 AOD from the ambient aerosls (i.e., includes aerosol water).  Does not include AOD from stratospheric aerosols if these are prescribed but includes other possible background aerosol types.
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Ambient Aerosol Optical Thickness at 870 nm
-cell_measures:                           time: mean
-cell_methods:                            area: areacella
-out_name:                                od870aer
-
-
-
-!=================================
-variable_entry: eminh3
-!=================================
-modeling_realm:                          aerosol
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   kg m-2 s-1
-comment:                                 Integrate 3D emission field vertically to 2d field.
-standard_name:                           tendency_of_atmosphere_mass_content_of_ammonia_due_to_emission
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Total Emission Rate of NH3
-cell_measures:                           time: mean
-cell_methods:                            area: areacella
-out_name:                                eminh3
-
-
-
-!=================================
-variable_entry: wetss
-!=================================
-modeling_realm:                          aerosol
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   kg m-2 s-1
-standard_name:                           tendency_of_atmosphere_mass_content_of_seasalt_dry_aerosol_due_to_wet_deposition
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Wet Deposition Rate of Seasalt
-cell_measures:                           time: mean
-cell_methods:                            area: areacella
-out_name:                                wetss
 
 
 
@@ -3612,11 +3540,109 @@ standard_name:                           tendency_of_atmosphere_mass_content_of_
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Dry Deposition Rate of Dust
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                drydust
+type:                                    real
+
+
+
+!=================================
+variable_entry: emipoa
+!=================================
+modeling_realm:                          aerosol
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   kg m-2 s-1
+comment:                                 tendency of atmosphere mass content of primary organic aerosol due to emission:  ''mass'' refers to the mass of primary organic matter, not mass of organic carbon alone.
+standard_name:                           tendency_of_atmosphere_mass_content_of_primary_particulate_organic_matter_dry_aerosol_due_to_emission
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time
+long_name:                               Emission Rate of Dry Aerosol Primary Organic Matter
+cell_methods:                            area: areacella
+cell_measures:                           time: mean
+out_name:                                emipoa
+type:                                    real
+
+
+
+!=================================
+variable_entry: depth
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   m
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude
+long_name:                               Sea Floor Depth: formula term: thetao
+out_name:                                depth
+type:                                    real
+
+
+
+!=================================
+variable_entry: sconcnh4
+!=================================
+modeling_realm:                          aerosol
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   kg m-3
+comment:                                 Mass concentration in model lowest layer
+standard_name:                           mass_concentration_of_ammonium_dry_aerosol_in_air
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude alev1 time
+long_name:                               Surface Concentration of NH4
+cell_methods:                            area: areacella
+cell_measures:                           time: mean
+out_name:                                sconcnh4
+type:                                    real
+
+
+
+!=================================
+variable_entry: wetss
+!=================================
+modeling_realm:                          aerosol
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   kg m-2 s-1
+standard_name:                           tendency_of_atmosphere_mass_content_of_seasalt_dry_aerosol_due_to_wet_deposition
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time
+long_name:                               Wet Deposition Rate of Seasalt
+cell_methods:                            area: areacella
+cell_measures:                           time: mean
+out_name:                                wetss
+type:                                    real
+
+
+
+!=================================
+variable_entry: sigma
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              olevel
+long_name:                               vertical coordinate formula term: sigma(k)
+out_name:                                sigma
+type:                                    double
 
 
 

@@ -1,16 +1,16 @@
 baseURL:                                 http://cmip-pcmdi.llnl.gov/CMIP5/dataLocation
 approx_interval:                         1.00000
-cf_version:                              1.6
 product:                                 output
 cmor_version:                            2.5
 project_id:                              CMIP6-XXXX
 required_global_attributes:              creation_date tracking_id forcing model_id parent_experiment_id parent_experiment_rip branch_time contact institute_id
 frequency:                               day
 table_id:                                Oday
-table_date:                              31 March 2016
+data_specs_version:                      3.0
 modeling_realm:                          ocnBgchem
 forcings:                                N/A Nat Ant GHG SD SI SA TO SO Oz LU Sl Vl SS Ds BC MD OC AA
 missing_value:                           1e20
+table_date:                              14 April 2016
 
 
 
@@ -284,6 +284,7 @@ standard_name:                           depth
 stored_direction:                        increasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           0. 100.
 value:                                   50.0
 long_name:                               depth
 valid_min:                               0.0
@@ -374,6 +375,7 @@ standard_name:                           air_pressure
 stored_direction:                        decreasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           44000. 0.0
 value:                                   22000.0
 long_name:                               pressure
 out_name:                                plev
@@ -478,6 +480,7 @@ standard_name:                           air_pressure
 stored_direction:                        decreasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           100000. 68000.
 value:                                   84000.0
 long_name:                               pressure
 out_name:                                plev
@@ -840,6 +843,7 @@ standard_name:                           depth
 stored_direction:                        increasing
 positive:                                down
 must_have_bounds:                        yes
+bounds_values:                           0.0 0.1
 value:                                   0.05
 long_name:                               depth
 valid_min:                               0.0
@@ -1469,6 +1473,7 @@ standard_name:                           air_pressure
 stored_direction:                        decreasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           68000. 44000.
 value:                                   56000.0
 long_name:                               pressure
 out_name:                                plev
@@ -1549,8 +1554,9 @@ variable_entry: depth_c
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    double
 long_name:                               vertical coordinate formula term: depth_c
+out_name:                                depth_c
+type:                                    double
 
 
 
@@ -1565,8 +1571,9 @@ units:                                   Pa
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: ap(k+1/2)
+out_name:                                ap_bnds
+type:                                    double
 
 
 
@@ -1584,11 +1591,11 @@ standard_name:                           mass_concentration_of_phytoplankton_exp
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Sea Surface Total Chlorophyll Mass Concentration
-cell_measures:                           time: mean area: mean where sea
 cell_methods:                            area: areacello volume: volcello
+cell_measures:                           time: mean area: mean where sea
 out_name:                                chlos
+type:                                    real
 
 
 
@@ -1603,8 +1610,9 @@ units:                                   Pa
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: ap(k)
+out_name:                                ap
+type:                                    double
 
 
 
@@ -1621,11 +1629,11 @@ standard_name:                           sea_surface_salinity
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Sea Surface Salinity
-cell_measures:                           time: mean
 cell_methods:                            area: areacello
+cell_measures:                           time: mean
 out_name:                                sos
+type:                                    real
 
 
 
@@ -1638,8 +1646,9 @@ variable_entry: href
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    double
 long_name:                               vertical coordinate formula term: href
+out_name:                                href
+type:                                    double
 
 
 
@@ -1654,8 +1663,9 @@ units:                                   m
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude
-type:                                    real
 long_name:                               Surface Altitude
+out_name:                                orog
+type:                                    real
 
 
 
@@ -1669,8 +1679,9 @@ variable_entry: zlev
 ! additional variable information:
 !---------------------------------
 dimensions:                              olevel
-type:                                    double
 long_name:                               vertical coordinate formula term: zlev(k)
+out_name:                                zlev
+type:                                    double
 
 
 
@@ -1685,8 +1696,9 @@ units:                                   Pa
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Surface Air Pressure
+out_name:                                ps
+type:                                    real
 
 
 
@@ -1704,11 +1716,11 @@ standard_name:                           sea_surface_temperature
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Sea Surface Temperature
-cell_measures:                           time: mean
 cell_methods:                            area: areacello
+cell_measures:                           time: mean
 out_name:                                tos
+type:                                    real
 
 
 
@@ -1722,8 +1734,26 @@ variable_entry: sigma_bnds
 ! additional variable information:
 !---------------------------------
 dimensions:                              olevel
-type:                                    double
 long_name:                               vertical coordinate formula term: sigma(k+1/2)
+out_name:                                sigma_bnds
+type:                                    double
+
+
+
+!=================================
+variable_entry: eta
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   m
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time
+long_name:                               Sea Surface Height formula term: thetao
+out_name:                                eta
+type:                                    real
 
 
 
@@ -1738,6 +1768,7 @@ units:                                   Pa
 ! additional variable information:
 !---------------------------------
 long_name:                               pressure at top of model
+out_name:                                ptop
 
 
 
@@ -1751,8 +1782,9 @@ variable_entry: b_bnds
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: b(k+1/2)
+out_name:                                b_bnds
+type:                                    double
 
 
 
@@ -1765,8 +1797,9 @@ variable_entry: nsigma
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    integer
 long_name:                               vertical coordinate formula term: nsigma
+out_name:                                nsigma
+type:                                    integer
 
 
 
@@ -1781,6 +1814,7 @@ units:                                   m
 ! additional variable information:
 !---------------------------------
 long_name:                               height of top of model
+out_name:                                ztop
 
 
 
@@ -1794,8 +1828,9 @@ variable_entry: zlev_bnds
 ! additional variable information:
 !---------------------------------
 dimensions:                              olevel
-type:                                    double
 long_name:                               vertical coordinate formula term: zlev(k+1/2)
+out_name:                                zlev_bnds
+type:                                    double
 
 
 
@@ -1808,8 +1843,9 @@ variable_entry: z1
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    double
 long_name:                               vertical coordinate formula term: z1
+out_name:                                z1
+type:                                    double
 
 
 
@@ -1822,8 +1858,9 @@ variable_entry: z2
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    double
 long_name:                               vertical coordinate formula term: z2
+out_name:                                z2
+type:                                    double
 
 
 
@@ -1837,8 +1874,9 @@ variable_entry: a
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: a(k)
+out_name:                                a
+type:                                    double
 
 
 
@@ -1853,6 +1891,7 @@ units:                                   Pa
 ! additional variable information:
 !---------------------------------
 long_name:                               vertical coordinate formula term: reference pressure
+out_name:                                p0
 
 
 
@@ -1866,8 +1905,9 @@ variable_entry: b
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: b(k)
+out_name:                                b
+type:                                    double
 
 
 
@@ -1885,11 +1925,28 @@ standard_name:                           mole_concentration_of_phytoplankton_exp
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Sea Surface Phytoplankton Carbon Concentration
-cell_measures:                           time: mean area: mean where sea
 cell_methods:                            area: areacello volume: volcello
+cell_measures:                           time: mean area: mean where sea
 out_name:                                phycos
+type:                                    real
+
+
+
+!=================================
+variable_entry: depth
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   m
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude
+long_name:                               Sea Floor Depth: formula term: thetao
+out_name:                                depth
+type:                                    real
 
 
 
@@ -1907,43 +1964,11 @@ standard_name:                           square_of_sea_surface_temperature
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Square of Sea Surface Temperature
-cell_measures:                           time: mean
 cell_methods:                            area: areacello
+cell_measures:                           time: mean
 out_name:                                tossq
-
-
-
-!=================================
-variable_entry: depth
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   m
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude
 type:                                    real
-long_name:                               Sea Floor Depth: formula term: thetao
-
-
-
-!=================================
-variable_entry: eta
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   m
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Sea Surface Height formula term: thetao
 
 
 
@@ -1956,8 +1981,9 @@ variable_entry: k_c
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    integer
 long_name:                               vertical coordinate formula term: k_c
+out_name:                                k_c
+type:                                    integer
 
 
 
@@ -1971,8 +1997,9 @@ variable_entry: sigma
 ! additional variable information:
 !---------------------------------
 dimensions:                              olevel
-type:                                    double
 long_name:                               vertical coordinate formula term: sigma(k)
+out_name:                                sigma
+type:                                    double
 
 
 
@@ -1986,8 +2013,9 @@ variable_entry: a_bnds
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: a(k+1/2)
+out_name:                                a_bnds
+type:                                    double
 
 
 

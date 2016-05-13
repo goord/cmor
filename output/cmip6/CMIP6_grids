@@ -1,13 +1,14 @@
 product:                                 output
-project_id:                              CMIP6
+missing_value:                           1e20
 cf_version:                              1.6
 cmor_version:                            2.5
 baseURL:                                 http://cmip-pcmdi.llnl.gov/CMIP5/dataLocation
+project_id:                              CMIP6
 required_global_attributes:              creation_date tracking_id forcing model_id parent_experiment_id parent_experiment_rip branch_time contact institute_id
 table_id:                                grids
-table_date:                              31 March 2016
+data_specs_version:                      <data_specs_version>
 forcings:                                N/A Nat Ant GHG SD SI SA TO SO Oz LU Sl Vl SS Ds BC MD OC AA
-missing_value:                           1e20
+table_date:                              14 April 2016
 
 
 
@@ -440,6 +441,7 @@ standard_name:                           latitude
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude
+type:                                    real
 valid_min:                               -90.0
 out_name:                                latitude
 valid_max:                               90.0
@@ -457,6 +459,7 @@ units:                                   degrees_north
 ! additional variable information:
 !---------------------------------
 dimensions:                              vertices longitude latitude
+type:                                    real
 valid_min:                               -90.0
 out_name:                                vertices_latitude
 valid_max:                               90.0
@@ -474,6 +477,7 @@ units:                                   degrees_east
 ! additional variable information:
 !---------------------------------
 dimensions:                              vertices longitude latitude
+type:                                    real
 valid_min:                               0.0
 out_name:                                vertices_longitude
 valid_max:                               360.0
@@ -491,7 +495,8 @@ standard_name:                           longitude
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              vertices longitude latitude
+dimensions:                              longitude latitude
+type:                                    real
 valid_min:                               0.0
 out_name:                                longitude
 valid_max:                               360.0

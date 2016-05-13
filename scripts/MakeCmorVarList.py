@@ -1,8 +1,8 @@
 #!/usr/bin/python
 
-import csv
 import sys
 from optparse import OptionParser
+from ReadCmorCsv import read_cmor_csv
 import os.path
 
 class var_list:
@@ -48,12 +48,11 @@ class var_list:
         self.vars2d=[]
         self.vars3d=[]
 
-    def append(self,name,dimensions):
-        dims=str.split(dimensions)
-        if(set(self.layer_keys) & set(dims)):
-            self.vars3d.append(name)
+    def append(self,cmv):
+        if(set(self.layer_keys) & set(cmv.dimensions)):
+            self.vars3d.append(cmv.name)
         else:
-            self.vars2d.append(name)
+            self.vars2d.append(cmv.name)
 
     def write(self,file):
         print>>file,"&varlist"
@@ -66,26 +65,22 @@ class var_list:
 
 
 def read_csv(csvPath):
-    include_key="included"
-    frequency_key="frequency"
-    name_key="name"
-    dims_key="dimensions"
     varlists=[]
-
-    csvf=open(csvPath)
-    reader=csv.DictReader(csvf)
-    for row in reader:
-        freq=row.get(frequency_key,"None")
-        if(row.get(include_key,"0").strip()=="1"):
+    varlist=read_cmor_csv(csvPath)
+    for cmv in varlist:
+        if(cmv.included):
+            freq=cmv.frequency
+            if(not freq):
+                print "ERROR: Could not determine cmor frequency for ",cmv.name
             varlst=next((v for v in varlists if v.frequency==freq),None)
             if(varlst):
-                varlst.append(row[name_key],row.get(dims_key,""))
+                varlst.append(cmv)
             else:
                 newvars=var_list(freq)
-                newvars.append(row[name_key],row.get(dims_key,""))
+                newvars.append(cmv)
                 varlists.append(newvars)
         else:
-            print "we are not going to append ",row.get("name","<unknown>")," to the varlist"
+            print "INFO: skipping variable",cmv.name
 
     return varlists
 
@@ -106,7 +101,7 @@ def main(args):
 
     vlsts=read_csv(csvfile)
 
-    for v  in vlsts:
+    for v in vlsts:
         v.write(outputfile)
 
     outputfile.close()

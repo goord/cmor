@@ -49,17 +49,56 @@ class cmor_var:
         self.cell_measures=None
         self.direction=0
 
+    def to_dict(self):
+        result={cmor_var.name_key:self.name,
+                cmor_var.long_name_key:self.long_name,
+                cmor_var.standard_name_key:self.standard_name,
+                cmor_var.table_key:self.table,
+                cmor_var.realm_key:self.realm}
+
+        if(self.units):
+            result[cmor_var.units_key]=self.units
+        if(self.dimensions):
+            if(self.dimensions==["1"]):
+                result[cmor_var.dimensions_key]=None
+            else:
+                result[cmor_var.dimensions_key]=' '.join(self.dimensions)
+        if(self.comment):
+            result[cmor_var.comment_key]=self.comment
+        if(self.val_type):
+            result[cmor_var.type_key]=self.val_type
+        if(self.frequency):
+            result[cmor_var.frequency_key]=self.frequency
+        if(self.valid_min):
+            result[cmor_var.min_key]=self.valid_min
+        if(self.valid_max):
+            result[cmor_var.max_key]=self.valid_max
+        if(self.ok_min):
+            result[cmor_var.ok_min_key]=self.ok_min
+        if(self.ok_max):
+            result[cmor_var.ok_max_key]=self.ok_max
+        if(self.cell_methods):
+            result[cmor_var.cell_methods_key]=self.cell_methods
+        if(self.cell_measures):
+            result[cmor_var.cell_measures_key]=self.cell_measures
+        if(self.direction==1):
+            result[cmor_var.direction_key]="up"
+        if(self.direction==-1):
+            result[cmor_var.direction_key]="down"
+        return result
+
     @staticmethod
     def create(dictionary):
         name=getstr(dictionary,cmor_var.name_key)
         if(not name):
             print "ERROR: Could not find/parse variable name for dictionary",dictionary
             return None
-        standardname=getstr(dictionary,cmor_var.standard_name_key)
-        if(not standardname):
-            print "ERROR: Could not find standard name for variable",name
-            return None
+#        if(not standardname):
+#            print "ERROR: Could not find standard name for variable",name
+#            return None
         result=cmor_var(name)
+        standardname=getstr(dictionary,cmor_var.standard_name_key)
+        result.standard_name=standardname
         incstr=getstr(dictionary,cmor_var.include_key)
         if(incstr=="1"):
             result.included=True
@@ -77,7 +116,7 @@ class cmor_var:
             result.dimensions=dims.split()
         else:
             result.dimensions=["1"]
-        result.val_type=getstr(dictionary,cmor_var.type_key)
+        result.val_type=dictionary.get(cmor_var.type_key,"real")
         result.valid_min=getstr(dictionary,cmor_var.min_key)
         result.valid_max=getstr(dictionary,cmor_var.max_key)
         result.ok_min=getstr(dictionary,cmor_var.ok_min_key)

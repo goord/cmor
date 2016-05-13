@@ -1,16 +1,16 @@
 baseURL:                                 http://cmip-pcmdi.llnl.gov/CMIP5/dataLocation
 approx_interval:                         30.00000
-cf_version:                              1.6
 product:                                 output
 cmor_version:                            2.5
 project_id:                              CMIP6-XXXX
 required_global_attributes:              creation_date tracking_id forcing model_id parent_experiment_id parent_experiment_rip branch_time contact institute_id
 frequency:                               mon
 table_id:                                SImon
-table_date:                              31 March 2016
+data_specs_version:                      3.0
 modeling_realm:                          seaIce
 forcings:                                N/A Nat Ant GHG SD SI SA TO SO Oz LU Sl Vl SS Ds BC MD OC AA
 missing_value:                           1e20
+table_date:                              14 April 2016
 
 
 
@@ -284,6 +284,7 @@ standard_name:                           depth
 stored_direction:                        increasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           0. 100.
 value:                                   50.0
 long_name:                               depth
 valid_min:                               0.0
@@ -374,6 +375,7 @@ standard_name:                           air_pressure
 stored_direction:                        decreasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           44000. 0.0
 value:                                   22000.0
 long_name:                               pressure
 out_name:                                plev
@@ -478,6 +480,7 @@ standard_name:                           air_pressure
 stored_direction:                        decreasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           100000. 68000.
 value:                                   84000.0
 long_name:                               pressure
 out_name:                                plev
@@ -840,6 +843,7 @@ standard_name:                           depth
 stored_direction:                        increasing
 positive:                                down
 must_have_bounds:                        yes
+bounds_values:                           0.0 0.1
 value:                                   0.05
 long_name:                               depth
 valid_min:                               0.0
@@ -1469,6 +1473,7 @@ standard_name:                           air_pressure
 stored_direction:                        decreasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           68000. 44000.
 value:                                   56000.0
 long_name:                               pressure
 out_name:                                plev
@@ -1553,7 +1558,7 @@ standard_name:                           sea_ice_salt_mass
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         0
 long_name:                               Mass of salt in sea ice per area
 valid_min:                               0
 cell_measures:                           time: mean area: mean where sea_ice over sea
@@ -1561,7 +1566,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         0
 out_name:                                sisaltmass
 valid_max:                               0
-ok_max_mean_abs:                         0
+dimensions:                              longitude latitude time
 
 
 
@@ -1578,7 +1583,7 @@ standard_name:                           surface_snow_amount
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         0
 long_name:                               Snow mass per area
 valid_min:                               0
 cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
@@ -1586,7 +1591,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         0
 out_name:                                sisnmass
 valid_max:                               0
-ok_max_mean_abs:                         0
+dimensions:                              longitude latitude time
 
 
 
@@ -1599,8 +1604,9 @@ variable_entry: depth_c
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    double
 long_name:                               vertical coordinate formula term: depth_c
+out_name:                                depth_c
+type:                                    double
 
 
 
@@ -1617,7 +1623,7 @@ standard_name:                           sea_ice_surface_temperature
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         0
 long_name:                               Surface temperature of sea ice
 valid_min:                               0
 cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
@@ -1625,7 +1631,7 @@ cell_methods:                            area: areacello
 ok_min_mean_abs:                         0
 out_name:                                sitemptop
 valid_max:                               0
-ok_max_mean_abs:                         0
+dimensions:                              longitude latitude time
 
 
 
@@ -1642,7 +1648,7 @@ standard_name:                           tendency_of_sea_ice_amount_due_to_snow_
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         0
 long_name:                               sea-ice mass change through snow-to-ice conversion
 valid_min:                               0
 cell_measures:                           time: mean area: mean where sea_ice over sea
@@ -1650,7 +1656,7 @@ cell_methods:                            area: areacello
 ok_min_mean_abs:                         0
 out_name:                                sidmasssi
 valid_max:                               0
-ok_max_mean_abs:                         0
+dimensions:                              longitude latitude time
 
 
 
@@ -1667,15 +1673,15 @@ standard_name:                           surface_snow_area_fraction
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         0
 long_name:                               Snow area fraction
 valid_min:                               0
 cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacello
+cell_methods:                            area: areacella
 ok_min_mean_abs:                         0
 out_name:                                sisnconc
 valid_max:                               0
-ok_max_mean_abs:                         0
+dimensions:                              longitude latitude time
 
 
 
@@ -1692,7 +1698,7 @@ standard_name:                           freshwater_flux_from_ice_surface
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         0
 long_name:                               Freshwater flux from sea-ice surface
 valid_min:                               0
 cell_measures:                           time: mean area: mean where sea_ice over sea
@@ -1700,7 +1706,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         0
 out_name:                                siflfwdrain
 valid_max:                               0
-ok_max_mean_abs:                         0
+dimensions:                              longitude latitude time
 
 
 
@@ -1717,7 +1723,7 @@ standard_name:                           tendency_of_snow_mass_due_to_snow_to_ic
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         0
 long_name:                               snow mass change through snow-to-ice conversion
 valid_min:                               0
 cell_measures:                           time: mean area: mean where sea_ice over sea
@@ -1725,7 +1731,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         0
 out_name:                                sndmasssi
 valid_max:                               0
-ok_max_mean_abs:                         0
+dimensions:                              longitude latitude time
 
 
 
@@ -1742,7 +1748,7 @@ standard_name:                           snow_sea_ice_interface_temperature
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         0
 long_name:                               Temperature at snow-ice interface
 valid_min:                               0
 cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
@@ -1750,7 +1756,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         0
 out_name:                                sitempsnic
 valid_max:                               0
-ok_max_mean_abs:                         0
+dimensions:                              longitude latitude time
 
 
 
@@ -1767,7 +1773,7 @@ standard_name:                           coriolis_force_on_sea_ice_y
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         0
 long_name:                               Coriolis force term in force balance (y-component)
 valid_min:                               0
 cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
@@ -1775,7 +1781,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         0
 out_name:                                siforcecorioly
 valid_max:                               0
-ok_max_mean_abs:                         0
+dimensions:                              longitude latitude time
 
 
 
@@ -1792,7 +1798,7 @@ standard_name:                           coriolis_force_on_sea_ice_x
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         0
 long_name:                               Coriolis force term in force balance (x-component)
 valid_min:                               0
 cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
@@ -1800,196 +1806,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         0
 out_name:                                siforcecoriolx
 valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sidmassdyn
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   kg m-2 s-1
-comment:                                 Total change in sea-ice mass through dynamics-related processes (advection,...) divided by grid-cell area
-standard_name:                           tendency_of_sea_ice_amount_due_to_dynamics
-!---------------------------------
-! additional variable information:
-!---------------------------------
 dimensions:                              longitude latitude time
-long_name:                               sea-ice mass change from dynamics
-valid_min:                               0
-cell_measures:                           time: mean area: mean where sea_ice over sea
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                sidmassdyn
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sndmasswindrif
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   kg m-2 s-1
-comment:                                 the rate of change of snow mass through wind drift of snow divided by grid-cell area
-standard_name:                           tendency_of_snow_mass_due_to_drifting_snow
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               snow mass change through wind drift of snow
-valid_min:                               0
-cell_measures:                           time: mean area: mean where sea_ice over sea
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                sndmasswindrif
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sitempbot
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   K
-comment:                                 Report temperature at interface, NOT temperature within lowermost model layer
-standard_name:                           sea_ice_bottom_temperature
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Temperature at ice-ocean interface
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                sitempbot
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: siforcetiltx
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   N m-2
-comment:                                 X-component of force on sea ice caused by sea-surface tilt
-standard_name:                           sea_surface_tilt_force_on_sea_ice_x
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Sea-surface tilt term in force balance (x-component)
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                siforcetiltx
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: nsigma
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-!---------------------------------
-! additional variable information:
-!---------------------------------
-type:                                    integer
-long_name:                               vertical coordinate formula term: nsigma
-
-
-
-!=================================
-variable_entry: sidragtop
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   1.0
-comment:                                 Atmospheric drag coefficient that is used to calculate the atmospheric momentum drag on sea ice
-standard_name:                           surface_drag_coefficient_for_momentum_in_air
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Atmospheric drag coefficient
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                sidragtop
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sistresave
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   N m-1
-comment:                                 Average normal stress in sea ice (first stress invariant)
-standard_name:                           average_normal_stress
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time1
-long_name:                               Average normal stress in sea ice
-valid_min:                               0
-cell_measures:                           time: point area: mean where sea_ice
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                sistresave
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sirdgthick
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   m
-comment:                                 Total volume of ridged sea ice divided by area of ridges
-standard_name:                           thickness_of_ridged_sea_ice
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Ridged ice thickness
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                sirdgthick
-valid_max:                               0
-ok_max_mean_abs:                         0
 
 
 
@@ -2006,7 +1823,7 @@ standard_name:                           maximum_shear_of_sea_ice_velocity
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time1
+ok_max_mean_abs:                         0
 long_name:                               Maximum shear of sea-ice velocity field
 valid_min:                               0
 cell_measures:                           time: point area: mean where sea_ice
@@ -2014,7 +1831,57 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         0
 out_name:                                sishevel
 valid_max:                               0
+dimensions:                              longitude latitude time1
+
+
+
+!=================================
+variable_entry: siforcetiltx
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   N m-2
+comment:                                 X-component of force on sea ice caused by sea-surface tilt
+standard_name:                           sea_surface_tilt_force_on_sea_ice_x
+!---------------------------------
+! additional variable information:
+!---------------------------------
 ok_max_mean_abs:                         0
+long_name:                               Sea-surface tilt term in force balance (x-component)
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                siforcetiltx
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: sitempbot
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   K
+comment:                                 Report temperature at interface, NOT temperature within lowermost model layer
+standard_name:                           sea_ice_bottom_temperature
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Temperature at ice-ocean interface
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                sitempbot
+valid_max:                               0
+dimensions:                              longitude latitude time
 
 
 
@@ -2031,7 +1898,7 @@ standard_name:                           conductive_heat_flux_at_sea_ice_surface
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         0
 long_name:                               Net conductive heat flux in ice at the surface
 valid_min:                               0
 cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
@@ -2039,1585 +1906,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         0
 out_name:                                siflcondtop
 valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: siforcetilty
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   N m-2
-comment:                                 Y-component of force on sea ice caused by sea-surface tilt
-standard_name:                           sea_surface_tilt_force_on_sea_ice_y
-!---------------------------------
-! additional variable information:
-!---------------------------------
 dimensions:                              longitude latitude time
-long_name:                               Sea-surface tilt term in force balance (y-component)
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                siforcetilty
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sidivvel
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   1/s
-comment:                                 Divergence of sea-ice velocity field (first shear strain invariant)
-standard_name:                           divergence_of_sea_ice_velocity
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time1
-long_name:                               Divergence of the sea-ice velocity field
-valid_min:                               0
-cell_measures:                           time: point area: mean where sea_ice
-cell_methods:                            area: areacello
-ok_min_mean_abs:                         0
-out_name:                                sidivvel
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sidconcdyn
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   1/s
-comment:                                 Total change in sea-ice area fraction through dynamics-related processes (advection, divergence...)
-standard_name:                           tendency_of_sea_ice_area_fraction_due_to_dynamics
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               sea-ice area fraction change from dynamics
-valid_min:                               0
-cell_measures:                           time: mean area: mean where sea_ice over sea
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                sidconcdyn
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: siflsensupbot
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   W m-2
-comment:                                 the net sensible heat flux under sea ice from the ocean
-standard_name:                           ice_ocean_heat_flux
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Net sensible heat flux under sea ice
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                siflsensupbot
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sistrxubot
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   N m-2
-comment:                                 X-component of ocean stress on sea ice 
-standard_name:                           sea_ice_base_upward_x_stress
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               X-component of ocean stress on sea ice
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacello
-ok_min_mean_abs:                         0
-out_name:                                sistrxubot
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: siitdsnconc
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   1.0
-comment:                                 Area fraction of grid cell covered by snow in each ice-thickness category (vector with one entry for each thickness category starting from the thinnest category, netcdf file should use thickness bounds of the categories as third coordinate axis)
-standard_name:                           snow_area_fraction_over_categories
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Snow area fractions in thickness categories
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                siitdsnconc
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: siitdconc
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   1.0
-comment:                                 Area fraction of grid cell covered by each ice-thickness category (vector with one entry for each thickness category starting from the thinnest category, netcdf file should use thickness bounds of the categories as third coordinate axis)
-standard_name:                           sea_ice_area_fraction_over_categories
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Sea-ice area fractions in thickness categories
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                siitdconc
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sistrydtop
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   N m-2
-comment:                                 Y-component of atmospheric stress on sea ice 
-standard_name:                           surface_downward_y_stress
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Y-component of atmospheric stress on sea ice
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                sistrydtop
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sistryubot
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   N m-2
-comment:                                 Y-component of ocean stress on sea ice 
-standard_name:                           sea_ice_base_upward_y_stress
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Y-component of ocean stress on sea ice
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacello
-ok_min_mean_abs:                         0
-out_name:                                sistryubot
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: orog
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   m
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude
-type:                                    real
-long_name:                               Surface Altitude
-
-
-
-!=================================
-variable_entry: sipr
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   kg m-2 s-1
-comment:                                 mass of liquid precipitation falling onto sea ice divided by grid-cell area
-standard_name:                           rainfall_flux
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Rainfall rate over sea ice
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacello
-ok_min_mean_abs:                         0
-out_name:                                sipr
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sifb
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   m
-comment:                                 Mean height of sea-ice surface (=snow-ice interface when snow covered) above sea level
-standard_name:                           sea_ice_freeboard
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Sea-ice freeboard
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                sifb
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: b_bnds
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              alevel
-type:                                    double
-long_name:                               vertical coordinate formula term: b(k+1/2)
-
-
-
-!=================================
-variable_entry: sidmassgrowthbot
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   kg m-2 s-1
-comment:                                 The rate of change of sea ice mass due to vertical growth of existing sea ice at its base divided by grid-cell area. 
-standard_name:                           tendency_of_sea_ice_amount_due_to_congelation_ice_accumulation
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               sea-ice mass change through basal growth
-valid_min:                               0
-cell_measures:                           time: mean area: mean where sea_ice over sea
-cell_methods:                            area: areacello
-ok_min_mean_abs:                         0
-out_name:                                sidmassgrowthbot
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: siflsenstop
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   W m-2
-comment:                                 the net sensible heat flux over sea ice
-standard_name:                           surface_upward_sensible_heat_flux
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Net sensible heat flux over sea ice
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacello
-ok_min_mean_abs:                         0
-out_name:                                siflsenstop
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sndmassdyn
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   kg m-2 s-1
-comment:                                 the rate of change of snow mass through advection with sea ice divided by grid-cell area
-standard_name:                           tendency_of_snow_mass_due_to_sea_ice_dynamics
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               snow mass change through advection by sea-ice dynamics
-valid_min:                               0
-cell_measures:                           time: mean area: mean where sea_ice over sea
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                sndmassdyn
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: siareas
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   10^6 km2
-comment:                                 total area of sea ice in the Southern hemisphere
-standard_name:                           sea_ice_area
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              time
-long_name:                               Sea ice area South
-valid_min:                               0
-cell_measures:                           time: mean area: mean where sea_ice over sea
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                siareas
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: siarean
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   10^6 km2
-comment:                                 total area of sea ice in the Northern hemisphere
-standard_name:                           sea_ice_area
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              time
-long_name:                               Sea ice area North
-valid_min:                               0
-cell_measures:                           time: mean area: mean where sea_ice over sea
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                siarean
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sigma_bnds
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              olevel
-type:                                    double
-long_name:                               vertical coordinate formula term: sigma(k+1/2)
-
-
-
-!=================================
-variable_entry: simprefrozen
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   m
-comment:                                 Volume of refrozen ice on melt ponds divided by meltpond covered area
-standard_name:                           melt_pond_refrozen_ice
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Thickness of refozen ice on melt pond
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                simprefrozen
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: ptop
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   Pa
-!---------------------------------
-! additional variable information:
-!---------------------------------
-long_name:                               pressure at top of model
-
-
-
-!=================================
-variable_entry: sidconcth
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   1/s
-comment:                                 Total change in sea-ice area fraction through thermodynamic processes
-standard_name:                           tendency_of_sea_ice_area_fraction_due_to_thermodynamics
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               sea-ice area fraction change from thermodynamics
-valid_min:                               0
-cell_measures:                           time: mean area: mean where sea_ice over sea
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                sidconcth
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sidmassth
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   kg m-2 s-1
-comment:                                 Total change in sea-ice mass from thermodynamic processes divided by grid-cell area
-standard_name:                           tendency_of_sea_ice_amount_due_to_thermodynamics
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               sea-ice mass change from thermodynamics
-valid_min:                               0
-cell_measures:                           time: mean area: mean where sea_ice over sea
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                sidmassth
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sivols
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   10^3 km3
-comment:                                 total volume of sea ice in the Southern hemisphere
-standard_name:                           sea_ice_volume
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              time
-long_name:                               Sea ice volume South
-valid_min:                               0
-cell_measures:                           time: mean area: mean where sea_ice over sea
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                sivols
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: siextentn
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   10^6 km2
-comment:                                 Total area of all Northern-Hemisphere grid cells that are covered by at least 15 % areal fraction of sea ice
-standard_name:                           sea_ice_extent
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              time
-long_name:                               Sea ice extent North
-valid_min:                               0
-cell_measures:                           time: mean area: mean where sea_ice over sea
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                siextentn
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sithick
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   m
-comment:                                 Actual (floe) thickness of sea ice (NOT volume divided by grid area as was done in CMIP5)
-standard_name:                           sea_ice_thickness
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Sea-ice thickness
-valid_min:                               0
-cell_measures:                           time: mean area: mean where sea_ice over sea
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                sithick
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: siflswdtop
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   W m-2
-comment:                                 the downwelling shortwave flux over sea ice (always positive by sign convention)
-standard_name:                           surface_downwelling_shortwave_flux_in_air
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Downwelling shortwave flux over sea ice
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacello
-ok_min_mean_abs:                         0
-out_name:                                siflswdtop
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: ztop
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   m
-!---------------------------------
-! additional variable information:
-!---------------------------------
-long_name:                               height of top of model
-
-
-
-!=================================
-variable_entry: sivoln
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   10^3 km3
-comment:                                 total volume of sea ice in the Northern hemisphere
-standard_name:                           sea_ice_volume
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              time
-long_name:                               Sea ice volume North
-valid_min:                               0
-cell_measures:                           time: mean area: mean where sea_ice over sea
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                sivoln
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: siextents
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   10^6 km2
-comment:                                 Total area of all Southern-Hemisphere grid cells that are covered by at least 15 % areal fraction of sea ice
-standard_name:                           sea_ice_extent
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              time
-long_name:                               Sea ice extent South
-valid_min:                               0
-cell_measures:                           time: mean area: mean where sea_ice over sea
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                siextents
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: z1
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-!---------------------------------
-! additional variable information:
-!---------------------------------
-type:                                    double
-long_name:                               vertical coordinate formula term: z1
-
-
-
-!=================================
-variable_entry: z2
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-!---------------------------------
-! additional variable information:
-!---------------------------------
-type:                                    double
-long_name:                               vertical coordinate formula term: z2
-
-
-
-!=================================
-variable_entry: siitdthick
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   m
-comment:                                 Actual (floe) thickness of sea ice in each  category (NOT volume divided by grid area),  (vector with one entry for each thickness category starting from the thinnest category, netcdf file should use thickness bounds of categories as third coordinate axis)
-standard_name:                           sea_ice_thickness_over_categories
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Sea-ice thickness in thickness categories
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                siitdthick
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sndmasssubl
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   kg m-2 s-1
-comment:                                 the rate of change of snow mass through sublimation and evaporation divided by grid-cell area
-standard_name:                           surface_snow_sublimation_flux
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               snow mass change through evaporation or sublimation
-valid_min:                               0
-cell_measures:                           time: mean area: mean where sea_ice over sea
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                sndmasssubl
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sisnthick
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   m
-comment:                                 Actual thickness of snow (snow volume divided by snow-covered area)
-standard_name:                           surface_snow_thickness
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Snow thickness
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where snow over sea_ice
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                sisnthick
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sispeed
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   m s-1
-comment:                                 speed of ice (i.e. mean absolute velocity) to account for back-and-forth movement of the ice
-standard_name:                           sea_ice_speed
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Sea-ice speed
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                sispeed
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: eta
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   m
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Sea Surface Height formula term: thetao
-
-
-
-!=================================
-variable_entry: sidmasstrany
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   kg s-1
-comment:                                 Includes transport of both sea ice and snow by advection
-standard_name:                           sea_ice_y_transport
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Y-component of sea-ice mass transport
-valid_min:                               0
-cell_measures:                           time: mean area: mean where sea_ice over sea
-cell_methods:                            area: areacello
-ok_min_mean_abs:                         0
-out_name:                                sidmasstrany
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: siflswdbot
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   W m-2
-comment:                                 the downwelling shortwave flux underneath sea ice (always positive)
-standard_name:                           bottom_downwelling_shortwave_flux_into_ocean
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Downwelling shortwave flux under sea ice
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                siflswdbot
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sifllwutop
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   W m-2
-comment:                                 the upward longwave flux over sea ice (always negative)
-standard_name:                           surface_upwelling_longwave_flux_in_air
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Upward longwave flux over sea ice
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacello
-ok_min_mean_abs:                         0
-out_name:                                sifllwutop
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: siforceintstry
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   N m-2
-comment:                                 Y-component of force on sea ice caused by internal stress (divergence of sigma)
-standard_name:                           internal_stress_in_sea_ice_y
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Internal stress term in force balance (y-component)
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                siforceintstry
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: siforceintstrx
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   N m-2
-comment:                                 X-component of force on sea ice caused by internal stress (divergence of sigma)
-standard_name:                           internal_stress_in_sea_ice_x
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Internal stress term in force balance (x-component)
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                siforceintstrx
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: siconc
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   1.0
-comment:                                 Area fraction of grid cell covered by sea ice
-standard_name:                           sea_ice_area_fraction
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Sea-ice area fraction
-valid_min:                               0
-cell_measures:                           time: mean area: mean where sea_ice over sea
-cell_methods:                            area: areacello
-ok_min_mean_abs:                         0
-out_name:                                siconc
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sirdgconc
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   1.0
-comment:                                 Area fraction of grid cell covered by ridged sea ice
-standard_name:                           fraction_of_ridged_sea_ice
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Ridged ice area fraction
-valid_min:                               0
-cell_measures:                           time: mean area: mean where sea_ice over sea
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                sirdgconc
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sistrxdtop
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   N m-2
-comment:                                 X-component of atmospheric stress on sea ice
-standard_name:                           surface_downward_x_stress
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               X-component of atmospheric stress on sea ice
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                sistrxdtop
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: siitdsnthick
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   m
-comment:                                 Actual thickness of snow in each  category (NOT volume divided by grid area),  (vector with one entry for each thickness category starting from the thinnest category, netcdf file should use thickness bounds of categories as third coordinate axis)
-standard_name:                           snow_thickness_over_categories
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Snow thickness in thickness categories
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                siitdsnthick
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: href
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-!---------------------------------
-! additional variable information:
-!---------------------------------
-type:                                    double
-long_name:                               vertical coordinate formula term: href
-
-
-
-!=================================
-variable_entry: sialb
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   1.0
-comment:                                 Mean surface albedo of entire ice-covered part of grid cell
-standard_name:                           sea_ice_albedo
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Sea-ice or snow albedo
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacello
-ok_min_mean_abs:                         0
-out_name:                                sialb
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: ps
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   Pa
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Surface Air Pressure
-
-
-
-!=================================
-variable_entry: simass
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   kg  m-2 
-comment:                                 Total mass of sea ice divided by grid-cell area
-standard_name:                           sea_ice_amount
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Sea-ice mass per area
-valid_min:                               0
-cell_measures:                           time: mean area: mean where sea_ice over sea
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                simass
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sndmassmelt
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   kg m-2 s-1
-comment:                                 the rate of change of snow mass through melt divided by grid-cell area
-standard_name:                           surface_snow_melt_flux
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               snow mass change through melt
-valid_min:                               0
-cell_measures:                           time: mean area: mean where sea_ice over sea
-cell_methods:                            area: areacello
-ok_min_mean_abs:                         0
-out_name:                                sndmassmelt
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sndmasssnf
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   kg m-2 s-1
-comment:                                 mass of solid precipitation falling onto sea ice divided by grid-cell area
-standard_name:                           snowfall_flux
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               snow mass change through snow fall
-valid_min:                               0
-cell_measures:                           time: mean area: mean where sea_ice over sea
-cell_methods:                            area: areacello
-ok_min_mean_abs:                         0
-out_name:                                sndmasssnf
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sihc
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   J m-2
-comment:                                 Heat content of all ice in grid cell divided by total grid-cell area. Water at 0 Celsius is assumed to have a heat content of 0 J.  Does not include heat content of snow, but does include heat content of brine. Heat content is always negative, since both the sensible and the latent heat content of ice are less than that of water
-standard_name:                           integral_of_sea_ice_temperature_wrt_depth_expressed_as_heat_content
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Sea-ice heat content per unit area
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacello
-ok_min_mean_abs:                         0
-out_name:                                sihc
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: siflfwbot
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   kg m-2 s-1
-comment:                                 Total flux of fresh water from water into sea ice divided by grid-cell area; This flux is negative during ice growth (liquid water mass decreases, hence upward flux of freshwater), positive during ice melt (liquid water mass increases, hence downward flux of freshwater)
-standard_name:                           freshwater_flux_from_ice
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Freshwater flux from sea ice
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                siflfwbot
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: p0
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   Pa
-!---------------------------------
-! additional variable information:
-!---------------------------------
-long_name:                               vertical coordinate formula term: reference pressure
-
-
-
-!=================================
-variable_entry: b
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              alevel
-type:                                    double
-long_name:                               vertical coordinate formula term: b(k)
-
-
-
-!=================================
-variable_entry: k_c
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-!---------------------------------
-! additional variable information:
-!---------------------------------
-type:                                    integer
-long_name:                               vertical coordinate formula term: k_c
-
-
-
-!=================================
-variable_entry: a_bnds
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              alevel
-type:                                    double
-long_name:                               vertical coordinate formula term: a(k+1/2)
-
-
-
-!=================================
-variable_entry: sidmassmelttop
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   kg m-2 s-1
-comment:                                 The rate of change of sea ice mass through melting at the ice surface divided by grid-cell area
-standard_name:                           tendency_of_sea_ice_amount_due_to_surface_melting
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               sea-ice mass change through surface melting
-valid_min:                               0
-cell_measures:                           time: mean area: mean where sea_ice over sea
-cell_methods:                            area: areacello
-ok_min_mean_abs:                         0
-out_name:                                sidmassmelttop
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: ap_bnds
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   Pa
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              alevel
-type:                                    double
-long_name:                               vertical coordinate formula term: ap(k+1/2)
-
-
-
-!=================================
-variable_entry: sidmassevapsubl
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   kg m-2 s-1
-comment:                                 The rate of change of sea-ice mass change through evaporation and sublimation divided by grid-cell area
-standard_name:                           water_evaporation_flux
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               sea-ice mass change through evaporation and sublimation
-valid_min:                               0
-cell_measures:                           time: mean area: mean where sea_ice over sea
-cell_methods:                            area: areacello
-ok_min_mean_abs:                         0
-out_name:                                sidmassevapsubl
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: ap
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   Pa
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              alevel
-type:                                    double
-long_name:                               vertical coordinate formula term: ap(k)
-
-
-
-!=================================
-variable_entry: zlev
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              olevel
-type:                                    double
-long_name:                               vertical coordinate formula term: zlev(k)
-
-
-
-!=================================
-variable_entry: sidragbot
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   1.0
-comment:                                 Oceanic drag coefficient that is used to calculate the oceanic momentum drag on sea ice
-standard_name:                           surface_drag_coefficient_for_momentum_in_water
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Ocean drag coefficient
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                sidragbot
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sidmasslat
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   kg m-2 s-1
-comment:                                 The rate of change of sea ice mass through lateral melting divided by grid-cell area (report 0 if not explicitly calculated thermodynamically)
-standard_name:                           tendency_of_sea_ice_amount_due_to_lateral_melting
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Lateral sea ice melt rate
-valid_min:                               0
-cell_measures:                           time: mean area: mean where sea_ice over sea
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                sidmasslat
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: siu
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   m s-1
-comment:                                 x-velocity of ice on native model grid
-standard_name:                           sea_ice_x_velocity
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               X-component of sea ice velocity
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                siu
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sisali
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   g kg-1
-comment:                                 Mean sea-ice salinity of all sea ice in grid cell
-standard_name:                           sea_ice_salinity
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Sea ice salinity
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                sisali
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: siflcondbot
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   W m-2 
-comment:                                 the net heat conduction flux at the ice base 
-standard_name:                           conductive_heat_flux_at_sea_ice_bottom
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Net conductive heat fluxes in ice at the bottom
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                siflcondbot
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sitimefrac
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   1.0
-comment:                                 Fraction of time steps of the averaging period during which sea ice is present (siconc >0 ) in a grid cell 
-standard_name:                           sea_ice_time_fraction
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Fraction of time steps with sea ice
-valid_min:                               0
-cell_measures:                           time: mean area: mean where sea_ice over sea
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                sitimefrac
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sidmasstranx
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   kg s-1
-comment:                                 Includes transport of both sea ice and snow by advection
-standard_name:                           sea_ice_x_transport
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               X-component of sea-ice mass transport
-valid_min:                               0
-cell_measures:                           time: mean area: mean where sea_ice over sea
-cell_methods:                            area: areacello
-ok_min_mean_abs:                         0
-out_name:                                sidmasstranx
-valid_max:                               0
-ok_max_mean_abs:                         0
 
 
 
@@ -3634,7 +1923,7 @@ standard_name:                           compressive_strength_of_sea_ice
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         0
 long_name:                               Compressive sea ice strength
 valid_min:                               0
 cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
@@ -3642,87 +1931,569 @@ cell_methods:                            area: areacello
 ok_min_mean_abs:                         0
 out_name:                                sicompstren
 valid_max:                               0
-ok_max_mean_abs:                         0
+dimensions:                              longitude latitude time
 
 
 
 !=================================
-variable_entry: sifllwdtop
+variable_entry: nsigma
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+!---------------------------------
+! additional variable information:
+!---------------------------------
+long_name:                               vertical coordinate formula term: nsigma
+out_name:                                nsigma
+type:                                    integer
+
+
+
+!=================================
+variable_entry: sidragtop
 !=================================
 modeling_realm:                          seaIce
 !---------------------------------
 ! variable attributes:
 !---------------------------------
-units:                                   W m-2
-comment:                                 the downwelling longwave flux over sea ice (always positive)
-standard_name:                           surface_downwelling_longwave_flux_in_air
+units:                                   1.0
+comment:                                 Atmospheric drag coefficient that is used to calculate the atmospheric momentum drag on sea ice
+standard_name:                           surface_drag_coefficient_for_momentum_in_air
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Downwelling longwave flux over sea ice
+ok_max_mean_abs:                         0
+long_name:                               Atmospheric drag coefficient
 valid_min:                               0
 cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacello
-ok_min_mean_abs:                         0
-out_name:                                sifllwdtop
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sisnhc
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   J m-2
-comment:                                 Heat-content of all snow in grid cell divided by total grid-cell area. Snow-water equivalent at 0 Celsius is assumed to have a heat content of 0 J.  Does not include heat content of sea ice.
-standard_name:                           thermal_energy_content_of_surface_snow
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Snow-heat content per unit area
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where snow over sea_ice
 cell_methods:                            area: areacella
 ok_min_mean_abs:                         0
-out_name:                                sisnhc
+out_name:                                sidragtop
 valid_max:                               0
-ok_max_mean_abs:                         0
+dimensions:                              longitude latitude time
 
 
 
 !=================================
-variable_entry: sistremax
+variable_entry: sistresave
 !=================================
 modeling_realm:                          seaIce
 !---------------------------------
 ! variable attributes:
 !---------------------------------
 units:                                   N m-1
-comment:                                 Maximum shear stress in sea ice (second stress invariant)
-standard_name:                           maximum_shear_stress
+comment:                                 Average normal stress in sea ice (first stress invariant)
+standard_name:                           average_normal_stress
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time1
-long_name:                               Maximum shear stress in sea ice
+ok_max_mean_abs:                         0
+long_name:                               Average normal stress in sea ice
 valid_min:                               0
 cell_measures:                           time: point area: mean where sea_ice
 cell_methods:                            area: areacella
 ok_min_mean_abs:                         0
-out_name:                                sistremax
+out_name:                                sistresave
 valid_max:                               0
-ok_max_mean_abs:                         0
+dimensions:                              longitude latitude time1
 
 
 
 !=================================
-variable_entry: zlev_bnds
+variable_entry: sirdgthick
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   m
+comment:                                 Total volume of ridged sea ice divided by area of ridges
+standard_name:                           thickness_of_ridged_sea_ice
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Ridged ice thickness
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                sirdgthick
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: sidmassdyn
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   kg m-2 s-1
+comment:                                 Total change in sea-ice mass through dynamics-related processes (advection,...) divided by grid-cell area
+standard_name:                           tendency_of_sea_ice_amount_due_to_dynamics
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               sea-ice mass change from dynamics
+valid_min:                               0
+cell_measures:                           time: mean area: mean where sea_ice over sea
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                sidmassdyn
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: sndmasswindrif
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   kg m-2 s-1
+comment:                                 the rate of change of snow mass through wind drift of snow divided by grid-cell area
+standard_name:                           tendency_of_snow_mass_due_to_drifting_snow
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               snow mass change through wind drift of snow
+valid_min:                               0
+cell_measures:                           time: mean area: mean where sea_ice over sea
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                sndmasswindrif
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: siforcetilty
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   N m-2
+comment:                                 Y-component of force on sea ice caused by sea-surface tilt
+standard_name:                           sea_surface_tilt_force_on_sea_ice_y
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Sea-surface tilt term in force balance (y-component)
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                siforcetilty
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: sidivvel
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   1/s
+comment:                                 Divergence of sea-ice velocity field (first shear strain invariant)
+standard_name:                           divergence_of_sea_ice_velocity
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Divergence of the sea-ice velocity field
+valid_min:                               0
+cell_measures:                           time: point area: mean where sea_ice
+cell_methods:                            area: areacello
+ok_min_mean_abs:                         0
+out_name:                                sidivvel
+valid_max:                               0
+dimensions:                              longitude latitude time1
+
+
+
+!=================================
+variable_entry: sidconcdyn
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   1/s
+comment:                                 Total change in sea-ice area fraction through dynamics-related processes (advection, divergence...)
+standard_name:                           tendency_of_sea_ice_area_fraction_due_to_dynamics
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               sea-ice area fraction change from dynamics
+valid_min:                               0
+cell_measures:                           time: mean area: mean where sea_ice over sea
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                sidconcdyn
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: siflsensupbot
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   W m-2
+comment:                                 the net sensible heat flux under sea ice from the ocean
+standard_name:                           ice_ocean_heat_flux
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Net sensible heat flux under sea ice
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                siflsensupbot
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: sistrxubot
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   N m-2
+comment:                                 X-component of ocean stress on sea ice 
+standard_name:                           sea_ice_base_upward_x_stress
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               X-component of ocean stress on sea ice
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacello
+ok_min_mean_abs:                         0
+out_name:                                sistrxubot
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: siitdsnconc
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   1.0
+comment:                                 Area fraction of grid cell covered by snow in each ice-thickness category (vector with one entry for each thickness category starting from the thinnest category, netcdf file should use thickness bounds of the categories as third coordinate axis)
+standard_name:                           snow_area_fraction_over_categories
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Snow area fractions in thickness categories
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                siitdsnconc
+valid_max:                               0
+dimensions:                              longitude latitude angle time
+
+
+
+!=================================
+variable_entry: siitdconc
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   1.0
+comment:                                 Area fraction of grid cell covered by each ice-thickness category (vector with one entry for each thickness category starting from the thinnest category, netcdf file should use thickness bounds of the categories as third coordinate axis)
+standard_name:                           sea_ice_area_fraction_over_categories
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Sea-ice area fractions in thickness categories
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                siitdconc
+valid_max:                               0
+dimensions:                              longitude latitude angle time
+
+
+
+!=================================
+variable_entry: sistrydtop
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   N m-2
+comment:                                 Y-component of atmospheric stress on sea ice 
+standard_name:                           surface_downward_y_stress
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Y-component of atmospheric stress on sea ice
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                sistrydtop
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: sistryubot
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   N m-2
+comment:                                 Y-component of ocean stress on sea ice 
+standard_name:                           sea_ice_base_upward_y_stress
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Y-component of ocean stress on sea ice
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacello
+ok_min_mean_abs:                         0
+out_name:                                sistryubot
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: orog
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   m
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude
+long_name:                               Surface Altitude
+out_name:                                orog
+type:                                    real
+
+
+
+!=================================
+variable_entry: sipr
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   kg m-2 s-1
+comment:                                 mass of liquid precipitation falling onto sea ice divided by grid-cell area
+standard_name:                           rainfall_flux
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Rainfall rate over sea ice
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacello
+ok_min_mean_abs:                         0
+out_name:                                sipr
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: sifb
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   m
+comment:                                 Mean height of sea-ice surface (=snow-ice interface when snow covered) above sea level
+standard_name:                           sea_ice_freeboard
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Sea-ice freeboard
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                sifb
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: sidmassgrowthbot
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   kg m-2 s-1
+comment:                                 The rate of change of sea ice mass due to vertical growth of existing sea ice at its base divided by grid-cell area. 
+standard_name:                           tendency_of_sea_ice_amount_due_to_congelation_ice_accumulation
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               sea-ice mass change through basal growth
+valid_min:                               0
+cell_measures:                           time: mean area: mean where sea_ice over sea
+cell_methods:                            area: areacello
+ok_min_mean_abs:                         0
+out_name:                                sidmassgrowthbot
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: siflfwbot
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   kg m-2 s-1
+comment:                                 Total flux of fresh water from water into sea ice divided by grid-cell area; This flux is negative during ice growth (liquid water mass decreases, hence upward flux of freshwater), positive during ice melt (liquid water mass increases, hence downward flux of freshwater)
+standard_name:                           freshwater_flux_from_ice
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Freshwater flux from sea ice
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                siflfwbot
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: sndmassdyn
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   kg m-2 s-1
+comment:                                 the rate of change of snow mass through advection with sea ice divided by grid-cell area
+standard_name:                           tendency_of_snow_mass_due_to_sea_ice_dynamics
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               snow mass change through advection by sea-ice dynamics
+valid_min:                               0
+cell_measures:                           time: mean area: mean where sea_ice over sea
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                sndmassdyn
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: siareas
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   10^6 km2
+comment:                                 total area of sea ice in the Southern hemisphere
+standard_name:                           sea_ice_area
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Sea ice area South
+valid_min:                               0
+cell_measures:                           time: mean area: mean where sea_ice over sea
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                siareas
+valid_max:                               0
+dimensions:                              time
+
+
+
+!=================================
+variable_entry: siarean
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   10^6 km2
+comment:                                 total area of sea ice in the Northern hemisphere
+standard_name:                           sea_ice_area
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Sea ice area North
+valid_min:                               0
+cell_measures:                           time: mean area: mean where sea_ice over sea
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                siarean
+valid_max:                               0
+dimensions:                              time
+
+
+
+!=================================
+variable_entry: sigma_bnds
 !=================================
 !---------------------------------
 ! variable attributes:
@@ -3731,73 +2502,801 @@ variable_entry: zlev_bnds
 ! additional variable information:
 !---------------------------------
 dimensions:                              olevel
+long_name:                               vertical coordinate formula term: sigma(k+1/2)
+out_name:                                sigma_bnds
 type:                                    double
-long_name:                               vertical coordinate formula term: zlev(k+1/2)
 
 
 
 !=================================
-variable_entry: siv
+variable_entry: simprefrozen
 !=================================
 modeling_realm:                          seaIce
 !---------------------------------
 ! variable attributes:
 !---------------------------------
-units:                                   m s-1
-comment:                                 y-velocity of ice on native model grid
-standard_name:                           sea_ice_y_velocity
+units:                                   m
+comment:                                 Volume of refrozen ice on melt ponds divided by meltpond covered area
+standard_name:                           melt_pond_refrozen_ice
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Y-component of sea ice velocity
+ok_max_mean_abs:                         0
+long_name:                               Thickness of refozen ice on melt pond
 valid_min:                               0
 cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
 cell_methods:                            area: areacella
 ok_min_mean_abs:                         0
-out_name:                                siv
+out_name:                                simprefrozen
 valid_max:                               0
-ok_max_mean_abs:                         0
+dimensions:                              longitude latitude time
 
 
 
 !=================================
-variable_entry: a
+variable_entry: ptop
 !=================================
 !---------------------------------
 ! variable attributes:
 !---------------------------------
+units:                                   Pa
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              alevel
-type:                                    double
-long_name:                               vertical coordinate formula term: a(k)
+long_name:                               pressure at top of model
+out_name:                                ptop
 
 
 
 !=================================
-variable_entry: siflswutop
+variable_entry: sidconcth
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   1/s
+comment:                                 Total change in sea-ice area fraction through thermodynamic processes
+standard_name:                           tendency_of_sea_ice_area_fraction_due_to_thermodynamics
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               sea-ice area fraction change from thermodynamics
+valid_min:                               0
+cell_measures:                           time: mean area: mean where sea_ice over sea
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                sidconcth
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: sidmassth
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   kg m-2 s-1
+comment:                                 Total change in sea-ice mass from thermodynamic processes divided by grid-cell area
+standard_name:                           tendency_of_sea_ice_amount_due_to_thermodynamics
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               sea-ice mass change from thermodynamics
+valid_min:                               0
+cell_measures:                           time: mean area: mean where sea_ice over sea
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                sidmassth
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: sivols
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   10^3 km3
+comment:                                 total volume of sea ice in the Southern hemisphere
+standard_name:                           sea_ice_volume
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Sea ice volume South
+valid_min:                               0
+cell_measures:                           time: mean area: mean where sea_ice over sea
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                sivols
+valid_max:                               0
+dimensions:                              time
+
+
+
+!=================================
+variable_entry: siextentn
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   10^6 km2
+comment:                                 Total area of all Northern-Hemisphere grid cells that are covered by at least 15 % areal fraction of sea ice
+standard_name:                           sea_ice_extent
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Sea ice extent North
+valid_min:                               0
+cell_measures:                           time: mean area: mean where sea_ice over sea
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                siextentn
+valid_max:                               0
+dimensions:                              time
+
+
+
+!=================================
+variable_entry: sithick
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   m
+comment:                                 Actual (floe) thickness of sea ice (NOT volume divided by grid area as was done in CMIP5)
+standard_name:                           sea_ice_thickness
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Sea-ice thickness
+valid_min:                               0
+cell_measures:                           time: mean area: mean where sea_ice over sea
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                sithick
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: siflsenstop
 !=================================
 modeling_realm:                          seaIce
 !---------------------------------
 ! variable attributes:
 !---------------------------------
 units:                                   W m-2
-comment:                                 the upward shortwave flux over sea ice (always negative)
-standard_name:                           surface_upwelling_shortwave_flux_in_air
+comment:                                 the net sensible heat flux over sea ice
+standard_name:                           surface_upward_sensible_heat_flux
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Upward shortwave flux over sea ice
+ok_max_mean_abs:                         0
+long_name:                               Net sensible heat flux over sea ice
 valid_min:                               0
 cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
 cell_methods:                            area: areacello
 ok_min_mean_abs:                         0
-out_name:                                siflswutop
+out_name:                                siflsenstop
 valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: siflswdtop
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   W m-2
+comment:                                 the downwelling shortwave flux over sea ice (always positive by sign convention)
+standard_name:                           surface_downwelling_shortwave_flux_in_air
+!---------------------------------
+! additional variable information:
+!---------------------------------
 ok_max_mean_abs:                         0
+long_name:                               Downwelling shortwave flux over sea ice
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacello
+ok_min_mean_abs:                         0
+out_name:                                siflswdtop
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: ztop
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   m
+!---------------------------------
+! additional variable information:
+!---------------------------------
+long_name:                               height of top of model
+out_name:                                ztop
+
+
+
+!=================================
+variable_entry: sivoln
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   10^3 km3
+comment:                                 total volume of sea ice in the Northern hemisphere
+standard_name:                           sea_ice_volume
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Sea ice volume North
+valid_min:                               0
+cell_measures:                           time: mean area: mean where sea_ice over sea
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                sivoln
+valid_max:                               0
+dimensions:                              time
+
+
+
+!=================================
+variable_entry: siextents
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   10^6 km2
+comment:                                 Total area of all Southern-Hemisphere grid cells that are covered by at least 15 % areal fraction of sea ice
+standard_name:                           sea_ice_extent
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Sea ice extent South
+valid_min:                               0
+cell_measures:                           time: mean area: mean where sea_ice over sea
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                siextents
+valid_max:                               0
+dimensions:                              time
+
+
+
+!=================================
+variable_entry: z1
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+!---------------------------------
+! additional variable information:
+!---------------------------------
+long_name:                               vertical coordinate formula term: z1
+out_name:                                z1
+type:                                    double
+
+
+
+!=================================
+variable_entry: z2
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+!---------------------------------
+! additional variable information:
+!---------------------------------
+long_name:                               vertical coordinate formula term: z2
+out_name:                                z2
+type:                                    double
+
+
+
+!=================================
+variable_entry: siitdthick
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   m
+comment:                                 Actual (floe) thickness of sea ice in each  category (NOT volume divided by grid area),  (vector with one entry for each thickness category starting from the thinnest category, netcdf file should use thickness bounds of categories as third coordinate axis)
+standard_name:                           sea_ice_thickness_over_categories
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Sea-ice thickness in thickness categories
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                siitdthick
+valid_max:                               0
+dimensions:                              longitude latitude angle time
+
+
+
+!=================================
+variable_entry: sndmasssubl
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   kg m-2 s-1
+comment:                                 the rate of change of snow mass through sublimation and evaporation divided by grid-cell area
+standard_name:                           surface_snow_sublimation_flux
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               snow mass change through evaporation or sublimation
+valid_min:                               0
+cell_measures:                           time: mean area: mean where sea_ice over sea
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                sndmasssubl
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: sispeed
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   m s-1
+comment:                                 speed of ice (i.e. mean absolute velocity) to account for back-and-forth movement of the ice
+standard_name:                           sea_ice_speed
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Sea-ice speed
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                sispeed
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: sisnthick
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   m
+comment:                                 Actual thickness of snow (snow volume divided by snow-covered area)
+standard_name:                           surface_snow_thickness
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Snow thickness
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where snow over sea_ice
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                sisnthick
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: sidmasstrany
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   kg s-1
+comment:                                 Includes transport of both sea ice and snow by advection
+standard_name:                           sea_ice_y_transport
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Y-component of sea-ice mass transport
+valid_min:                               0
+cell_measures:                           time: mean area: mean where sea_ice over sea
+cell_methods:                            area: areacello
+ok_min_mean_abs:                         0
+out_name:                                sidmasstrany
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: siflswdbot
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   W m-2
+comment:                                 the downwelling shortwave flux underneath sea ice (always positive)
+standard_name:                           bottom_downwelling_shortwave_flux_into_ocean
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Downwelling shortwave flux under sea ice
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                siflswdbot
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: sifllwutop
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   W m-2
+comment:                                 the upward longwave flux over sea ice (always negative)
+standard_name:                           surface_upwelling_longwave_flux_in_air
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Upward longwave flux over sea ice
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacello
+ok_min_mean_abs:                         0
+out_name:                                sifllwutop
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: siforceintstry
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   N m-2
+comment:                                 Y-component of force on sea ice caused by internal stress (divergence of sigma)
+standard_name:                           internal_stress_in_sea_ice_y
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Internal stress term in force balance (y-component)
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                siforceintstry
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: siforceintstrx
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   N m-2
+comment:                                 X-component of force on sea ice caused by internal stress (divergence of sigma)
+standard_name:                           internal_stress_in_sea_ice_x
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Internal stress term in force balance (x-component)
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                siforceintstrx
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: siconc
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   1.0
+comment:                                 Area fraction of grid cell covered by sea ice
+standard_name:                           sea_ice_area_fraction
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Sea-ice area fraction
+valid_min:                               0
+cell_measures:                           time: mean area: mean where sea_ice over sea
+cell_methods:                            area: areacello
+ok_min_mean_abs:                         0
+out_name:                                siconc
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: sirdgconc
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   1.0
+comment:                                 Area fraction of grid cell covered by ridged sea ice
+standard_name:                           fraction_of_ridged_sea_ice
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Ridged ice area fraction
+valid_min:                               0
+cell_measures:                           time: mean area: mean where sea_ice over sea
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                sirdgconc
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: sistrxdtop
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   N m-2
+comment:                                 X-component of atmospheric stress on sea ice
+standard_name:                           surface_downward_x_stress
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               X-component of atmospheric stress on sea ice
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                sistrxdtop
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: siitdsnthick
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   m
+comment:                                 Actual thickness of snow in each  category (NOT volume divided by grid area),  (vector with one entry for each thickness category starting from the thinnest category, netcdf file should use thickness bounds of categories as third coordinate axis)
+standard_name:                           snow_thickness_over_categories
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Snow thickness in thickness categories
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                siitdsnthick
+valid_max:                               0
+dimensions:                              longitude latitude angle time
+
+
+
+!=================================
+variable_entry: href
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+!---------------------------------
+! additional variable information:
+!---------------------------------
+long_name:                               vertical coordinate formula term: href
+out_name:                                href
+type:                                    double
+
+
+
+!=================================
+variable_entry: sialb
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   1.0
+comment:                                 Mean surface albedo of entire ice-covered part of grid cell
+standard_name:                           sea_ice_albedo
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Sea-ice or snow albedo
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacello
+ok_min_mean_abs:                         0
+out_name:                                sialb
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: ps
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   Pa
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time
+long_name:                               Surface Air Pressure
+out_name:                                ps
+type:                                    real
+
+
+
+!=================================
+variable_entry: simass
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   kg  m-2 
+comment:                                 Total mass of sea ice divided by grid-cell area
+standard_name:                           sea_ice_amount
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Sea-ice mass per area
+valid_min:                               0
+cell_measures:                           time: mean area: mean where sea_ice over sea
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                simass
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: sndmassmelt
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   kg m-2 s-1
+comment:                                 the rate of change of snow mass through melt divided by grid-cell area
+standard_name:                           surface_snow_melt_flux
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               snow mass change through melt
+valid_min:                               0
+cell_measures:                           time: mean area: mean where sea_ice over sea
+cell_methods:                            area: areacello
+ok_min_mean_abs:                         0
+out_name:                                sndmassmelt
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: sndmasssnf
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   kg m-2 s-1
+comment:                                 mass of solid precipitation falling onto sea ice divided by grid-cell area
+standard_name:                           snowfall_flux
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               snow mass change through snow fall
+valid_min:                               0
+cell_measures:                           time: mean area: mean where sea_ice over sea
+cell_methods:                            area: areacello
+ok_min_mean_abs:                         0
+out_name:                                sndmasssnf
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: sihc
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   J m-2
+comment:                                 Heat content of all ice in grid cell divided by total grid-cell area. Water at 0 Celsius is assumed to have a heat content of 0 J.  Does not include heat content of snow, but does include heat content of brine. Heat content is always negative, since both the sensible and the latent heat content of ice are less than that of water
+standard_name:                           integral_of_sea_ice_temperature_wrt_depth_expressed_as_heat_content
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Sea-ice heat content per unit area
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacello
+ok_min_mean_abs:                         0
+out_name:                                sihc
+valid_max:                               0
+dimensions:                              longitude latitude time
 
 
 
@@ -3814,7 +3313,7 @@ standard_name:                           sea_ice_transport_across_line
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              latitude basin time
+ok_max_mean_abs:                         0
 long_name:                               Sea ice mass flux through straits
 valid_min:                               0
 cell_measures:                           time: mean area: mean where sea_ice over sea
@@ -3822,7 +3321,534 @@ cell_methods:                            area: areacello
 ok_min_mean_abs:                         0
 out_name:                                siacrossline
 valid_max:                               0
+dimensions:                              latitude basin time
+
+
+
+!=================================
+variable_entry: p0
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   Pa
+!---------------------------------
+! additional variable information:
+!---------------------------------
+long_name:                               vertical coordinate formula term: reference pressure
+out_name:                                p0
+
+
+
+!=================================
+variable_entry: b
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              alevel
+long_name:                               vertical coordinate formula term: b(k)
+out_name:                                b
+type:                                    double
+
+
+
+!=================================
+variable_entry: eta
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   m
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time
+long_name:                               Sea Surface Height formula term: thetao
+out_name:                                eta
+type:                                    real
+
+
+
+!=================================
+variable_entry: k_c
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+!---------------------------------
+! additional variable information:
+!---------------------------------
+long_name:                               vertical coordinate formula term: k_c
+out_name:                                k_c
+type:                                    integer
+
+
+
+!=================================
+variable_entry: a_bnds
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              alevel
+long_name:                               vertical coordinate formula term: a(k+1/2)
+out_name:                                a_bnds
+type:                                    double
+
+
+
+!=================================
+variable_entry: sidmassmelttop
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   kg m-2 s-1
+comment:                                 The rate of change of sea ice mass through melting at the ice surface divided by grid-cell area
+standard_name:                           tendency_of_sea_ice_amount_due_to_surface_melting
+!---------------------------------
+! additional variable information:
+!---------------------------------
 ok_max_mean_abs:                         0
+long_name:                               sea-ice mass change through surface melting
+valid_min:                               0
+cell_measures:                           time: mean area: mean where sea_ice over sea
+cell_methods:                            area: areacello
+ok_min_mean_abs:                         0
+out_name:                                sidmassmelttop
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: ap_bnds
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   Pa
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              alevel
+long_name:                               vertical coordinate formula term: ap(k+1/2)
+out_name:                                ap_bnds
+type:                                    double
+
+
+
+!=================================
+variable_entry: sidmassevapsubl
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   kg m-2 s-1
+comment:                                 The rate of change of sea-ice mass change through evaporation and sublimation divided by grid-cell area
+standard_name:                           water_evaporation_flux
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               sea-ice mass change through evaporation and sublimation
+valid_min:                               0
+cell_measures:                           time: mean area: mean where sea_ice over sea
+cell_methods:                            area: areacello
+ok_min_mean_abs:                         0
+out_name:                                sidmassevapsubl
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: ap
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   Pa
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              alevel
+long_name:                               vertical coordinate formula term: ap(k)
+out_name:                                ap
+type:                                    double
+
+
+
+!=================================
+variable_entry: zlev
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              olevel
+long_name:                               vertical coordinate formula term: zlev(k)
+out_name:                                zlev
+type:                                    double
+
+
+
+!=================================
+variable_entry: sidragbot
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   1.0
+comment:                                 Oceanic drag coefficient that is used to calculate the oceanic momentum drag on sea ice
+standard_name:                           surface_drag_coefficient_for_momentum_in_water
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Ocean drag coefficient
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                sidragbot
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: sidmasslat
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   kg m-2 s-1
+comment:                                 The rate of change of sea ice mass through lateral melting divided by grid-cell area (report 0 if not explicitly calculated thermodynamically)
+standard_name:                           tendency_of_sea_ice_amount_due_to_lateral_melting
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Lateral sea ice melt rate
+valid_min:                               0
+cell_measures:                           time: mean area: mean where sea_ice over sea
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                sidmasslat
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: siu
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   m s-1
+comment:                                 x-velocity of ice on native model grid
+standard_name:                           sea_ice_x_velocity
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               X-component of sea ice velocity
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                siu
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: sisali
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   g kg-1
+comment:                                 Mean sea-ice salinity of all sea ice in grid cell
+standard_name:                           sea_ice_salinity
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Sea ice salinity
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                sisali
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: sitimefrac
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   1.0
+comment:                                 Fraction of time steps of the averaging period during which sea ice is present (siconc >0 ) in a grid cell 
+standard_name:                           sea_ice_time_fraction
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Fraction of time steps with sea ice
+valid_min:                               0
+cell_measures:                           time: mean area: mean where sea_ice over sea
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                sitimefrac
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: sidmasstranx
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   kg s-1
+comment:                                 Includes transport of both sea ice and snow by advection
+standard_name:                           sea_ice_x_transport
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               X-component of sea-ice mass transport
+valid_min:                               0
+cell_measures:                           time: mean area: mean where sea_ice over sea
+cell_methods:                            area: areacello
+ok_min_mean_abs:                         0
+out_name:                                sidmasstranx
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: b_bnds
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              alevel
+long_name:                               vertical coordinate formula term: b(k+1/2)
+out_name:                                b_bnds
+type:                                    double
+
+
+
+!=================================
+variable_entry: sifllwdtop
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   W m-2
+comment:                                 the downwelling longwave flux over sea ice (always positive)
+standard_name:                           surface_downwelling_longwave_flux_in_air
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Downwelling longwave flux over sea ice
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacello
+ok_min_mean_abs:                         0
+out_name:                                sifllwdtop
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: sisnhc
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   J m-2
+comment:                                 Heat-content of all snow in grid cell divided by total grid-cell area. Snow-water equivalent at 0 Celsius is assumed to have a heat content of 0 J.  Does not include heat content of sea ice.
+standard_name:                           thermal_energy_content_of_surface_snow
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Snow-heat content per unit area
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where snow over sea_ice
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                sisnhc
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: sistremax
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   N m-1
+comment:                                 Maximum shear stress in sea ice (second stress invariant)
+standard_name:                           maximum_shear_stress
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Maximum shear stress in sea ice
+valid_min:                               0
+cell_measures:                           time: point area: mean where sea_ice
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                sistremax
+valid_max:                               0
+dimensions:                              longitude latitude time1
+
+
+
+!=================================
+variable_entry: zlev_bnds
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              olevel
+long_name:                               vertical coordinate formula term: zlev(k+1/2)
+out_name:                                zlev_bnds
+type:                                    double
+
+
+
+!=================================
+variable_entry: siv
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   m s-1
+comment:                                 y-velocity of ice on native model grid
+standard_name:                           sea_ice_y_velocity
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Y-component of sea ice velocity
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                siv
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: a
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              alevel
+long_name:                               vertical coordinate formula term: a(k)
+out_name:                                a
+type:                                    double
+
+
+
+!=================================
+variable_entry: siflswutop
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   W m-2
+comment:                                 the upward shortwave flux over sea ice (always negative)
+standard_name:                           surface_upwelling_shortwave_flux_in_air
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Upward shortwave flux over sea ice
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacello
+ok_min_mean_abs:                         0
+out_name:                                siflswutop
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: siflcondbot
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   W m-2 
+comment:                                 the net heat conduction flux at the ice base 
+standard_name:                           conductive_heat_flux_at_sea_ice_bottom
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Net conductive heat fluxes in ice at the bottom
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                siflcondbot
+valid_max:                               0
+dimensions:                              longitude latitude time
 
 
 
@@ -3839,7 +3865,7 @@ standard_name:                           tendency_of_sea_ice_amount_due_to_basal
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         0
 long_name:                               sea-ice mass change through bottom melting
 valid_min:                               0
 cell_measures:                           time: mean area: mean where sea_ice over sea
@@ -3847,7 +3873,7 @@ cell_methods:                            area: areacello
 ok_min_mean_abs:                         0
 out_name:                                sidmassmeltbot
 valid_max:                               0
-ok_max_mean_abs:                         0
+dimensions:                              longitude latitude time
 
 
 
@@ -3864,7 +3890,7 @@ standard_name:                           age_of_sea_ice
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         0
 long_name:                               Age of sea ice
 valid_min:                               0
 cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
@@ -3872,7 +3898,7 @@ cell_methods:                            area: areacello
 ok_min_mean_abs:                         0
 out_name:                                siage
 valid_max:                               0
-ok_max_mean_abs:                         0
+dimensions:                              longitude latitude time
 
 
 
@@ -3889,7 +3915,7 @@ standard_name:                           melt_pond_fraction
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         0
 long_name:                               Meltpond area fraction
 valid_min:                               0
 cell_measures:                           time: mean area: mean where sea_ice over sea
@@ -3897,7 +3923,7 @@ cell_methods:                            area: areacella
 ok_min_mean_abs:                         0
 out_name:                                simpconc
 valid_max:                               0
-ok_max_mean_abs:                         0
+dimensions:                              longitude latitude time
 
 
 
@@ -3912,8 +3938,9 @@ units:                                   m
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude
-type:                                    real
 long_name:                               Sea Floor Depth: formula term: thetao
+out_name:                                depth
+type:                                    real
 
 
 
@@ -3930,7 +3957,7 @@ standard_name:                           tendency_of_sea_ice_amount_due_to_freez
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         0
 long_name:                               sea-ice mass change through growth in supercooled open water (aka frazil)
 valid_min:                               0
 cell_measures:                           time: mean area: mean where sea_ice over sea
@@ -3938,72 +3965,7 @@ cell_methods:                            area: areacello
 ok_min_mean_abs:                         0
 out_name:                                sidmassgrowthwat
 valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sivol
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   m
-comment:                                 Total volume of sea ice divided by grid-cell area (this used to be called ice thickness in CMIP5)
-standard_name:                           sea_ice_thickness
-!---------------------------------
-! additional variable information:
-!---------------------------------
 dimensions:                              longitude latitude time
-long_name:                               Sea-ice volume per area
-valid_min:                               0
-cell_measures:                           time: mean area: mean where sea_ice over sea
-cell_methods:                            area: areacello
-ok_min_mean_abs:                         0
-out_name:                                sivol
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: siflsaltbot
-!=================================
-modeling_realm:                          seaIce
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   kg m-2 s-1
-comment:                                 Total flux of salt from water into sea ice divided by grid-cell area; salt flux is upward (negative) during ice growth when salt is embedded into the ice and downward (positive) during melt when salt from sea ice is again released to the ocean
-standard_name:                           salt_flux_from_ice
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-long_name:                               Salt flux from sea ice
-valid_min:                               0
-cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
-cell_methods:                            area: areacella
-ok_min_mean_abs:                         0
-out_name:                                siflsaltbot
-valid_max:                               0
-ok_max_mean_abs:                         0
-
-
-
-!=================================
-variable_entry: sigma
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              olevel
-type:                                    double
-long_name:                               vertical coordinate formula term: sigma(k)
 
 
 
@@ -4020,7 +3982,7 @@ standard_name:                           surface_upward_latent_heat_flux
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
+ok_max_mean_abs:                         0
 long_name:                               Net latent heat flux over sea ice
 valid_min:                               0
 cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
@@ -4028,7 +3990,73 @@ cell_methods:                            area: areacello
 ok_min_mean_abs:                         0
 out_name:                                sifllatstop
 valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: siflsaltbot
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   kg m-2 s-1
+comment:                                 Total flux of salt from water into sea ice divided by grid-cell area; salt flux is upward (negative) during ice growth when salt is embedded into the ice and downward (positive) during melt when salt from sea ice is again released to the ocean
+standard_name:                           salt_flux_from_ice
+!---------------------------------
+! additional variable information:
+!---------------------------------
 ok_max_mean_abs:                         0
+long_name:                               Salt flux from sea ice
+valid_min:                               0
+cell_measures:                           time: mean where sea_ice area: mean where sea_ice area: mean where sea_ice
+cell_methods:                            area: areacella
+ok_min_mean_abs:                         0
+out_name:                                siflsaltbot
+valid_max:                               0
+dimensions:                              longitude latitude time
+
+
+
+!=================================
+variable_entry: sigma
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              olevel
+long_name:                               vertical coordinate formula term: sigma(k)
+out_name:                                sigma
+type:                                    double
+
+
+
+!=================================
+variable_entry: sivol
+!=================================
+modeling_realm:                          seaIce
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   m
+comment:                                 Total volume of sea ice divided by grid-cell area (this used to be called ice thickness in CMIP5)
+standard_name:                           sea_ice_thickness
+!---------------------------------
+! additional variable information:
+!---------------------------------
+ok_max_mean_abs:                         0
+long_name:                               Sea-ice volume per area
+valid_min:                               0
+cell_measures:                           time: mean area: mean where sea_ice over sea
+cell_methods:                            area: areacello
+ok_min_mean_abs:                         0
+out_name:                                sivol
+valid_max:                               0
+dimensions:                              longitude latitude time
 
 
 

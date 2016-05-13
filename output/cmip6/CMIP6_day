@@ -1,16 +1,16 @@
 baseURL:                                 http://cmip-pcmdi.llnl.gov/CMIP5/dataLocation
 approx_interval:                         1.00000
-cf_version:                              1.6
 product:                                 output
 cmor_version:                            2.5
 project_id:                              CMIP6-XXXX
 required_global_attributes:              creation_date tracking_id forcing model_id parent_experiment_id parent_experiment_rip branch_time contact institute_id
 frequency:                               day
 table_id:                                day
-table_date:                              31 March 2016
+data_specs_version:                      3.0
 modeling_realm:                          atmos
 forcings:                                N/A Nat Ant GHG SD SI SA TO SO Oz LU Sl Vl SS Ds BC MD OC AA
 missing_value:                           1e20
+table_date:                              14 April 2016
 
 
 
@@ -284,6 +284,7 @@ standard_name:                           depth
 stored_direction:                        increasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           0. 100.
 value:                                   50.0
 long_name:                               depth
 valid_min:                               0.0
@@ -374,6 +375,7 @@ standard_name:                           air_pressure
 stored_direction:                        decreasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           44000. 0.0
 value:                                   22000.0
 long_name:                               pressure
 out_name:                                plev
@@ -478,6 +480,7 @@ standard_name:                           air_pressure
 stored_direction:                        decreasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           100000. 68000.
 value:                                   84000.0
 long_name:                               pressure
 out_name:                                plev
@@ -840,6 +843,7 @@ standard_name:                           depth
 stored_direction:                        increasing
 positive:                                down
 must_have_bounds:                        yes
+bounds_values:                           0.0 0.1
 value:                                   0.05
 long_name:                               depth
 valid_min:                               0.0
@@ -1469,6 +1473,7 @@ standard_name:                           air_pressure
 stored_direction:                        decreasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           68000. 44000.
 value:                                   56000.0
 long_name:                               pressure
 out_name:                                plev
@@ -1553,758 +1558,10 @@ standard_name:                           northward_wind
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude plev8 time
-type:                                    real
 long_name:                               Northward Wind
 cell_measures:                           time: mean
 out_name:                                va
-
-
-
-!=================================
-variable_entry: rsds
-!=================================
-modeling_realm:                          atmos
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   W m-2
-comment:                                 surface solar irradiance for UV calculations
-standard_name:                           surface_downwelling_shortwave_flux_in_air
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
 type:                                    real
-long_name:                               Surface Downwelling Shortwave Radiation
-cell_measures:                           time: mean
-cell_methods:                            area: areacella
-out_name:                                rsds
-
-
-
-!=================================
-variable_entry: prc
-!=================================
-modeling_realm:                          atmos
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   kg m-2 s-1
-comment:                                 at surface; includes both liquid and solid phases.
-standard_name:                           convective_precipitation_flux
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Convective Precipitation
-cell_measures:                           time: mean
-cell_methods:                            area: areacella
-out_name:                                prc
-
-
-
-!=================================
-variable_entry: tas
-!=================================
-modeling_realm:                          atmos
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   K
-comment:                                 near-surface (usually, 2 meter) air temperature
-standard_name:                           air_temperature
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Near-Surface Air Temperature
-cell_measures:                           time: mean
-cell_methods:                            area: areacella
-out_name:                                tas
-
-
-
-!=================================
-variable_entry: rhsmin
-!=================================
-modeling_realm:                          atmos
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   %
-comment:                                 This is the relative humidity with respect to liquid water for T> 0 C, and with respect to ice for T<0 C.
-standard_name:                           relative_humidity
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Surface Daily Minimum Relative Humidity
-cell_measures:                           time: minimum
-cell_methods:                            area: areacella
-out_name:                                rhsmin
-
-
-
-!=================================
-variable_entry: depth_c
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-!---------------------------------
-! additional variable information:
-!---------------------------------
-type:                                    double
-long_name:                               vertical coordinate formula term: depth_c
-
-
-
-!=================================
-variable_entry: huss
-!=================================
-modeling_realm:                          atmos
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   1.0
-comment:                                 near-surface (usually, 2 meter) specific humidity.
-standard_name:                           specific_humidity
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Near-Surface Specific Humidity
-cell_measures:                           time: mean
-cell_methods:                            area: areacella
-out_name:                                huss
-
-
-
-!=================================
-variable_entry: hfss
-!=================================
-modeling_realm:                          atmos
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   W m-2
-standard_name:                           surface_upward_sensible_heat_flux
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Surface Upward Sensible Heat Flux
-cell_measures:                           time: mean
-cell_methods:                            area: areacella
-out_name:                                hfss
-
-
-
-!=================================
-variable_entry: ap_bnds
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   Pa
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              alevel
-type:                                    double
-long_name:                               vertical coordinate formula term: ap(k+1/2)
-
-
-
-!=================================
-variable_entry: ap
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   Pa
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              alevel
-type:                                    double
-long_name:                               vertical coordinate formula term: ap(k)
-
-
-
-!=================================
-variable_entry: href
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-!---------------------------------
-! additional variable information:
-!---------------------------------
-type:                                    double
-long_name:                               vertical coordinate formula term: href
-
-
-
-!=================================
-variable_entry: prsn
-!=================================
-modeling_realm:                          atmos
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   kg m-2 s-1
-comment:                                 at surface; includes precipitation of all forms of water in the solid phase
-standard_name:                           snowfall_flux
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Snowfall Flux
-cell_measures:                           time: mean
-cell_methods:                            area: areacella
-out_name:                                prsn
-
-
-
-!=================================
-variable_entry: vsi
-!=================================
-modeling_realm:                          seaIce ocean
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   m s-1
-comment:                                 'Reported as ''missing'' in regions free of sea ice.'
-standard_name:                           sea_ice_y_velocity
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Y-Component of Sea Ice Velocity
-cell_measures:                           time: mean
-out_name:                                vsi
-
-
-
-!=================================
-variable_entry: zlev
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              olevel
-type:                                    double
-long_name:                               vertical coordinate formula term: zlev(k)
-
-
-
-!=================================
-variable_entry: tslsi
-!=================================
-modeling_realm:                          land
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   K
-comment:                                 'skin' temperature of all surfaces except open ocean.
-standard_name:                           surface_temperature
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Surface Temperature Where Land or Sea Ice
-cell_measures:                           time: mean
-cell_methods:                            area: areacella
-out_name:                                tslsi
-
-
-
-!=================================
-variable_entry: pr
-!=================================
-modeling_realm:                          atmos
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   kg m-2 s-1
-comment:                                 includes both liquid and solid phases
-standard_name:                           precipitation_flux
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Precipitation
-cell_measures:                           time: mean
-cell_methods:                            area: areacella
-out_name:                                pr
-
-
-
-!=================================
-variable_entry: ps
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   Pa
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Surface Air Pressure
-
-
-
-!=================================
-variable_entry: rlus
-!=================================
-modeling_realm:                          atmos
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   W m-2
-standard_name:                           surface_upwelling_longwave_flux_in_air
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Surface Upwelling Longwave Radiation
-cell_measures:                           time: mean
-cell_methods:                            area: areacella
-out_name:                                rlus
-
-
-
-!=================================
-variable_entry: sit
-!=================================
-modeling_realm:                          seaIce ocean
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   m
-comment:                                 the mean thickness of sea ice in the ocean portion of the grid cell (averaging over the entire ocean portion, including the ice-free fraction).  Reported as 0.0 in regions free of sea ice.
-standard_name:                           sea_ice_thickness
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Sea Ice Thickness
-cell_measures:                           time: mean area: mean where sea
-cell_methods:                            area: areacello
-out_name:                                sit
-
-
-
-!=================================
-variable_entry: rlds
-!=================================
-modeling_realm:                          atmos
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   W m-2
-standard_name:                           surface_downwelling_longwave_flux_in_air
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Surface Downwelling Longwave Radiation
-cell_measures:                           time: mean
-cell_methods:                            area: areacella
-out_name:                                rlds
-
-
-
-!=================================
-variable_entry: usi
-!=================================
-modeling_realm:                          seaIce ocean
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   m s-1
-comment:                                 'Reported as ''missing'' in regions free of sea ice.'
-standard_name:                           sea_ice_x_velocity
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               X-Component of Sea Ice Velocity
-cell_measures:                           time: mean
-out_name:                                usi
-
-
-
-!=================================
-variable_entry: sic
-!=================================
-modeling_realm:                          seaIce ocean
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   1.0
-comment:                                 fraction of grid cell covered by sea ice.
-standard_name:                           sea_ice_area_fraction
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Sea Ice Area Fraction
-cell_measures:                           time: mean
-cell_methods:                            area: areacello
-out_name:                                sic
-
-
-
-!=================================
-variable_entry: sigma_bnds
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              olevel
-type:                                    double
-long_name:                               vertical coordinate formula term: sigma(k+1/2)
-
-
-
-!=================================
-variable_entry: mrsos
-!=================================
-modeling_realm:                          land
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   kg m-2
-comment:                                 the mass of water in all phases in a thin surface soil layer.
-standard_name:                           moisture_content_of_soil_layer
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Moisture in Upper Portion of Soil Column
-cell_measures:                           time: mean area: mean where land
-cell_methods:                            area: areacella
-out_name:                                mrsos
-
-
-
-!=================================
-variable_entry: clt
-!=================================
-modeling_realm:                          atmos
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   1.0
-comment:                                 cloud area fraction
-standard_name:                           cloud_area_fraction_in_atmosphere_layer
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Total Cloud Fraction
-cell_measures:                           time: mean
-cell_methods:                            area: areacella
-out_name:                                clt
-
-
-
-!=================================
-variable_entry: vas
-!=================================
-modeling_realm:                          atmos
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   m s-1
-standard_name:                           northward_wind
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Northward Near-Surface Wind
-cell_measures:                           time: mean
-out_name:                                vas
-
-
-
-!=================================
-variable_entry: ptop
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   Pa
-!---------------------------------
-! additional variable information:
-!---------------------------------
-long_name:                               pressure at top of model
-
-
-
-!=================================
-variable_entry: uas
-!=================================
-modeling_realm:                          atmos
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   m s-1
-comment:                                 near-surface (usually, 10 meters) eastward component of wind.
-standard_name:                           eastward_wind
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Eastward Near-Surface Wind
-cell_measures:                           time: mean
-out_name:                                uas
-
-
-
-!=================================
-variable_entry: wap
-!=================================
-modeling_realm:                          atmos
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   Pa s-1
-comment:                                 commonly referred to as ''omega'', this represents the vertical component of velocity in pressure coordinates (positive down)
-standard_name:                           lagrangian_tendency_of_air_pressure
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude plev8 time
-type:                                    real
-long_name:                               omega (=dp/dt)
-cell_measures:                           time: mean
-cell_methods:                            area: areacella
-out_name:                                wap
-
-
-
-!=================================
-variable_entry: orog
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   m
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude
-type:                                    real
-long_name:                               Surface Altitude
-
-
-
-!=================================
-variable_entry: zg
-!=================================
-modeling_realm:                          atmos
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   m
-standard_name:                           geopotential_height
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude plev8 time
-type:                                    real
-long_name:                               Geopotential Height
-cell_measures:                           time: mean
-cell_methods:                            area: areacella
-out_name:                                zg
-
-
-
-!=================================
-variable_entry: b_bnds
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              alevel
-type:                                    double
-long_name:                               vertical coordinate formula term: b(k+1/2)
-
-
-
-!=================================
-variable_entry: snc
-!=================================
-modeling_realm:                          landIce land
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   %
-comment:                                 Fraction of each grid cell that is occupied by snow that rests on land portion of cell.
-standard_name:                           surface_snow_area_fraction
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Snow Area Fraction
-cell_measures:                           time: mean
-cell_methods:                            area: areacella
-out_name:                                snc
-
-
-
-!=================================
-variable_entry: psl
-!=================================
-modeling_realm:                          atmos
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   Pa
-standard_name:                           air_pressure_at_sea_level
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Sea Level Pressure
-cell_measures:                           time: mean
-cell_methods:                            area: areacella
-out_name:                                psl
-
-
-
-!=================================
-variable_entry: rlut
-!=================================
-modeling_realm:                          atmos
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   W m-2
-comment:                                 at the top of the atmosphere (to be compared with satellite measurements)
-standard_name:                           toa_outgoing_longwave_flux
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               TOA Outgoing Longwave Radiation
-cell_measures:                           time: mean
-cell_methods:                            area: areacella
-out_name:                                rlut
-
-
-
-!=================================
-variable_entry: rhs
-!=================================
-modeling_realm:                          atmos
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   %
-comment:                                 This is the relative humidity with respect to liquid water for T> 0 C, and with respect to ice for T<0 C.
-standard_name:                           relative_humidity
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Near-Surface Relative Humidity
-cell_measures:                           time: mean
-cell_methods:                            area: areacella
-out_name:                                rhs
-
-
-
-!=================================
-variable_entry: rhsmax
-!=================================
-modeling_realm:                          atmos
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   %
-comment:                                 This is the relative humidity with respect to liquid water for T> 0 C, and with respect to ice for T<0 C.
-standard_name:                           relative_humidity
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Surface Daily Maximum Relative Humidity
-cell_measures:                           time: maximum
-cell_methods:                            area: areacella
-out_name:                                rhsmax
-
-
-
-!=================================
-variable_entry: nsigma
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-!---------------------------------
-! additional variable information:
-!---------------------------------
-type:                                    integer
-long_name:                               vertical coordinate formula term: nsigma
-
-
-
-!=================================
-variable_entry: omldamax
-!=================================
-modeling_realm:                          ocean
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   m
-standard_name:                           ocean_mixed_layer_thickness_defined_by_mixing_scheme
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Daily Maximum Ocean Mixed Layer Thickness Defined by Mixing Scheme
-cell_measures:                           time: maximum
-cell_methods:                            area: areacello
-out_name:                                omldamax
 
 
 
@@ -2322,11 +1579,772 @@ standard_name:                           relative_humidity
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude plev8 time
-type:                                    real
 long_name:                               Relative Humidity
+cell_methods:                            area: areacella
+cell_measures:                           time: mean
+out_name:                                hur
+type:                                    real
+
+
+
+!=================================
+variable_entry: prc
+!=================================
+modeling_realm:                          atmos
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   kg m-2 s-1
+comment:                                 at surface; includes both liquid and solid phases.
+standard_name:                           convective_precipitation_flux
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time
+long_name:                               Convective Precipitation
+cell_methods:                            area: areacella
+cell_measures:                           time: mean
+out_name:                                prc
+type:                                    real
+
+
+
+!=================================
+variable_entry: tas
+!=================================
+modeling_realm:                          atmos
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   K
+comment:                                 near-surface (usually, 2 meter) air temperature
+standard_name:                           air_temperature
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time height2m
+long_name:                               Near-Surface Air Temperature
+cell_methods:                            area: areacella
+cell_measures:                           time: mean
+out_name:                                tas
+type:                                    real
+
+
+
+!=================================
+variable_entry: rhsmin
+!=================================
+modeling_realm:                          atmos
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   %
+comment:                                 This is the relative humidity with respect to liquid water for T> 0 C, and with respect to ice for T<0 C.
+standard_name:                           relative_humidity
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time height2m
+long_name:                               Surface Daily Minimum Relative Humidity
+cell_methods:                            area: areacella
+cell_measures:                           time: minimum
+out_name:                                rhsmin
+type:                                    real
+
+
+
+!=================================
+variable_entry: depth_c
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+!---------------------------------
+! additional variable information:
+!---------------------------------
+long_name:                               vertical coordinate formula term: depth_c
+out_name:                                depth_c
+type:                                    double
+
+
+
+!=================================
+variable_entry: zg
+!=================================
+modeling_realm:                          atmos
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   m
+standard_name:                           geopotential_height
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude plev8 time
+long_name:                               Geopotential Height
+cell_methods:                            area: areacella
+cell_measures:                           time: mean
+out_name:                                zg
+type:                                    real
+
+
+
+!=================================
+variable_entry: hfss
+!=================================
+modeling_realm:                          atmos
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   W m-2
+standard_name:                           surface_upward_sensible_heat_flux
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time
+positive:                                up
+long_name:                               Surface Upward Sensible Heat Flux
 cell_measures:                           time: mean
 cell_methods:                            area: areacella
-out_name:                                hur
+out_name:                                hfss
+type:                                    real
+
+
+
+!=================================
+variable_entry: ap_bnds
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   Pa
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              alevel
+long_name:                               vertical coordinate formula term: ap(k+1/2)
+out_name:                                ap_bnds
+type:                                    double
+
+
+
+!=================================
+variable_entry: ap
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   Pa
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              alevel
+long_name:                               vertical coordinate formula term: ap(k)
+out_name:                                ap
+type:                                    double
+
+
+
+!=================================
+variable_entry: href
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+!---------------------------------
+! additional variable information:
+!---------------------------------
+long_name:                               vertical coordinate formula term: href
+out_name:                                href
+type:                                    double
+
+
+
+!=================================
+variable_entry: prsn
+!=================================
+modeling_realm:                          atmos
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   kg m-2 s-1
+comment:                                 at surface; includes precipitation of all forms of water in the solid phase
+standard_name:                           snowfall_flux
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time
+long_name:                               Snowfall Flux
+cell_methods:                            area: areacella
+cell_measures:                           time: mean
+out_name:                                prsn
+type:                                    real
+
+
+
+!=================================
+variable_entry: vsi
+!=================================
+modeling_realm:                          seaIce ocean
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   m s-1
+comment:                                 'Reported as ''missing'' in regions free of sea ice.'
+standard_name:                           sea_ice_y_velocity
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time
+long_name:                               Y-Component of Sea Ice Velocity
+cell_measures:                           time: mean
+out_name:                                vsi
+type:                                    real
+
+
+
+!=================================
+variable_entry: zlev
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              olevel
+long_name:                               vertical coordinate formula term: zlev(k)
+out_name:                                zlev
+type:                                    double
+
+
+
+!=================================
+variable_entry: tslsi
+!=================================
+modeling_realm:                          land
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   K
+comment:                                 'skin' temperature of all surfaces except open ocean.
+standard_name:                           surface_temperature
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time
+long_name:                               Surface Temperature Where Land or Sea Ice
+cell_methods:                            area: areacella
+cell_measures:                           time: mean
+out_name:                                tslsi
+type:                                    real
+
+
+
+!=================================
+variable_entry: pr
+!=================================
+modeling_realm:                          atmos
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   kg m-2 s-1
+comment:                                 includes both liquid and solid phases
+standard_name:                           precipitation_flux
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time
+long_name:                               Precipitation
+cell_methods:                            area: areacella
+cell_measures:                           time: mean
+out_name:                                pr
+type:                                    real
+
+
+
+!=================================
+variable_entry: ps
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   Pa
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time
+long_name:                               Surface Air Pressure
+out_name:                                ps
+type:                                    real
+
+
+
+!=================================
+variable_entry: rlus
+!=================================
+modeling_realm:                          atmos
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   W m-2
+standard_name:                           surface_upwelling_longwave_flux_in_air
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time
+positive:                                up
+long_name:                               Surface Upwelling Longwave Radiation
+cell_measures:                           time: mean
+cell_methods:                            area: areacella
+out_name:                                rlus
+type:                                    real
+
+
+
+!=================================
+variable_entry: sit
+!=================================
+modeling_realm:                          seaIce ocean
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   m
+comment:                                 the mean thickness of sea ice in the ocean portion of the grid cell (averaging over the entire ocean portion, including the ice-free fraction).  Reported as 0.0 in regions free of sea ice.
+standard_name:                           sea_ice_thickness
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time
+long_name:                               Sea Ice Thickness
+cell_methods:                            area: areacello
+cell_measures:                           time: mean area: mean where sea
+out_name:                                sit
+type:                                    real
+
+
+
+!=================================
+variable_entry: rlds
+!=================================
+modeling_realm:                          atmos
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   W m-2
+standard_name:                           surface_downwelling_longwave_flux_in_air
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time
+long_name:                               Surface Downwelling Longwave Radiation
+cell_methods:                            area: areacella
+cell_measures:                           time: mean
+out_name:                                rlds
+type:                                    real
+
+
+
+!=================================
+variable_entry: usi
+!=================================
+modeling_realm:                          seaIce ocean
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   m s-1
+comment:                                 'Reported as ''missing'' in regions free of sea ice.'
+standard_name:                           sea_ice_x_velocity
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time
+long_name:                               X-Component of Sea Ice Velocity
+cell_measures:                           time: mean
+out_name:                                usi
+type:                                    real
+
+
+
+!=================================
+variable_entry: sic
+!=================================
+modeling_realm:                          seaIce ocean
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   1.0
+comment:                                 fraction of grid cell covered by sea ice.
+standard_name:                           sea_ice_area_fraction
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time
+long_name:                               Sea Ice Area Fraction
+cell_methods:                            area: areacello
+cell_measures:                           time: mean
+out_name:                                sic
+type:                                    real
+
+
+
+!=================================
+variable_entry: sigma_bnds
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              olevel
+long_name:                               vertical coordinate formula term: sigma(k+1/2)
+out_name:                                sigma_bnds
+type:                                    double
+
+
+
+!=================================
+variable_entry: eta
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   m
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time
+long_name:                               Sea Surface Height formula term: thetao
+out_name:                                eta
+type:                                    real
+
+
+
+!=================================
+variable_entry: mrsos
+!=================================
+modeling_realm:                          land
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   kg m-2
+comment:                                 the mass of water in all phases in a thin surface soil layer.
+standard_name:                           moisture_content_of_soil_layer
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time sdepth1
+long_name:                               Moisture in Upper Portion of Soil Column
+cell_methods:                            area: areacella
+cell_measures:                           time: mean area: mean where land
+out_name:                                mrsos
+type:                                    real
+
+
+
+!=================================
+variable_entry: clt
+!=================================
+modeling_realm:                          atmos
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   1.0
+comment:                                 cloud area fraction
+standard_name:                           cloud_area_fraction_in_atmosphere_layer
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time
+long_name:                               Total Cloud Fraction
+cell_methods:                            area: areacella
+cell_measures:                           time: mean
+out_name:                                clt
+type:                                    real
+
+
+
+!=================================
+variable_entry: vas
+!=================================
+modeling_realm:                          atmos
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   m s-1
+standard_name:                           northward_wind
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time height10m
+long_name:                               Northward Near-Surface Wind
+cell_measures:                           time: mean
+out_name:                                vas
+type:                                    real
+
+
+
+!=================================
+variable_entry: ptop
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   Pa
+!---------------------------------
+! additional variable information:
+!---------------------------------
+long_name:                               pressure at top of model
+out_name:                                ptop
+
+
+
+!=================================
+variable_entry: uas
+!=================================
+modeling_realm:                          atmos
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   m s-1
+comment:                                 near-surface (usually, 10 meters) eastward component of wind.
+standard_name:                           eastward_wind
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time height10m
+long_name:                               Eastward Near-Surface Wind
+cell_measures:                           time: mean
+out_name:                                uas
+type:                                    real
+
+
+
+!=================================
+variable_entry: ta
+!=================================
+modeling_realm:                          atmos
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   K
+standard_name:                           air_temperature
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude plev8 time
+long_name:                               Air Temperature
+cell_methods:                            area: areacella
+cell_measures:                           time: mean
+out_name:                                ta
+type:                                    real
+
+
+
+!=================================
+variable_entry: huss
+!=================================
+modeling_realm:                          atmos
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   1.0
+comment:                                 near-surface (usually, 2 meter) specific humidity.
+standard_name:                           specific_humidity
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time height2m
+long_name:                               Near-Surface Specific Humidity
+cell_methods:                            area: areacella
+cell_measures:                           time: mean
+out_name:                                huss
+type:                                    real
+
+
+
+!=================================
+variable_entry: b_bnds
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              alevel
+long_name:                               vertical coordinate formula term: b(k+1/2)
+out_name:                                b_bnds
+type:                                    double
+
+
+
+!=================================
+variable_entry: snc
+!=================================
+modeling_realm:                          landIce land
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   %
+comment:                                 Fraction of each grid cell that is occupied by snow that rests on land portion of cell.
+standard_name:                           surface_snow_area_fraction
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time
+long_name:                               Snow Area Fraction
+cell_methods:                            area: areacella
+cell_measures:                           time: mean
+out_name:                                snc
+type:                                    real
+
+
+
+!=================================
+variable_entry: psl
+!=================================
+modeling_realm:                          atmos
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   Pa
+standard_name:                           air_pressure_at_sea_level
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time
+long_name:                               Sea Level Pressure
+cell_methods:                            area: areacella
+cell_measures:                           time: mean
+out_name:                                psl
+type:                                    real
+
+
+
+!=================================
+variable_entry: rlut
+!=================================
+modeling_realm:                          atmos
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   W m-2
+comment:                                 at the top of the atmosphere (to be compared with satellite measurements)
+standard_name:                           toa_outgoing_longwave_flux
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time
+positive:                                up
+long_name:                               TOA Outgoing Longwave Radiation
+cell_measures:                           time: mean
+cell_methods:                            area: areacella
+out_name:                                rlut
+type:                                    real
+
+
+
+!=================================
+variable_entry: rhs
+!=================================
+modeling_realm:                          atmos
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   %
+comment:                                 This is the relative humidity with respect to liquid water for T> 0 C, and with respect to ice for T<0 C.
+standard_name:                           relative_humidity
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time height2m
+long_name:                               Near-Surface Relative Humidity
+cell_methods:                            area: areacella
+cell_measures:                           time: mean
+out_name:                                rhs
+type:                                    real
+
+
+
+!=================================
+variable_entry: rhsmax
+!=================================
+modeling_realm:                          atmos
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   %
+comment:                                 This is the relative humidity with respect to liquid water for T> 0 C, and with respect to ice for T<0 C.
+standard_name:                           relative_humidity
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time height2m
+long_name:                               Surface Daily Maximum Relative Humidity
+cell_methods:                            area: areacella
+cell_measures:                           time: maximum
+out_name:                                rhsmax
+type:                                    real
+
+
+
+!=================================
+variable_entry: nsigma
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+!---------------------------------
+! additional variable information:
+!---------------------------------
+long_name:                               vertical coordinate formula term: nsigma
+out_name:                                nsigma
+type:                                    integer
+
+
+
+!=================================
+variable_entry: omldamax
+!=================================
+modeling_realm:                          ocean
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   m
+standard_name:                           ocean_mixed_layer_thickness_defined_by_mixing_scheme
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time
+long_name:                               Daily Maximum Ocean Mixed Layer Thickness Defined by Mixing Scheme
+cell_methods:                            area: areacello
+cell_measures:                           time: maximum
+out_name:                                omldamax
+type:                                    real
+
+
+
+!=================================
+variable_entry: rsds
+!=================================
+modeling_realm:                          atmos
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   W m-2
+comment:                                 surface solar irradiance for UV calculations
+standard_name:                           surface_downwelling_shortwave_flux_in_air
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude time
+long_name:                               Surface Downwelling Shortwave Radiation
+cell_methods:                            area: areacella
+cell_measures:                           time: mean
+out_name:                                rsds
+type:                                    real
 
 
 
@@ -2343,11 +2361,11 @@ standard_name:                           specific_humidity
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude plev8 time
-type:                                    real
 long_name:                               Specific Humidity
-cell_measures:                           time: mean
 cell_methods:                            area: areacella
+cell_measures:                           time: mean
 out_name:                                hus
+type:                                    real
 
 
 
@@ -2361,8 +2379,9 @@ variable_entry: zlev_bnds
 ! additional variable information:
 !---------------------------------
 dimensions:                              olevel
-type:                                    double
 long_name:                               vertical coordinate formula term: zlev(k+1/2)
+out_name:                                zlev_bnds
+type:                                    double
 
 
 
@@ -2375,8 +2394,9 @@ variable_entry: z1
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    double
 long_name:                               vertical coordinate formula term: z1
+out_name:                                z1
+type:                                    double
 
 
 
@@ -2389,8 +2409,9 @@ variable_entry: z2
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    double
 long_name:                               vertical coordinate formula term: z2
+out_name:                                z2
+type:                                    double
 
 
 
@@ -2404,8 +2425,9 @@ variable_entry: a
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: a(k)
+out_name:                                a
+type:                                    double
 
 
 
@@ -2420,6 +2442,7 @@ units:                                   Pa
 ! additional variable information:
 !---------------------------------
 long_name:                               vertical coordinate formula term: reference pressure
+out_name:                                p0
 
 
 
@@ -2433,8 +2456,25 @@ variable_entry: b
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: b(k)
+out_name:                                b
+type:                                    double
+
+
+
+!=================================
+variable_entry: a_bnds
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              alevel
+long_name:                               vertical coordinate formula term: a(k+1/2)
+out_name:                                a_bnds
+type:                                    double
 
 
 
@@ -2452,11 +2492,11 @@ standard_name:                           surface_snow_amount
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Surface Snow Amount
-cell_measures:                           time: mean area: mean where land
 cell_methods:                            area: areacella
+cell_measures:                           time: mean area: mean where land
 out_name:                                snw
+type:                                    real
 
 
 
@@ -2473,31 +2513,27 @@ standard_name:                           wind_speed
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
+dimensions:                              longitude latitude time height10m
 long_name:                               Daily Maximum Near-Surface Wind Speed
 cell_measures:                           time: maximum
 out_name:                                sfcWindmax
+type:                                    real
 
 
 
 !=================================
-variable_entry: ua
+variable_entry: sigma
 !=================================
-modeling_realm:                          atmos
 !---------------------------------
 ! variable attributes:
 !---------------------------------
-units:                                   m s-1
-standard_name:                           eastward_wind
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude plev8 time
-type:                                    real
-long_name:                               Eastward Wind
-cell_measures:                           time: mean
-out_name:                                ua
+dimensions:                              olevel
+long_name:                               vertical coordinate formula term: sigma(k)
+out_name:                                sigma
+type:                                    double
 
 
 
@@ -2515,11 +2551,11 @@ standard_name:                           runoff_flux
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Total Runoff
-cell_measures:                           time: mean area: mean where land
 cell_methods:                            area: areacella
+cell_measures:                           time: mean area: mean where land
 out_name:                                mrro
+type:                                    real
 
 
 
@@ -2534,6 +2570,7 @@ units:                                   m
 ! additional variable information:
 !---------------------------------
 long_name:                               height of top of model
+out_name:                                ztop
 
 
 
@@ -2550,11 +2587,28 @@ standard_name:                           wind_speed
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
+dimensions:                              longitude latitude time height10m
 long_name:                               Daily-Mean Near-Surface Wind Speed
 cell_measures:                           time: mean
 out_name:                                sfcWind
+type:                                    real
+
+
+
+!=================================
+variable_entry: depth
+!=================================
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   m
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude
+long_name:                               Sea Floor Depth: formula term: thetao
+out_name:                                depth
+type:                                    real
 
 
 
@@ -2572,43 +2626,11 @@ standard_name:                           square_of_sea_surface_temperature
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Square of Sea Surface Temperature
-cell_measures:                           time: mean
 cell_methods:                            area: areacello
+cell_measures:                           time: mean
 out_name:                                tossq
-
-
-
-!=================================
-variable_entry: depth
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   m
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude
 type:                                    real
-long_name:                               Sea Floor Depth: formula term: thetao
-
-
-
-!=================================
-variable_entry: eta
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-units:                                   m
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
-long_name:                               Sea Surface Height formula term: thetao
 
 
 
@@ -2625,11 +2647,12 @@ standard_name:                           surface_upward_latent_heat_flux
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
+positive:                                up
 long_name:                               Surface Upward Latent Heat Flux
 cell_measures:                           time: mean
 cell_methods:                            area: areacella
 out_name:                                hfls
+type:                                    real
 
 
 
@@ -2646,12 +2669,12 @@ standard_name:                           air_temperature
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
+dimensions:                              longitude latitude time height2m
 long_name:                               Daily Minimum Near-Surface Air Temperature
-cell_measures:                           time: minimum
 cell_methods:                            area: areacella
+cell_measures:                           time: minimum
 out_name:                                tasmin
+type:                                    real
 
 
 
@@ -2669,11 +2692,11 @@ standard_name:                           sea_surface_temperature
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Sea Surface Temperature
-cell_measures:                           time: mean
 cell_methods:                            area: areacello
+cell_measures:                           time: mean
 out_name:                                tos
+type:                                    real
 
 
 
@@ -2690,12 +2713,12 @@ standard_name:                           air_temperature
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude time
-type:                                    real
+dimensions:                              longitude latitude time height2m
 long_name:                               Daily Maximum Near-Surface Air Temperature
-cell_measures:                           time: maximum
 cell_methods:                            area: areacella
+cell_measures:                           time: maximum
 out_name:                                tasmax
+type:                                    real
 
 
 
@@ -2712,11 +2735,12 @@ standard_name:                           surface_upwelling_shortwave_flux_in_air
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
+positive:                                up
 long_name:                               Surface Upwelling Shortwave Radiation
 cell_measures:                           time: mean
 cell_methods:                            area: areacella
 out_name:                                rsus
+type:                                    real
 
 
 
@@ -2729,59 +2753,68 @@ variable_entry: k_c
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    integer
 long_name:                               vertical coordinate formula term: k_c
+out_name:                                k_c
+type:                                    integer
 
 
 
 !=================================
-variable_entry: ta
+variable_entry: wap
 !=================================
 modeling_realm:                          atmos
 !---------------------------------
 ! variable attributes:
 !---------------------------------
-units:                                   K
-standard_name:                           air_temperature
+units:                                   Pa s-1
+comment:                                 commonly referred to as ''omega'', this represents the vertical component of velocity in pressure coordinates (positive down)
+standard_name:                           lagrangian_tendency_of_air_pressure
 !---------------------------------
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude plev8 time
-type:                                    real
-long_name:                               Air Temperature
-cell_measures:                           time: mean
+long_name:                               omega (=dp/dt)
 cell_methods:                            area: areacella
-out_name:                                ta
+cell_measures:                           time: mean
+out_name:                                wap
+type:                                    real
 
 
 
 !=================================
-variable_entry: sigma
+variable_entry: ua
+!=================================
+modeling_realm:                          atmos
+!---------------------------------
+! variable attributes:
+!---------------------------------
+units:                                   m s-1
+standard_name:                           eastward_wind
+!---------------------------------
+! additional variable information:
+!---------------------------------
+dimensions:                              longitude latitude plev8 time
+long_name:                               Eastward Wind
+cell_measures:                           time: mean
+out_name:                                ua
+type:                                    real
+
+
+
+!=================================
+variable_entry: orog
 !=================================
 !---------------------------------
 ! variable attributes:
 !---------------------------------
+units:                                   m
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              olevel
-type:                                    double
-long_name:                               vertical coordinate formula term: sigma(k)
-
-
-
-!=================================
-variable_entry: a_bnds
-!=================================
-!---------------------------------
-! variable attributes:
-!---------------------------------
-!---------------------------------
-! additional variable information:
-!---------------------------------
-dimensions:                              alevel
-type:                                    double
-long_name:                               vertical coordinate formula term: a(k+1/2)
+dimensions:                              longitude latitude
+long_name:                               Surface Altitude
+out_name:                                orog
+type:                                    real
 
 
 

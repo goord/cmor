@@ -1,17 +1,17 @@
 baseURL:                                 http://cmip-pcmdi.llnl.gov/CMIP5/dataLocation
 approx_interval:                         0.00000
-cf_version:                              1.6
 product:                                 output
 cmor_version:                            2.5
 project_id:                              CMIP6-XXXX
 required_global_attributes:              creation_date tracking_id forcing model_id parent_experiment_id parent_experiment_rip branch_time contact institute_id
 frequency:                               fx
 table_id:                                fx
-table_date:                              31 March 2016
+data_specs_version:                      3.0
 modeling_realm:                          atmos land
 generic_levels:                          olevel
 forcings:                                N/A Nat Ant GHG SD SI SA TO SO Oz LU Sl Vl SS Ds BC MD OC AA
 missing_value:                           1e20
+table_date:                              14 April 2016
 
 
 
@@ -285,6 +285,7 @@ standard_name:                           depth
 stored_direction:                        increasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           0. 100.
 value:                                   50.0
 long_name:                               depth
 valid_min:                               0.0
@@ -375,6 +376,7 @@ standard_name:                           air_pressure
 stored_direction:                        decreasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           44000. 0.0
 value:                                   22000.0
 long_name:                               pressure
 out_name:                                plev
@@ -479,6 +481,7 @@ standard_name:                           air_pressure
 stored_direction:                        decreasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           100000. 68000.
 value:                                   84000.0
 long_name:                               pressure
 out_name:                                plev
@@ -841,6 +844,7 @@ standard_name:                           depth
 stored_direction:                        increasing
 positive:                                down
 must_have_bounds:                        yes
+bounds_values:                           0.0 0.1
 value:                                   0.05
 long_name:                               depth
 valid_min:                               0.0
@@ -1470,6 +1474,7 @@ standard_name:                           air_pressure
 stored_direction:                        decreasing
 positive:                                down
 must_have_bounds:                        no
+bounds_values:                           68000. 44000.
 value:                                   56000.0
 long_name:                               pressure
 out_name:                                plev
@@ -1554,11 +1559,11 @@ standard_name:                           cell_thickness
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude olevel
-type:                                    real
 long_name:                               Ocean Model Cell Thickness
-cell_measures:                           time: mean
 cell_methods:                            area: areacello volume: volcello
+cell_measures:                           time: mean
 out_name:                                thkcello
+type:                                    real
 
 
 
@@ -1594,8 +1599,9 @@ variable_entry: depth_c
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    double
 long_name:                               vertical coordinate formula term: depth_c
+out_name:                                depth_c
+type:                                    double
 
 
 
@@ -1611,14 +1617,14 @@ standard_name:                           cell_area
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude
+ok_max_mean_abs:                         1e+12
 type:                                    real
 long_name:                               Ocean Grid-Cell Area
 valid_min:                               0.0
-ok_min_mean_abs:                         0.0
 out_name:                                areacello
+ok_min_mean_abs:                         0.0
 valid_max:                               1e+12
-ok_max_mean_abs:                         1e+12
+dimensions:                              longitude latitude
 
 
 
@@ -1633,8 +1639,9 @@ units:                                   Pa
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: ap(k+1/2)
+out_name:                                ap_bnds
+type:                                    double
 
 
 
@@ -1649,8 +1656,9 @@ units:                                   Pa
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: ap(k)
+out_name:                                ap
+type:                                    double
 
 
 
@@ -1663,8 +1671,9 @@ variable_entry: href
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    double
 long_name:                               vertical coordinate formula term: href
+out_name:                                href
+type:                                    double
 
 
 
@@ -1701,8 +1710,9 @@ variable_entry: zlev
 ! additional variable information:
 !---------------------------------
 dimensions:                              olevel
-type:                                    double
 long_name:                               vertical coordinate formula term: zlev(k)
+out_name:                                zlev
+type:                                    double
 
 
 
@@ -1717,8 +1727,9 @@ units:                                   Pa
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Surface Air Pressure
+out_name:                                ps
+type:                                    real
 
 
 
@@ -1732,8 +1743,9 @@ variable_entry: sigma_bnds
 ! additional variable information:
 !---------------------------------
 dimensions:                              olevel
-type:                                    double
 long_name:                               vertical coordinate formula term: sigma(k+1/2)
+out_name:                                sigma_bnds
+type:                                    double
 
 
 
@@ -1770,6 +1782,7 @@ units:                                   Pa
 ! additional variable information:
 !---------------------------------
 long_name:                               pressure at top of model
+out_name:                                ptop
 
 
 
@@ -1806,8 +1819,9 @@ variable_entry: b_bnds
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: b(k+1/2)
+out_name:                                b_bnds
+type:                                    double
 
 
 
@@ -1847,7 +1861,7 @@ standard_name:                           sea_floor_depth_below_geoid
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude
+ok_max_mean_abs:                         5000.0
 type:                                    real
 long_name:                               Sea Floor Depth
 valid_min:                               0.0
@@ -1855,7 +1869,7 @@ cell_methods:                            area: areacello
 ok_min_mean_abs:                         2000.0
 out_name:                                deptho
 valid_max:                               10000.0
-ok_max_mean_abs:                         5000.0
+dimensions:                              longitude latitude
 
 
 
@@ -1868,8 +1882,9 @@ variable_entry: nsigma
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    integer
 long_name:                               vertical coordinate formula term: nsigma
+out_name:                                nsigma
+type:                                    integer
 
 
 
@@ -1886,14 +1901,14 @@ standard_name:                           ocean_volume
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude olevel
+ok_max_mean_abs:                         1e+15
 type:                                    real
 long_name:                               Ocean Grid-Cell Volume
 valid_min:                               0.0
-ok_min_mean_abs:                         0.0
 out_name:                                volcello
+ok_min_mean_abs:                         0.0
 valid_max:                               1e+15
-ok_max_mean_abs:                         1e+15
+dimensions:                              longitude latitude olevel
 
 
 
@@ -1910,11 +1925,11 @@ standard_name:                           soil_moisture_content_at_field_capacity
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude
-type:                                    real
+out_name:                                mrsofc
 long_name:                               Capacity of Soil to Store Water
 cell_methods:                            area: areacella
-out_name:                                mrsofc
+type:                                    real
+dimensions:                              longitude latitude
 
 
 
@@ -1929,6 +1944,7 @@ units:                                   m
 ! additional variable information:
 !---------------------------------
 long_name:                               height of top of model
+out_name:                                ztop
 
 
 
@@ -1945,14 +1961,14 @@ standard_name:                           cell_area
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-dimensions:                              longitude latitude
+ok_max_mean_abs:                         1e+12
 type:                                    real
 long_name:                               Atmosphere Grid-Cell Area
 valid_min:                               100000.0
-ok_min_mean_abs:                         100000.0
 out_name:                                areacella
+ok_min_mean_abs:                         100000.0
 valid_max:                               1e+12
-ok_max_mean_abs:                         1e+12
+dimensions:                              longitude latitude
 
 
 
@@ -1966,8 +1982,9 @@ variable_entry: zlev_bnds
 ! additional variable information:
 !---------------------------------
 dimensions:                              olevel
-type:                                    double
 long_name:                               vertical coordinate formula term: zlev(k+1/2)
+out_name:                                zlev_bnds
+type:                                    double
 
 
 
@@ -1980,8 +1997,9 @@ variable_entry: z1
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    double
 long_name:                               vertical coordinate formula term: z1
+out_name:                                z1
+type:                                    double
 
 
 
@@ -1994,8 +2012,9 @@ variable_entry: z2
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    double
 long_name:                               vertical coordinate formula term: z2
+out_name:                                z2
+type:                                    double
 
 
 
@@ -2009,8 +2028,9 @@ variable_entry: a
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: a(k)
+out_name:                                a
+type:                                    double
 
 
 
@@ -2025,6 +2045,7 @@ units:                                   Pa
 ! additional variable information:
 !---------------------------------
 long_name:                               vertical coordinate formula term: reference pressure
+out_name:                                p0
 
 
 
@@ -2038,8 +2059,9 @@ variable_entry: b
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: b(k)
+out_name:                                b
+type:                                    double
 
 
 
@@ -2054,8 +2076,9 @@ units:                                   m
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude
-type:                                    real
 long_name:                               Sea Floor Depth: formula term: thetao
+out_name:                                depth
+type:                                    real
 
 
 
@@ -2070,8 +2093,9 @@ units:                                   m
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude time
-type:                                    real
 long_name:                               Sea Surface Height formula term: thetao
+out_name:                                eta
+type:                                    real
 
 
 
@@ -2111,11 +2135,12 @@ standard_name:                           upward_geothermal_heat_flux_at_sea_floo
 ! additional variable information:
 !---------------------------------
 dimensions:                              longitude latitude
-type:                                    real
+positive:                                up
 long_name:                               Upward Geothermal Heat Flux at Sea Floor
 cell_measures:                           area: mean where sea
 cell_methods:                            area: areacello
 out_name:                                hfgeou
+type:                                    real
 
 
 
@@ -2128,8 +2153,9 @@ variable_entry: k_c
 !---------------------------------
 ! additional variable information:
 !---------------------------------
-type:                                    integer
 long_name:                               vertical coordinate formula term: k_c
+out_name:                                k_c
+type:                                    integer
 
 
 
@@ -2143,8 +2169,9 @@ variable_entry: sigma
 ! additional variable information:
 !---------------------------------
 dimensions:                              olevel
-type:                                    double
 long_name:                               vertical coordinate formula term: sigma(k)
+out_name:                                sigma
+type:                                    double
 
 
 
@@ -2158,8 +2185,9 @@ variable_entry: a_bnds
 ! additional variable information:
 !---------------------------------
 dimensions:                              alevel
-type:                                    double
 long_name:                               vertical coordinate formula term: a(k+1/2)
+out_name:                                a_bnds
+type:                                    double
 
 
 
