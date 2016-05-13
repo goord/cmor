@@ -2,13 +2,13 @@
 #
 # Run spec2cmor, based on PA IC3 delivery of spec2cmor convert tool
 #
-# 
-# function process_ocean, process_atmosphere, create_tar  
 #
-# required modulesloading is done and tested for krypton, 
+# function process_ocean, process_atmosphere, create_tar
+#
+# required modulesloading is done and tested for krypton,
 # Potentially works for Triolith (DCS) as well.
-# Local disks on compute nodes are used for temp storage. 
-# This should be run on compute nodes either by using interactive or by sbatch. 
+# Local disks on compute nodes are used for temp storage.
+# This should be run on compute nodes either by using interactive or by sbatch.
 #
 # mkolax 20141023
 #
@@ -90,7 +90,7 @@ set +v
 ece2cmor_root_dir="[[[PLT:ACTIVE:ECEARTH_SRC_DIR]]]/util/ece2cmor"
 export PATH=${ece2cmor_root_dir}/bin/:${PATH}
 log_dir="${ece2cmor_root_dir}/log"
-[ ! -d $log_dir ] && mkdir -p $log_dir 
+[ ! -d $log_dir ] && mkdir -p $log_dir
 run_date=$(date +%F_%H-%M)
 log_file=${log_dir}/ece2cmor_${run_date}_${SLURM_JOB_ID}_$$.log
 
@@ -205,7 +205,7 @@ function populate_nemo_tmp_dir(){
               fi
               icount=$((icount+1))
            fi
-        fi   
+        fi
     done
     wait
 }
@@ -226,7 +226,7 @@ function populate_ifs_tmp_dir(){
         fdate=$(echo $ff | cut -d + -f 2)
         if [[ $fdate -ge $dat_start  &&  $fdate -le $dat_end ]]; then
            echo "DBG: creating symlink to $f in temp dir..."
-	   ln -s $f ${tmp_dir}/.
+        ln -s $f ${tmp_dir}/.
         fi
     done
 }
@@ -236,7 +236,7 @@ function process_ocean() {
 
 # Prepare tmp dir
 #-----------------------------------------------------------------------------
-    [ -d $tmp_dir ] && rm -rf $tmp_dir 
+    [ -d $tmp_dir ] && rm -rf $tmp_dir
     mkdir -p $tmp_dir
     cd $tmp_dir
     populate_nemo_tmp_dir
@@ -259,7 +259,7 @@ function process_ocean() {
                 ${EXP_NAME}_1d_${sdate}_${edate}_diaptr.nc \
                 tmp$(printf %02d $i).nc
         done
-        rm -f ${EXP_NAME}_1m_${sdate}_${edate}_diaptr.nc 
+        rm -f ${EXP_NAME}_1m_${sdate}_${edate}_diaptr.nc
         ncrcat tmp* ${EXP_NAME}_1m_${sdate}_${edate}_diaptr.nc
         rm -f tmp*
     done
@@ -340,7 +340,7 @@ function process_atmosphere() {
 # Prepare tmp dir
 #-----------------------------------------------------------------------------
     echo "DBG: creating tmp dir..."
-    [ -d $tmp_dir ] && rm -rf $tmp_dir 
+    [ -d $tmp_dir ] && rm -rf $tmp_dir
     mkdir -p $tmp_dir
     cd $tmp_dir
     populate_ifs_tmp_dir
@@ -354,13 +354,13 @@ function process_atmosphere() {
         echo "DBG: ...done"
     done
 
-# Loop over dates and build monthly means and cmorize for every month 
+# Loop over dates and build monthly means and cmorize for every month
 #---------------------------------------------------------------------
       icount=1
       for yyyymm in ${list}; do
        (  # parallel processing in subdirectory
           tmptmp=tmp-atmos-$icount
-          echo "DBG: creating directory $tmptmp" 
+          echo "DBG: creating directory $tmptmp"
           mkdir -p $tmptmp
           cd $tmptmp
 
@@ -368,13 +368,13 @@ function process_atmosphere() {
           mm=$(echo $yyyymm | cut -c5-6) # current month
           NMDAYS=$(cal $mm $yyyy | grep -v "[a-z]" | grep -v "^$" | wc -w)
 
-	  file=fcdata
+    file=fcdata
 
-	  echo FILTER_FILE ${file} ${yyyymm} 
+    echo FILTER_FILE ${file} ${yyyymm}
           # grib_filter rules
           # split files in 6-hourly and 3-hourly output
           # currently, this only matters for Q in ICMGG files
-	  #echo "if ( dataDate >= ${yyyymm}01 ) { write 'ICMSH'; }" > rules_files_SH
+    #echo "if ( dataDate >= ${yyyymm}01 ) { write 'ICMSH'; }" > rules_files_SH
           echo "if ( dataDate >= ${yyyymm}01 ) { if ( param is '152.128' ) { write 'ICMSH_SPECIAL' ; } else { write 'ICMSH' ; } ; }" > rules_files_SH
           echo "if ( dataDate >= ${yyyymm}01 ) { if ( param is '133.128' ) { write 'ICMGG_SPECIAL' ; } else { write 'ICMGG' ; } ; }" > rules_files_GG
 
@@ -422,8 +422,8 @@ function process_atmosphere() {
           # humidity at SFC
           if $do_sfchum && [ -f ${file}_167.128.grb ] && [ -f ${file}_168.128.grb ] && [ -f ${file}_134.128.grb ]; then
               # use dummy GRIB parameters for temporary files
-              $cdo -s setcode,101 -expr,"e_t=611.*exp(17.62*(var167-273.15)/(var167-30.03))" ${file}_167.128.grb e_t.grb
-              $cdo -s setcode,102 -expr,"e_t=611.*exp(17.62*(var168-273.15)/(var168-30.03))" ${file}_168.128.grb e_td.grb
+              $cdo -s setcode,103 -expr,"e_t=611.*exp(17.62*(var167-273.15)/(var167-30.03))" ${file}_167.128.grb e_t.grb
+              $cdo -s setcode,104 -expr,"e_t=611.*exp(17.62*(var168-273.15)/(var168-30.03))" ${file}_168.128.grb e_td.grb
 
               # rel humidity
               $cdo -s setparam,80.128 -mulc,100 -div e_td.grb e_t.grb ${file}_80.128.grb
@@ -439,7 +439,7 @@ function process_atmosphere() {
              $cdo -s ifthenc,1 -gtc,1 -selmon,$mm ${file}_212.128.grb ${file}_sunmask.grb || exit -1
           fi
 
-          # additional radiation variables
+          # upward radiation variables: subtract downward fluxes from net fluxes
           $cdo -s setparam,95.128 -sub ${file}_176.128.grb ${file}_169.128.grb ${file}_95.128.grb
           $cdo -s setparam,96.128 -sub ${file}_177.128.grb ${file}_175.128.grb ${file}_96.128.grb
           $cdo -s setparam,97.128 -sub ${file}_178.128.grb ${file}_212.128.grb ${file}_97.128.grb
@@ -461,13 +461,13 @@ function process_atmosphere() {
               eval "param_list=\$param_list_${freq}"
               for param in $param_list; do
                   case $param in
-                  ( 146.128 | 147.128 | 176.128 | 169.128 | 177.128 | 175.128 | 179.128 | 212.128 | 95.128 | 96.128 | 97.128 | 98.128 | 209.128 )
-                      # radiation/heat
+                  ( 146.128 | 147.128 | 169.128 | 175.128 | 176.128 | 177.128 | 178.128 | 179.128 | 95.128 | 96.128 | 97.128 | 98.128 | 99.128 | 100.128 | 101.128 | 102.128 | 208.128 | 209.128 | 210.128 | 211.128 | 212.128)
+                      # radiation/heat: convert to J -> W s
                       cdo_operator="-divc,$((NFRP*3600)) -selmon,$mm $shifttime" ;;
-                  ( 142.128 | 143.128 | 144.128 | 228.128 | 205.128 | 182.128 )
-                      # snow/precipitation/evaporation/runoff
+                  ( 8.128 | 44.128 | 141.128 | 142.128 | 143.128 | 144.128 | 182.128 | 205.128 | 228.128)
+                      # snow/precipitation/evaporation/runoff: convert m to mm
                       cdo_operator="-mulc,1000 -divc,$((NFRP*3600)) -selmon,$mm $shifttime" ;;
-                  ( 180 | 181 )
+                  ( 180.128 | 181.128 )
                       # momentum flux
                       cdo_operator="-divc,$((NFRP*3600)) -selmon,$mm $shifttime" ;;
                   ( 201.128 )
@@ -482,7 +482,7 @@ function process_atmosphere() {
                   ( 92.128 | 93.128 | 94.128 )
                       # ISCCP (vis channels)
                       cdo_operator="-setparam,$param -ifthen ${file}_sunmask.grb -selmon,$mm" ;;
-                  ( 130.128 | 133.128 ) 
+                  ( 130.128 | 133.128 )
                       if [ $freq = 'day' ]; then
                          # special for 6-hourly output
                          cdo_operator="-sellevel,70000,85000,92500,100000 -selmon,$mm"
@@ -495,7 +495,7 @@ function process_atmosphere() {
                   ( 39.128 )
                       # convert soil moisture units of top soil layer
                       cdo_operator="-setltype,1 -mulc,1000. -mulc,0.07 -selmon,$mm" ;;
-                  ( * ) 
+                  ( * )
                       # default
                       cdo_operator="-selmon,$mm" ;;
                   esac
@@ -516,7 +516,7 @@ function process_atmosphere() {
                       ${file}_${freq}.grb \
                       $tmp_dir/${EXP_NAME}_${freq}_${yyyymm}01-${yyyymm}${NMDAYS}.nc
               fi
-          done	# freq loop
+          done # freq loop
 
           cd $tmp_dir
           rm -r $tmptmp ) &
@@ -582,14 +582,14 @@ function create_tar(){
 }
 
 
-# MAIN 
+# MAIN
 #-----------------------------------------------------------
 if $do_atmos || $do_ocean; then
 
 
 # Set up logging:
 #-----------------------------------------------------------------------------
-   echo "ece2cmor running $run_date , logging to : "$log_file   
+   echo "ece2cmor running $run_date , logging to : "$log_file
    exec 6>&1
    exec > $log_file
    exec 2>&1
