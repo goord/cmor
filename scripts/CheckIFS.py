@@ -1,5 +1,10 @@
 #!/usr/bin/python
 
+######################################################################################################################
+# Script for checking the completeness and consistency of a parameter table for ifs variables, given an input csv file 
+# that contains the required cmorization variables.
+######################################################################################################################
+
 import csv
 import f90nml
 import sys

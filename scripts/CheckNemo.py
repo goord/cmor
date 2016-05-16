@@ -1,5 +1,10 @@
 #!/usr/bin/python
 
+#######################################################################################################################
+# Script for checking the completeness and consistency of a parameter table for nemo variables, given an input csv file 
+# that contains the required cmorization variables.
+#######################################################################################################################
+
 import xml.etree.ElementTree as element_tree
 import sys
 from optparse import OptionParser

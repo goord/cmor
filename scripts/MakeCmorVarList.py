@@ -1,5 +1,9 @@
 #!/usr/bin/python
 
+#################################################################################
+# Script creating an ece2cmor variable namelist file given for an input csv file.
+#################################################################################
+
 import sys
 from optparse import OptionParser
 from ReadCmorCsv import read_cmor_csv

@@ -1,5 +1,9 @@
 #!/usr/bin/python
 
+#############################################################################
+# Script parsing an input csv file containing required cmorization variables.
+#############################################################################
+
 import csv
 import sys
 from optparse import OptionParser

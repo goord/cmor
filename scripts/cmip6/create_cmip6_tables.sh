@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# Script running the MakeCmorTables.py script for all cmip6 input json files.
+
 set -v
 
 # Go to top dir

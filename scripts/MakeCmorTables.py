@@ -1,5 +1,9 @@
 #!/usr/bin/python
 
+#####################################################################################################
+# Script creating a cmorization table file given an input json definition file and an input csv file.
+#####################################################################################################
+
 import csv
 import json
 import sys
