@@ -14,6 +14,8 @@ This folder contains input files for the various scripts.
 * cmip6/cmip6.ods: sub-spreadsheet for cmip6 output from the top-level Primavera sheets.
 * cmip6/cmip6.csv: csv-file version of cmip6.ods.
 * hiresmip/hiresmipadditional.ods: spreadsheet containing the additional high-res MIP cmor variables.
+* hiresmip/hiresmip.ods: spreadsheet containing all high-res MIP cmor variables.
+* hiresmip/hiresmip.csv: csv-file containing all high-res MIP cmor variables.
 
 ###Scripts
 This folder contains scripts producing output. Moreover some ec-earth scripts are included that control the
