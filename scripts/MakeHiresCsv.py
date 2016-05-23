@@ -11,8 +11,10 @@ import sys
 from optparse import OptionParser
 import os.path
 from ReadCmorCsv import cmor_var
+from ReadCmorCsv import read_cmor_csv
+from ReadCmorCsv import getstr
 
-def read_hires_csv(csvpath,cmorvars):
+def read_hires_vars(csvpath,cmorvars):
 
     result=[]
     csvf=open(csvpath)
@@ -98,12 +100,12 @@ def main(args):
 
     cmorvars=read_cmor_csv(csvfile)
 
-    addscvfile=opt.addcsv
+    addcsvfile=opt.addcsv
     if(addcsvfile and not os.path.isfile(addcsvfile)):
         print "Warning: input ",addcsvfile," is not a valid csv-file"
 
-    if(addscvfile):
-        extravars=read_hires_vars(addscvfile,cmorvars)
+    if(addcsvfile):
+        extravars=read_hires_vars(addcsvfile,cmorvars)
 
 #    fileopen=False
 #    if(opt.filename):
