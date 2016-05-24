@@ -84,12 +84,83 @@ class cmor_var:
         if(self.cell_methods):
             result[cmor_var.cell_methods_key]=self.cell_methods
         if(self.cell_measures):
-            result[cmor_var.cell_measures_key]=self.cell_measures
-        if(self.direction==1):
-            result[cmor_var.direction_key]="up"
-        if(self.direction==-1):
-            result[cmor_var.direction_key]="down"
+            result[cmor_var.cell_measures_key]=self.cell_measures        
+        result[cmor_var.direction_key]=self.direction_string()
         return result
+
+    def include_string(self):
+        if(self.included>0):
+            return "1"
+        else:
+            return "0"
+
+    def direction_string(self):
+        if(self.direction==1):
+            return "up"
+        elif(self.direction==-1):
+            return "down"
+        else:
+            return ""
+
+    def to_list(self):
+        return [self.include_string(),
+                self.table,
+                str(self.priority),
+                self.long_name,
+                self.units,
+                self.comment,
+                "None",
+                self.name,
+                self.standard_name,
+                "None",
+                self.units,
+                self.cell_methods,
+                self.valid_min,
+                self.valid_max,
+                self.ok_min,
+                self.ok_max,
+                self.direction_string(),
+                ' '.join(self.dimensions),
+                "real",
+                self.name,
+                self.realm,
+                self.frequency,
+                self.cell_measures,
+                "None",
+                "None",
+                "",
+                ""]
+
+    @staticmethod
+    def get_header():
+        return [cmor_var.include_key,
+                cmor_var.table_key,
+                cmor_var.priority_key,
+                cmor_var.long_name_key,
+                cmor_var.units_key,
+                cmor_var.comment_key,
+                "questions & notes",
+                "out_name",
+                cmor_var.standard_name_key,
+                "uncinfirmed or proposed standard name",
+                "unformatted units",
+                cmor_var.cell_methods_key,
+                cmor_var.min_key,
+                cmor_var.max_key,
+                cmor_var.ok_min_key,
+                cmor_var.ok_max_key,
+                cmor_var.direction_key,
+                cmor_var.dimensions_key,
+                cmor_var.type_key,
+                cmor_var.name_key,
+                cmor_var.realm_key,
+                cmor_var.frequency_key,
+                cmor_var.cell_measures_key,
+                "flag_values",
+                "flag_meanings",
+                "OMIP priority",
+                "OMIP override"]
+
 
     @staticmethod
     def create(dictionary):
@@ -110,7 +181,7 @@ class cmor_var:
         if(result.priority=="None"):
             result.priority=0
         result.long_name=getstr(dictionary,cmor_var.long_name_key)
-        result.table_id=getstr(dictionary,cmor_var.table_key)
+        result.table=getstr(dictionary,cmor_var.table_key)
         result.units=getstr(dictionary,cmor_var.units_key)
         result.comment=getstr(dictionary,cmor_var.comment_key)
         result.realm=getstr(dictionary,cmor_var.realm_key)
@@ -241,7 +312,7 @@ def read_cmor_csv(csvpath):
         cmv.standard_name=sname
         cmv.dimensions=dims
         cmv.realm=rlm
-        cmv.table_id=tabid
+        cmv.table=tabid
         cmv.frequency=freq
         cmv.val_type=tp
         cmv.valid_min=vmin

@@ -1,4 +1,4 @@
-"included","index","table_id","name","previous_table","frequency","comment","shape","levels","time method","mask","priority","override","level_set","notes"
+"included","index","table_id","name","previous_table","frequency","comment","shape","levels","time_method","mask","priority","override","level_set","notes"
 0,30,"1hrLev","pr","3hr","1hr","Total precipitation flux","XYT",,"Mean",,1,,,
 0,31,"1hrLev","prc","3hr","1hr","Convective precipitation flux","XYT",,"Mean",,1,,,
 0,87,"6hrPlev_intense","huss","3hr","6hr",,"XYT",,"Synoptic",,3,,,
