@@ -54,9 +54,11 @@ class var_list:
 
     def append(self,cmv):
         if(set(self.layer_keys) & set(cmv.dimensions)):
-            self.vars3d.append(cmv.name)
+            if(cmv.name not in self.vars3d):
+                self.vars3d.append(cmv.name)
         else:
-            self.vars2d.append(cmv.name)
+            if(cmv.name not in self.vars2d):
+                self.vars2d.append(cmv.name)
 
     def write(self,file):
         print>>file,"&varlist"

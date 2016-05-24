@@ -1,0 +1,23 @@
+&varlist
+   freq=monClim
+   vars3d=zfull,zhalf
+/
+&varlist
+   freq=mon
+   vars2d=tas,ts,tasmin,tasmax,psl,ps,uas,vas,sfcWind,hurs,huss,pr,prsn,prc,evspsbl,sbl,tauu,tauv,hfls,hfss,rlds,rlus,rsds,rsus,rsdt,rsut,rlut,rlutcs,rsutcs,prw,clt,clwvi,clivi,masso,pbo,volo,zos,thetaoga,soga,vsfsit,sfdsi,hfds,mrsos,mrso,mrfso,mrros,mrro,lai,snw,snd,sic,sit,ialb,tsice,transix,transiy
+   vars3d=clw,cli,ta,ua,va,hus,hur,wap,zg,thetao,so,uo,vo,wmo,wmosq,hfsithermds,zfull,zhalf,mrlsl
+/
+&varlist
+   freq=day
+   vars2d=huss,tasmin,tasmax,tas,pr,psl,sfcWind,tossq,tos,rhs,clt,tslsi,snw,prc,prsn,mrro,uas,vas,sfcWindmax,hfls,hfss,rlds,rlus,rsds,rsus,rlut,usi,vsi,sic,sit,ps,rsdt,rsut,rlutcs,rsutcs,clwvi,clivi,wap500,ta700
+   vars3d=ta,hur,hus,wap,va,ua
+/
+&varlist
+   freq=6hr
+   vars2d=ps,psl
+   vars3d=ua,va,ta
+/
+&varlist
+   freq=3hr
+   vars2d=pr,tas,hfls,hfss,rlds,rlus,rsds,rsus,uas,vas,huss,mrsos,tslsi,tos,prc,prsn,mrro,ps,clt,rsdsdiff
+/
