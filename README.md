@@ -35,5 +35,5 @@ postprocessing options.
 This folder contains the output files of the scripts. These can be used for cmorization.
 * ece2cmor.sh.tmpl: the ece2cmor script template, adjusted by hand.
 * cmip6/: cmorization tables produced by MakeCmorTables.py.  
-* cmip6/varlist.nml: output variable namelist for cmip6, produced by running MakeCmorVarList.py.
-* hiresmip/varlist.nml: output variable namelist for hiresmip, produced by running MakeCmorVarList.py.
+* cmip6/varlist.nml: output variable namelist for cmip6, produced by running the script MakeCmorVarList.py.
+* hiresmip/varlist.nml: output variable namelist for hiresmip, produced by running the script MakeCmorVarList.py.
