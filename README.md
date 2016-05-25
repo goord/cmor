@@ -14,8 +14,8 @@ This folder contains input files for the various scripts.
 * cmip6/cmip6.ods: sub-spreadsheet for cmip6 output from the top-level Primavera sheets.
 * cmip6/cmip6.csv: csv-file version of cmip6.ods.
 * hiresmip/hiresmipadditional.ods: spreadsheet containing the additional high-res MIP cmor variables.
-* hiresmip/hiresmip.ods: spreadsheet containing all high-res MIP cmor variables.
-* hiresmip/hiresmip.csv: csv-file containing all high-res MIP cmor variables.
+* hiresmip/hiresmipadditional.csv: csv-file containing the additional high-res MIP cmor variables.
+* hiresmip/hiresmip.csv: csv-file containing all high-res MIP cmor variables, produced with the MakeHiresCsv script from cmip6.csv and the additional variables.
 
 ###Scripts
 This folder contains scripts producing output. Moreover some ec-earth scripts are included that control the
@@ -27,11 +27,13 @@ postprocessing options.
   input csv file.
 * MakeCmorTables.py: script creating a cmor-table from an input cmor json-file and an input csv file.
 * MakeCmorVarList.py: script creating a ece2cmor variable namelist given an input csv file.
+* MakeHiresCsv.py: script creating a csv-file containing all hiresMIP variables from cmip6.csv and the additional variables csv.
 * ece_namelists/: the resulting ec-earth output control scripts for IFS and NEMO.
 * cmip6/create_cmip6_tables.sh: creates the cmip6 cmorization tables. 
 
 ###Output
 This folder contains the output files of the scripts. These can be used for cmorization.
 * ece2cmor.sh.tmpl: the ece2cmor script template, adjusted by hand.
-* varlist.nml: output variable namelist, produced by running MakeCmorVarList.py.
 * cmip6/: cmorization tables produced by MakeCmorTables.py.  
+* cmip6/varlist.nml: output variable namelist for cmip6, produced by running MakeCmorVarList.py.
+* hiresmip/varlist.nml: output variable namelist for hiresmip, produced by running MakeCmorVarList.py.
