@@ -168,9 +168,6 @@ class cmor_var:
         if(not name):
             print "ERROR: Could not find/parse variable name for dictionary",dictionary
             return None
-#        if(not standardname):
-#            print "ERROR: Could not find standard name for variable",name
-#            return None
         result=cmor_var(name)
         standardname=getstr(dictionary,cmor_var.standard_name_key)
         result.standard_name=standardname
@@ -234,12 +231,11 @@ def getstr(d,key):
         return None
     return v
 
-def read_cmor_csv(csvpath):
-
+def read_cmor_csv(csvpath,csvFormat=0):
     result=[]
-
     csvf=open(csvpath)
     reader=csv.DictReader(csvf)
+    fname=os.path.splitext(os.path.basename(csvpath))[0]
     print "Parsing csv file..."
     i=0
     for row in reader:
@@ -257,8 +253,11 @@ def read_cmor_csv(csvpath):
             incbool=False
         elif(incstr=="1" or incstr=="yes"):
             incbool=True
-        else:
+        elif(csvFormat==0):
             print "WARNING: Row",i,"has no valid include value",incstr,", proceeding without..."
+        if(csvFormat==1):
+            ecearthstr=getstr(row,"ECEarth")
+            incbool=(ecearthstr!="False")
         lname=getstr(row,cmor_var.long_name_key)
         units=getstr(row,cmor_var.units_key)
         if(not units):
@@ -276,8 +275,10 @@ def read_cmor_csv(csvpath):
         if(not rlm):
             print "WARNING: Row",i,"has no modeling realm"
         tabid=getstr(row,cmor_var.table_key)
-        if(not tabid):
+        if(csvFormat==0 and not tabid):
             print "WARNING: Row",i,"has no table id"
+        if(csvFormat==1):
+            tabid=fname
         freq=getstr(row,cmor_var.frequency_key)
         if(not freq):
             print "WARNING: Row",i,"has no valid frequency entry"
@@ -295,7 +296,7 @@ def read_cmor_csv(csvpath):
         prio=int(priostr)
 
         tp=getstr(row,cmor_var.type_key)
-        if(not tp):
+        if(csvFormat==0 and not tp):
             print "WARNING: Row",i,"has no valid type entry"
         vmin=getstr(row,cmor_var.min_key)
         vmax=getstr(row,cmor_var.max_key)
