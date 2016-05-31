@@ -84,7 +84,7 @@ class cmor_var:
         if(self.cell_methods):
             result[cmor_var.cell_methods_key]=self.cell_methods
         if(self.cell_measures):
-            result[cmor_var.cell_measures_key]=self.cell_measures        
+            result[cmor_var.cell_measures_key]=self.cell_measures_key
         result[cmor_var.direction_key]=self.direction_string()
         return result
 
@@ -257,7 +257,11 @@ def read_cmor_csv(csvpath,csvFormat=0):
             print "WARNING: Row",i,"has no valid include value",incstr,", proceeding without..."
         if(csvFormat==1):
             ecearthstr=getstr(row,"ECEarth")
-            incbool=(ecearthstr!="False")
+            if(not ecearthstr):
+                print "WARNING: variable",oname,"in file",fname,"has no valid include flag, proceeding without..."
+                #incbool=True
+            else:
+                incbool=(ecearthstr!="False")
         lname=getstr(row,cmor_var.long_name_key)
         units=getstr(row,cmor_var.units_key)
         if(not units):
@@ -278,7 +282,13 @@ def read_cmor_csv(csvpath,csvFormat=0):
         if(csvFormat==0 and not tabid):
             print "WARNING: Row",i,"has no table id"
         if(csvFormat==1):
-            tabid=fname
+            prov=getstr(row,"prov")
+            if(prov):
+                tabid=prov[prov.find('[')+1:prov.find(']')]
+                if(not tabid):
+                    tabid=fname
+            else:
+                tabid=fname
         freq=getstr(row,cmor_var.frequency_key)
         if(not freq):
             print "WARNING: Row",i,"has no valid frequency entry"
