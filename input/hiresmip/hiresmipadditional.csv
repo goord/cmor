@@ -98,7 +98,7 @@
 0,95,"6hrPlev_intense","mrlsl","Lmon","6hr",,"XYT",,"Synoptic",,3,,,
 0,1,"Amon_ext","uqint","new","mon","Eastward integrated moisture transport","XYT",,"Mean",,1,,,
 0,2,"Amon_ext","vqint","new","mon","Northward integrated moisture transport","XYT",,"Mean",,1,,,
-0,15,"6hrPlev_extr","vortmean","new","6hr","Mean vorticity over 850,700,600 hPa","XYZT",3,"Synoptic",,1,,,
+1,15,"6hrPlev_extr","vortmean","new","6hr","Mean vorticity over 850,700,600 hPa","XYZT",3,"Synoptic",,1,,,
 0,20,"6hrPlev_extr_dr","wbptemp","new","6hr","wet bulb potential temperature on plev7h?","XYZT",7,"Mean",,1,,"plev7h",
 0,24,"3hr_extr","prcsh","new","3hr","Shallow convection precipitation flux","XYT",,"Mean",,1,,,
 0,38,"Amon_conv","column_mass_flux","new","mon","Column integrated mass flux","XYT","all model levels","mean",,2,,,
