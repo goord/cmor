@@ -24,7 +24,6 @@ def read_hires_vars(csvpath,cmorvars):
     i=0
     for row in reader:
         i=i+1
-        
         name=getstr(row,cmor_var.name_key)
         if(not name):
             print "ERROR: Could not find/parse variable name for csv row",i
@@ -37,15 +36,13 @@ def read_hires_vars(csvpath,cmorvars):
             incbool=False
         elif(incstr=="1" or incstr=="yes"):
             incbool=True
-        
         cmvs=[v for v in cmorvars if v.name==name]
         if(not cmvs):
             if(incbool):
                 print "ERROR: Could not find cmip6 variable",name,"for high-res MIP variable"
             else:
-                print "WARNING: Could not find cmip6 variable",name,"for high-res MIP variable...skipping"                
+                print "WARNING: Could not find cmip6 variable",name,"for high-res MIP variable...skipping"
             continue
-
 
         tabname=getstr(row,cmor_var.table_key)
         if(not tabname):
@@ -118,7 +115,7 @@ def read_hires_vars(csvpath,cmorvars):
             print "Cannot apply given time method",timemethod,"for variable",cmv.name
 
         result.append(cmv)
-        
+
     print "...done, read",len(result),"variables"
     return result
 
@@ -146,7 +143,7 @@ def main(args):
         extravars=read_hires_vars(addcsvfile,cmorvars)
 
     allvars=cmorvars+extravars
-    
+
     fileopen=False
     if(opt.filename):
         outputfile=open(opt.filename,"w")
@@ -162,6 +159,6 @@ def main(args):
 
     if fileopen:
        outputfile.close()
- 
+
 if __name__=="__main__":
     main(sys.argv[1:])

@@ -236,7 +236,7 @@ def read_cmor_csv(csvpath,csvFormat=0):
     csvf=open(csvpath)
     reader=csv.DictReader(csvf)
     fname=os.path.splitext(os.path.basename(csvpath))[0]
-    print "Parsing csv file..."
+    print "Parsing csv file",csvpath,"..."
     i=0
     for row in reader:
         i=i+1
