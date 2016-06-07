@@ -259,6 +259,12 @@
   out_name   = prw
 /
 &parameter
+  param      = 138.128
+  units      = "s-1"
+  long_name  = "Vorticity"
+  out_name   = vortmean
+/
+&parameter
   param      = 139.128
   units      = "K"
   long_name  = "Soil temperature level 1"
