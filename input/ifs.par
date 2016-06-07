@@ -193,6 +193,12 @@
   out_name   = zg
 /
 &parameter
+  param      = 129.128
+  units      = "m"
+  long_name  = "Surface altitude"
+  out_name   = orog
+/
+&parameter
   param      = 130.128
   units      = "K"
   long_name  = "Temperature"
