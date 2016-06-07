@@ -35,22 +35,34 @@
   out_name   = mrsos
 /
 &parameter
+  param      = 39.128
+  units      = "m3 m-3"
+  long_name  = "Soil moisture content layer 1"
+  out_name   = mrso
+/
+&parameter
+  param      = 39.128
+  units      = "m3 m-3"
+  long_name  = "Soil moisture content layer 1"
+  out_name   = mrlsl
+/
+&parameter
   param      = 40.128
   units      = "m3 m-3"
   long_name  = "Volumetric soil water layer 2"
-  out_name   = swvl2
+  out_name   = mrlsl
 /
 &parameter
   param      = 41.128
   units      = "m3 m-3"
   long_name  = "Volumetric soil water layer 3"
-  out_name   = swvl3
+  out_name   = mrlsl
 /
 &parameter
   param      = 42.128
   units      = "m3 m-3"
   long_name  = "Volumetric soil water layer 4"
-  out_name   = swvl4
+  out_name   = mrlsl
 /
 &parameter
   param      = 44.128
