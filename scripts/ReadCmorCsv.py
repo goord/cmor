@@ -284,7 +284,12 @@ def read_cmor_csv(csvpath,csvFormat=0):
         if(csvFormat==1):
             prov=getstr(row,"prov")
             if(prov):
-                tabid=prov[prov.find('[')+1:prov.find(']')]
+                tabid=None
+                jstart=prov.find('[')
+                if(jstart>0):
+                    jend=prov.find(']')
+                    if(jend>0):
+                        tabid=prov[jstart+1:jend]
                 if(not tabid):
                     tabid=fname
             else:
