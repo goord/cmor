@@ -5,3 +5,4 @@ The input data have been subject to the following modifications:
 * clisccp (in table cfDay) has been switched off
 * phalf (in table cfDay) has been switched off
 * masscello (in table Omon) has been switched off.
+* mlotstsq (in table Omon) has been switched off.
