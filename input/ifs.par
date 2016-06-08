@@ -541,6 +541,18 @@
   out_name   = pr
 /
 &parameter
+  param      = 228.128
+  units      = "m"
+  long_name  = "Precipitation"
+  out_name   = prmax
+/
+&parameter
+  param      = 228.128
+  units      = "m"
+  long_name  = "Precipitation"
+  out_name   = prmin
+/
+&parameter
   param      = 235.128
   units      = "K"
   long_name  = "Skin temperature"
