@@ -1,0 +1,6 @@
+The input data have been subject to the following modifications:
+
+* rsdiff (in tables 3hr and aero) has been switched off, as it is not a standard output variable of IFS
+* mc (in table cfDay) has been switched off, convective mass fluxes cannot be produced by IFS
+* clisccp (in table cfDay) has been switched off
+* phalf (in table cfDay) has been switched off
