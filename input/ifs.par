@@ -77,6 +77,12 @@
   out_name   = sfcWind
 /
 &parameter
+  param      = 54.128
+  units      = "Pa"
+  long_name  = "Pressure"
+  out_name   = pfull
+/
+&parameter
   param      = 78.128
   units      = "kg m-2"
   long_name  = "Total column liquid water"
