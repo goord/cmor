@@ -57,6 +57,7 @@
         <file id="file4" name_suffix="_grid_T" description="ocean T grid variables">
           <field field_ref="sss"        name="sos"    long_name="sea_surface_salinity"/>
           <field field_ref="sst"        name="tos"    long_name="sea_surface_temperature"/>
+          <field field_ref="sst2"       name="tossq"  long_name="square_of_sea_surface_temperature"/>
           <field field_ref="ssh"        name="zos"    long_name="sea_surface_height_above_geoid"/>
           <field field_ref="toce"       name="thetao" long_name="sea_water_potential_temperature"/>
           <field field_ref="soce"       name="so"     long_name="sea_water_salinity"/>
