@@ -588,3 +588,15 @@
   long_name  = "Mass Fraction Of Cloud Ice"
   out_name   = cli
 /
+&parameter
+  param      = 248.128
+  units      = "(0 - 1)"
+  long_name  = "Cloud Area Fraction"
+  out_name   = cl
+/
+&parameter
+  param      = 248.128
+  units      = "(0 - 1)"
+  long_name  = "Cloud Cover"
+  out_name   = clcalipso
+/
