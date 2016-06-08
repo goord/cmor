@@ -4,3 +4,4 @@ The input data have been subject to the following modifications:
 * mc (in table cfDay) has been switched off, convective mass fluxes cannot be produced by IFS
 * clisccp (in table cfDay) has been switched off
 * phalf (in table cfDay) has been switched off
+* masscello (in table Omon) has been switched off.

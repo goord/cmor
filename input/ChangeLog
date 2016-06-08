@@ -1,4 +1,0 @@
-The input data have been subject to the following modifications:
-
-* rsdiff (in tables 3hr and aero) has been switched off, as it is not a
-standard output variable of IFS
