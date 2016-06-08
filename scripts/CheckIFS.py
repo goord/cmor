@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 ######################################################################################################################
-# Script for checking the completeness and consistency of a parameter table for ifs variables, given an input csv file 
+# Script for checking the completeness and consistency of a parameter table for ifs variables, given an input csv file
 # that contains the required cmorization variables.
 ######################################################################################################################
 
@@ -229,7 +229,7 @@ def convert_parms(csvPath,parPath):
     codesextra=[]
     print "*********************************************************"
     print "Parsing csv file..."
-    realms=["atmos","land","land landice","aerosol"]
+    realms=["atmos","land","land landice","aerosol","aero"]
     for row in reader:
         if(row.get(include_key,"0").strip()=="1" and row.get(realm_key,"") in realms):
             nm=row.get(out_name_key,"")
@@ -240,9 +240,10 @@ def convert_parms(csvPath,parPath):
                 ovar.unit=row.get(unit_key,"1")
                 if(ovar.grib_code in grib_codes_3D):
                     ovar.namelist=determine_namelist3D(row["dimensions"])
+                    codes3d.append(ovar.grib_code.var_id)
                 if(ovar.grib_code in grib_codes_2D_dyn):
                     ovar.namelist="MFP3DF"
-                    codes3d.append(ovar.grib_code.var_id)
+                    codes2d.append(ovar.grib_code.var_id)
                 if(ovar.grib_code in grib_codes_2D_phy):
                     ovar.namelist="MFPPHY"
                     codes2d.append(ovar.grib_code.var_id)
@@ -271,12 +272,12 @@ def convert_parms(csvPath,parPath):
 
 #TODO: Make nicer, generic
 def determine_namelist3D(dimsstring):
-    dims=dimsstring.strip().split()
+    dims=dimsstring.split()
     if("alevel" in dims or "alevhalf" in dims):
         return "MFP3DFS"
     if([d for d in dims if "plev" in d] or "p500" in dims or "p700" in dims):
         return "MFP3DFP"
-    if([d for d in dims if "height" in d]):
+    if([d for d in dims if ("height" in d or "alt" in d)]):
         return "MFP3DFH"
     return "IK WEET HET NIET, laatste dim is "+dimsstring
 
