@@ -65,6 +65,7 @@
           <field field_ref="saltc"      name="saltc"  long_name="Salt content vertically integrated"/>
           <field field_ref="tpt_dep"    name="zfull"  long_name="depth_below_geoid"/>
           <field field_ref="botpres"    name="pbo"    long_name="sea_water_pressure_at_sea_floor"/>
+          <field field_ref="e3t"        name="thkcello" long_name="cell_thickness"/> 
         </file>
         <file id="file5" name_suffix="_SBC" description="surface fluxes variables" enabled=".FALSE."> <!-- time step automaticaly defined based on nn_fsbc -->
           <field field_ref="empmr"    name="wfo"     long_name="water_flux_into_sea_water"/>
