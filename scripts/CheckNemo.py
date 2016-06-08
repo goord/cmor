@@ -302,7 +302,7 @@ def main(args):
     if(parfile):
         params=read_pars(parfile)
         check_par_consistency(params,cmorvars,iodefs)
-        check_par_completeness(cmorvars,params)
+        check_par_completeness(cmorvars,params,iodefs)
         check_par_redundancy(cmorvars,params)
 
 
