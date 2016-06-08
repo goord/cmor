@@ -35,6 +35,7 @@
 
       <file_group id="1d" output_freq="1d" output_level="10" enabled=".TRUE.">  <!-- 1d files -->
         <file id="file2" name_suffix="_icemod" description="ice icemod variables" enabled=".TRUE.">
+          <field field_ref="sss"         name="sos"        long_name="sea_surface_salinity"/>
           <field field_ref="icevolu"     name="sivolu"     long_name="sea_ice_volume_per_unit_gridcell_area"/>
           <field field_ref="uice_ipa"    name="sivelu"     long_name="sea_ice_velocity_u"/>
           <field field_ref="vice_ipa"    name="sivelv"     long_name="sea_ice_velocity_v"/>
