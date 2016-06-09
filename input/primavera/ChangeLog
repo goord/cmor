@@ -11,3 +11,4 @@ The input data have been subject to the following modifications:
 * sea_water_transport_across_line (in table Omon) has been switched off,
 * msftyrhoz (in table Omon) has been switched off.
 * somint and tomint (in table Omon) have been switched off.
+* wfo (in table Omon) has been switched on.
