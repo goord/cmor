@@ -9,3 +9,4 @@ The input data have been subject to the following modifications:
 * ocean_y_overturning_mass_streamfunction (in table Omon) has been switched off,
 * northward_ocean_heat_transport (in table Omon) has been switched off,
 * sea_water_transport_across_line (in table Omon) has been switched off,
+* msftyrhoz (in table Omon) has been switched off.
