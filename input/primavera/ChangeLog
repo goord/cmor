@@ -6,4 +6,5 @@ The input data have been subject to the following modifications:
 * phalf (in table cfDay) has been switched off,
 * masscello (in table Omon) has been switched off,
 * mlotstsq (in table Omon) has been switched off,
-* all overturning_mass_streamfunction variables have been switched off,
+* ocean_y_overturning_mass_streamfunction (in table Omon) has been switched off,
+* northward_ocean_heat_transport (in table Omon) has been switched off.
