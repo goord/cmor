@@ -33,6 +33,7 @@ class nemo_var:
         self.name=name
         self.field=None
         self.frequency=None
+        self.enabled=True
 
     def printout(self):
         print "----------------------------------------------------------------------------------------------------"
@@ -43,6 +44,7 @@ class nemo_var:
         print "Long name:     ",self.field.long_name
         print "Units:         ",self.field.unit
         print "Frequency:     ",self.frequency
+        print "Enabled:       ",self.enabled
         print "----------------------------------------------------------------------------------------------------"
 
 class nemo_par:
@@ -120,6 +122,8 @@ def read_io_defs(xmlpath,field_defs):
                 fgroup_attr=fgroup.attrib
                 freq=fgroup_attr.get("output_freq")
                 for f in fgroup.findall(file_key):
+                    enabledstr=f.attrib.get("enabled",".TRUE.")
+                    enabled=(enabledstr==".TRUE.")
                     for var in f.findall(field_key):
                         var_attr=var.attrib
                         fref=var_attr.get(field_ref_key,None)
@@ -133,6 +137,7 @@ def read_io_defs(xmlpath,field_defs):
                         nemovar=nemo_var(varname)
                         nemovar.field=fref
                         nemovar.frequency=freq
+                        nemovar.enabled=enabled
                         result.append(nemovar)
     print "done, found",len(result),"entries"
     print "matching references to field definitions..."
@@ -189,7 +194,7 @@ def check_io_completeness(cmorvars,iodefs):
     for cmv in cmorvars:
         if(not cmv.included): continue
         if(cmv.realm not in oceanRealms): continue
-        iovars=[o for o in iodefs if o.field.standard_name==cmv.standard_name]
+        iovars=[o for o in iodefs if (o.enabled and o.field.standard_name==cmv.standard_name)]
         if(not iovars):
             print "Could not find variable in NEMO output:"
             cmv.printout()
@@ -208,6 +213,8 @@ def check_io_redundancy(cmorvars,iodefs):
     freqmapping={"day":"1d","mon":"1m","monClim":"1m","1hr":"1h","3hr":"3h","6hr":"6h"}
 
     for iovar in iodefs:
+        if(not iovar.enabled):
+            continue
         cmvs=[cmv for cmv in cmorvars if cmv.standard_name==iovar.field.standard_name]
         redundant=False
         if(not cmvs):
@@ -228,7 +235,7 @@ def check_par_consistency(pars,cmorvars,iovars):
         cmvnames=map(lambda c:c.standard_name,cmvs)
         if(len(set(cmvnames))>1):
             print "ERROR: multiple cmor-variables found with out-name",p.out_name
-        iovs=[v for v in iovars if v.name==p.name]
+        iovs=[v for v in iovars if (v.enabled and v.name==p.name)]
         for iov in iovs:
             if(iov.field.standard_name not in cmvnames):
                 print "ERROR: parameter ",p.name,"refers to the incorrect cmorization variable"
@@ -236,7 +243,7 @@ def check_par_consistency(pars,cmorvars,iovars):
     print "done"
 
 
-def check_par_completeness(cmorvars,pars,iovars):
+def check_par_completeness(cmorvars,pars):
 
     print "checking whether the NEMO parameter table is complete..."
 
@@ -302,7 +309,7 @@ def main(args):
     if(parfile):
         params=read_pars(parfile)
         check_par_consistency(params,cmorvars,iodefs)
-        check_par_completeness(cmorvars,params,iodefs)
+        check_par_completeness(cmorvars,params)
         check_par_redundancy(cmorvars,params)
 
 
