@@ -215,7 +215,7 @@
          <field id="snow_ai_cea"  long_name="Snow over sea-ice (cell average)"          standard_name="snowfall_flux"                             unit="kg/m2/s"  />
          <field id="subl_ai_cea"  long_name="Sublimation over sea-ice (cell average)"   standard_name="surface_snow_and_ice_sublimation_flux"     unit="kg/m2/s"  />
          <field id="icealb_cea"   long_name="Ice albedo (cell average)"                 standard_name="sea_ice_albedo"                            unit="1"        />
-         <field id="calving_cea"  long_name="Calving"                                   standard_name="water_flux_into_sea_water_from_icebergs"   unit="kg/m2/s"  />
+         <field id="calving_cea"  long_name="Water flux into sea water from icebergs"   standard_name="water_flux_into_sea_water_from_icebergs"   unit="kg/m2/s"  />
 
          <!-- available if key_oasis3 + conservative method -->
          <field id="rain"          long_name="Liquid precipitation"                                     standard_name="rainfall_flux"                                                                 unit="kg/m2/s"  />
