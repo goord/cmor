@@ -265,7 +265,7 @@
          <field id="emp_x_sss"    long_name="Concentration/Dilution term on SSS"                                                                                              unit="kg*1e-3/m2/s" />
 
          <field id="iceconc"      long_name="ice concentration"                                            standard_name="sea_ice_area_fraction"                              unit="%"            />
-       	 <field id="isst"         long_name="sea surface temperature"                                      standard_name="sea_surface_temperature"                            unit="degC"         />
+         <field id="isst"         long_name="sea surface temperature"                                      standard_name="sea_surface_temperature"                            unit="degC"         />
          <field id="isss"         long_name="sea surface salinity"                                         standard_name="sea_surface_salinity"                               unit="1e-3"         />
          <field id="qt_oce"       long_name="total flux at ocean surface"                                  standard_name="surface_downward_heat_flux_in_sea_water"            unit="W/m2"         />
          <field id="qsr_oce"      long_name="solar heat flux at ocean surface"                             standard_name="net_downward_shortwave_flux_at_sea_water_surface"   unit="W/m2"         />
@@ -356,7 +356,7 @@
          <!-- diags -->
          <field id="hfxdhc"       long_name="Heat content variation in snow and ice"                       unit="W/m2" />
          <field id="hfxtur"       long_name="turbulent heat flux at the ice base"                          unit="W/m2" />
-	 <!-- sbcssm variables -->
+         <!-- sbcssm variables -->
          <field id="sst_m"    unit="degC" />
          <field id="sss_m"    unit="psu"  />
          <field id="ssu_m"    unit="m/s"  />
@@ -475,7 +475,6 @@
       </field_group>
 
       <!-- scalar variables available with key_diaar5 -->
-
       <field_group id="scalar"  domain_ref="1point" >
          <field id="voltot"     long_name="global total volume"                          standard_name="sea_water_volume"                               unit="m3"   />
          <field id="sshtot"     long_name="global mean ssh"                              standard_name="global_average_sea_level_change"                unit="m"    />
@@ -486,21 +485,22 @@
          <field id="saltot"     long_name="global mean salinity"                         standard_name="sea_water_salinity"              unit="1e-3" />
          <field id="fram_trans" long_name="Sea Ice Mass Transport Through Fram Strait"   standard_name="sea_ice_transport_across_line"                  unit="kg/s" />
 
-      	 <!-- available with ln_diahsb -->
-    	 <field id="bgtemper"     long_name="drift in global mean temperature wrt timestep 1"                 standard_name="change_over_time_in_sea_water_potential_temperature"   unit="degC"     />
-    	 <field id="bgsaline"     long_name="drift in global mean salinity wrt timestep 1"                    standard_name="change_over_time_in_sea_water_salinity"                unit="1e-3"     />
-    	 <field id="bgheatco"     long_name="drift in global mean heat content wrt timestep 1"                                                                                      unit="10^9J"    />
-    	 <field id="bgsaltco"     long_name="drift in global mean salt content wrt timestep 1"                                                                                      unit="1e-3*m3"  />
-    	 <field id="bgvolssh"     long_name="drift in global mean ssh volume wrt timestep 1"                                                                                        unit="km3"      />
+         <!-- available with ln_diahsb -->
+         <field id="bgtemper"     long_name="drift in global mean temperature wrt timestep 1"                 standard_name="change_over_time_in_sea_water_potential_temperature"   unit="degC"     />
+         <field id="bgsaline"     long_name="drift in global mean salinity wrt timestep 1"                    standard_name="change_over_time_in_sea_water_salinity"                unit="1e-3"     />
+         <field id="bgheatco"     long_name="drift in global mean heat content wrt timestep 1"                                                                                      unit="10^9J"    />
+         <field id="bgsaltco"     long_name="drift in global mean salt content wrt timestep 1"                                                                                      unit="1e-3*m3"  />
+         <field id="bgvolssh"     long_name="drift in global mean ssh volume wrt timestep 1"                                                                                        unit="km3"      />
          <field id="bgvole3t"     long_name="drift in global mean volume variation (e3t) wrt timestep 1"                                                                            unit="km3"      />
-    	 <field id="bgvoltot"     long_name="drift in global mean volume wrt timestep 1"                                                                                            unit="km3"      />
+         <field id="bgvoltot"     long_name="drift in global mean volume wrt timestep 1"                                                                                            unit="km3"      />
+
          <!-- NOTE: No matching iom_put call -->
-    	 <field id="bgsshtot"     long_name="drift in global mean ssh wrt timestep 1"                         standard_name="global_average_sea_level_change"                       unit="m"        />
-    	 <field id="bgfrcvol"     long_name="drift in global mean volume from forcing wrt timestep 1"                                                                               unit="km3"      />
-    	 <field id="bgfrctem"     long_name="drift in global mean heat content from forcing wrt timestep 1"                                                                         unit="10^9J"    />
-    	 <field id="bgfrcsal"     long_name="drift in global mean salt content from forcing wrt timestep 1"                                                                         unit="1e-3*km3" />
-    	 <field id="bgmistem"     long_name="global mean temperature error due to free surface"                                                                                     unit="degC"     />
-    	 <field id="bgmissal"     long_name="global mean salinity error due to free surface"                                                                                        unit="1e-3"     />
+         <field id="bgsshtot"     long_name="drift in global mean ssh wrt timestep 1"                         standard_name="global_average_sea_level_change"                       unit="m"        />
+         <field id="bgfrcvol"     long_name="drift in global mean volume from forcing wrt timestep 1"                                                                               unit="km3"      />
+         <field id="bgfrctem"     long_name="drift in global mean heat content from forcing wrt timestep 1"                                                                         unit="10^9J"    />
+         <field id="bgfrcsal"     long_name="drift in global mean salt content from forcing wrt timestep 1"                                                                         unit="1e-3*km3" />
+         <field id="bgmistem"     long_name="global mean temperature error due to free surface"                                                                                     unit="degC"     />
+         <field id="bgmissal"     long_name="global mean salinity error due to free surface"                                                                                        unit="1e-3"     />
       </field_group>
 
       <!-- LIM3 scalar variables -->
@@ -560,7 +560,6 @@
       </field_group>
 
       <!-- variables available with key_float -->
-
       <field_group id="floatvar" domain_ref="1point" axis_ref="nfloat" operation="instant" >
         <field id="traj_lon"      long_name="floats longitude"                                                           unit="degrees_east"  />
         <field id="traj_lat"      long_name="floats latitude"                                                            unit="degrees_north" />
@@ -572,7 +571,6 @@
       </field_group>
 
       <!-- variables available with iceberg trajectories -->
-
       <field_group id="icbvar" domain_ref="grid_T"  >
         <field id="berg_melt"          long_name="icb melt rate of icebergs"                       unit="kg/m2/s"                    />
         <field id="berg_buoy_melt"     long_name="icb buoyancy component of iceberg melt rate"     unit="kg/m2/s"                    />
