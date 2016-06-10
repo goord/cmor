@@ -483,7 +483,7 @@
          <field id="sshthster"  long_name="global mean ssh thermosteric"                 standard_name="global_average_thermosteric_sea_level_change"   unit="m"    />
          <field id="masstot"    long_name="global total mass"                            standard_name="sea_water_mass"                                 unit="kg"   />
          <field id="temptot"    long_name="global mean temperature"                      standard_name="sea_water_potential_temperature"                unit="degC" />
-         <field id="saltot"     long_name="global mean salinity"                         standard_name="global_average_sea_water_salinity"              unit="1e-3" />
+         <field id="saltot"     long_name="global mean salinity"                         standard_name="sea_water_salinity"              unit="1e-3" />
          <field id="fram_trans" long_name="Sea Ice Mass Transport Through Fram Strait"   standard_name="sea_ice_transport_across_line"                  unit="kg/s" />
 
       	 <!-- available with ln_diahsb -->
