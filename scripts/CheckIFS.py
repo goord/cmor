@@ -242,7 +242,7 @@ def convert_parms(csvPath,parPath):
                     ovar.namelist=determine_namelist3D(row["dimensions"])
                     codes3d.append(ovar.grib_code.var_id)
                 if(ovar.grib_code in grib_codes_2D_dyn):
-                    ovar.namelist="MFP3DF"
+                    ovar.namelist="MFP2DF"
                     codes2d.append(ovar.grib_code.var_id)
                 if(ovar.grib_code in grib_codes_2D_phy):
                     ovar.namelist="MFPPHY"
@@ -256,6 +256,12 @@ def convert_parms(csvPath,parPath):
 
     print "...done"
     print "*********************************************************"
+
+    namelists=["MFP2DF","MFP3DFP","MFP3DFS","MFP3DFH","MFPPHY","NAMDPHY"]
+
+    for nmlst in namelists:
+        codes=[v.grib_code.var_id for v in namlist if v.namelist==nmlst]
+        print nmlst,":",sorted(set(codes))
 
     set3d=sorted(set(codes3d))
     set2d=sorted(set(codes2d))
