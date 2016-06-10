@@ -474,3 +474,64 @@
    long_name = "Y-Component of Sea Ice Mass Transport"
    out_name = transiy
 /
+&parameter
+   name = zossq
+   units = "m2"
+   long_name = "Square of Sea Surface Height Above Geoid"
+   out_name = zossq
+/
+&parameter
+   name = thkcello
+   units = "m"
+   long_name = "Ocean Model Cell Thickness"
+   out_name = thkcello
+/
+&parameter
+   name = vozomatr
+   units = "kg s-1"
+   long_name = "Ocean Mass X Transport"
+   out_name = umo
+/
+&parameter
+   name = vomematr
+   units = "kg s-1"
+   long_name = "Ocean Mass Y Transport"
+   out_name = vmo
+/
+&parameter
+   name = friver
+   units = "kg m-2 s-1"
+   long_name = "Water Flux Into Sea Water From Rivers"
+   out_name = friver
+/
+&parameter
+   name = ficeberg
+   units = "kg m-2 s-1"
+   long_name = "Water Flux Into Sea Water From Icebergs"
+   out_name = ficeberg
+/
+&parameter
+   name = wfo
+   units = "kg m-2 s-1"
+   long_name = "Water Flux Into Sea Water"
+   out_name = wfo
+/
+&parameter
+   name = rsntds
+   units = "W m-2"
+   long_name = "Net Downward Shortwave Radiation at Sea Water Surface"
+   out_name = rsntds
+/
+&parameter
+   name = rsdo
+   units = "W m-2"
+   long_name = "Downwelling Shortwave Radiation in Sea Water"
+   out_name = rsdo
+/
+&parameter
+   name = wo
+   units = "m s-1"
+   long_name = "W"
+   out_name = wo
+/
+
