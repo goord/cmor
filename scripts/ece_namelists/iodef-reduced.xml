@@ -81,7 +81,7 @@
           <field field_ref="qsr3d"      name="rsdo"      long_name="downwelling_shortwave_flux_in_sea_water"/>
         </file>
         <file id="file7" name_suffix="_SBC" description="surface fluxes variables" enabled=".TRUE."> <!-- time step automaticaly defined based on nn_fsbc -->
-          <field field_ref="qsr_oce"  name="qsr_oce" long_name="downward shortwave flux at ocean surface"/>
+          <field field_ref="qsr_oce"  name="rsntds"  long_name="net_downward_shortwave_flux_at_sea_water_surface"/>
           <field field_ref="qns_oce"  name="qns_oce" long_name="downward non solar flux at ocean surface"/>
           <field field_ref="qt_oce"   name="qt_oce"  long_name="downward total flux at ocean surface"/>
           <field field_ref="qsr_ice"  name="qsr_ice" long_name="downward shortwave flux at ice surface"/>

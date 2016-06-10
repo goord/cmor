@@ -12,3 +12,4 @@ The input data have been subject to the following modifications:
 * msftyrhoz (in table Omon) has been switched off.
 * somint and tomint (in table Omon) have been switched off.
 * wfo (in table Omon) has been switched on.
+* rsntds (in table Omon) has been switched on.
