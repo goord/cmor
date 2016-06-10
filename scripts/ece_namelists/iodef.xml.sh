@@ -26,6 +26,7 @@ cat << EOF
 =                                         put the variables you want...                                    =
 ============================================================================================================
     -->
+
     <file_definition type="multiple_file" name="@expname@_@freq@_@startdate@_@enddate@" sync_freq="10d" min_digits="4">
 
       <file_group id="1h" output_freq="1h" output_level="10" enabled=".TRUE."/> <!-- 1h files -->
@@ -55,26 +56,40 @@ cat << EOF
           <field field_ref="iceconc"     name="siconc"     long_name="sea_ice_area_fraction"/>
           <field field_ref="icethic_cea" name="sithic"     long_name="sea_ice_thickness"/>
         </file>
-        <file id="file3" name_suffix="_grid_T" description="ocean T grid variables">
-          <field field_ref="sst"        name="tos"    long_name="sea_surface_temperature"/>
-          <field field_ref="sst2"       name="tossq"  long_name="square_of_sea_surface_temperature"/>
+        <file id="file3" name_suffix="_grid_T" description="ocean T grid variables" enabled=".TRUE.">
+          <field field_ref="sss"        name="sos"        long_name="sea_surface_salinity"/>
+          <field field_ref="sst"        name="tos"        long_name="sea_surface_temperature"/>
+          <field field_ref="sst2"       name="tossq"      long_name="square_of_sea_surface_temperature"/>
+          <field field_ref="mldr10_1"   name="mlotst"     long_name="ocean_mixed_layer_thickness_defined_by_sigma_t"/>
+        </file>
+        <file id="file4" name_suffix="_grid_U" description="ocean U grid variables" enabled=".TRUE.">
+          <field field_ref="utau"       name="tauuo"      long_name="surface_downward_x_stress"/> <!-- available with key_diaar5 -->
+        </file>
+        <file id="file5" name_suffix="_grid_V" description="ocean V grid variables" enabled=".TRUE.">
+          <field field_ref="vtau"       name="tauvo"      long_name="surface_downward_y_stress"/> <!-- available with key_diaar5 -->
         </file>
       </file_group>
 
       <file_group id="1m" output_freq="1m" output_level="10" enabled=".TRUE."> <!-- 1m files -->
-        <file id="file4" name_suffix="_grid_T" description="ocean T grid variables">
-          <field field_ref="sss"        name="sos"    long_name="sea_surface_salinity"/>
-          <field field_ref="ssh"        name="zos"    long_name="sea_surface_height_above_geoid"/>
-          <field field_ref="toce"       name="thetao" long_name="sea_water_potential_temperature"/>
-          <field field_ref="soce"       name="so"     long_name="sea_water_salinity"/>
-          <field field_ref="ssh2"       name="zossq"  long_name="square_of_sea_surface_height_above_geoid"/>
-          <field field_ref="mldr10_1"   name="mlotst" long_name="ocean_mixed_layer_thickness_defined_by_sigma_t"/>
-          <field field_ref="heatc"      name="heatc"  long_name="Heat content vertically integrated"/>
-          <field field_ref="saltc"      name="saltc"  long_name="Salt content vertically integrated"/>
-          <field field_ref="tpt_dep"    name="zfull"  long_name="depth_below_geoid"/>
-          <field field_ref="botpres"    name="pbo"    long_name="sea_water_pressure_at_sea_floor"/>
+        <file id="file6" name_suffix="_grid_T" description="ocean T grid variables">
+          <field field_ref="sss"        name="sos"       long_name="sea_surface_salinity"/>
+          <field field_ref="sst"        name="tos"       long_name="sea_surface_temperature"/>
+          <field field_ref="sst2"       name="tossq"     long_name="square_of_sea_surface_temperature"/>
+          <field field_ref="ssh"        name="zos"       long_name="sea_surface_height_above_geoid"/>
+          <field field_ref="toce"       name="thetao"    long_name="sea_water_potential_temperature"/>
+          <field field_ref="soce"       name="so"        long_name="sea_water_salinity"/>
+          <field field_ref="ssh2"       name="zossq"     long_name="square_of_sea_surface_height_above_geoid"/>
+          <field field_ref="mldr10_1"   name="mlotst"    long_name="ocean_mixed_layer_thickness_defined_by_sigma_t"/>
+          <field field_ref="heatc"      name="heatc"     long_name="Heat content vertically integrated"/>
+          <field field_ref="saltc"      name="saltc"     long_name="Salt content vertically integrated"/>
+          <field field_ref="tpt_dep"    name="zfull"     long_name="depth_below_geoid"/>
+          <field field_ref="botpres"    name="pbo"       long_name="sea_water_pressure_at_sea_floor"/>
+          <field field_ref="e3t"        name="thkcello"  long_name="cell_thickness"/>
+          <field field_ref="runoffs"    name="friver"    long_name="water_flux_into_sea_water_from_rivers"/>
+          <field field_ref="calving_cea" name="ficeberg" long_name="water_flux_into_sea_water_from_icebergs"/>
+          <field field_ref="qsr3d"      name="rsdo"      long_name="downwelling_shortwave_flux_in_sea_water"/>
         </file>
-        <file id="file5" name_suffix="_SBC" description="surface fluxes variables" enabled=".FALSE."> <!-- time step automaticaly defined based on nn_fsbc -->
+        <file id="file7" name_suffix="_SBC" description="surface fluxes variables" enabled=".TRUE."> <!-- time step automaticaly defined based on nn_fsbc -->
           <field field_ref="empmr"    name="wfo"     long_name="water_flux_into_sea_water"/>
           <field field_ref="qsr_oce"  name="qsr_oce" long_name="downward shortwave flux at ocean surface"/>
           <field field_ref="qns_oce"  name="qns_oce" long_name="downward non solar flux at ocean surface"/>
@@ -94,29 +109,29 @@ cat << EOF
           <field field_ref="fsal_real_cea" name="sfdsi"  long_name="downward_sea_ice_basal_salt_flux"/>
           <field field_ref="hflx_ice_cea"  name="hfsithermds" long_name="heat_flux_into_sea_water_due_to_sea_ice_thermodynamics"/>
         </file>
-        <file id="file6" name_suffix="_grid_U" description="ocean U grid variables" enabled=".FALSE.">
+        <file id="file8" name_suffix="_grid_U" description="ocean U grid variables" enabled=".TRUE.">
           <field field_ref="ssu"      name="uos"     long_name="sea_surface_x_velocity"/>
           <field field_ref="uoce"     name="uo"      long_name="sea_water_x_velocity"/>
           <field field_ref="utau"     name="tauuo"   long_name="surface_downward_x_stress"/> <!-- available with key_diaar5 -->
-          <field field_ref="u_masstr" name="vozomatr"/>
+          <field field_ref="u_masstr" name="vozomatr" long_name="ocean_mass_x_transport"/>
           <field field_ref="u_heattr" name="sozohetr"/>
           <field field_ref="u_salttr" name="sozosatr"/>
         </file>
-        <file id="file7" name_suffix="_grid_V" description="ocean V grid variables" enabled=".FALSE.">
+        <file id="file9" name_suffix="_grid_V" description="ocean V grid variables" enabled=".TRUE.">
           <field field_ref="ssv"      name="vos"     long_name="sea_surface_y_velocity"/>
           <field field_ref="voce"     name="vo"      long_name="sea_water_y_velocity"/>
           <field field_ref="vtau"     name="tauvo"   long_name="surface_downward_y_stress"/> <!-- available with key_diaar5 -->
-          <field field_ref="v_masstr" name="vomematr"/>
+          <field field_ref="v_masstr" name="vomematr" long_name="ocean_mass_y_transport"/>
           <field field_ref="v_heattr" name="somehetr"/>
           <field field_ref="v_salttr" name="somesatr"/>
         </file>
-        <file id="file8" name_suffix="_grid_W" description="ocean W grid variables" enabled=".FALSE.">
+        <file id="file10" name_suffix="_grid_W" description="ocean W grid variables" enabled=".TRUE.">
           <field field_ref="woce"      name="wo"        long_name="ocean vertical velocity"/>
           <field field_ref="avt"       name="difvho"    long_name="ocean_vertical_heat_diffusivity"/>
           <field field_ref="w_masstr"  name="vovematr"  long_name="upward_ocean_mass_transport"/>
           <field field_ref="w_masstr2" name="vovematr2" long_name="square_of_upward_ocean_mass_transport"/>
         </file>
-        <file id="file9" name_suffix="_icemod" description="ice variables" enabled=".TRUE.">
+        <file id="file11" name_suffix="_icemod" description="ice variables" enabled=".FALSE.">
           <field field_ref="snowthic_cea" name="snthic" long_name="surface_snow_thickness"/>
           <field field_ref="icethic_cea"  name="sithic" long_name="sea_ice_thickness"/>
           <field field_ref="icevolu"      name="sivolu" long_name="sea_ice_volume_per_unit_gridcell_area"/>
@@ -139,7 +154,7 @@ cat << EOF
           <field field_ref="brinevol_cat" name="sibricat"/>
           <field field_ref="icealb_cea"   name="ialb"/>
         </file>
-        <file id="file10" name_suffix="_scalar" description="scalar variables" enabled=".TRUE.">
+        <file id="file12" name_suffix="_scalar" description="scalar variables" enabled=".TRUE.">
           <field field_ref="voltot"    name="scvoltot"/>
           <field field_ref="sshtot"    name="scsshtot"/>
           <field field_ref="sshsteric" name="scsshste"/>
@@ -202,7 +217,7 @@ cat << EOF
           <field field_ref="ibgfrcsfx" name="ibgfrcsfx"/>
           <field field_ref="ibgvolgrm" name="ibgvolgrm"/>
         </file>
-        <file id="file11" name_suffix="_PISC_T" description="PISCES T grid variables" enabled=".FALSE.">
+        <file id="file13" name_suffix="_PISC_T" description="PISCES T grid variables" enabled=".FALSE.">
           <field field_ref="DIC"      name="DIC"        long_name="Dissolved inorganic Concentration"/>
           <field field_ref="Alkalini" name="ALK"        long_name="Total Alkalinity Concentration"/>
           <field field_ref="O2"       name="Oxygen"     long_name="Oxygen concentration"/>
@@ -228,7 +243,7 @@ cat << EOF
           <field field_ref="NO3"      name="Nitrate"    long_name="Nitrate Concentration"/>
           <field field_ref="NH4"      name="Ammonium"   long_name="Ammonium Concentration"/>
         </file>
-        <file id="file12" name_suffix="_PISC_series" description="PISCES T grid variables" enabled=".FALSE.">
+        <file id="file14" name_suffix="_PISC_series" description="PISCES T grid variables" enabled=".FALSE.">
           <field field_ref="pno3tot"  name="PNO3TOT"  long_name="global mean nitrate concentration"/>
           <field field_ref="psiltot"  name="PSILTOT"  long_name="global mean silicate concentration"/>
           <field field_ref="palktot"  name="PALKTOT"  long_name="global mean alkalinity concentration"/>
@@ -240,7 +255,7 @@ cat << EOF
           <field field_ref="tnfix"    name="TNFIX"    long_name="global total nitrogen fixation"/>
           <field field_ref="tdenit"   name="TDENIT"   long_name="Total denitrification"/>
         </file>
-        <file id="file13" name_suffix="_diaar5" description="PISCES T grid variables" enabled=".FALSE.">
+        <file id="file15" name_suffix="_diaar5" description="PISCES T grid variables" enabled=".FALSE.">
           <field field_ref="TPP"       name="intTPP"    long_name="Total Primary production of phyto"/>
           <field field_ref="TPNEW"     name="intTPPNEW" long_name="New Primary production of phyto"/>
           <field field_ref="TPBFE"     name="intTPBFE"  long_name="Total biogenic iron production"/>
@@ -257,7 +272,7 @@ cat << EOF
           <field field_ref="INTPCAL"   name="intPBCAL"  long_name="Vertically integrated of calcite production"/>
           <field field_ref="Cflx"      name="Cflx"      long_name="DIC flux"/>
         </file>
-        <file id="file14" name_suffix="_diad_T" description="PISCES additional diagnostics on T grid" enabled=".FALSE.">
+        <file id="file16" name_suffix="_diad_T" description="PISCES additional diagnostics on T grid" enabled=".FALSE.">
           <field field_ref="REMIN"   name="remin"   long_name="Oxic remineralization of OM"/>
           <field field_ref="DENIT"   name="denit"   long_name="Anoxic remineralization of OM"/>
           <field field_ref="Nfix"    name="nfix"    long_name="Nitrogen fixation"/>
@@ -326,8 +341,8 @@ cat << EOF
         <variable id="buffer_factor_size" type="double">1.0</variable>
       </variable_group>
       <variable_group id="parameters">
-        <variable id="using_server" type="bool">$using_server</variable>
-        <variable id="using_oasis" type="bool">$using_oasis</variable>
+        <variable id="using_server" type="bool">true</variable>
+        <variable id="using_oasis" type="bool">false</variable>
         <variable id="oasis_codes_id" type="string">oceanx</variable>
         <variable id="info_level" type="int">0</variable>
         <variable id="print_file" type="bool">true</variable>
