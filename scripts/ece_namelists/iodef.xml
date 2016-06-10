@@ -103,7 +103,7 @@
           <field field_ref="ssu"      name="uos"     long_name="sea_surface_x_velocity"/>
           <field field_ref="uoce"     name="uo"      long_name="sea_water_x_velocity"/>
           <field field_ref="utau"     name="tauuo"   long_name="surface_downward_x_stress"/> <!-- available with key_diaar5 -->
-          <field field_ref="u_masstr" name="vozomatr"/>
+          <field field_ref="u_masstr" name="vozomatr" long_name="ocean_mass_x_transport"/>
           <field field_ref="u_heattr" name="sozohetr"/>
           <field field_ref="u_salttr" name="sozosatr"/>
         </file>
@@ -111,7 +111,7 @@
           <field field_ref="ssv"      name="vos"     long_name="sea_surface_y_velocity"/>
           <field field_ref="voce"     name="vo"      long_name="sea_water_y_velocity"/>
           <field field_ref="vtau"     name="tauvo"   long_name="surface_downward_y_stress"/> <!-- available with key_diaar5 -->
-          <field field_ref="v_masstr" name="vomematr"/>
+          <field field_ref="v_masstr" name="vomematr" long_name="ocean_mass_y_transport"/>
           <field field_ref="v_heattr" name="somehetr"/>
           <field field_ref="v_salttr" name="somesatr"/>
         </file>
