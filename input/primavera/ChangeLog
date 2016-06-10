@@ -13,3 +13,4 @@ The input data have been subject to the following modifications:
 * somint and tomint (in table Omon) have been switched off.
 * wfo (in table Omon) has been switched on.
 * rsntds (in table Omon) has been switched on.
+* CALIPSO cloud area fraction (%) in cfDay has been switched off.
