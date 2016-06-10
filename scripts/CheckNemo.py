@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 #######################################################################################################################
-# Script for checking the completeness and consistency of a parameter table for nemo variables, given an input csv file 
+# Script for checking the completeness and consistency of a parameter table for nemo variables, given an input csv file
 # that contains the required cmorization variables.
 #######################################################################################################################
 
@@ -222,7 +222,7 @@ def check_io_redundancy(cmorvars,iodefs):
         elif(iovar.frequency not in map(lambda c:freqmapping.get(c.frequency,None),cmvs)):
             redundant=True
         if(redundant):
-            print "Redundant output variable found:",iovar.field.name,"for frequency",iovar.frequency,"not in ",map(lambda c:freqmapping.get(c.frequency,None),cmvs)
+            print "Redundant output variable found:",iovar.field.name,"(",iovar.field.standard_name,") for frequency",iovar.frequency,"not in ",map(lambda c:freqmapping.get(c.frequency,None),cmvs)
 
     print "done"
 
