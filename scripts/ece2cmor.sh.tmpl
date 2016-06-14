@@ -1,0 +1,623 @@
+#!/bin/bash -eu
+#
+# Run spec2cmor, based on PA IC3 delivery of spec2cmor convert tool
+#
+#
+# function process_ocean, process_atmosphere, create_tar
+#
+# required modulesloading is done and tested for krypton,
+# Potentially works for Triolith (DCS) as well.
+# Local disks on compute nodes are used for temp storage.
+# This should be run on compute nodes either by using interactive or by sbatch.
+#
+# mkolax 20141023
+#
+# modified by Klaus Wyser, SMHI
+#----------------------------------------------------------------------------
+
+
+
+# cmor general setup
+#-----------------------------------------------------------------------------
+set -v
+
+# experiment name (4 letters, as it is in the IFS or NEMO filename)
+EXP_NAME=[[[MOD:GENERAL:EXP_NAME]]]
+
+# ensemble member
+# (GvdO) param: namelist.ifs.sh: NENSFNB
+MEMBER=[[[MOD:GENERAL:MEMBER]]]
+
+# experiment type
+CMORFAMILY=[[[MOD:GENERAL:CMOR_FAMILY]]]
+
+# years to be processed by this run_script
+START_date=$(date -d "[[[MOD:GENERAL:CMOR_START_DATE]]]" +"%Y%m%d")
+END_date=$(date -d "[[[MOD:GENERAL:CMOR_END_DATE]]]" +"%Y%m%d")
+
+# model specific settings
+MODEL=ecearth
+MODEL_ID=EC-EARTH3
+VERSION=v3.2b
+
+# cmor reference time
+REFTIME="$(date -d "[[[MOD:GENERAL:CMOR_REF_DATE]]]" +"%Y-%m-%d")(T00:00:00Z)"
+
+# CMOR tables directory
+TABLEROOT="[[[MOD:GENERAL:CMOR_TABLE_ROOT]]]"
+
+# variables to be processed
+VARLIST=[[[MOD:GENERAL:VARLIST]]]
+
+# IFS-specific settings
+# Do cmorization of atmospheric output
+do_atmos=[[[MOD:IFS:INCLUDE]]]
+
+# IFS output frequency (6 or 3 hours)
+IFS_output_freq=[[[MOD:IFS:OUTPUT_TIME_STEP_HR]]]
+
+# IFS frequency list
+FREQLIST_IFS="mon day 6hr"
+
+# output frequency for ( month day 6hr 3hr) output files
+# currently only implemented for atmospheric variables
+Chunk_length=( '[[[MOD:IFS:CHUNK_SIZE_MONTHLY]]] years' '[[[MOD:IFS:CHUNK_SIZE_DAILY]]] years' '[[[MOD:IFS:CHUNK_SIZE_HOURLY]]] years' '[[[MOD:IFS:CHUNK_SIZE_HOURLY]]] years' )
+
+# IFS parameter table location
+IFS_PARTAB=[[[MOD:IFS:PARTAB]]]
+
+# NEMO-specific settings
+# Do cmorization of ocean output
+do_ocean=[[[MOD:NEM:INCLUDE]]]
+
+# NEMO parameter table location
+NEMO_PARTAB=[[[MOD:NEM:PARTAB]]]
+
+# NEMO frequency list
+FREQLIST_NEMO="mon day"
+
+# compute additional variables ? TODO: what to do with this?
+do_totpr=true	# total precipitation (from LSP and CSP)
+do_sfcwspd=true	# SFC wind speed (from components)
+do_sfchum=true	# SFC relative and specific humidity
+do_sfcpres=true	# SFC pressure
+
+set +v
+
+# set environment
+#----------------
+: ${SLURM_JOB_ID:=$$}
+ece2cmor_root_dir="[[[PLT:ACTIVE:ECEARTH_SRC_DIR]]]/util/ece2cmor"
+export PATH=${ece2cmor_root_dir}/bin/:${PATH}
+log_dir="${ece2cmor_root_dir}/log"
+[ ! -d $log_dir ] && mkdir -p $log_dir
+run_date=$(date +%F_%H-%M)
+log_file=${log_dir}/ece2cmor_${run_date}_${SLURM_JOB_ID}_$$.log
+
+tmp_dir="[[[PLT:ACTIVE:ECE2CMOR_TMP_DIR]]]/ece2cmor_${run_date}_$$"
+
+set -v
+in_dir="[[[PLT:ACTIVE:ECEARTH_OUTPUT_DIR]]]"
+out_dir="[[[PLT:ACTIVE:ECE2CMOR_OUTPUT_DIR]]]"
+set +v
+mkdir -p $out_dir
+
+forc="[[[MOD:GENERAL:FORCING]]]"
+
+inst="[[[PLT:ACTIVE:INSTITUTE]]]"
+
+inst_id="[[[PLT:ACTIVE:INSTITUTE_ID]]]"
+
+email="[[[PLT:ACTIVE:CONTACT]]]"
+
+cdo="[[[PLT:ACTIVE:CDO_BINDIR]]]/cdo"
+
+gribfilter="[[[PLT:ACTIVE:GRIB_BINDIR]]]/grib_filter"
+
+# rebuild_nemo is used to collect NEMO domain output files to a global file
+# becomes superfluous when NEMO saves global files instead
+# can be set automatically within ec-earth
+rebuild_nemo=[[[PLT:ACTIVE:ECEARTH_SRC_DIR]]]/util/rebuild_nemo/rebuild_nemo
+
+# pseudo-parallel support, set to 1 if not needed
+NPROCS=${SLURM_NTASKS:-1}
+
+#============== Here starts the code ======================================
+
+function create_namelist(){
+
+   startyear=$(echo $Chunk_start_date | cut -c1-4)
+   endyear=$(echo $Chunk_end_date | cut -c1-4)
+   startmonth=$(echo $Chunk_start_date | cut -c5-6)
+   endmonth=$(echo $Chunk_end_date | cut -c5-6)
+
+
+   cat << EOF
+&NAMEXP
+ inpath='$tmp_dir/',
+ outpath='$out_dir/',
+ expname='$EXP_NAME',
+ experiment_id='$CMORFAMILY',
+ source='$MODEL_ID $VERSION with modifications (r1700)',
+ model_id='$MODEL_ID',
+ forcing='$forc',
+ parent_experiment_id='N/A',
+ parent_experiment_rip='N/A',
+ institution='$inst',
+ institute_id='$inst_id',
+ realization=$MEMBER,
+ history='',
+ comment='',
+ references='',
+ contact='$email',
+ startyear=$startyear,
+ endyear=$endyear,
+ startmonth=$startmonth,
+ endmonth=$endmonth,
+ initialization_method=1,
+ initialization_description='N/A',
+ physics_version=1,
+ physics_description='N/A',
+ associated_model='N/A',
+ forecast_reference_time='$REFTIME',
+ prefix='$EXP_NAME',
+/
+EOF
+}
+
+function populate_nemo_tmp_dir(){
+    # look for global NEMO files
+    regex_nemo='.*\(grid_.\|icemod\|diaptr\).nc$'
+    for f in $(find $(readlink -e ${in_dir}/nemo) -type f -regextype sed -regex $regex_nemo ); do
+        # test if the NEMO file overlaps with the time period
+        ff=$(basename $f .nc)
+        sdate=$(echo $ff | cut -d _ -f 3)
+        edate=$(echo $ff | cut -d _ -f 4)
+        if [[ $sdate -le $END_date  &&  $edate -ge $START_date ]]; then
+            ln -s $f ${tmp_dir}/.
+        fi
+    done
+
+    # look for local NEMO files, use only if no global file exists
+    icount=1
+    regex_nemo='.*\(grid_.\|icemod\|diaptr\)_0000.nc$'
+    for f in $(find $(readlink -e ${in_dir}/nemo) -type f -regextype sed -regex $regex_nemo ); do
+        # test if the NEMO file overlaps with the time period
+        ff=$(basename $f .nc)
+        sdate=$(echo $ff | cut -d _ -f 3)
+        edate=$(echo $ff | cut -d _ -f 4)
+        if [[ $sdate -le $END_date  &&  $edate -ge $START_date ]]; then
+           # rebuild global NEMO files if needed
+           fnameroot=${ff%_0000}
+           if [ ! -f ${tmp_dir}/${fnameroot}.nc ]; then
+              # do parallel
+              ( tmptmp=${tmp_dir}/tmp-$icount
+                mkdir -p $tmptmp
+                cd $tmptmp
+                ln -s ${f%_0000.nc}_????.nc .
+                $rebuild_nemo -t 1 $fnameroot \
+                    $(ls ${fnameroot}_????.nc | wc -w) >& /dev/null
+                mv $fnameroot.nc $tmp_dir
+                cd $tmp_dir
+                rm -r $tmptmp ) &
+              if [ $((icount%NPROCS)) -eq 0 ]; then
+                 wait
+              fi
+              icount=$((icount+1))
+           fi
+        fi
+    done
+    wait
+}
+
+
+function populate_ifs_tmp_dir(){
+    echo "DBG: populating tmp dir..."
+    dat_start=$(date -d "$START_date - 1 month" +%Y%m)
+    dat_end=$(date -d "$END_date" +%Y%m)
+    echo "DBG: starting at $dat_start, stopping at $dat_end"
+    regex_ifs='.*\(ICMGG\|ICMSH\).*[0-9]$'
+
+    echo "DBG: looking for ifs output files..."
+    echo "DBG: found $(find $(readlink -e ${in_dir}/ifs ) -type f -regextype sed -regex $regex_ifs)"
+    for f in $(find $(readlink -e ${in_dir}/ifs ) -type f -regextype sed -regex $regex_ifs );do
+        # test if the IFS file overlaps with the time period
+        ff=$(basename $f)
+        fdate=$(echo $ff | cut -d + -f 2)
+        if [[ $fdate -ge $dat_start  &&  $fdate -le $dat_end ]]; then
+           echo "DBG: creating symlink to $f in temp dir..."
+        ln -s $f ${tmp_dir}/.
+        fi
+    done
+}
+
+
+function process_ocean() {
+
+# Prepare tmp dir
+#-----------------------------------------------------------------------------
+    [ -d $tmp_dir ] && rm -rf $tmp_dir
+    mkdir -p $tmp_dir
+    cd $tmp_dir
+    populate_nemo_tmp_dir
+
+    # create monthly mean diaptr file (if it exists...)
+    for f in $(ls ${EXP_NAME}_1d_*_diaptr.nc 2> /dev/null); do
+        sdate=$(echo $f | cut -d _ -f 3)
+        edate=$(echo $f | cut -d _ -f 4)
+        syear=${sdate:0:4}; smonth=${sdate:4:2}
+        eyear=${edate:0:4}; emonth=${edate:4:2}
+        nmonths=$(((eyear-syear)*12+emonth-smonth+1))
+        date1=$(date -u -d "$sdate" +%s)
+        days2=0
+        for i in $(seq 1 $nmonths) ; do
+            # find monthly boundaries
+            date2=$(date -u -d "$sdate + $i months" +%s)
+            days1=$((days2+1))
+            days2=$(((date2-date1)/86400))
+            ncra -F -d time_counter,$days1,$days2 \
+                ${EXP_NAME}_1d_${sdate}_${edate}_diaptr.nc \
+                tmp$(printf %02d $i).nc
+        done
+        rm -f ${EXP_NAME}_1m_${sdate}_${edate}_diaptr.nc
+        ncrcat tmp* ${EXP_NAME}_1m_${sdate}_${edate}_diaptr.nc
+        rm -f tmp*
+    done
+
+# Cmorize ocean data
+#------------------------------------------------------------
+      icount=1
+      for freq in $FREQLIST_NEMO; do
+         case $freq in
+         ( mon ) interv=1 ;;
+         ( day ) interv=2 ;;
+         esac
+         not_last_chunk=true
+         Clen=${Chunk_length[interv-1]}
+         Chunk_start_date=$START_date
+         while $not_last_chunk; do
+            Chunk_end_date=$(date -d "$Chunk_start_date + $Clen - 1 day" +%Y%m%d)
+            if [ $Chunk_end_date -ge $END_date ]; then
+                Chunk_end_date=$END_date
+                not_last_chunk=false
+            fi
+
+            nml=namelist_cmoro_$icount
+            cat << EOF > $nml
+&CONTROL
+  interv=$interv
+  partab_file='$NEMO_PARTAB'
+  varlist_file='$VARLIST'
+  tableroot='$TABLEROOT'
+/
+EOF
+            create_namelist >> $nml
+            ece2cmor_oce.exe $nml &
+
+            if [ $((icount%NPROCS)) -eq 0 ]; then
+               wait
+            fi
+            Chunk_start_date=$(date -d "$Chunk_start_date + $Clen" +%Y%m%d)
+            icount=$((icount+1))
+         done
+      done
+      wait
+
+      rm -rf $tmp_dir
+}
+
+
+function process_atmosphere() {
+
+# Build atmospheric data
+#------------------------------------------------------------
+
+    cdo_reftime="${REFTIME:0:10},00:00"
+
+# available: daily grib (3h or 6h) on monthly basis
+#------------------------------------------------------------
+    NFRP=$IFS_output_freq
+
+# Build expected dates monthly data (yyyymm)
+#------------------------------------------------------------
+    echo "DBG: calculating expected atmos dates..."
+    startyear=$(echo $START_date | cut -c1-4)
+    endyear=$(echo $END_date | cut -c1-4)
+    startmonth=$(echo $START_date | cut -c5-6)
+    endmonth=$(echo $END_date | cut -c5-6)
+    list=""
+    for y in $(seq $startyear $endyear); do
+        for m in {1..12}; do
+            yyyymm=$(printf %4d%02d $y $m)
+            if [ $yyyymm -ge $startyear$startmonth ] && [ $yyyymm -le $endyear$endmonth ]; then
+                list=$list" "$yyyymm
+            fi
+        done
+    done
+    echo "DBG: expected dates monthly atmosphere:"
+    echo ${list}
+
+# Prepare tmp dir
+#-----------------------------------------------------------------------------
+    echo "DBG: creating tmp dir..."
+    [ -d $tmp_dir ] && rm -rf $tmp_dir
+    mkdir -p $tmp_dir
+    cd $tmp_dir
+    populate_ifs_tmp_dir
+
+# Create parameter list
+#-----------------------------------------------------------------------------
+    for freq in $FREQLIST_IFS; do
+        param_list=$(create_param_list.exe $IFS_PARTAB $VARLIST $freq)
+        echo "DBG: creating parameter list param_list_${freq}..."
+        eval "param_list_${freq}=\$param_list"
+        echo "DBG: ...done"
+    done
+
+# Loop over dates and build monthly means and cmorize for every month
+#---------------------------------------------------------------------
+      icount=1
+      for yyyymm in ${list}; do
+       (  # parallel processing in subdirectory
+          tmptmp=tmp-atmos-$icount
+          echo "DBG: creating directory $tmptmp"
+          mkdir -p $tmptmp
+          cd $tmptmp
+
+          yyyy=$(echo $yyyymm | cut -c1-4) # current year
+          mm=$(echo $yyyymm | cut -c5-6) # current month
+          NMDAYS=$(cal $mm $yyyy | grep -v "[a-z]" | grep -v "^$" | wc -w)
+
+    file=fcdata
+
+    echo FILTER_FILE ${file} ${yyyymm}
+          # grib_filter rules
+          # split files in 6-hourly and 3-hourly output
+          # currently, this only matters for Q in ICMGG files
+    #echo "if ( dataDate >= ${yyyymm}01 ) { write 'ICMSH'; }" > rules_files_SH
+          echo "if ( dataDate >= ${yyyymm}01 ) { if ( param is '152.128' ) { write 'ICMSH_SPECIAL' ; } else { write 'ICMSH' ; } ; }" > rules_files_SH
+          echo "if ( dataDate >= ${yyyymm}01 ) { if ( param is '133.128' ) { write 'ICMGG_SPECIAL' ; } else { write 'ICMGG' ; } ; }" > rules_files_GG
+
+          # get first timestep for each month from previous file (if possible)
+          ym1=$(date -u -d "$yyyy-$mm-01 - 1 month" +%Y%m)
+          rm -f ICM{SH,GG} ICM{SH,GG}_SPECIAL
+          for XX in SH GG; do
+              if [ -f $tmp_dir/ICM${XX}${EXP_NAME}+${ym1} ]; then
+                  $gribfilter rules_files_$XX \
+                      $tmp_dir/ICM${XX}${EXP_NAME}+${ym1} $tmp_dir/ICM${XX}${EXP_NAME}+${yyyymm}
+              else
+                  $gribfilter rules_files_$XX \
+                      $tmp_dir/ICM${XX}${EXP_NAME}+${yyyymm}
+              fi
+          done
+
+          # remap on regular Gauss grid
+          $cdo -s splitparam -sp2gpl ICMSH ${file}_
+          [ -f ICMSH_SPECIAL ] && \
+             $cdo -s splitparam -sp2gpl ICMSH_SPECIAL ${file}_
+          $cdo -s -R splitparam ICMGG ${file}_
+          [ -f ICMGG_SPECIAL ] && \
+             $cdo -s -R splitparam ICMGG_SPECIAL ${file}_
+
+          # total precipitation (remove negative values)
+          if $do_totpr && [ -f ${file}_142.128.grb ] && [ -f ${file}_143.128.grb ]; then
+              $cdo -s setcode,228 -setmisstoc,0 -setvrange,0,Inf \
+                  -add ${file}_{142,143}.128.grb \
+                  ${file}_228.128.grb
+          fi
+
+          # wind speed (10m)
+          if $do_sfcwspd && [ -f ${file}_165.128.grb ] && [ -f ${file}_166.128.grb ]; then
+              $cdo -s setcode,207 -sqrt -add \
+                  -sqr ${file}_165.128.grb  -sqr ${file}_166.128.grb \
+                  ${file}_207.128.grb
+          fi
+
+          # surface pressure
+          if ( $do_sfcpres || $do_sfchum ) && [ -f ${file}_152.128.grb ]; then
+              $cdo -s setparam,134.128 -setltype,1 -exp \
+                  -selzaxis,pressure ${file}_152.128.grb ${file}_134.128.grb
+          fi
+
+          # humidity at SFC
+          if $do_sfchum && [ -f ${file}_167.128.grb ] && [ -f ${file}_168.128.grb ] && [ -f ${file}_134.128.grb ]; then
+              # use dummy GRIB parameters for temporary files
+              $cdo -s setcode,103 -expr,"e_t=611.*exp(17.62*(var167-273.15)/(var167-30.03))" ${file}_167.128.grb e_t.grb
+              $cdo -s setcode,104 -expr,"e_t=611.*exp(17.62*(var168-273.15)/(var168-30.03))" ${file}_168.128.grb e_td.grb
+
+              # rel humidity
+              $cdo -s setparam,80.128 -mulc,100 -div e_td.grb e_t.grb ${file}_80.128.grb
+
+              # spec humidity
+              rm -f tmp_hum.grb
+              $cdo -s merge e_td.grb ${file}_134.128.grb tmp_hum.grb
+              $cdo -s setparam,81.128 -expr,"var81=var102*18.015/(var102*18.015+(var134-var102)*28.964)" tmp_hum.grb ${file}_81.128.grb
+          fi
+
+          # filter for sunlit areas (for ISCPP products from COSP)
+          if [ -f ${file}_92.128.grb ] || [ -f ${file}_93.128.grb ] || [ -f ${file}_94.128.grb ]; then
+             $cdo -s ifthenc,1 -gtc,1 -selmon,$mm ${file}_212.128.grb ${file}_sunmask.grb || exit -1
+          fi
+
+          # upward radiation variables: subtract downward fluxes from net fluxes
+          $cdo -s setparam,95.128 -sub ${file}_176.128.grb ${file}_169.128.grb ${file}_95.128.grb
+          $cdo -s setparam,96.128 -sub ${file}_177.128.grb ${file}_175.128.grb ${file}_96.128.grb
+          $cdo -s setparam,97.128 -sub ${file}_178.128.grb ${file}_212.128.grb ${file}_97.128.grb
+          $cdo -s setparam,98.128 -sub ${file}_208.128.grb ${file}_212.128.grb ${file}_98.128.grb
+
+          for freq in $FREQLIST_IFS; do
+              shifttime=""
+              case $freq in
+              ( mon ) cdo_timmean='timmean'
+                      shifttime="-shifttime,-${NFRP}hours" ;;
+              ( day ) cdo_timmean='daymean'
+                      shifttime="-shifttime,-${NFRP}hours" ;;
+              ( 6hr ) cdo_timmean='selhour,0,6,12,18';;
+              ( 3hr ) cdo_timmean='';;
+              esac
+
+              files_produced=false
+
+              eval "param_list=\$param_list_${freq}"
+              for param in $param_list; do
+                  case $param in
+                  ( 146.128 | 147.128 | 169.128 | 175.128 | 176.128 | 177.128 | 178.128 | 179.128 | 95.128 | 96.128 | 97.128 | 98.128 | 99.128 | 100.128 | 101.128 | 102.128 | 208.128 | 209.128 | 210.128 | 211.128 | 212.128)
+                      # radiation/heat: convert to J -> W s
+                      cdo_operator="-divc,$((NFRP*3600)) -selmon,$mm $shifttime" ;;
+                  ( 8.128 | 44.128 | 141.128 | 142.128 | 143.128 | 144.128 | 182.128 | 205.128 | 228.128)
+                      # snow/precipitation/evaporation/runoff: convert m to mm
+                      cdo_operator="-mulc,1000 -divc,$((NFRP*3600)) -selmon,$mm $shifttime" ;;
+                  ( 180.128 | 181.128 )
+                      # momentum flux
+                      cdo_operator="-divc,$((NFRP*3600)) -selmon,$mm $shifttime" ;;
+                  ( 201.128 )
+                      # daily maximum
+                      cdo_operator="-daymax -selmon,$mm $shifttime" ;;
+                  ( 202.128 )
+                      # daily minmimum
+                      cdo_operator="-daymin -selmon,$mm $shifttime" ;;
+                  ( 129.128 )
+                      # upper-air geopotential
+                      cdo_operator="-divc,9.81 -selmon,$mm" ;;
+                  ( 92.128 | 93.128 | 94.128 )
+                      # ISCCP (vis channels)
+                      cdo_operator="-setparam,$param -ifthen ${file}_sunmask.grb -selmon,$mm" ;;
+                  ( 130.128 | 133.128 )
+                      if [ $freq = 'day' ]; then
+                         # special for 6-hourly output
+                         cdo_operator="-sellevel,70000,85000,92500,100000 -selmon,$mm"
+                      else
+                         cdo_operator="-selmon,$mm"
+                      fi ;;
+                  ( 139.128 )
+                      # remove depth coordinate
+                      cdo_operator="-setltype,1 -selmon,$mm" ;;
+                  ( 39.128 )
+                      # convert soil moisture units of top soil layer
+                      cdo_operator="-setltype,1 -mulc,1000. -mulc,0.07 -selmon,$mm" ;;
+                  ( * )
+                      # default
+                      cdo_operator="-selmon,$mm" ;;
+                  esac
+
+                  $cdo -s $cdo_timmean $cdo_operator \
+                      ${file}_${param}.grb ${file}_${param}_${freq}.grb
+
+                  files_produced=true
+              done
+
+              # concatenate to 1 file, convert to netCDF
+              if $files_produced; then
+                  grep -v positive $IFS_PARTAB > ifs_partab_tmp
+                  rm -f ${file}_${freq}.grb
+                  $cdo -s merge ${file}_*_${freq}.grb ${file}_${freq}.grb
+                  $cdo -s -f nc setreftime,$cdo_reftime \
+                      -setpartabp,ifs_partab_tmp \
+                      ${file}_${freq}.grb \
+                      $tmp_dir/${EXP_NAME}_${freq}_${yyyymm}01-${yyyymm}${NMDAYS}.nc
+              fi
+          done # freq loop
+
+          cd $tmp_dir
+          rm -r $tmptmp ) &
+          # end of parallel processing
+          if [ $((icount%NPROCS)) -eq 0 ]; then
+             wait
+          fi
+          icount=$((icount+1))
+      done # loop over month
+      wait
+
+
+# Cmorize atmosphere data
+#------------------------------------------------------------
+      icount=1
+      for freq in $FREQLIST_IFS; do
+         case $freq in
+         ( mon ) interv=1 ;;
+         ( day ) interv=2 ;;
+         ( 6hr ) interv=3 ;;
+         ( 3hr ) interv=4 ;;
+         esac
+         not_last_chunk=true
+         Clen=${Chunk_length[interv-1]}
+         Chunk_start_date=$START_date
+         while $not_last_chunk; do
+            Chunk_end_date=$(date -d "$Chunk_start_date + $Clen - 1 day" +%Y%m%d)
+            if [ $Chunk_end_date -ge $END_date ]; then
+                Chunk_end_date=$END_date
+                not_last_chunk=false
+            fi
+
+            nml=namelist_cmora_$icount
+            cat << EOF > $nml
+&CONTROL
+  interv=$interv
+  partab_file='$IFS_PARTAB'
+  varlist_file='$VARLIST'
+  tableroot='$TABLEROOT'
+  interval=$IFS_output_freq
+/
+EOF
+            create_namelist >> $nml
+            ece2cmor_atm.exe $nml &
+
+            if [ $((icount%NPROCS)) -eq 0 ]; then
+               wait
+            fi
+            Chunk_start_date=$(date -d "$Chunk_start_date + $Clen" +%Y%m%d)
+            icount=$((icount+1))
+         done
+      done
+      wait
+
+      rm -rf $tmp_dir
+}
+
+function create_tar(){
+# create a tar of netcdf files
+#-----------------------------------------------------------
+      tarfile="$out_dir/CMOR_${EXP_NAME}_${START_date}_${MEMBER}21_${START_date}-${END_date}.tgz"
+      (cd $out_dir; tar -czf $tarfile --exclude=$tarfile *)
+}
+
+
+# MAIN
+#-----------------------------------------------------------
+if $do_atmos || $do_ocean; then
+
+
+# Set up logging:
+#-----------------------------------------------------------------------------
+   echo "ece2cmor running $run_date , logging to : "$log_file
+   exec 6>&1
+   exec > $log_file
+   exec 2>&1
+   echo "START : "$(date +%F_%H:%M)
+   echo "Temporary Run dir :"$tmp_dir
+   echo "Indata dir :"$in_dir
+
+   mkdir -p $out_dir
+
+   # ocean
+   if $do_ocean; then
+       process_ocean
+   fi
+
+   # atmosphere
+   if $do_atmos; then
+       process_atmosphere
+   fi
+
+   # create_tar
+
+   echo "END : "$(date +%F_%H:%M)
+
+   # clean up
+   rm -fr $tmp_dir
+
+   exec 1>&6 2>&6 6>&-
+else
+   echo "do_atmos and do_ocean are both false, no processing"
+   exit 0
+fi
