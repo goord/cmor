@@ -5,12 +5,11 @@ The input data have been subject to the following modifications:
 * clisccp (in table cfDay) has been switched off,
 * phalf (in table cfDay) has been switched off,
 * masscello (in table Omon) has been switched off,
-* mlotstsq (in table Omon) has been switched off,
-* ocean_y_overturning_mass_streamfunction (in table Omon) has been switched off,
-* northward_ocean_heat_transport (in table Omon) has been switched off,
+* mlotstsq (maar ook uv,uso,vso, etc.) (in table Omon) has been switched off,
+* ocean_y_overturning_mass_streamfunction msftyrho (in table Omon) has been switched off,
+* northward_ocean_heat_transport (in table Omon) has been switched off, -> posprocessing
 * sea_water_transport_across_line (in table Omon) has been switched off,
-* msftyrhoz (in table Omon) has been switched off.
 * somint and tomint (in table Omon) have been switched off.
-* wfo (in table Omon) has been switched on.
-* rsntds (in table Omon) has been switched on.
+* wfo (in table Omon) has been switched on. -> check empmr
+* rsntds (in table Omon) has been switched on -> qsr-io-cea
 * CALIPSO cloud area fraction (%) in cfDay has been switched off.

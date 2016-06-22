@@ -85,43 +85,38 @@
           <field field_ref="hflx_ice_cea"  name="hfsithermds" long_name="heat_flux_into_sea_water_due_to_sea_ice_thermodynamics"/>
         </file>
         <file id="file8" name_suffix="_grid_U" description="ocean U grid variables" enabled=".TRUE.">
-          <field field_ref="uoce"       name="uo"      long_name="sea_water_x_velocity"/>
-          <field field_ref="utau"       name="tauuo"   long_name="surface_downward_x_stress"/> <!-- available with key_diaar5 -->
+          <field field_ref="uoce"       name="uo"       long_name="sea_water_x_velocity"/>
+          <field field_ref="uoce2"      name="u2o"      long_name="square_of_sea_water_x_velocity"/>
+          <field field_ref="utau"       name="tauuo"    long_name="surface_downward_x_stress"/> <!-- available with key_diaar5 -->
           <field field_ref="u_masstr"   name="vozomatr" long_name="ocean_mass_x_transport"/>
           <field field_ref="u_heattr"   name="sozohetr"/>
+          <field field_ref="uocet"      name="uto"      long_name="product_of_xward_sea_water_velocity_and_temperature"/>
+          <field field_ref="uoces"      name="uso"      long_name="product_of_xward_sea_water_velocity_and_salinity"   />
         </file>
         <file id="file9" name_suffix="_grid_V" description="ocean V grid variables" enabled=".TRUE.">
-          <field field_ref="voce"       name="vo"      long_name="sea_water_y_velocity"/>
-          <field field_ref="vtau"       name="tauvo"   long_name="surface_downward_y_stress"/> <!-- available with key_diaar5 -->
+          <field field_ref="voce"       name="vo"       long_name="sea_water_y_velocity"/>
+          <field field_ref="voce2"      name="v2o"      long_name="square_of_sea_water_y_velocity"/>
+          <field field_ref="vtau"       name="tauvo"    long_name="surface_downward_y_stress"/> <!-- available with key_diaar5 -->
           <field field_ref="v_masstr"   name="vomematr" long_name="ocean_mass_y_transport"/>
           <field field_ref="v_heattr"   name="somehetr"/>
+          <field field_ref="vocet"      name="vto"      long_name="product_of_yward_sea_water_velocity_and_temperature"/>
+          <field field_ref="voces"      name="vso"      long_name="product_of_yward_sea_water_velocity_and_salinity"   />
         </file>
         <file id="file10" name_suffix="_grid_W" description="ocean W grid variables" enabled=".TRUE.">
-          <field field_ref="woce"       name="wo"        long_name="ocean vertical velocity"/>
+          <field field_ref="woce"       name="wo"        long_name="upward_sea_water_velocity"/>
+          <field field_ref="woce2"      name="w2o"       long_name="square_of_sea_water_upward_velocity"/>
           <field field_ref="avt"        name="difvho"    long_name="ocean_vertical_heat_diffusivity"/>
           <field field_ref="w_masstr"   name="vovematr"  long_name="upward_ocean_mass_transport"/>
         </file>
-        <file id="file11" name_suffix="_icemod" description="ice variables" enabled=".FALSE.">
+        <file id="file11" name_suffix="_icemod" description="ice variables" enabled=".TRUE.">
           <field field_ref="snowthic_cea" name="snthic" long_name="surface_snow_thickness"/>
           <field field_ref="icethic_cea"  name="sithic" long_name="sea_ice_thickness"/>
-          <field field_ref="icevolu"    name="sivolu" long_name="sea_ice_volume_per_unit_gridcell_area"/>
-          <field field_ref="snowvol"    name="snvolu" long_name="snow_volume_per_unit_gridcell_area"/>
           <field field_ref="iceconc"    name="siconc" long_name="sea_ice_area_fraction"/>
           <field field_ref="ist_ipa"    name="tsice"  long_name="surface_temperature"/>
-          <field field_ref="icest"      name="sistem"/>
-          <field field_ref="icehc"      name="siheco"/>
-          <field field_ref="isnowhc"    name="snheco"/>
           <field field_ref="uice_ipa"   name="sivelu"/>
           <field field_ref="vice_ipa"   name="sivelv"/>
           <field field_ref="u_imasstr"  name="transix" long_name="sea_ice_x_transport"/>
           <field field_ref="v_imasstr"  name="transiy" long_name="sea_ice_y_transport"/>
-          <field field_ref="icevel"     name="sivelo"/>
-          <field field_ref="idive"      name="sidive"/>
-          <field field_ref="iceconc_cat" name="siconcat"/>
-          <field field_ref="icethic_cat" name="sithicat"/>
-          <field field_ref="snowthic_cat" name="snthicat"/>
-          <field field_ref="salinity_cat" name="salincat"/>
-          <field field_ref="brinevol_cat" name="sibricat"/>
           <field field_ref="icealb_cea" name="ialb"/>
         </file>
         <file id="file12" name_suffix="_scalar" description="scalar variables" enabled=".TRUE.">

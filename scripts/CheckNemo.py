@@ -232,13 +232,18 @@ def check_par_consistency(pars,cmorvars,iovars):
 
     for p in pars:
         cmvs=[c for c in cmorvars if c.name==p.out_name]
+        if(not cmvs):
+            print "INFO: redundant parameter table entry found:",p.name
+            continue
         cmvnames=map(lambda c:c.standard_name,cmvs)
         if(len(set(cmvnames))>1):
             print "ERROR: multiple cmor-variables found with out-name",p.out_name
         iovs=[v for v in iovars if (v.enabled and v.name==p.name)]
+        if(not iovs):
+            print "ERROR: parameter",p.name,"for cmor variable",p.out_name,"not found in output definition file"
         for iov in iovs:
             if(iov.field.standard_name not in cmvnames):
-                print "ERROR: parameter ",p.name,"refers to the incorrect cmorization variable"
+                print "ERROR: parameter",p.name,"refers to the incorrect cmorization variable"
 
     print "done"
 
@@ -256,18 +261,6 @@ def check_par_completeness(cmorvars,pars):
         if(not p):
             print "Could not find variable in NEMO parameter file:"
             cmv.printout()
-
-    print "done"
-
-def check_par_redundancy(cmorvars,pars):
-
-    print "checking for redundant NEMO parameter table entries..."
-
-    for p in pars:
-        cmvs=[cmv for cmv in cmorvars if cmv.name==p.out_name]
-        if(not cmvs):
-            print "Redundant output variable found:"
-            p.printout()
 
     print "done"
 
@@ -310,7 +303,6 @@ def main(args):
         params=read_pars(parfile)
         check_par_consistency(params,cmorvars,iodefs)
         check_par_completeness(cmorvars,params)
-        check_par_redundancy(cmorvars,params)
 
 
 if __name__=="__main__":
