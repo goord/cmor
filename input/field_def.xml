@@ -89,6 +89,7 @@
 
          <!-- variables available with key_vvl -->
          <field id="tpt_dep"      long_name="T-point depth"                  standard_name="depth_below_geoid"   unit="m"   grid_ref="grid_T_3D" />
+         <field id="tif_dep"      long_name="T-interface depth"              standard_name="depth_below_geoid"   unit="m"   grid_ref="grid_T_3D" > tpt_dep + 0.5 * e3t </field >
          <field id="e3tdef"       long_name="T-cell thickness deformation"                                       unit="%"   grid_ref="grid_T_3D" />
       </field_group>
 

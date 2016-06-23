@@ -65,6 +65,7 @@
           <field field_ref="ssh2"        name="zossq"     long_name="square_of_sea_surface_height_above_geoid"/>
           <field field_ref="mldr10_1"    name="mlotst"    long_name="ocean_mixed_layer_thickness_defined_by_sigma_t"/>
           <field field_ref="tpt_dep"     name="zfull"     long_name="depth_below_geoid"/>
+          <field field_ref="tif_dep"     name="zhalf"     long_name="depth_below_geoid"/>
           <field field_ref="botpres"     name="pbo"       long_name="sea_water_pressure_at_sea_floor"/>
           <field field_ref="e3t"         name="thkcello"  long_name="cell_thickness"/>
           <field field_ref="runoffs"     name="friver"    long_name="water_flux_into_sea_water_from_rivers"/>
