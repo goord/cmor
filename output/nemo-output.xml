@@ -81,9 +81,9 @@
         </file>
         <file id="file7" name_suffix="_SBC" description="surface fluxes variables" enabled=".TRUE."> <!-- time step automaticaly defined based on nn_fsbc -->
           <field field_ref="empmr"    name="wfo"     long_name="water_flux_into_sea_water"/>
-          <field field_ref="qsr_oce"  name="qsr_oce" long_name="downward shortwave flux at ocean surface"/>
-          <field field_ref="qns_oce"  name="qns_oce" long_name="downward non solar flux at ocean surface"/>
-          <field field_ref="qt_oce"   name="qt_oce"  long_name="downward total flux at ocean surface"/>
+          <field field_ref="qsr_oce"  name="rsntds"  long_name="downward shortwave flux at ocean surface"/>
+          <field field_ref="qns_oce"  name="rlntds"  long_name="downward non solar flux at ocean surface"/>
+          <field field_ref="qt_oce"   name="qt"      long_name="downward total flux at ocean surface"/>
           <field field_ref="qsr_ice"  name="qsr_ice" long_name="downward shortwave flux at ice surface"/>
           <field field_ref="qns_ice"  name="qns_ice" long_name="downward non solar flux at ice surface"/>
           <field field_ref="qtr_ice"  name="qtr_ice" long_name="shortwave flux transmitted thru the ice"/>

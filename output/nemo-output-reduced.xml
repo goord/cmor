@@ -41,40 +41,40 @@
           <field field_ref="icethic_cea" name="sithic"     long_name="sea_ice_thickness"/>
         </file>
         <file id="file3" name_suffix="_grid_T" description="ocean T grid variables" enabled=".TRUE.">
-          <field field_ref="sss"        name="sos"        long_name="sea_surface_salinity"/>
-          <field field_ref="sst"        name="tos"        long_name="sea_surface_temperature"/>
-          <field field_ref="sst2"       name="tossq"      long_name="square_of_sea_surface_temperature"/>
-          <field field_ref="mldr10_1"   name="mlotst"     long_name="ocean_mixed_layer_thickness_defined_by_sigma_t"/>
+          <field field_ref="sss"         name="sos"        long_name="sea_surface_salinity"/>
+          <field field_ref="sst"         name="tos"        long_name="sea_surface_temperature"/>
+          <field field_ref="sst2"        name="tossq"      long_name="square_of_sea_surface_temperature"/>
+          <field field_ref="mldr10_1"    name="mlotst"     long_name="ocean_mixed_layer_thickness_defined_by_sigma_t"/>
         </file>
         <file id="file4" name_suffix="_grid_U" description="ocean U grid variables" enabled=".TRUE.">
-          <field field_ref="utau"       name="tauuo"      long_name="surface_downward_x_stress"/> <!-- available with key_diaar5 -->
+          <field field_ref="utau"        name="tauuo"      long_name="surface_downward_x_stress"/> <!-- available with key_diaar5 -->
         </file>
         <file id="file5" name_suffix="_grid_V" description="ocean V grid variables" enabled=".TRUE.">
-          <field field_ref="vtau"       name="tauvo"      long_name="surface_downward_y_stress"/> <!-- available with key_diaar5 -->
+          <field field_ref="vtau"        name="tauvo"      long_name="surface_downward_y_stress"/> <!-- available with key_diaar5 -->
         </file>
       </file_group>
 
       <file_group id="1m" output_freq="1m" output_level="10" enabled=".TRUE."> <!-- 1m files -->
         <file id="file6" name_suffix="_grid_T" description="ocean T grid variables">
-          <field field_ref="sss"        name="sos"       long_name="sea_surface_salinity"/>
-          <field field_ref="sst"        name="tos"       long_name="sea_surface_temperature"/>
-          <field field_ref="sst2"       name="tossq"     long_name="square_of_sea_surface_temperature"/>
-          <field field_ref="ssh"        name="zos"       long_name="sea_surface_height_above_geoid"/>
-          <field field_ref="toce"       name="thetao"    long_name="sea_water_potential_temperature"/>
-          <field field_ref="soce"       name="so"        long_name="sea_water_salinity"/>
-          <field field_ref="ssh2"       name="zossq"     long_name="square_of_sea_surface_height_above_geoid"/>
-          <field field_ref="mldr10_1"   name="mlotst"    long_name="ocean_mixed_layer_thickness_defined_by_sigma_t"/>
-          <field field_ref="tpt_dep"    name="zfull"     long_name="depth_below_geoid"/>
-          <field field_ref="botpres"    name="pbo"       long_name="sea_water_pressure_at_sea_floor"/>
-          <field field_ref="e3t"        name="thkcello"  long_name="cell_thickness"/>
-          <field field_ref="runoffs"    name="friver"    long_name="water_flux_into_sea_water_from_rivers"/>
+          <field field_ref="sss"         name="sos"       long_name="sea_surface_salinity"/>
+          <field field_ref="sst"         name="tos"       long_name="sea_surface_temperature"/>
+          <field field_ref="sst2"        name="tossq"     long_name="square_of_sea_surface_temperature"/>
+          <field field_ref="ssh"         name="zos"       long_name="sea_surface_height_above_geoid"/>
+          <field field_ref="toce"        name="thetao"    long_name="sea_water_potential_temperature"/>
+          <field field_ref="soce"        name="so"        long_name="sea_water_salinity"/>
+          <field field_ref="ssh2"        name="zossq"     long_name="square_of_sea_surface_height_above_geoid"/>
+          <field field_ref="mldr10_1"    name="mlotst"    long_name="ocean_mixed_layer_thickness_defined_by_sigma_t"/>
+          <field field_ref="tpt_dep"     name="zfull"     long_name="depth_below_geoid"/>
+          <field field_ref="botpres"     name="pbo"       long_name="sea_water_pressure_at_sea_floor"/>
+          <field field_ref="e3t"         name="thkcello"  long_name="cell_thickness"/>
+          <field field_ref="runoffs"     name="friver"    long_name="water_flux_into_sea_water_from_rivers"/>
           <field field_ref="calving_cea" name="ficeberg" long_name="water_flux_into_sea_water_from_icebergs"/>
-          <field field_ref="empmr"      name="wfo"       long_name="water_flux_into_sea_water"/>
-          <field field_ref="qsr3d"      name="rsdo"      long_name="downwelling_shortwave_flux_in_sea_water"/>
+          <field field_ref="empmr"       name="wfo"       long_name="water_flux_into_sea_water"/>
+          <field field_ref="qsr3d"       name="rsdo"      long_name="downwelling_shortwave_flux_in_sea_water"/>
         </file>
         <file id="file7" name_suffix="_SBC" description="surface fluxes variables" enabled=".TRUE."> <!-- time step automaticaly defined based on nn_fsbc -->
           <field field_ref="qsr_oce"    name="rsntds"  long_name="net_downward_shortwave_flux_at_sea_water_surface"/>
-          <field field_ref="qt_oce"     name="qt_oce"  long_name="downward total flux at ocean surface"/>
+          <field field_ref="qt_oce"     name="qt"      long_name="downward total flux at ocean surface"/>
           <field field_ref="wspd"       name="windsp"/>
           <field field_ref="precip"     name="precip"/> <!-- ice and snow -->
           <field field_ref="snowpre"    name="prsn"    long_name="snowfall_flux"/>
@@ -124,7 +124,7 @@
           <field field_ref="sshthster"  name="scsshtst"/>
           <field field_ref="masstot"    name="scmastot"/>
           <field field_ref="temptot"    name="sctemtot"/>
-          <field field_ref="saltot"     name="soga"/>
+          <field field_ref="saltot"     name="scsaltot"/>
         </file>
         <file id="file13" name_suffix="_PISC_T" description="PISCES T grid variables" enabled=".FALSE.">
           <field field_ref="DIC"      name="DIC"        long_name="Dissolved inorganic Concentration"/>

@@ -23,7 +23,7 @@
    out_name = tossq
 /
 &parameter
-   name = soga
+   name = scsaltot
    units = "psu"
    long_name = "Global Mean Sea Water Salinity"
    out_name = soga
@@ -409,13 +409,13 @@
    out_name = zhalf
 /
 &parameter
-   name = masso
+   name = scmastot
    units = "kg"
    long_name = "Sea Water Mass"
    out_name = masso
 /
 &parameter
-   name = botpres
+   name = pbo
    units = "dbar"
    long_name = "Sea Water Pressure at Sea Floor"
    out_name = pbo
@@ -427,13 +427,13 @@
    out_name = volo
 /
 &parameter
-   name = temptot
+   name = sctemtot
    units = "K"
    long_name = "Global Average Sea Water Potential Temperature"
    out_name = thetaoga
 /
 &parameter
-   name = w_masstr
+   name = vovematr
    units = "kg s-1"
    long_name = "Upward Ocean Mass Transport"
    out_name = wmo
