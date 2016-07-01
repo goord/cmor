@@ -29,7 +29,7 @@ EXP_NAME=[[[MOD:GENERAL:EXP_NAME]]]
 MEMBER=[[[MOD:GENERAL:MEMBER]]]
 
 # experiment type
-CMORFAMILY=[[[MOD:GENERAL:CMOR_FAMILY]]]
+EXPID=[[[MOD:GENERAL:EXP_ID]]]
 
 # years to be processed by this run_script
 START_date=$(date -d "[[[MOD:GENERAL:CMOR_START_DATE]]]" +"%Y%m%d")
@@ -47,14 +47,14 @@ REFTIME="$(date -d "[[[MOD:GENERAL:CMOR_REF_DATE]]]" +"%Y-%m-%d")(T00:00:00Z)"
 TABLEROOT="[[[MOD:GENERAL:CMOR_TABLE_ROOT]]]"
 
 # variables to be processed
-VARLIST=[[[MOD:GENERAL:VARLIST]]]
+VARLIST=[[[MOD:GENERAL:CMOR_VAR_LIST]]]
 
 # IFS-specific settings
 # Do cmorization of atmospheric output
 do_atmos=[[[MOD:IFS:INCLUDE]]]
 
 # IFS output frequency (6 or 3 hours)
-IFS_output_freq=[[[MOD:IFS:OUTPUT_TIME_STEP_HR]]]
+IFS_output_freq=[[[MOD:IFS:OUTPUT_TIME_STEP]]]
 
 # IFS frequency list
 FREQLIST_IFS="mon day 6hr 3hr"
@@ -64,23 +64,23 @@ FREQLIST_IFS="mon day 6hr 3hr"
 Chunk_length=( '[[[MOD:IFS:CHUNK_SIZE_MONTHLY]]] years' '[[[MOD:IFS:CHUNK_SIZE_DAILY]]] years' '[[[MOD:IFS:CHUNK_SIZE_HOURLY]]] years' '[[[MOD:IFS:CHUNK_SIZE_HOURLY]]] years' )
 
 # IFS parameter table location
-IFS_PARTAB=[[[MOD:IFS:PARTAB]]]
+IFS_PARTAB=[[[MOD:IFS:PAR_TAB]]]
 
 # NEMO-specific settings
 # Do cmorization of ocean output
-do_ocean=[[[MOD:NEM:INCLUDE]]]
+do_ocean=[[[MOD:NEMO:INCLUDE]]]
 
 # NEMO parameter table location
-NEMO_PARTAB=[[[MOD:NEM:PARTAB]]]
+NEMO_PARTAB=[[[MOD:NEMO:PAR_TAB]]]
 
 # NEMO frequency list
-FREQLIST_NEMO="mon day"
+FREQLIST_NEMO="mon day 3hr"
 
-# compute additional variables ? TODO: what to do with this?
-do_totpr=true	# total precipitation (from LSP and CSP)
-do_sfcwspd=true	# SFC wind speed (from components)
-do_sfchum=true	# SFC relative and specific humidity
-do_sfcpres=true	# SFC pressure
+# compute additional variables
+do_totpr=false  # total precipitation (from LSP and CSP)
+do_sfcwspd=true # SFC wind speed (from components)
+do_sfchum=true  # SFC relative and specific humidity
+do_sfcpres=false # SFC pressure
 
 set +v
 
@@ -110,9 +110,9 @@ inst_id="[[[PLT:ACTIVE:INSTITUTE_ID]]]"
 
 email="[[[PLT:ACTIVE:CONTACT]]]"
 
-cdo="[[[PLT:ACTIVE:CDO_BINDIR]]]/cdo"
+cdo="[[[PLT:ACTIVE:CDO_BIN_DIR]]]/cdo"
 
-gribfilter="[[[PLT:ACTIVE:GRIB_BINDIR]]]/grib_filter"
+gribfilter="[[[PLT:ACTIVE:GRIB_BIN_DIR]]]/grib_filter"
 
 # rebuild_nemo is used to collect NEMO domain output files to a global file
 # becomes superfluous when NEMO saves global files instead
@@ -137,7 +137,7 @@ function create_namelist(){
  inpath='$tmp_dir/',
  outpath='$out_dir/',
  expname='$EXP_NAME',
- experiment_id='$CMORFAMILY',
+ experiment_id='$EXPID',
  source='$MODEL_ID $VERSION with modifications (r1700)',
  model_id='$MODEL_ID',
  forcing='$forc',
@@ -271,6 +271,8 @@ function process_ocean() {
          case $freq in
          ( mon ) interv=1 ;;
          ( day ) interv=2 ;;
+         ( 6hr ) interv=3 ;;
+         ( 3hr ) interv=4 ;;
          esac
          not_last_chunk=true
          Clen=${Chunk_length[interv-1]}
@@ -368,19 +370,23 @@ function process_atmosphere() {
           mm=$(echo $yyyymm | cut -c5-6) # current month
           NMDAYS=$(cal $mm $yyyy | grep -v "[a-z]" | grep -v "^$" | wc -w)
 
-    file=fcdata
+          file=fcdata
 
-    echo FILTER_FILE ${file} ${yyyymm}
-          # grib_filter rules
-          # split files in 6-hourly and 3-hourly output
-          # currently, this only matters for Q in ICMGG files
-    #echo "if ( dataDate >= ${yyyymm}01 ) { write 'ICMSH'; }" > rules_files_SH
-          echo "if ( dataDate >= ${yyyymm}01 ) { if ( param is '152.128' ) { write 'ICMSH_SPECIAL' ; } else { write 'ICMSH' ; } ; }" > rules_files_SH
-          echo "if ( dataDate >= ${yyyymm}01 ) { if ( param is '133.128' ) { write 'ICMGG_SPECIAL' ; } else { write 'ICMGG' ; } ; }" > rules_files_GG
+          echo FILTER_FILE ${file} ${yyyymm}
+
+          # grib_filter rules: split 2D spectral and grid data.
+          echo "if ( dataDate >= ${yyyymm}01 ) { if ( param is '129.128' || param is '134.128' || \
+          param is '152.128') { write 'ICMSH_SPECTRAL' ; } else { write 'ICMSH' ; } ; }" > rules_files_SH
+
+          # grib_filter rules: split 3D spectral and grid data.
+          echo "if ( dataDate >= ${yyyymm}01 ) { if ( param is '003.128' || param is '053.128' || \
+          param is '054.128' || param is '077.128' || param is '129.128' || param is '130.128' || \
+          param is '131.128' || param is '132.128' || param is '135.128' || param is '138.128' || \
+          param is '155.128' || param is '157.128') { write 'ICMGG_SPECTRAL' ; } else { write 'ICMGG' ; } ; }" >> rules_files_GG
 
           # get first timestep for each month from previous file (if possible)
           ym1=$(date -u -d "$yyyy-$mm-01 - 1 month" +%Y%m)
-          rm -f ICM{SH,GG} ICM{SH,GG}_SPECIAL
+          rm -f ICM{SH,GG} ICM{SH,GG}_SPECTRAL
           for XX in SH GG; do
               if [ -f $tmp_dir/ICM${XX}${EXP_NAME}+${ym1} ]; then
                   $gribfilter rules_files_$XX \
@@ -391,39 +397,35 @@ function process_atmosphere() {
               fi
           done
 
+          # (GvdO) This is not equivalent to the previous version, but it does unambiguously spectral -> regular Gauss
           # remap on regular Gauss grid
-          $cdo -s splitparam -sp2gpl ICMSH ${file}_
-          [ -f ICMSH_SPECIAL ] && \
-             $cdo -s splitparam -sp2gpl ICMSH_SPECIAL ${file}_
-          $cdo -s -R splitparam ICMGG ${file}_
-          [ -f ICMGG_SPECIAL ] && \
-             $cdo -s -R splitparam ICMGG_SPECIAL ${file}_
+          for XX in SH GG; do
+              $cdo -s -R splitparam ICM${XX} ${file}_
+              [ -f ICM${XX}_SPECTRAL ] && $cdo -s splitparam -sp2gpl ICM${XX}_SPECTRAL ${file}_
+          done
 
+          # (GvdO) Added check to not overwrite total precipitation if it is produced by the model
           # total precipitation (remove negative values)
-          if $do_totpr && [ -f ${file}_142.128.grb ] && [ -f ${file}_143.128.grb ]; then
-              $cdo -s setcode,228 -setmisstoc,0 -setvrange,0,Inf \
-                  -add ${file}_{142,143}.128.grb \
-                  ${file}_228.128.grb
+          if $do_totpr && [ -f ${file}_142.128.grb ] && [ -f ${file}_143.128.grb ] && [ ! -f ${file}_228.128.grb ]; then
+              $cdo -s setcode,228 -setmisstoc,0 -setvrange,0,Inf -add ${file}_{142,143}.128.grb ${file}_228.128.grb
           fi
 
           # wind speed (10m)
           if $do_sfcwspd && [ -f ${file}_165.128.grb ] && [ -f ${file}_166.128.grb ]; then
-              $cdo -s setcode,207 -sqrt -add \
-                  -sqr ${file}_165.128.grb  -sqr ${file}_166.128.grb \
-                  ${file}_207.128.grb
+              $cdo -s setcode,207 -sqrt -add -sqr ${file}_165.128.grb  -sqr ${file}_166.128.grb ${file}_207.128.grb
           fi
 
+          # (GvdO) Added check to not overwrite surface pressure if it is produced by the model
           # surface pressure
-          if ( $do_sfcpres || $do_sfchum ) && [ -f ${file}_152.128.grb ]; then
-              $cdo -s setparam,134.128 -setltype,1 -exp \
-                  -selzaxis,pressure ${file}_152.128.grb ${file}_134.128.grb
+          if ( $do_sfcpres || $do_sfchum ) && [ -f ${file}_152.128.grb ] && [ ! -f ${file}_134.128.grb ]; then
+              $cdo -s setparam,134.128 -setltype,1 -exp -selzaxis,pressure ${file}_152.128.grb ${file}_134.128.grb
           fi
 
           # humidity at SFC
           if $do_sfchum && [ -f ${file}_167.128.grb ] && [ -f ${file}_168.128.grb ] && [ -f ${file}_134.128.grb ]; then
               # use dummy GRIB parameters for temporary files
-              $cdo -s setcode,103 -expr,"e_t=611.*exp(17.62*(var167-273.15)/(var167-30.03))" ${file}_167.128.grb e_t.grb
-              $cdo -s setcode,104 -expr,"e_t=611.*exp(17.62*(var168-273.15)/(var168-30.03))" ${file}_168.128.grb e_td.grb
+              $cdo -s setcode,101 -expr,"e_t=611.*exp(17.62*(var167-273.15)/(var167-30.03))" ${file}_167.128.grb e_t.grb
+              $cdo -s setcode,102 -expr,"e_t=611.*exp(17.62*(var168-273.15)/(var168-30.03))" ${file}_168.128.grb e_td.grb
 
               # rel humidity
               $cdo -s setparam,80.128 -mulc,100 -div e_td.grb e_t.grb ${file}_80.128.grb
@@ -439,7 +441,7 @@ function process_atmosphere() {
              $cdo -s ifthenc,1 -gtc,1 -selmon,$mm ${file}_212.128.grb ${file}_sunmask.grb || exit -1
           fi
 
-          # upward radiation variables: subtract downward fluxes from net fluxes
+          # additional radiation variables
           $cdo -s setparam,95.128 -sub ${file}_176.128.grb ${file}_169.128.grb ${file}_95.128.grb
           $cdo -s setparam,96.128 -sub ${file}_177.128.grb ${file}_175.128.grb ${file}_96.128.grb
           $cdo -s setparam,97.128 -sub ${file}_178.128.grb ${file}_212.128.grb ${file}_97.128.grb
@@ -461,13 +463,13 @@ function process_atmosphere() {
               eval "param_list=\$param_list_${freq}"
               for param in $param_list; do
                   case $param in
-                  ( 146.128 | 147.128 | 169.128 | 175.128 | 176.128 | 177.128 | 178.128 | 179.128 | 95.128 | 96.128 | 97.128 | 98.128 | 99.128 | 100.128 | 101.128 | 102.128 | 208.128 | 209.128 | 210.128 | 211.128 | 212.128)
-                      # radiation/heat: convert to J -> W s
+                  ( 146.128 | 147.128 | 176.128 | 169.128 | 177.128 | 175.128 | 179.128 | 212.128 | 95.128 | 96.128 | 97.128 | 98.128 | 209.128 )
+                      # radiation/heat
                       cdo_operator="-divc,$((NFRP*3600)) -selmon,$mm $shifttime" ;;
-                  ( 8.128 | 44.128 | 141.128 | 142.128 | 143.128 | 144.128 | 182.128 | 205.128 | 228.128)
-                      # snow/precipitation/evaporation/runoff: convert m to mm
+                  ( 142.128 | 143.128 | 144.128 | 228.128 | 205.128 | 182.128 )
+                      # snow/precipitation/evaporation/runoff
                       cdo_operator="-mulc,1000 -divc,$((NFRP*3600)) -selmon,$mm $shifttime" ;;
-                  ( 180.128 | 181.128 )
+                  ( 180 | 181 )
                       # momentum flux
                       cdo_operator="-divc,$((NFRP*3600)) -selmon,$mm $shifttime" ;;
                   ( 201.128 )
