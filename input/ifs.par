@@ -43,6 +43,7 @@
   long_name  = "Total soil moisture content"
   out_name   = mrso
 /
+! Convert to instantaneous mass evaporation (kg m-2 s-1)
 &parameter
   param      = 44.128
   units      = "m of water equivalent"

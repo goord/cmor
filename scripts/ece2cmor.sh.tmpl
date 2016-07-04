@@ -471,7 +471,7 @@ function process_atmosphere() {
                   ( 146.128 | 147.128 | 176.128 | 169.128 | 177.128 | 175.128 | 179.128 | 212.128 | 95.128 | 96.128 | 97.128 | 98.128 | 209.128 )
                       # radiation/heat: J -> W
                       cdo_operator="-divc,$((NFRP*3600)) -selmon,$mm $shifttime" ;;
-                  ( 8.128 | 142.128 | 143.128 | 144.128 | 228.128 | 205.128 | 182.128 )
+                  ( 8.128 | 44.128 | 142.128 | 143.128 | 144.128 | 228.128 | 205.128 | 182.128 )
                       # snow/precipitation/evaporation/runoff: m -> kg m-2 s-1
                       cdo_operator="-mulc,1000 -divc,$((NFRP*3600)) -selmon,$mm $shifttime" ;;
                   ( 180 | 181 )
