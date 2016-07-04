@@ -181,6 +181,7 @@
   out_name   = rld
   positive   = "down"
 /
+! Calculate from u- and v-components (165,166)
 &parameter
   param      = 123.128
   units      = "m s-1"
@@ -205,8 +206,20 @@
   long_name  = "Surface altitude"
   out_name   = orog
 /
+! Select depth layers depending on frequency:
+! day: alevel + plev8 + {700hPa}
+! mon: alevel + plev17
 &parameter
   param      = 130.128
+  units      = "K"
+  long_name  = "Temperature"
+  out_name   = ta
+/
+! Select depth layers depending on frequency:
+! day: alevel + plev8 + {700hPa}
+! mon: alevel + plev17
+&parameter
+  param      = 215.128
   units      = "K"
   long_name  = "Temperature"
   out_name   = ta

@@ -413,7 +413,7 @@ function process_atmosphere() {
           # wind speed (10m) and daily maximum wind speed
           if $do_sfcwspd && [ -f ${file}_165.128.grb ] && [ -f ${file}_166.128.grb ]; then
               $cdo -s setcode,207 -sqrt -add -sqr ${file}_165.128.grb  -sqr ${file}_166.128.grb ${file}_207.128.grb
-              $cdo -s setcode,214 -sqrt -add -sqr ${file}_165.128.grb  -sqr ${file}_166.128.grb ${file}_214.128.grb
+              $cdo -s setcode,214 ${file}_207.128.grb ${file}_214.128.grb
           fi
 
           # Total soil moisture content
@@ -491,7 +491,14 @@ function process_atmosphere() {
                   ( 92.128 | 93.128 | 94.128 )
                       # ISCCP (vis channels)
                       cdo_operator="-setparam,$param -ifthen ${file}_sunmask.grb -selmon,$mm" ;;
-                  ( 130.128 | 133.128 )
+                  ( 130.128 )
+                      if [ $freq = 'day' ]; then
+                         # special for 6-hourly output
+                         cdo_operator="-sellevel,70000,85000,92500,100000 -selmon,$mm"
+                      else
+                         cdo_operator="-selmon,$mm"
+                      fi ;;
+                  ( 133.128 )
                       if [ $freq = 'day' ]; then
                          # special for 6-hourly output
                          cdo_operator="-sellevel,70000,85000,92500,100000 -selmon,$mm"
@@ -509,8 +516,7 @@ function process_atmosphere() {
                       cdo_operator="-selmon,$mm" ;;
                   esac
 
-                  $cdo -s $cdo_timmean $cdo_operator \
-                      ${file}_${param}.grb ${file}_${param}_${freq}.grb
+                  $cdo -s $cdo_timmean $cdo_operator ${file}_${param}.grb ${file}_${param}_${freq}.grb
 
                   files_produced=true
               done
@@ -520,10 +526,7 @@ function process_atmosphere() {
                   grep -v positive $IFS_PARTAB > ifs_partab_tmp
                   rm -f ${file}_${freq}.grb
                   $cdo -s merge ${file}_*_${freq}.grb ${file}_${freq}.grb
-                  $cdo -s -f nc setreftime,$cdo_reftime \
-                      -setpartabp,ifs_partab_tmp \
-                      ${file}_${freq}.grb \
-                      $tmp_dir/${EXP_NAME}_${freq}_${yyyymm}01-${yyyymm}${NMDAYS}.nc
+                  $cdo -s -f nc setreftime,$cdo_reftime -setpartabp,ifs_partab_tmp ${file}_${freq}.grb $tmp_dir/${EXP_NAME}_${freq}_${yyyymm}01-${yyyymm}${NMDAYS}.nc
               fi
           done # freq loop
 
