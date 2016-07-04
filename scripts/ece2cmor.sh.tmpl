@@ -410,9 +410,10 @@ function process_atmosphere() {
               $cdo -s setcode,228 -setmisstoc,0 -setvrange,0,Inf -add ${file}_{142,143}.128.grb ${file}_228.128.grb
           fi
 
-          # wind speed (10m)
+          # wind speed (10m) and daily maximum wind speed
           if $do_sfcwspd && [ -f ${file}_165.128.grb ] && [ -f ${file}_166.128.grb ]; then
               $cdo -s setcode,207 -sqrt -add -sqr ${file}_165.128.grb  -sqr ${file}_166.128.grb ${file}_207.128.grb
+              $cdo -s setcode,214 -sqrt -add -sqr ${file}_165.128.grb  -sqr ${file}_166.128.grb ${file}_214.128.grb
           fi
 
           # Total soil moisture content
@@ -474,11 +475,11 @@ function process_atmosphere() {
                   ( 8.128 | 44.128 | 142.128 | 143.128 | 144.128 | 228.128 | 205.128 | 182.128 )
                       # snow/precipitation/evaporation/runoff: m -> kg m-2 s-1
                       cdo_operator="-mulc,1000 -divc,$((NFRP*3600)) -selmon,$mm $shifttime" ;;
-                  ( 180 | 181 )
+                  ( 180.128 | 181.128 )
                       # surface stress: (N/m2)s -> N/m2
                       # (GvdO): Is this necessary? Aren't the instantaneous surface stresses covered by 229/230?
                       cdo_operator="-divc,$((NFRP*3600)) -selmon,$mm $shifttime" ;;
-                  ( 201.128 )
+                  ( 49.128 | 201.128 | 214.128 )
                       # daily maximum
                       cdo_operator="-daymax -selmon,$mm $shifttime" ;;
                   ( 202.128 )

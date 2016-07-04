@@ -75,24 +75,28 @@
   long_name  = "Total column ice water"
   out_name   = clivi
 /
+! Not produced...
 &parameter
   param      = 88.128
   units      = "%"
   long_name  = "CALIPSO Total Cloud Fraction"
   out_name   = cltcalipso
 /
+! Not produced...
 &parameter
   param      = 89.128
   units      = "%"
   long_name  = "CALIPSO Low Level Cloud Fraction"
   out_name   = cllcalipso
 /
+! Not produced...
 &parameter
   param      = 90.128
   units      = "%"
   long_name  = "CALIPSO Mid Level Cloud Fraction"
   out_name   = clmcalipso
 /
+! Not produced...
 &parameter
   param      = 91.128
   units      = "%"
@@ -145,6 +149,7 @@
   out_name   = rsutcs
   positive   = "down"
 /
+! Not produced...
 &parameter
   param      = 99.128
   units      = "J m-2"
@@ -152,6 +157,7 @@
   out_name   = rsu
   positive   = "up"
 /
+! Not produced...
 &parameter
   param      = 100.128
   units      = "J m-2"
@@ -159,6 +165,7 @@
   out_name   = rsd
   positive   = "down"
 /
+! Not produced...
 &parameter
   param      = 101.128
   units      = "J m-2"
@@ -166,6 +173,7 @@
   out_name   = rlu
   positive   = "up"
 /
+! Not produced...
 &parameter
   param      = 102.128
   units      = "J m-2"
@@ -180,7 +188,7 @@
   out_name   = sfcWindmax
 /
 &parameter
-  param      = 123.128
+  param      = 49.128
   units      = "m s-1"
   long_name  = "Daily Maximum Near-Surface Wind Speed of Gust"
   out_name   = wsgsmax
