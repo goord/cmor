@@ -380,7 +380,7 @@ function process_atmosphere() {
 
           # grib_filter rules: split 3D spectral and grid data.
           echo "if ( dataDate >= ${yyyymm}01 ) { if ( param is '003.128' || param is '053.128' || \
-          param is '054.128' || param is '077.128' || param is '129.128' || param is '130.128' || \
+          param is '54.128' || param is '77.128' || param is '129.128' || param is '130.128' || \
           param is '131.128' || param is '132.128' || param is '135.128' || param is '138.128' || \
           param is '155.128' || param is '157.128') { write 'ICMGG_SPECTRAL' ; } else { write 'ICMGG' ; } ; }" >> rules_files_GG
 
@@ -413,6 +413,11 @@ function process_atmosphere() {
           # wind speed (10m)
           if $do_sfcwspd && [ -f ${file}_165.128.grb ] && [ -f ${file}_166.128.grb ]; then
               $cdo -s setcode,207 -sqrt -add -sqr ${file}_165.128.grb  -sqr ${file}_166.128.grb ${file}_207.128.grb
+          fi
+
+          # Total soil moisture content
+          if $do_sfcwspd && [ -f ${file}_39.128.grb ] && [ -f ${file}_40.128.grb ] && [ -f ${file}_41.128.grb ] && [ -f ${file}_42.128.grb ]; then
+              $cdo -s setcode,43 -add -mulc,0.07 ${file}_39.128.grb  -mulc,0.21 ${file}_40.128.grb  -mulc,0.72 ${file}_41.128.grb  -mulc,1.89 ${file}_42.128.grb ${file}_43.128.grb
           fi
 
           # (GvdO) Added check to not overwrite surface pressure if it is produced by the model
@@ -464,13 +469,14 @@ function process_atmosphere() {
               for param in $param_list; do
                   case $param in
                   ( 146.128 | 147.128 | 176.128 | 169.128 | 177.128 | 175.128 | 179.128 | 212.128 | 95.128 | 96.128 | 97.128 | 98.128 | 209.128 )
-                      # radiation/heat
+                      # radiation/heat: J -> W
                       cdo_operator="-divc,$((NFRP*3600)) -selmon,$mm $shifttime" ;;
-                  ( 142.128 | 143.128 | 144.128 | 228.128 | 205.128 | 182.128 )
-                      # snow/precipitation/evaporation/runoff
+                  ( 8.128 | 142.128 | 143.128 | 144.128 | 228.128 | 205.128 | 182.128 )
+                      # snow/precipitation/evaporation/runoff: m -> kg m-2 s-1
                       cdo_operator="-mulc,1000 -divc,$((NFRP*3600)) -selmon,$mm $shifttime" ;;
                   ( 180 | 181 )
-                      # momentum flux
+                      # surface stress: (N/m2)s -> N/m2
+                      # (GvdO): Is this necessary? Aren't the instantaneous surface stresses covered by 229/230?
                       cdo_operator="-divc,$((NFRP*3600)) -selmon,$mm $shifttime" ;;
                   ( 201.128 )
                       # daily maximum

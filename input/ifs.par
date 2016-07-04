@@ -1,3 +1,4 @@
+! Convert to instantaneous mass runoff (kg m-2 s-1)
 &parameter
   param      = 8.128
   units      = "m"
@@ -28,41 +29,19 @@
   long_name  = "Ice temperature layer 1"
   out_name   = istl1
 /
+! Convert from volumetric to mass content (kg m-2)
 &parameter
   param      = 39.128
   units      = "m3 m-3"
   long_name  = "Soil moisture content layer 1"
   out_name   = mrsos
 /
+! Sum over all layers (39-42) and convert from volumetric to mass content (kg m-2)
 &parameter
-  param      = 39.128
+  param      = 43.128
   units      = "m3 m-3"
-  long_name  = "Soil moisture content layer 1"
+  long_name  = "Total soil moisture content"
   out_name   = mrso
-/
-&parameter
-  param      = 39.128
-  units      = "m3 m-3"
-  long_name  = "Soil moisture content layer 1"
-  out_name   = mrlsl
-/
-&parameter
-  param      = 40.128
-  units      = "m3 m-3"
-  long_name  = "Volumetric soil water layer 2"
-  out_name   = mrlsl
-/
-&parameter
-  param      = 41.128
-  units      = "m3 m-3"
-  long_name  = "Volumetric soil water layer 3"
-  out_name   = mrlsl
-/
-&parameter
-  param      = 42.128
-  units      = "m3 m-3"
-  long_name  = "Volumetric soil water layer 4"
-  out_name   = mrlsl
 /
 &parameter
   param      = 44.128
