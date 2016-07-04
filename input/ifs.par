@@ -50,8 +50,9 @@
   long_name  = "Surface Snow and Ice Sublimation Flux"
   out_name   = sbl
 /
+! Calculate from u- and v-components (165,166)
 &parameter
-  param      = 49.128
+  param      = 207.128
   units      = "m s-1"
   long_name  = "Near-Surface Wind Speed"
   out_name   = sfcWind
