@@ -1,0 +1,66 @@
+&NAMFPC
+    CFPFMT         ='MODEL',
+    NFP2DF         = 3,
+    MFP2DF         = 129,134,152,
+    NFPPHY         = 22,
+    MFPPHY         = 34,39,49,95,96,133,134,139,143,144,146,147,151,164,165,166,167,169,175,205,207,228,
+    RFP3P          = 100000.,92500.,85000.,70000.,60000.,50000.,40000.,30000.,25000.,20000.,15000.,10000.,7000.,5000.,3000.,2000.,1000.,700.,500.,300.,200.,100.,
+    RFPCORR        = 60000.,
+    NFP3DFP        = 8,
+    MFP3DFP        = 129,130,131,132,133,135,138,157,
+    RFP3H          = 2.,
+    NFP3DFH        = 2,
+    MFP3DFH        = 133,157,
+    LFITP          = TRUE,
+    LFITT          = FALSE,
+    LFITV          = FALSE,
+    NFPCLI         = 0,
+    LFPQ           = FALSE,
+    LASQ           = FALSE,
+    LTRACEFP       = FALSE,
+/
+&NAMFPC
+    CFPFMT         = "MODEL",
+
+    NFP2DF         = 3,
+    MFP2DF         = 129,134,152,
+
+    NFPPHY         = 24,
+    MFPPHY         = 34,39,49,95,96,98,133,134,139,143,144,146,147,151,164,165,166,167,169,175,182,205,207,228,
+
+    NFP3DFP        = 4,
+    MFP3DFP        = 130,131,132,138
+    RFP3P          = 85000.,70000.,60000.,10000.
+    RFPCORR        = 60000.,
+
+    NFP3DFH        = 2,
+    MFP3DFH        = 131,132,
+    RFP3H          = 50.,100.
+
+    LFITP          = TRUE,
+    LFITT          = FALSE,
+    LFITV          = FALSE,
+    NFPCLI         = 0,
+    LFPQ           = FALSE,
+    LASQ           = FALSE,
+    LTRACEFP       = FALSE,
+/
+&NAMFPDY2
+/
+&NAMFPDYP
+/
+&NAMFPDYH
+/
+&NAMFPDYT
+/
+&NAMFPDYV
+/
+&NAMFPDYS
+/
+&NAMFPPHY
+/
+&NAMPPC
+    LRSACC=.TRUE.
+/
+
+

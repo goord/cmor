@@ -17,11 +17,12 @@
   long_name  = "Snow albedo"
   out_name   = asn
 /
+! Needs sea-mask
 &parameter
   param      = 34.128
   units      = "K"
   long_name  = "Sea surface temperature"
-  out_name   = sst
+  out_name   = tso
 /
 &parameter
   param      = 35.128
