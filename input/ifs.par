@@ -183,7 +183,7 @@
 /
 ! Calculate from u- and v-components (165,166)
 &parameter
-  param      = 123.128
+  param      = 214.128
   units      = "m s-1"
   long_name  = "Daily Maximum Near-Surface Wind Speed"
   out_name   = sfcWindmax
