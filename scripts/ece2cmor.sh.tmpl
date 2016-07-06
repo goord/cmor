@@ -382,7 +382,7 @@ function process_atmosphere() {
 
           # grib_filter rules: split in 3- and 6-hourly output for both spectral and gridded data.
           echo "if ( dataDate >= ${yyyymm}01 ) { if ( ${spec6hrfilter} ) { write 'ICMSH_SPECIAL' ; } else { write 'ICMSH' ; } ; }" > rules_files_SH
-          echo "if ( dataDate >= ${yyyymm}01 ) { if ( ${grid6hrfilter} ) { write 'ICMGG_SPECIAL' ; } else { write 'ICMGG' ; } ; }" >> rules_files_GG
+          echo "if ( dataDate >= ${yyyymm}01 ) { if ( ${grid6hrfilter} ) { write 'ICMGG_SPECIAL' ; } else { write 'ICMGG' ; } ; }" > rules_files_GG
 
           # Clean up previous work files
           rm -f ICM{SH,GG} ICM{SH,GG}_SPECIAL
@@ -495,16 +495,16 @@ function process_atmosphere() {
                   ( 130.128 )
                       if [ $freq = 'day' ]; then
                          # special for 6-hourly output
-                         cdo_operator="-sellevel,70000,85000,92500,100000 -selmon,$mm"
+                         cdo_operator="-sellevel,70000,85000,92500,100000 -selmon,$mm" ;;
                       else
-                         cdo_operator="-selmon,$mm"
+                         cdo_operator="-selmon,$mm" ;;
                       fi ;;
                   ( 133.128 )
                       if [ $freq = 'day' ]; then
                          # special for 6-hourly output
-                         cdo_operator="-sellevel,70000,85000,92500,100000 -selmon,$mm"
+                         cdo_operator="-sellevel,70000,85000,92500,100000 -selmon,$mm" ;;
                       else
-                         cdo_operator="-selmon,$mm"
+                         cdo_operator="-selmon,$mm" ;;
                       fi ;;
                   ( 139.128 )
                       # remove depth coordinate
@@ -512,6 +512,13 @@ function process_atmosphere() {
                   ( 39.128 )
                       # convert soil moisture units of top soil layer
                       cdo_operator="-setltype,1 -mulc,1000. -mulc,0.07 -selmon,$mm" ;;
+                  ( 34.128 )
+                      # filter with sea mask
+                      if [ -f ${file}_172.128.grb ]; then
+                          cdo_operator="-setparam,$param -ifthen ${file}_172.128.grb -selmon,$mm" ;;
+                      else
+                          cdo_operator="-selmon,$mm" ;;
+                      fi
                   ( * )
                       # default
                       cdo_operator="-selmon,$mm" ;;
