@@ -374,19 +374,21 @@ function process_atmosphere() {
 
           echo FILTER_FILE ${file} ${yyyymm}
 
-          # grib_filter rules: split 2D spectral and grid data.
-          echo "if ( dataDate >= ${yyyymm}01 ) { if ( param is '129.128' || param is '134.128' || \
-          param is '152.128') { write 'ICMSH_SPECTRAL' ; } else { write 'ICMSH' ; } ; }" > rules_files_SH
+          # 6hr spectral output filter: all 3D spectral variables except u,v,t and vorticity (3hr output on pressure levels)
+          spec6hrfilter = param is '3.128' || param is '53.128' || param is '54.128' || param is '77.128' || param is '129.128' || param is '135.128' || param is '155.128' || param is '157.128'
 
-          # grib_filter rules: split 3D spectral and grid data.
-          echo "if ( dataDate >= ${yyyymm}01 ) { if ( param is '003.128' || param is '053.128' || \
-          param is '54.128' || param is '77.128' || param is '129.128' || param is '130.128' || \
-          param is '131.128' || param is '132.128' || param is '135.128' || param is '138.128' || \
-          param is '155.128' || param is '157.128') { write 'ICMGG_SPECTRAL' ; } else { write 'ICMGG' ; } ; }" >> rules_files_GG
+          # 3hr grid output filter: all 3D grid variables
+          grid6hrfilter = param is '60.128' || param is '75.128' || param is '76.128' || param is '133.128' || param is '203' || param is '246' || param is '247' || param is '248'
+
+          # grib_filter rules: split in 3- and 6-hourly output for both spectral and gridded data.
+          echo "if ( dataDate >= ${yyyymm}01 ) { if ( ${spec6hrfilter} ) { write 'ICMSH_SPECIAL' ; } else { write 'ICMSH' ; } ; }" > rules_files_SH
+          echo "if ( dataDate >= ${yyyymm}01 ) { if ( ${grid6hrfilter} ) { write 'ICMGG_SPECIAL' ; } else { write 'ICMGG' ; } ; }" >> rules_files_GG
+
+          # Clean up previous work files
+          rm -f ICM{SH,GG} ICM{SH,GG}_SPECIAL
 
           # get first timestep for each month from previous file (if possible)
           ym1=$(date -u -d "$yyyy-$mm-01 - 1 month" +%Y%m)
-          rm -f ICM{SH,GG} ICM{SH,GG}_SPECTRAL
           for XX in SH GG; do
               if [ -f $tmp_dir/ICM${XX}${EXP_NAME}+${ym1} ]; then
                   $gribfilter rules_files_$XX \
@@ -397,12 +399,11 @@ function process_atmosphere() {
               fi
           done
 
-          # (GvdO) This is not equivalent to the previous version, but it does unambiguously spectral -> regular Gauss
           # remap on regular Gauss grid
-          for XX in SH GG; do
-              $cdo -s -R splitparam ICM${XX} ${file}_
-              [ -f ICM${XX}_SPECTRAL ] && $cdo -s splitparam -sp2gpl ICM${XX}_SPECTRAL ${file}_
-          done
+          $cdo -s splitparam -sp2gpl ICMSH ${file}_
+          [ -f ICMSH_SPECIAL ] && $cdo -s splitparam -sp2gpl ICMSH_SPECIAL ${file}_
+          $cdo -s -R splitparam ICMGG ${file}_
+          [ -f ICMGG_SPECIAL ] && $cdo -s -R splitparam ICMGG_SPECIAL ${file}_
 
           # (GvdO) Added check to not overwrite total precipitation if it is produced by the model
           # total precipitation (remove negative values)

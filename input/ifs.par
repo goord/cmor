@@ -17,7 +17,7 @@
   long_name  = "Snow albedo"
   out_name   = asn
 /
-! Needs sea-mask
+! TODO: Needs sea-mask
 &parameter
   param      = 34.128
   units      = "K"
