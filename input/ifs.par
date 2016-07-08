@@ -206,26 +206,23 @@
   long_name  = "Surface altitude"
   out_name   = orog
 /
-! Select depth layers depending on frequency:
-! day: alevel + plev8 + {700hPa}
-! mon: alevel + plev17
+! Temperature on model levels
 &parameter
   param      = 130.128
   units      = "K"
   long_name  = "Temperature"
   out_name   = ta
 /
-! Select depth layers depending on frequency:
-! day: alevel + plev8 + {700hPa}
-! mon: alevel + plev17
+! Temperature on pressure levels: plev8 (day) or plev17 (mon)
 &parameter
   param      = 215.128
   units      = "K"
   long_name  = "Temperature"
   out_name   = ta
 /
+! Temperature on 700 hPa level (day).
 &parameter
-  param      = 130.128
+  param      = 216.128
   units      = "K"
   long_name  = "Temperature"
   out_name   = ta700

@@ -358,6 +358,10 @@ function process_atmosphere() {
 
 # Loop over dates and build monthly means and cmorize for every month
 #---------------------------------------------------------------------
+
+      plev8=1000,5000,10000,25000,50000,70000,85000,100000
+      plev17=1000,2000,3000,5000,7000,10000,15000,20000,25000,30000,40000,50000,60000,70000,85000,92500,100000
+
       icount=1
       for yyyymm in ${list}; do
        (  # parallel processing in subdirectory
@@ -454,6 +458,10 @@ function process_atmosphere() {
           $cdo -s setparam,97.128 -sub ${file}_178.128.grb ${file}_212.128.grb ${file}_97.128.grb
           $cdo -s setparam,98.128 -sub ${file}_208.128.grb ${file}_212.128.grb ${file}_98.128.grb
 
+          # temperature on pressure levels
+          $cdo -s setparam,215.128 ${file}_130.128.grb ${file}_215.128.grb
+          $cdo -s setparam,216.128 ${file}_130.128.grb ${file}_216.128.grb
+
           for freq in $FREQLIST_IFS; do
               shifttime=""
               case $freq in
@@ -466,7 +474,7 @@ function process_atmosphere() {
               esac
 
               files_produced=false
-
+              cdo_operator="-selmon,$mm"
               eval "param_list=\$param_list_${freq}"
               for param in $param_list; do
                   case $param in
@@ -492,19 +500,17 @@ function process_atmosphere() {
                   ( 92.128 | 93.128 | 94.128 )
                       # ISCCP (vis channels)
                       cdo_operator="-setparam,$param -ifthen ${file}_sunmask.grb -selmon,$mm" ;;
-                  ( 130.128 )
-                      if [ $freq = 'day' ]; then
-                         # special for 6-hourly output
-                         cdo_operator="-sellevel,70000,85000,92500,100000 -selmon,$mm" ;;
-                      else
-                         cdo_operator="-selmon,$mm" ;;
-                      fi ;;
+                  ( 215.128 )
+                      # Temperature on pressure levels
+                      if [ $freq = 'mon' ]; then
+                         cdo_operator="-sellevel,$plev8 -selmon,$mm" ;;
+                      elif [ $freq = 'mon' ]; then
+                         cdo_operator="-sellevel,$plev17 -selmon,$mm" ;;
+                      fi
                   ( 133.128 )
                       if [ $freq = 'day' ]; then
                          # special for 6-hourly output
                          cdo_operator="-sellevel,70000,85000,92500,100000 -selmon,$mm" ;;
-                      else
-                         cdo_operator="-selmon,$mm" ;;
                       fi ;;
                   ( 139.128 )
                       # remove depth coordinate
@@ -516,12 +522,7 @@ function process_atmosphere() {
                       # filter with sea mask
                       if [ -f ${file}_172.128.grb ]; then
                           cdo_operator="-setparam,$param -ifthen ${file}_172.128.grb -selmon,$mm" ;;
-                      else
-                          cdo_operator="-selmon,$mm" ;;
                       fi
-                  ( * )
-                      # default
-                      cdo_operator="-selmon,$mm" ;;
                   esac
 
                   $cdo -s $cdo_timmean $cdo_operator ${file}_${param}.grb ${file}_${param}_${freq}.grb
