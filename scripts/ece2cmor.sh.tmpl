@@ -520,18 +520,35 @@ function process_atmosphere() {
                       # Temperature on 700hPa: ta700
                       if [ $freq = 'day' ]; then
                          cdo_operator="-sellevel,70000 -selmon,$mm" ;;
-                  ( 217.128 )
-                      # U-component of wind at pressure levels
+                      fi
+                  ( 217.128 | 220.128 )
+                      # Component of wind at pressure levels
                       if [ $freq = '3hr' ]; then
                          cdo_operator="-sellevel,85000 -selmon,$mm" ;;
                       elif [ $freq = '6hr' ]; then
-                         cdo_operator="-sellevel,$plev4"
+                         cdo_operator="-sellevel,$plev4 -selmon,$mm" ;;
                       elif [ $freq = 'day' ]; then
+                         cdo_operator="-sellevel,$plev8 -selmon,$mm" ;;
+                      fi
+                  ( 218.128 | 221.128 )
+                      # Component of wind at pressure levels
+                      if [ $freq = 'day' ]; then
+                         cdo_operator="-sellevel,$plev19 -selmon,$mm" ;;
+                      elif [ $freq = 'mon' ]; then
+                         cdo_operator="-sellevel,$plev17 -selmon,$mm" ;;
+                      fi
+                  ( 218.128 | 222.128 )
+                      # Component of wind at pressure levels
+                      if [ $freq = 'day' ]; then
+                         cdo_operator="-sellevel,$plev23 -selmon,$mm" ;;
+                      elif [ $freq = 'mon' ]; then
+                         cdo_operator="-sellevel,$plev7c -selmon,$mm" ;;
+                      fi
                   ( 133.128 )
                       if [ $freq = 'day' ]; then
                          # special for 6-hourly output
                          cdo_operator="-sellevel,70000,85000,92500,100000 -selmon,$mm" ;;
-                      fi ;;
+                      fi
                   ( 139.128 )
                       # remove depth coordinate
                       cdo_operator="-setltype,1 -selmon,$mm" ;;
