@@ -462,6 +462,15 @@ function process_atmosphere() {
           $cdo -s setparam,215.128 ${file}_130.128.grb ${file}_215.128.grb
           $cdo -s setparam,216.128 ${file}_130.128.grb ${file}_216.128.grb
 
+          # wind components on pressure levels
+          $cdo -s setparam,217.128 ${file}_131.128.grb ${file}_217.128.grb
+          $cdo -s setparam,218.128 ${file}_131.128.grb ${file}_218.128.grb
+          $cdo -s setparam,219.128 ${file}_131.128.grb ${file}_219.128.grb
+
+          $cdo -s setparam,220.128 ${file}_132.128.grb ${file}_220.128.grb
+          $cdo -s setparam,221.128 ${file}_132.128.grb ${file}_221.128.grb
+          $cdo -s setparam,222.128 ${file}_132.128.grb ${file}_222.128.grb
+
           for freq in $FREQLIST_IFS; do
               shifttime=""
               case $freq in
@@ -507,6 +516,17 @@ function process_atmosphere() {
                       elif [ $freq = 'mon' ]; then
                          cdo_operator="-sellevel,$plev17 -selmon,$mm" ;;
                       fi
+                  ( 216.128 )
+                      # Temperature on 700hPa: ta700
+                      if [ $freq = 'day' ]; then
+                         cdo_operator="-sellevel,70000 -selmon,$mm" ;;
+                  ( 217.128 )
+                      # U-component of wind at pressure levels
+                      if [ $freq = '3hr' ]; then
+                         cdo_operator="-sellevel,85000 -selmon,$mm" ;;
+                      elif [ $freq = '6hr' ]; then
+                         cdo_operator="-sellevel,$plev4"
+                      elif [ $freq = 'day' ]; then
                   ( 133.128 )
                       if [ $freq = 'day' ]; then
                          # special for 6-hourly output

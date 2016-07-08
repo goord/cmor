@@ -227,14 +227,58 @@
   long_name  = "Temperature"
   out_name   = ta700
 /
+! Eastward wind on model levels (day)
 &parameter
   param      = 131.128
   units      = "m s-1"
   long_name  = "U component of wind"
   out_name   = ua
 /
+! Eastward wind on pressure levels: 850 hPa (3hr), plev4 (6hr), plev8 (day)
+&parameter
+  param      = 217.128
+  units      = "m s-1"
+  long_name  = "U component of wind"
+  out_name   = ua
+/
+! Eastward wind on pressure levels: plev19 (day), plev17 (mon)
+&parameter
+  param      = 218.128
+  units      = "m s-1"
+  long_name  = "U component of wind"
+  out_name   = ua
+/
+! Eastward wind on pressure levels: plev23 (day), plev7c (mon)
+&parameter
+  param      = 219.128
+  units      = "m s-1"
+  long_name  = "U component of wind"
+  out_name   = ua
+/
+! Northward wind on model levels (day)
 &parameter
   param      = 132.128
+  units      = "m s-1"
+  long_name  = "V component of wind"
+  out_name   = va
+/
+! Northward wind on pressure levels: 850 hPa (3hr), plev4 (6hr), plev8 (day)
+&parameter
+  param      = 220.128
+  units      = "m s-1"
+  long_name  = "V component of wind"
+  out_name   = va
+/
+! Northward wind on pressure levels: plev19 (day), plev17 (mon)
+&parameter
+  param      = 221.128
+  units      = "m s-1"
+  long_name  = "V component of wind"
+  out_name   = va
+/
+! Northward wind on pressure levels: plev23 (day), plev7c (mon)
+&parameter
+  param      = 222.128
   units      = "m s-1"
   long_name  = "V component of wind"
   out_name   = va
