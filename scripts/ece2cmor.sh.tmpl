@@ -359,8 +359,12 @@ function process_atmosphere() {
 # Loop over dates and build monthly means and cmorize for every month
 #---------------------------------------------------------------------
 
+      plev4=25000,50000,85000,92500
+      plev7c=9000,24500,37500,50000,62000,74000,90000
       plev8=1000,5000,10000,25000,50000,70000,85000,100000
       plev17=1000,2000,3000,5000,7000,10000,15000,20000,25000,30000,40000,50000,60000,70000,85000,92500,100000
+      plev19=100,500,$plev17
+      plev23=40,100,200,300,500,700,$plev17
 
       icount=1
       for yyyymm in ${list}; do
@@ -537,7 +541,7 @@ function process_atmosphere() {
                       elif [ $freq = 'mon' ]; then
                          cdo_operator="-sellevel,$plev17 -selmon,$mm" ;;
                       fi
-                  ( 218.128 | 222.128 )
+                  ( 219.128 | 222.128 )
                       # Component of wind at pressure levels
                       if [ $freq = 'day' ]; then
                          cdo_operator="-sellevel,$plev23 -selmon,$mm" ;;
