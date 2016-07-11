@@ -283,8 +283,30 @@
   long_name  = "V component of wind"
   out_name   = va
 /
+! Specific humidity on model levels (day)
 &parameter
   param      = 133.128
+  units      = "kg kg-1"
+  long_name  = "Specific humidity"
+  out_name   = hus
+/
+! Specific humidity on model levels (day)
+&parameter
+  param      = 133.128
+  units      = "kg kg-1"
+  long_name  = "Specific humidity"
+  out_name   = hus
+/
+! Specific humidity on pressure levels: plev4 (6hr), plev8 (day), plev17 (mon)
+&parameter
+  param      = 123.128
+  units      = "kg kg-1"
+  long_name  = "Specific humidity"
+  out_name   = hus
+/
+! Specific humidity on pressure levels: plev23 (day), plev7c (mon)
+&parameter
+  param      = 124.128
   units      = "kg kg-1"
   long_name  = "Specific humidity"
   out_name   = hus
