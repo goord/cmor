@@ -480,7 +480,10 @@ function process_atmosphere() {
           $cdo -s setparam,224.128 ${file}_133.128.grb ${file}_224.128.grb
 
           # relative humidity on pressure levels
-          $cdo -s setparam,224.128 ${file}_157.128.grb ${file}_225.128.grb
+          $cdo -s setparam,225.128 ${file}_157.128.grb ${file}_225.128.grb
+
+          # Omega at pressure levels
+          $cdo -s setparam,226.128 ${file}_135.128.grb ${file}_226.128.grb
 
           for freq in $FREQLIST_IFS; do
               shifttime=""
@@ -520,9 +523,9 @@ function process_atmosphere() {
                   ( 92.128 | 93.128 | 94.128 )
                       # ISCCP (vis channels)
                       cdo_operator="-setparam,$param -ifthen ${file}_sunmask.grb -selmon,$mm" ;;
-                  ( 215.128 )
-                      # Temperature on pressure levels
-                      if [ $freq = 'mon' ]; then
+                  ( 215.128 | 225.128 )
+                      # Temperature/relative humidity on pressure levels
+                      if [ $freq = 'day' ]; then
                          cdo_operator="-sellevel,$plev8 -selmon,$mm" ;;
                       elif [ $freq = 'mon' ]; then
                          cdo_operator="-sellevel,$plev17 -selmon,$mm" ;;
@@ -548,32 +551,18 @@ function process_atmosphere() {
                       elif [ $freq = 'mon' ]; then
                          cdo_operator="-sellevel,$plev17 -selmon,$mm" ;;
                       fi
-                  ( 219.128 | 222.128 )
-                      # Component of wind at pressure levels
+                  ( 219.128 | 222.128 | 224.128 )
+                      # Component of wind/spcific humidity at pressure levels
                       if [ $freq = 'day' ]; then
                          cdo_operator="-sellevel,$plev23 -selmon,$mm" ;;
                       elif [ $freq = 'mon' ]; then
                          cdo_operator="-sellevel,$plev7c -selmon,$mm" ;;
                       fi
-                  ( 223.128 )
-                      # Specific humidity at pressure levels
+                  ( 223.128 | 226.128 )
+                      # Specific humidity/Omega at pressure levels
                       if [ $freq = '6hr' ]; then
                          cdo_operator="-sellevel,$plev4 -selmon,$mm" ;;
                       elif [ $freq = 'day' ]; then
-                         cdo_operator="-sellevel,$plev8 -selmon,$mm" ;;
-                      elif [ $freq = 'mon' ]; then
-                         cdo_operator="-sellevel,$plev17 -selmon,$mm" ;;
-                      fi
-                  ( 224.128 )
-                      # Specific humidity at pressure levels
-                      if [ $freq = 'day' ]; then
-                         cdo_operator="-sellevel,$plev23 -selmon,$mm" ;;
-                      elif [ $freq = 'mon' ]; then
-                         cdo_operator="-sellevel,$plev7c -selmon,$mm" ;;
-                      fi
-                  ( 225.128 )
-                      # Specific humidity at pressure levels
-                      if [ $freq = 'day' ]; then
                          cdo_operator="-sellevel,$plev8 -selmon,$mm" ;;
                       elif [ $freq = 'mon' ]; then
                          cdo_operator="-sellevel,$plev17 -selmon,$mm" ;;

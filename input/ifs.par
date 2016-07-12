@@ -327,7 +327,7 @@
 /
 ! Relative humidity on pressure levels: plev8 (day), plev17 (mon)
 &parameter
-  param      = 125.128
+  param      = 225.128
   units      = "%"
   long_name  = "Relative humidity"
   out_name   = hur
@@ -352,14 +352,22 @@
   long_name  = "Surface pressure"
   out_name   = ps
 /
+! At model levels
 &parameter
   param      = 135.128
   units      = "Pa s-1"
   long_name  = "Omega (=dp/dt)"
   out_name   = wap
 /
+! At pressure levels: plev4 (6hr), plev8 (day), plev17 (mon)
 &parameter
-  param      = 135.128
+  param      = 226.128
+  units      = "Pa s-1"
+  long_name  = "Omega (=dp/dt)"
+  out_name   = wap
+/
+&parameter
+  param      = 227.128
   units      = "Pa s-1"
   long_name  = "Omega (=dp/dt)"
   out_name   = wap500
