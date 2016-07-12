@@ -12,10 +12,6 @@
     RFP3P          = 85000.,
     RFPCORR        = 60000.,
 
-    NFP3DFH        = 2,
-    MFP3DFH        = 131,132,
-    RFP3H          = 2.,50.,100.
-
     LFITP          = TRUE,
     LFITT          = FALSE,
     LFITV          = FALSE,

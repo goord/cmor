@@ -299,23 +299,52 @@
 /
 ! Specific humidity on pressure levels: plev4 (6hr), plev8 (day), plev17 (mon)
 &parameter
-  param      = 123.128
+  param      = 223.128
   units      = "kg kg-1"
   long_name  = "Specific humidity"
   out_name   = hus
 /
 ! Specific humidity on pressure levels: plev23 (day), plev7c (mon)
 &parameter
-  param      = 124.128
+  param      = 224.128
   units      = "kg kg-1"
   long_name  = "Specific humidity"
   out_name   = hus
 /
+! Produced by ece2cmor script
 &parameter
-  param      = 133.128
+  param      = 81.128
   units      = "kg kg-1"
   long_name  = "2 m specific humidity"
   out_name   = huss
+/
+! Relative humidity on model levels
+&parameter
+  param      = 157.128
+  units      = "%"
+  long_name  = "Relative humidity"
+  out_name   = hur
+/
+! Relative humidity on pressure levels: plev8 (day), plev17 (mon)
+&parameter
+  param      = 125.128
+  units      = "%"
+  long_name  = "Relative humidity"
+  out_name   = hur
+/
+! Produced by ece2cmor script
+&parameter
+  param      = 80.128
+  units      = "%"
+  long_name  = "2 m relative humidity"
+  out_name   = hurs
+/
+! Produced by ece2cmor script
+&parameter
+  param      = 80.128
+  units      = "%"
+  long_name  = "Near-Surface Relative Humidity"
+  out_name   = rhs
 /
 &parameter
   param      = 134.128
@@ -414,24 +443,6 @@
   units      = ""
   long_name  = "Logarithm of surface pressure"
   out_name   = lnsp
-/
-&parameter
-  param      = 157.128
-  units      = "%"
-  long_name  = "Relative humidity"
-  out_name   = hur
-/
-&parameter
-  param      = 157.128
-  units      = "%"
-  long_name  = "2 m relative humidity"
-  out_name   = hurs
-/
-&parameter
-  param      = 157.128
-  units      = "%"
-  long_name  = "Near-Surface Relative Humidity"
-  out_name   = rhs
 /
 &parameter
   param      = 164.128

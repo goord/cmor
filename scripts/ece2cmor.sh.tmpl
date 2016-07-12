@@ -478,7 +478,9 @@ function process_atmosphere() {
           # specific humidity on pressure levels
           $cdo -s setparam,223.128 ${file}_133.128.grb ${file}_223.128.grb
           $cdo -s setparam,224.128 ${file}_133.128.grb ${file}_224.128.grb
-          $cdo -s setparam,225.128 ${file}_133.128.grb ${file}_225.128.grb
+
+          # relative humidity on pressure levels
+          $cdo -s setparam,224.128 ${file}_157.128.grb ${file}_225.128.grb
 
           for freq in $FREQLIST_IFS; do
               shifttime=""
@@ -568,6 +570,13 @@ function process_atmosphere() {
                          cdo_operator="-sellevel,$plev23 -selmon,$mm" ;;
                       elif [ $freq = 'mon' ]; then
                          cdo_operator="-sellevel,$plev7c -selmon,$mm" ;;
+                      fi
+                  ( 225.128 )
+                      # Specific humidity at pressure levels
+                      if [ $freq = 'day' ]; then
+                         cdo_operator="-sellevel,$plev8 -selmon,$mm" ;;
+                      elif [ $freq = 'mon' ]; then
+                         cdo_operator="-sellevel,$plev17 -selmon,$mm" ;;
                       fi
                   ( 139.128 )
                       # remove depth coordinate
