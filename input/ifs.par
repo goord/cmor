@@ -384,7 +384,7 @@
   long_name  = "Total column water vapour"
   out_name   = prw
 /
-! Mean vorticity over 850, 700 and 600 hPa
+! Convert to mean vorticity over 850, 700 and 600 hPa
 &parameter
   param      = 138.128
   units      = "s-1"
@@ -398,7 +398,7 @@
   out_name   = ts
 /
 &parameter
-  param      = 139.128
+  param      = 99.128
   units      = "K"
   long_name  = "Surface Temperature Where Land or Sea Ice"
   out_name   = tslsi
@@ -409,24 +409,21 @@
   long_name  = "Snow depth"
   out_name   = sd
 /
-&parameter
-  param      = 142.128
-  units      = "m"
-  long_name  = "Large-scale precipitation"
-  out_name   = prls
-/
+! Convert to precipitation flux
 &parameter
   param      = 143.128
   units      = "m"
   long_name  = "Convective precipitation"
   out_name   = prc
 /
+! Convert to precipitation flux
 &parameter
   param      = 144.128
   units      = "m of water equivalent"
   long_name  = "Snowfall"
   out_name   = prsn
 /
+! Convert to W m-2
 &parameter
   param      = 146.128
   units      = "J m-2"
@@ -434,6 +431,7 @@
   positive   = "down"
   out_name   = hfls
 /
+! Convert to W m-2
 &parameter
   param      = 147.128
   units      = "J m-2"

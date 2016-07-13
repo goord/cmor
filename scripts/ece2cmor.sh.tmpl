@@ -581,9 +581,14 @@ function process_atmosphere() {
                       # convert soil moisture units of top soil layer
                       cdo_operator="-setltype,1 -mulc,1000. -mulc,0.07 -selmon,$mm" ;;
                   ( 34.128 )
-                      # filter with sea mask
+                      # filter with land mask
                       if [ -f ${file}_172.128.grb ]; then
-                          cdo_operator="-setparam,$param -ifthen ${file}_172.128.grb -selmon,$mm" ;;
+                          cdo_operator="-setparam,$param -ifthen -gtc,0.5 ${file}_172.128.grb -selmon,$mm" ;;
+                      fi
+                  ( 99.128 )
+                      # TODO: filter with land+ice mask
+                      if [ -f ${file}_172.128.grb ] && [ -f ${file}_31.128 ]; then
+                          cdo_operator="-setparam,$param -ifthen -gtc,0.5 ${file}_172.128.grb -selmon,$mm" ;;
                       fi
                   esac
 
