@@ -384,6 +384,7 @@
   long_name  = "Total column water vapour"
   out_name   = prw
 /
+! Mean vorticity over 850, 700 and 600 hPa
 &parameter
   param      = 138.128
   units      = "s-1"

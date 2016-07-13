@@ -484,6 +484,7 @@ function process_atmosphere() {
 
           # Omega at pressure levels
           $cdo -s setparam,226.128 ${file}_135.128.grb ${file}_226.128.grb
+          $cdo -s setparam,227.128 ${file}_135.128.grb ${file}_227.128.grb
 
           for freq in $FREQLIST_IFS; do
               shifttime=""
@@ -526,47 +527,53 @@ function process_atmosphere() {
                   ( 215.128 | 225.128 )
                       # Temperature/relative humidity on pressure levels
                       if [ $freq = 'day' ]; then
-                         cdo_operator="-sellevel,$plev8 -selmon,$mm" ;;
+                         cdo_operator="-sellevel,$plev8 -selzaxis,pressure -selmon,$mm" ;;
                       elif [ $freq = 'mon' ]; then
-                         cdo_operator="-sellevel,$plev17 -selmon,$mm" ;;
+                         cdo_operator="-sellevel,$plev17 -selzaxis,pressure -selmon,$mm" ;;
                       fi
                   ( 216.128 )
                       # Temperature on 700hPa: ta700
                       if [ $freq = 'day' ]; then
-                         cdo_operator="-sellevel,70000 -selmon,$mm" ;;
+                         cdo_operator="-sellevel,70000 -selzaxis,pressure -selmon,$mm" ;;
                       fi
                   ( 217.128 | 220.128 )
                       # Component of wind at pressure levels
                       if [ $freq = '3hr' ]; then
-                         cdo_operator="-sellevel,85000 -selmon,$mm" ;;
+                         cdo_operator="-sellevel,85000 -selzaxis,pressure -selmon,$mm" ;;
                       elif [ $freq = '6hr' ]; then
-                         cdo_operator="-sellevel,$plev4 -selmon,$mm" ;;
+                         cdo_operator="-sellevel,$plev4 -selzaxis,pressure -selmon,$mm" ;;
                       elif [ $freq = 'day' ]; then
-                         cdo_operator="-sellevel,$plev8 -selmon,$mm" ;;
+                         cdo_operator="-sellevel,$plev8 -selzaxis,pressure -selmon,$mm" ;;
                       fi
                   ( 218.128 | 221.128 )
                       # Component of wind at pressure levels
                       if [ $freq = 'day' ]; then
-                         cdo_operator="-sellevel,$plev19 -selmon,$mm" ;;
+                         cdo_operator="-sellevel,$plev19 -selzaxis,pressure -selmon,$mm" ;;
                       elif [ $freq = 'mon' ]; then
-                         cdo_operator="-sellevel,$plev17 -selmon,$mm" ;;
+                         cdo_operator="-sellevel,$plev17 -selzaxis,pressure -selmon,$mm" ;;
                       fi
                   ( 219.128 | 222.128 | 224.128 )
                       # Component of wind/spcific humidity at pressure levels
                       if [ $freq = 'day' ]; then
-                         cdo_operator="-sellevel,$plev23 -selmon,$mm" ;;
+                         cdo_operator="-sellevel,$plev23 -selzaxis,pressure -selmon,$mm" ;;
                       elif [ $freq = 'mon' ]; then
-                         cdo_operator="-sellevel,$plev7c -selmon,$mm" ;;
+                         cdo_operator="-sellevel,$plev7c -selzaxis,pressure -selmon,$mm" ;;
                       fi
                   ( 223.128 | 226.128 )
                       # Specific humidity/Omega at pressure levels
                       if [ $freq = '6hr' ]; then
-                         cdo_operator="-sellevel,$plev4 -selmon,$mm" ;;
+                         cdo_operator="-sellevel,$plev4 -selzaxis,pressure -selmon,$mm" ;;
                       elif [ $freq = 'day' ]; then
-                         cdo_operator="-sellevel,$plev8 -selmon,$mm" ;;
+                         cdo_operator="-sellevel,$plev8 -selzaxis,pressure -selmon,$mm" ;;
                       elif [ $freq = 'mon' ]; then
-                         cdo_operator="-sellevel,$plev17 -selmon,$mm" ;;
+                         cdo_operator="-sellevel,$plev17 -selzaxis,pressure -selmon,$mm" ;;
                       fi
+                  ( 227.128 )
+                      # Wap500
+                      cdo_operator="-sellevel,50000 -selzaxis,pressure -selmon,$mm" ;;
+                  ( 138.128 )
+                      # vortmean
+                      cdo_operator="-vertmean -sellevel,60000,70000,85000 -selmon,$mm " ;;
                   ( 139.128 )
                       # remove depth coordinate
                       cdo_operator="-setltype,1 -selmon,$mm" ;;
