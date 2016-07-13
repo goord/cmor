@@ -513,11 +513,21 @@ function process_atmosphere() {
                       # (GvdO): Is this necessary? Aren't the instantaneous surface stresses covered by 229/230?
                       cdo_operator="-divc,$((NFRP*3600)) -selmon,$mm $shifttime" ;;
                   ( 49.128 | 201.128 | 214.128 )
-                      # daily maximum
-                      cdo_operator="-daymax -selmon,$mm $shifttime" ;;
-                  ( 202.128 )
-                      # daily minmimum
-                      cdo_operator="-daymin -selmon,$mm $shifttime" ;;
+                      if [ $freq = 'day' ]; then
+                        # daily maximum
+                        cdo_operator="-daymax -selmon,$mm $shifttime" ;;
+                      elif [ $freq = 'mon' ]; then
+                        # monthly maximum
+                        cdo_operator="-monmax -selmon,$mm $shifttime" ;;
+                      fi
+                  ( 202.128 | 228.128 )
+                      if [ $freq = 'day' ]; then
+                        # daily minimum
+                        cdo_operator="-daymin -selmon,$mm $shifttime" ;;
+                      elif [ $freq = 'mon' ]; then
+                        # monthly minimum
+                        cdo_operator="-monmin -selmon,$mm $shifttime" ;;
+                      fi
                   ( 129.128 )
                       # upper-air geopotential
                       cdo_operator="-divc,9.81 -selmon,$mm" ;;

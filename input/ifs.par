@@ -475,12 +475,14 @@
   long_name  = "2 metre temperature"
   out_name   = tas
 /
+! Needed for surface specific and relative humidity.
 &parameter
   param      = 168.128
   units      = "K"
   long_name  = "2 metre dewpoint temperature"
   out_name   = tdps
 /
+! Convert to W m-2
 &parameter
   param      = 169.128
   units      = "J m-2"
@@ -488,12 +490,14 @@
   out_name   = rsds
   positive  = "down"
 /
+! Needed for average soil temperature?
 &parameter
   param      = 170.128
   units      = "K"
   long_name  = "Soil temperature level 2"
   out_name   = stl2
 /
+! Convert to W m-2
 &parameter
   param      = 175.128
   units      = "J m-2"
@@ -501,6 +505,7 @@
   out_name   = rlds
   positive  = "down"
 /
+! Needed for upwelling shortwave radiation.
 &parameter
   param      = 176.128
   units      = "J m-2"
@@ -508,6 +513,7 @@
   out_name   = ssr
   positive   = "down"
 /
+! Needed for upwelling longwave radiation.
 &parameter
   param      = 177.128
   units      = "J m-2"
@@ -515,6 +521,7 @@
   out_name   = str
   positive   = "down"
 /
+! Needed for upwelling TOA shortwave radiation.
 &parameter
   param      = 178.128
   units      = "J m-2"
@@ -522,6 +529,7 @@
   out_name   = tsr
   positive   = "down"
 /
+! Convert to W m-2
 &parameter
   param      = 179.128
   units      = "J m-2"
@@ -548,6 +556,7 @@
   out_name   = evspsbl
   positive   = "down"
 /
+! Needed for average soil temperature?
 &parameter
   param      = 183.128
   units      = "K"
@@ -572,30 +581,35 @@
   long_name  = "High cloud cover"
   out_name   = hcc
 /
+! Aggregate to daily/monthly maxima
 &parameter
   param      = 201.128
   units      = "K"
   long_name  = "Maximum temperature at 2 metres since previous post-processing"
   out_name   = tasmax
 /
+! Aggregate to daily/monthly minima
 &parameter
   param      = 202.128
   units      = "K"
   long_name  = "Minimum temperature at 2 metres since previous post-processing"
   out_name   = tasmin
 /
+! Convert to kg m-2 s-1
 &parameter
   param      = 205.128
   units      = "m"
   long_name  = "Total Runoff"
   out_name   = mrro
 /
+! Used for TOA downward shortwave radiation
 &parameter
   param      = 208.128
   units      = "J m-2"
   long_name  = "Top Net Solar Radiation, Clear Sky"
   out_name   = tsrc
 /
+! Used for TOA downward longwave radiation
 &parameter
   param      = 209.128
   units      = "J m-2"
@@ -603,6 +617,7 @@
   out_name   = rlutcs
   positive   = "up"
 /
+! Used for TOA downward longwave radiation
 &parameter
   param      = 210.128
   units      = "J m-2"
@@ -610,12 +625,14 @@
   out_name   = ssrc
   positive   = "down"
 /
+! Unused
 &parameter
   param      = 211.128
   units      = "J m-2"
   long_name  = "Surface Net Thermal Radiation, Clear Sky"
   out_name   = strc
 /
+! Used for TOA downward shortwave radiation
 &parameter
   param      = 212.128
   units      = "J m-2"
@@ -623,6 +640,7 @@
   out_name   = rsdt
   positive   = "down"
 /
+! Convert to kg m-2 s-1
 &parameter
   param      = 228.128
   units      = "m"
