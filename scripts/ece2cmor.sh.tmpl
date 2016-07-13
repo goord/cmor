@@ -462,6 +462,10 @@ function process_atmosphere() {
           $cdo -s setparam,97.128 -sub ${file}_178.128.grb ${file}_212.128.grb ${file}_97.128.grb
           $cdo -s setparam,98.128 -sub ${file}_208.128.grb ${file}_212.128.grb ${file}_98.128.grb
 
+          # daily min/max precipitation
+          $cdo -s setparam,104.128 -mulc,1000 -divc,$((NFRP*3600)) ${file}_228.128.grb ${file}_104.128.grb
+          $cdo -s setparam,105.128 -mulc,1000 -divc,$((NFRP*3600)) ${file}_228.128.grb ${file}_105.128.grb
+
           # temperature on pressure levels
           $cdo -s setparam,215.128 ${file}_130.128.grb ${file}_215.128.grb
           $cdo -s setparam,216.128 ${file}_130.128.grb ${file}_216.128.grb
@@ -512,7 +516,7 @@ function process_atmosphere() {
                       # surface stress: (N/m2)s -> N/m2
                       # (GvdO): Is this necessary? Aren't the instantaneous surface stresses covered by 229/230?
                       cdo_operator="-divc,$((NFRP*3600)) -selmon,$mm $shifttime" ;;
-                  ( 49.128 | 201.128 | 214.128 )
+                  ( 49.128 | 104.128 | 201.128 | 214.128 )
                       if [ $freq = 'day' ]; then
                         # daily maximum
                         cdo_operator="-daymax -selmon,$mm $shifttime" ;;
@@ -520,7 +524,7 @@ function process_atmosphere() {
                         # monthly maximum
                         cdo_operator="-monmax -selmon,$mm $shifttime" ;;
                       fi
-                  ( 202.128 | 228.128 )
+                  ( 105.128 | 202.128 )
                       if [ $freq = 'day' ]; then
                         # daily minimum
                         cdo_operator="-daymin -selmon,$mm $shifttime" ;;
