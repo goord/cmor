@@ -647,12 +647,14 @@
   long_name  = "Precipitation"
   out_name   = pr
 /
+! Computed from 228.128
 &parameter
   param      = 104.128
   units      = "m"
   long_name  = "Precipitation"
   out_name   = prmax
 /
+! Computed from 228.128
 &parameter
   param      = 105.128
   units      = "m"
@@ -665,18 +667,21 @@
   long_name  = "Skin temperature"
   out_name   = ts
 /
+! Needed for average soil temperature
 &parameter
   param      = 236.128
   units      = "K"
   long_name  = "Soil temperature level 4"
   out_name   = stl4
 /
+! Unused
 &parameter
   param      = 238.128
   units      = "K"
   long_name  = "Temperature of snow layer"
   out_name   = tsn
 /
+! Unused
 &parameter
   param      = 243.128
   units      = "(0 -1)"
