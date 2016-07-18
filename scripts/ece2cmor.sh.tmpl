@@ -51,7 +51,7 @@ VARLIST=[[[MOD:GENERAL:CMOR_VAR_LIST]]]
 
 # IFS-specific settings
 # Do cmorization of atmospheric output
-do_atmos=[[[MOD:IFS:INCLUDE]]]
+do_atmos=$(echo "[[[MOD:IFS:INCLUDE]]]" | tr "[:upper:]" "[:lower:]")
 
 # IFS output frequency (6 or 3 hours)
 IFS_output_freq=[[[MOD:IFS:OUTPUT_TIME_STEP]]]
@@ -68,7 +68,7 @@ IFS_PARTAB=[[[MOD:IFS:PAR_TAB]]]
 
 # NEMO-specific settings
 # Do cmorization of ocean output
-do_ocean=[[[MOD:NEMO:INCLUDE]]]
+do_ocean=$(echo "[[[MOD:NEMO:INCLUDE]]]" | tr "[:upper:]" "[:lower:]")
 
 # NEMO parameter table location
 NEMO_PARTAB=[[[MOD:NEMO:PAR_TAB]]]
@@ -82,13 +82,11 @@ do_sfcwspd=true # SFC wind speed (from components)
 do_sfchum=true  # SFC relative and specific humidity
 do_sfcpres=false # SFC pressure
 
-set +v
-
 # set environment
 #----------------
 : ${SLURM_JOB_ID:=$$}
 ece2cmor_root_dir="[[[PLT:ACTIVE:ECEARTH_SRC_DIR]]]/util/ece2cmor"
-export PATH=${ece2cmor_root_dir}/bin/:${PATH}
+#export PATH=${ece2cmor_root_dir}/src/:${PATH}
 log_dir="${ece2cmor_root_dir}/log"
 [ ! -d $log_dir ] && mkdir -p $log_dir
 run_date=$(date +%F_%H-%M)
@@ -96,11 +94,9 @@ log_file=${log_dir}/ece2cmor_${run_date}_${SLURM_JOB_ID}_$$.log
 
 tmp_dir="[[[PLT:ACTIVE:ECE2CMOR_TMP_DIR]]]/ece2cmor_${run_date}_$$"
 
-set -v
 in_dir="[[[PLT:ACTIVE:ECEARTH_OUTPUT_DIR]]]"
+
 out_dir="[[[PLT:ACTIVE:ECE2CMOR_OUTPUT_DIR]]]"
-set +v
-mkdir -p $out_dir
 
 forc="[[[MOD:GENERAL:FORCING]]]"
 
@@ -123,6 +119,8 @@ rebuild_nemo=[[[PLT:ACTIVE:ECEARTH_SRC_DIR]]]/util/rebuild_nemo/rebuild_nemo
 NPROCS=${SLURM_NTASKS:-1}
 
 #============== Here starts the code ======================================
+
+mkdir -p $out_dir
 
 function create_namelist(){
 
@@ -294,7 +292,7 @@ function process_ocean() {
 /
 EOF
             create_namelist >> $nml
-            ece2cmor_oce.exe $nml &
+            ${ece2cmor_root_dir}/src/ece2cmor_oce.exe $nml &
 
             if [ $((icount%NPROCS)) -eq 0 ]; then
                wait
@@ -350,8 +348,8 @@ function process_atmosphere() {
 # Create parameter list
 #-----------------------------------------------------------------------------
     for freq in $FREQLIST_IFS; do
-        param_list=$(create_param_list.exe $IFS_PARTAB $VARLIST $freq)
         echo "DBG: creating parameter list param_list_${freq}..."
+        param_list=$(${ece2cmor_root_dir}/src/create_param_list.exe $IFS_PARTAB $VARLIST $freq)
         eval "param_list_${freq}=\$param_list"
         echo "DBG: ...done"
     done
@@ -519,19 +517,19 @@ function process_atmosphere() {
                   ( 49.128 | 104.128 | 201.128 | 214.128 )
                       if [ $freq = 'day' ]; then
                         # daily maximum
-                        cdo_operator="-daymax -selmon,$mm $shifttime" ;;
+                        cdo_operator="-daymax -selmon,$mm $shifttime"
                       elif [ $freq = 'mon' ]; then
                         # monthly maximum
-                        cdo_operator="-monmax -selmon,$mm $shifttime" ;;
-                      fi
+                        cdo_operator="-monmax -selmon,$mm $shifttime"
+                      fi ;;
                   ( 105.128 | 202.128 )
                       if [ $freq = 'day' ]; then
                         # daily minimum
-                        cdo_operator="-daymin -selmon,$mm $shifttime" ;;
+                        cdo_operator="-daymin -selmon,$mm $shifttime"
                       elif [ $freq = 'mon' ]; then
                         # monthly minimum
-                        cdo_operator="-monmin -selmon,$mm $shifttime" ;;
-                      fi
+                        cdo_operator="-monmin -selmon,$mm $shifttime"
+                      fi ;;
                   ( 129.128 )
                       # upper-air geopotential
                       cdo_operator="-divc,9.81 -selmon,$mm" ;;
@@ -541,47 +539,47 @@ function process_atmosphere() {
                   ( 215.128 | 225.128 )
                       # Temperature/relative humidity on pressure levels
                       if [ $freq = 'day' ]; then
-                         cdo_operator="-sellevel,$plev8 -selzaxis,pressure -selmon,$mm" ;;
+                         cdo_operator="-sellevel,$plev8 -selzaxis,pressure -selmon,$mm"
                       elif [ $freq = 'mon' ]; then
-                         cdo_operator="-sellevel,$plev17 -selzaxis,pressure -selmon,$mm" ;;
-                      fi
+                         cdo_operator="-sellevel,$plev17 -selzaxis,pressure -selmon,$mm"
+                      fi ;;
                   ( 216.128 )
                       # Temperature on 700hPa: ta700
                       if [ $freq = 'day' ]; then
-                         cdo_operator="-sellevel,70000 -selzaxis,pressure -selmon,$mm" ;;
-                      fi
+                         cdo_operator="-sellevel,70000 -selzaxis,pressure -selmon,$mm"
+                      fi ;;
                   ( 217.128 | 220.128 )
                       # Component of wind at pressure levels
                       if [ $freq = '3hr' ]; then
-                         cdo_operator="-sellevel,85000 -selzaxis,pressure -selmon,$mm" ;;
+                         cdo_operator="-sellevel,85000 -selzaxis,pressure -selmon,$mm"
                       elif [ $freq = '6hr' ]; then
-                         cdo_operator="-sellevel,$plev4 -selzaxis,pressure -selmon,$mm" ;;
+                         cdo_operator="-sellevel,$plev4 -selzaxis,pressure -selmon,$mm"
                       elif [ $freq = 'day' ]; then
-                         cdo_operator="-sellevel,$plev8 -selzaxis,pressure -selmon,$mm" ;;
-                      fi
+                         cdo_operator="-sellevel,$plev8 -selzaxis,pressure -selmon,$mm"
+                      fi ;;
                   ( 218.128 | 221.128 )
                       # Component of wind at pressure levels
                       if [ $freq = 'day' ]; then
-                         cdo_operator="-sellevel,$plev19 -selzaxis,pressure -selmon,$mm" ;;
+                         cdo_operator="-sellevel,$plev19 -selzaxis,pressure -selmon,$mm"
                       elif [ $freq = 'mon' ]; then
-                         cdo_operator="-sellevel,$plev17 -selzaxis,pressure -selmon,$mm" ;;
-                      fi
+                         cdo_operator="-sellevel,$plev17 -selzaxis,pressure -selmon,$mm"
+                      fi ;;
                   ( 219.128 | 222.128 | 224.128 )
                       # Component of wind/spcific humidity at pressure levels
                       if [ $freq = 'day' ]; then
-                         cdo_operator="-sellevel,$plev23 -selzaxis,pressure -selmon,$mm" ;;
+                         cdo_operator="-sellevel,$plev23 -selzaxis,pressure -selmon,$mm"
                       elif [ $freq = 'mon' ]; then
-                         cdo_operator="-sellevel,$plev7c -selzaxis,pressure -selmon,$mm" ;;
-                      fi
+                         cdo_operator="-sellevel,$plev7c -selzaxis,pressure -selmon,$mm"
+                      fi ;;
                   ( 223.128 | 226.128 )
                       # Specific humidity/Omega at pressure levels
                       if [ $freq = '6hr' ]; then
-                         cdo_operator="-sellevel,$plev4 -selzaxis,pressure -selmon,$mm" ;;
+                         cdo_operator="-sellevel,$plev4 -selzaxis,pressure -selmon,$mm"
                       elif [ $freq = 'day' ]; then
-                         cdo_operator="-sellevel,$plev8 -selzaxis,pressure -selmon,$mm" ;;
+                         cdo_operator="-sellevel,$plev8 -selzaxis,pressure -selmon,$mm"
                       elif [ $freq = 'mon' ]; then
-                         cdo_operator="-sellevel,$plev17 -selzaxis,pressure -selmon,$mm" ;;
-                      fi
+                         cdo_operator="-sellevel,$plev17 -selzaxis,pressure -selmon,$mm"
+                      fi ;;
                   ( 227.128 )
                       # Wap500
                       cdo_operator="-sellevel,50000 -selzaxis,pressure -selmon,$mm" ;;
@@ -597,13 +595,13 @@ function process_atmosphere() {
                   ( 34.128 )
                       # filter with land mask
                       if [ -f ${file}_172.128.grb ]; then
-                          cdo_operator="-setparam,$param -ifthen -gtc,0.5 ${file}_172.128.grb -selmon,$mm" ;;
-                      fi
+                          cdo_operator="-setparam,$param -ifthen -gtc,0.5 ${file}_172.128.grb -selmon,$mm"
+                      fi ;;
                   ( 99.128 )
                       # TODO: filter with land+ice mask
                       if [ -f ${file}_172.128.grb ] && [ -f ${file}_31.128 ]; then
-                          cdo_operator="-setparam,$param -ifthen -gtc,0.5 ${file}_172.128.grb -selmon,$mm" ;;
-                      fi
+                          cdo_operator="-setparam,$param -ifthen -gtc,0.5 ${file}_172.128.grb -selmon,$mm"
+                      fi ;;
                   esac
 
                   $cdo -s $cdo_timmean $cdo_operator ${file}_${param}.grb ${file}_${param}_${freq}.grb
@@ -662,7 +660,7 @@ function process_atmosphere() {
 /
 EOF
             create_namelist >> $nml
-            ece2cmor_atm.exe $nml &
+            ${ece2cmor_root_dir}/src/ece2cmor_atm.exe $nml &
 
             if [ $((icount%NPROCS)) -eq 0 ]; then
                wait
