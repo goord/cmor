@@ -32,8 +32,8 @@ MEMBER=[[[MOD:GENERAL:MEMBER]]]
 EXPID=[[[MOD:GENERAL:EXP_ID]]]
 
 # years to be processed by this run_script
-START_date=$(date -d "[[[MOD:GENERAL:CMOR_START_DATE]]]" +"%Y%m%d")
-END_date=$(date -d "[[[MOD:GENERAL:CMOR_END_DATE]]]" +"%Y%m%d")
+cmor_start_date=$(date -d "[[[MOD:GENERAL:CMOR_START_DATE]]]" +"%Y%m%d")
+cmor_end_date=$(date -d "[[[MOD:GENERAL:CMOR_END_DATE]]]" +"%Y%m%d")
 
 # model specific settings
 MODEL=ecearth
@@ -177,7 +177,7 @@ function populate_nemo_tmp_dir(){
         ff=$(basename $f .nc)
         sdate=$(echo $ff | cut -d _ -f 3)
         edate=$(echo $ff | cut -d _ -f 4)
-        if [[ $sdate -le $END_date  &&  $edate -ge $START_date ]]; then
+        if [[ $sdate -le $cmor_end_date  &&  $edate -ge $cmor_start_date ]]; then
             ln -s $f ${tmp_dir}/.
         fi
     done
@@ -190,7 +190,7 @@ function populate_nemo_tmp_dir(){
         ff=$(basename $f .nc)
         sdate=$(echo $ff | cut -d _ -f 3)
         edate=$(echo $ff | cut -d _ -f 4)
-        if [[ $sdate -le $END_date  &&  $edate -ge $START_date ]]; then
+        if [[ $sdate -le $cmor_end_date  &&  $edate -ge $cmor_start_date ]]; then
            # rebuild global NEMO files if needed
            fnameroot=${ff%_0000}
            if [ ! -f ${tmp_dir}/${fnameroot}.nc ]; then
@@ -217,8 +217,8 @@ function populate_nemo_tmp_dir(){
 
 function populate_ifs_tmp_dir(){
     echo "DBG: populating tmp dir..."
-    dat_start=$(date -d "$START_date - 1 month" +%Y%m)
-    dat_end=$(date -d "$END_date" +%Y%m)
+    dat_start=$(date -d "$cmor_start_date - 1 month" +%Y%m)
+    dat_end=$(date -d "$cmor_end_date" +%Y%m)
     echo "DBG: starting at $dat_start, stopping at $dat_end"
     regex_ifs='.*\(ICMGG\|ICMSH\).*[0-9]$'
 
@@ -280,11 +280,11 @@ function process_ocean() {
          esac
          not_last_chunk=true
          Clen=${Chunk_length[interv-1]}
-         Chunk_start_date=$START_date
+         Chunk_start_date=$cmor_start_date
          while $not_last_chunk; do
             Chunk_end_date=$(date -d "$Chunk_start_date + $Clen - 1 day" +%Y%m%d)
-            if [ $Chunk_end_date -ge $END_date ]; then
-                Chunk_end_date=$END_date
+            if [ $Chunk_end_date -ge $cmor_end_date ]; then
+                Chunk_end_date=$cmor_end_date
                 not_last_chunk=false
             fi
 
@@ -328,10 +328,10 @@ function process_atmosphere() {
 # Build expected dates monthly data (yyyymm)
 #------------------------------------------------------------
     echo "DBG: calculating expected atmos dates..."
-    startyear=$(echo $START_date | cut -c1-4)
-    endyear=$(echo $END_date | cut -c1-4)
-    startmonth=$(echo $START_date | cut -c5-6)
-    endmonth=$(echo $END_date | cut -c5-6)
+    startyear=$(echo $cmor_start_date | cut -c1-4)
+    endyear=$(echo $cmor_end_date | cut -c1-4)
+    startmonth=$(echo $cmor_start_date | cut -c5-6)
+    endmonth=$(echo $cmor_end_date | cut -c5-6)
     list=""
     for y in $(seq $startyear $endyear); do
         for m in {1..12}; do
@@ -648,11 +648,11 @@ function process_atmosphere() {
          esac
          not_last_chunk=true
          Clen=${Chunk_length[interv-1]}
-         Chunk_start_date=$START_date
+         Chunk_start_date=$cmor_start_date
          while $not_last_chunk; do
             Chunk_end_date=$(date -d "$Chunk_start_date + $Clen - 1 day" +%Y%m%d)
-            if [ $Chunk_end_date -ge $END_date ]; then
-                Chunk_end_date=$END_date
+            if [ $Chunk_end_date -ge $cmor_end_date ]; then
+                Chunk_end_date=$cmor_end_date
                 not_last_chunk=false
             fi
 
@@ -685,7 +685,7 @@ EOF
 function create_tar(){
 # create a tar of netcdf files
 #-----------------------------------------------------------
-      tarfile="$out_dir/CMOR_${EXP_NAME}_${START_date}_${MEMBER}21_${START_date}-${END_date}.tgz"
+      tarfile="$out_dir/CMOR_${EXP_NAME}_${cmor_start_date}_${MEMBER}21_${cmor_start_date}-${cmor_end_date}.tgz"
       (cd $out_dir; tar -czf $tarfile --exclude=$tarfile *)
 }
 
