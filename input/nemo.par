@@ -466,7 +466,7 @@
    name = hfsithermds
    units = "W m-2"
    long_name = "Heat Flux into Sea Water due to Sea Ice Thermodynamics"
-   out_name = hfsithermds
+   out_name = hfsithermds2d
 /
 &parameter
    name = ialb
@@ -520,7 +520,7 @@
    name = ficeberg
    units = "kg m-2 s-1"
    long_name = "Water Flux Into Sea Water From Icebergs"
-   out_name = ficeberg
+   out_name = ficeberg2d
 /
 &parameter
    name = wfo
