@@ -1,4 +1,6 @@
-if ( param is "3.128" ) {
-    write 
-}
-
+if ( typeOfLevel is "surface" )
+    write "[gridType]_3h"
+if ( typeOfLevel is "isobaricInhPa" && ( param is "131.128" || param is "132.128") )
+    if ( level == 850 )
+        write "[gridType]_3h"
+write "[gridType]_6h"
